@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dustine Jao Portfolio</title>
+    <!-- Fonts: Roboto Slab for titles and Roboto for body, as requested -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define the glassmorphism effect for the light theme */
+        .glass-nav {
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Define the light theme background with a dynamic gradient and noise texture */
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #111111;
+            /* Layered background with noise texture and a radial gradient */
+            background-image:
+                /* Subtle noise texture */
+                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMDAnIGhlaWdodD0nMzAwJz4KICA8ZmlsdGVyIGlkPSdhJz4KICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0ndHVyYnVsZW5jZScgYmFzZUZyZXF1ZW5jeT0nMC42NScgc3RpdGNoVGlsZXM9J3N0aXRjaCcgLz4KICAgIDxmZUNvbG9yTWF0cml4IHR5cGU9J21hdHJpeCdyb3dzPScxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMC41IDAuNSA0LjUgMCcgLz4KICA8L2ZpbHRlcj4KICA8cmVjdCB3aWR0aD0nMzAwJyBoZWlnaHQ9JzMwMCcgZmlsbD0naHNsKDAsIDAlLCAxMDAlKScgZmlsdGVyPSd1cmwoI2EpJy8+Cjwvc3ZnPg=='),
+                /* The vibrant radial gradient */
+                radial-gradient(circle at 120% 120%, rgba(255, 0, 127, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at -20% -20%, rgba(255, 0, 127, 0.2) 0%, transparent 50%),
+                linear-gradient(to bottom, #ffffff, #f0f0f0);
+            background-size: cover;
+            background-attachment: fixed;
+            background-blend-mode: overlay, normal, normal;
+        }
+
+        /* Use Roboto Slab for titles */
+        h1, h2, h3 {
+            font-family: 'Roboto Slab', serif;
+        }
+
+        /* Custom color palette from user */
+        .color-pink { color: #FF007F; }
+        .bg-pink-brand { background-color: #FF007F; }
+        .text-blue-brand { color: #0071bc; }
+        .text-red-brand { color: #c1272d; }
+
+        /* Custom button-like styles for the nav links */
+        .nav-btn {
+            background-color: transparent;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover {
+            /* Apply glass effect on hover */
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            color: #FF007F;
+            transform: scale(1.1);
+        }
+
+        /* Reusable glass effect on hover for other elements */
+        .glass-on-hover:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation Bar (Apple TV-like) -->
+    <header class="sticky top-0 z-50 py-4 px-6 flex justify-between items-center">
+        <!-- Left side: Name -->
+        <div class="text-2xl font-bold" style="font-family: 'Roboto Slab', serif;">
+            <span class="color-pink">Dustine Jao</span>
+        </div>
+        
+        <!-- Right side: Floating Nav Buttons -->
+        <nav class="w-fit glass-nav rounded-full shadow-lg p-2 md:p-3 flex items-center space-x-2 md:space-x-4">
+            <a href="#about" class="nav-btn text-gray-800">About</a>
+            <a href="#work" class="nav-btn text-gray-800">Work</a>
+            <a href="#contact" class="nav-btn text-gray-800">Contact</a>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-20">
+
+        <!-- Hero Section -->
+        <section id="hero" class="text-center py-16 md:py-24">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-4">
+                    Your story, brought to life.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8">
+                    Multimedia artist specializing in video, audio, and design.
+                </p>
+                <a href="#work" class="inline-block bg-pink-brand text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 glass-on-hover">
+                    View My Work
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-12 md:py-20">
+            <div class="max-w-5xl mx-auto px-6 bg-white rounded-3xl shadow-lg p-8 md:p-12 glass-on-hover">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">About Me</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <img src="https://placehold.co/400x400/f5f5f5/111111?text=Your+Photo" alt="Dustine Jao" class="rounded-2xl shadow-lg w-full">
+                    <div class="text-gray-700 leading-relaxed">
+                        <p class="mb-4 font-bold text-gray-900">
+                            Bringing Your Vision to Life.
+                        </p>
+                        <p class="mb-4">
+                            I help clients tell their stories effectively through powerful video, crisp audio, and clean design. I handle everything from social media video editing to professional podcast production.
+                        </p>
+                        <p class="mb-4">
+                            My goal is to make sure your content not only looks and sounds great, but also connects with your audience. I'm a hands-on creative partner ready to bring your next project to life.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="work" class="py-12 md:py-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">Featured Work</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                
+                <!-- 3D -->
+                <div class="bg-white rounded-3xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:scale-105 glass-on-hover">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900 text-blue-brand">3D</h3>
+                    <p class="text-gray-600 text-sm mb-4">Immersive and compelling 3D models and environments.</p>
+                    <img src="https://placehold.co/600x400/0071bc/ffffff?text=3D+Art" alt="3D Art Project" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <a href="https://your.google.drive.link/3d" target="_blank" class="inline-block text-sm font-semibold color-pink hover:underline">View Drive Folder &rarr;</a>
+                </div>
+
+                <!-- Audio Production -->
+                <div class="bg-white rounded-3xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:scale-105 glass-on-hover">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900 text-red-brand">Audio Production</h3>
+                    <p class="text-gray-600 text-sm mb-4">Polishing podcasts and audio for a professional sound experience.</p>
+                    <img src="https://placehold.co/600x400/c1272d/ffffff?text=Audio" alt="Audio Production Project" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <a href="https://your.google.drive.link/audio" target="_blank" class="inline-block text-sm font-semibold color-pink hover:underline">View Drive Folder &rarr;</a>
+                </div>
+
+                <!-- Graphic Design -->
+                <div class="bg-white rounded-3xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:scale-105 glass-on-hover">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900 color-pink">Graphic Design</h3>
+                    <p class="text-gray-600 text-sm mb-4">Creating eye-catching visuals for digital and print media.</p>
+                    <img src="https://placehold.co/600x400/FF007F/ffffff?text=Graphics" alt="Graphic Design Project" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <a href="https://your.google.drive.link/graphic" target="_blank" class="inline-block text-sm font-semibold color-pink hover:underline">View Drive Folder &rarr;</a>
+                </div>
+
+                <!-- Photography -->
+                <div class="bg-white rounded-3xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:scale-105 glass-on-hover">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900 text-blue-brand">Photography</h3>
+                    <p class="text-gray-600 text-sm mb-4">Capturing moments with a unique artistic perspective.</p>
+                    <img src="https://placehold.co/600x400/0071bc/ffffff?text=Photo" alt="Photography Project" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <a href="https://your.google.drive.link/photography" target="_blank" class="inline-block text-sm font-semibold color-pink hover:underline">View Drive Folder &rarr;</a>
+                </div>
+
+                <!-- Podcast -->
+                <div class="bg-white rounded-3xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:scale-105 glass-on-hover">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900 text-red-brand">Podcast</h3>
+                    <p class="text-gray-600 text-sm mb-4">Storytelling through audio to create engaging podcast series.</p>
+                    <img src="https://placehold.co/600x400/c1272d/ffffff?text=Podcast" alt="Podcast Project" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <a href="https://your.google.drive.link/podcast" target="_blank" class="inline-block text-sm font-semibold color-pink hover:underline">View Drive Folder &rarr;</a>
+                </div>
+                
+                <!-- Short-Form -->
+                <div class="bg-white rounded-3xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:scale-105 glass-on-hover">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900 color-pink">Short-Form</h3>
+                    <p class="text-gray-600 text-sm mb-4">Developing engaging reels and clips for social platforms.</p>
+                    <img src="https://placehold.co/600x400/FF007F/ffffff?text=Short-Form" alt="Short-Form Project" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <a href="https://your.google.drive.link/short-form" target="_blank" class="inline-block text-sm font-semibold color-pink hover:underline">View Drive Folder &rarr;</a>
+                </div>
+
+                <!-- Songwriting -->
+                <div class="bg-white rounded-3xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:scale-105 glass-on-hover">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900 text-blue-brand">Songwriting</h3>
+                    <p class="text-gray-600 text-sm mb-4">Original musical compositions and lyrical narratives.</p>
+                    <img src="https://placehold.co/600x400/0071bc/ffffff?text=Songwriting" alt="Songwriting Project" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <a href="https://your.google.drive.link/songwriting" target="_blank" class="inline-block text-sm font-semibold color-pink hover:underline">View Drive Folder &rarr;</a>
+                </div>
+
+                <!-- UI-UX -->
+                <div class="bg-white rounded-3xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:scale-105 glass-on-hover">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900 text-red-brand">UI-UX</h3>
+                    <p class="text-gray-600 text-sm mb-4">Designing intuitive and user-friendly digital experiences.</p>
+                    <img src="https://placehold.co/600x400/c1272d/ffffff?text=UI-UX" alt="UI-UX Project" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <a href="https://your.google.drive.link/ui-ux" target="_blank" class="inline-block text-sm font-semibold color-pink hover:underline">View Drive Folder &rarr;</a>
+                </div>
+
+                <!-- Video Editing -->
+                <div class="bg-white rounded-3xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:scale-105 glass-on-hover">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900 color-pink">Video Editing</h3>
+                    <p class="text-gray-600 text-sm mb-4">Crafting high-quality video content for brands and creators.</p>
+                    <img src="https://placehold.co/600x400/FF007F/ffffff?text=Video" alt="Video Editing Project" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <a href="https://your.google.drive.link/video" target="_blank" class="inline-block text-sm font-semibold color-pink hover:underline">View Drive Folder &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-12 md:py-20">
+            <div class="max-w-xl mx-auto px-6 bg-white rounded-3xl shadow-lg p-8 md:p-12 text-center glass-on-hover">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Let's Connect</h2>
+                <p class="text-gray-600 mb-6">I'm excited to collaborate and bring your next project to life. Feel free to reach out.</p>
+                <div class="flex flex-col space-y-4 items-center">
+                    <a href="mailto:dustinejao@gmail.com" class="text-lg color-pink hover:text-pink-600 transition-colors duration-300 font-medium">dustinejao@gmail.com</a>
+                    <div class="flex space-x-6 justify-center mt-4">
+                        <!-- LinkedIn SVG Icon -->
+                        <a href="https://bit.ly/DustineJaoPortfolio" target="_blank" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM4 14.996V21h-4v-7h4zM4.004 4a2 2 0 10-.008 4.008A2 2 0 004.004 4z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-200 text-gray-600 py-6 text-center mt-12 rounded-t-2xl">
+        <p>&copy; 2025 Dustine Jao. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript for smooth scrolling (optional but nice) -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, 
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
