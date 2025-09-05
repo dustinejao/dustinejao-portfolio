@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dustine Jao Portfolio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
+    <!-- PWA / Apple Touch Icon for home screen -->
+    <link rel="apple-touch-icon" href="/images/icon-512.png">
+
+    <!-- Open Graph (OG) Image for social media sharing -->
+    <meta property="og:image" content="https://dustinejao.com/images/og-image.png">
+    <meta property="og:title" content="Dustine Jao | Multimedia Artist">
+    <meta property="og:description" content="Portfolio of a multimedia artist specializing in video, audio, and design.">
+
     <!-- Modern Font: Inter for a clean and professional look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,9 +123,9 @@
 
     <!-- Navigation Bar (Apple TV-like) -->
     <header class="sticky top-0 z-50 py-4 px-6 flex justify-between items-center">
-        <!-- Left side: Name (now a link) -->
-        <a href="#hero" class="text-2xl font-bold cursor-pointer">
-            <span class="color-pink">Dustine Jao</span>
+        <!-- Left side: Logo -->
+        <a href="#hero" class="w-12 h-12">
+            <img src="/images/logo.svg" alt="Portfolio Logo" class="rounded-full">
         </a>
         
         <!-- Right side: Floating Nav Buttons -->
@@ -146,10 +158,10 @@
             <div class="max-w-5xl mx-auto px-6 bg-white rounded-3xl shadow-lg p-8 md:p-12 glass-on-hover">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">About Me</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <img src="https://placehold.co/400x400/f5f5f5/111111?text=Your+Photo" alt="Headshot of Dustine Jao, a multimedia artist" class="rounded-2xl shadow-lg w-full">
+                    <img src="/images/dj.jpg" alt="Headshot of Dustine Jao, a multimedia artist" class="rounded-2xl shadow-lg w-full">
                     <div class="text-gray-700 leading-normal">
                         <p class="mb-4 font-bold text-gray-900">
-                            Bringing Your Vision to Life.
+                            Hi! I'm Dustine Jao. Bringing Your Vision to Life.
                         </p>
                         <p class="mb-4">
                             I help clients tell their stories effectively through powerful video, crisp audio, and clean design. I handle everything from social media video editing to professional podcast production.
@@ -171,7 +183,7 @@
                 <div id="carousel-container" class="flex flex-row overflow-x-scroll snap-x snap-mandatory space-x-6 pb-4 hide-scrollbar">
                     
                     <!-- Video Editing Card -->
-                    <a href="https://your.google.drive.link/video" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <a href="https://drive.google.com/drive/folders/1-B7w20bdZBiH6UdLjG9bnkEr2qlXZFrq?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                         <div class="flex flex-col h-full">
                             <div class="flex-grow">
                                 <h3 class="font-semibold text-lg text-gray-900 color-pink">
@@ -181,13 +193,13 @@
                                 <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
                             </div>
                             <div class="mt-auto">
-                                <img src="https://placehold.co/400x300/FF007F/ffffff?text=Video" alt="A video timeline or a frame from a polished video project" class="w-full h-auto object-cover rounded-2xl mt-4">
+                                <img src="/images/video.jpg" alt="A video timeline or a frame from a polished video project" class="w-full h-auto object-cover rounded-2xl mt-4">
                             </div>
                         </div>
                     </a>
 
                     <!-- Audio Production Card -->
-                    <a href="https://your.google.drive.link/audio" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <a href="https://drive.google.com/drive/folders/1noD9AV2oRemMNX8z9yH80DtAyZFEtGE8?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                         <div class="flex flex-col h-full">
                             <div class="flex-grow">
                                 <h3 class="font-semibold text-lg text-gray-900 text-red-brand">
@@ -197,29 +209,13 @@
                                 <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
                             </div>
                             <div class="mt-auto">
-                                <img src="https://placehold.co/400x300/c1272d/ffffff?text=Audio" alt="A sound wave visual representing audio production and editing" class="w-full h-auto object-cover rounded-2xl mt-4">
+                                <img src="/images/audio.jpg" alt="A sound wave visual representing audio production and editing" class="w-full h-auto object-cover rounded-2xl mt-4">
                             </div>
                         </div>
                     </a>
                     
-                    <!-- UI-UX Card -->
-                    <a href="https://your.google.drive.link/ui-ux" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                        <div class="flex flex-col h-full">
-                            <div class="flex-grow">
-                                <h3 class="font-semibold text-lg text-gray-900 text-red-brand">
-                                    <span class="mr-2">🖥️</span> UI-UX
-                                </h3>
-                                <p class="text-sm text-gray-600 mt-1 mb-4">Designing intuitive and user-friendly digital experiences.</p>
-                                <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-                            </div>
-                            <div class="mt-auto">
-                                <img src="https://placehold.co/400x300/c1272d/ffffff?text=UI-UX" alt="A screenshot of a mobile app interface or a website mock-up" class="w-full h-auto object-cover rounded-2xl mt-4">
-                            </div>
-                        </div>
-                    </a>
-
                     <!-- Podcast Card -->
-                    <a href="https://your.google.drive.link/podcast" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <a href="https://drive.google.com/drive/folders/1kTA192Qd_rEp33ofGbFXrlda8Yvkh_LZ?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                         <div class="flex flex-col h-full">
                             <div class="flex-grow">
                                 <h3 class="font-semibold text-lg text-gray-900 text-red-brand">
@@ -229,13 +225,13 @@
                                 <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
                             </div>
                             <div class="mt-auto">
-                                <img src="https://placehold.co/400x300/c1272d/ffffff?text=Podcast" alt="An image representing a podcast, such as a microphone or podcast logo" class="w-full h-auto object-cover rounded-2xl mt-4">
+                                <img src="/images/podcast.jpg" alt="An image representing a podcast, such as a microphone or podcast logo" class="w-full h-auto object-cover rounded-2xl mt-4">
                             </div>
                         </div>
                     </a>
-                    
+
                     <!-- Short-Form Card -->
-                    <a href="https://your.google.drive.link/short-form" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <a href="https://drive.google.com/drive/folders/12vq4To9uycPHeGFO1Gyky6y7-600MZxx?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                         <div class="flex flex-col h-full">
                             <div class="flex-grow">
                                 <h3 class="font-semibold text-lg text-gray-900 color-pink">
@@ -245,13 +241,29 @@
                                 <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
                             </div>
                             <div class="mt-auto">
-                                <img src="https://placehold.co/400x300/FF007F/ffffff?text=Short-Form" alt="A vertical video thumbnail representing short-form content" class="w-full h-auto object-cover rounded-2xl mt-4">
+                                <img src="/images/shorts.jpg" alt="A vertical video thumbnail representing short-form content" class="w-full h-auto object-cover rounded-2xl mt-4">
                             </div>
                         </div>
                     </a>
 
+                    <!-- UI-UX Card -->
+                    <a href="https://drive.google.com/drive/folders/1-vueEsBhWvrtQZ1nFtAVgT16VmeKaV3V?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="flex flex-col h-full">
+                            <div class="flex-grow">
+                                <h3 class="font-semibold text-lg text-gray-900 text-red-brand">
+                                    <span class="mr-2">🖥️</span> UI-UX
+                                </h3>
+                                <p class="text-sm text-gray-600 mt-1 mb-4">Designing intuitive and user-friendly digital experiences.</p>
+                                <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
+                            </div>
+                            <div class="mt-auto">
+                                <img src="/images/uiux.jpg" alt="A screenshot of a mobile app interface or a website mock-up" class="w-full h-auto object-cover rounded-2xl mt-4">
+                            </div>
+                        </div>
+                    </a>
+                    
                     <!-- Graphic Design Card -->
-                    <a href="https://your.google.drive.link/graphic-design" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <a href="https://drive.google.com/drive/folders/1J7j1uSKUYyHEmMhkj50uJSaVF9TFu9Be?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                         <div class="flex flex-col h-full">
                             <div class="flex-grow">
                                 <h3 class="font-semibold text-lg text-gray-900 text-blue-brand">
@@ -261,13 +273,13 @@
                                 <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
                             </div>
                             <div class="mt-auto">
-                                <img src="https://placehold.co/400x300/0071bc/ffffff?text=Graphic+Design" alt="A mock-up of a graphic design project, such as a logo or poster" class="w-full h-auto object-cover rounded-2xl mt-4">
+                                <img src="/images/graphic.jpg" alt="A mock-up of a graphic design project, such as a logo or poster" class="w-full h-auto object-cover rounded-2xl mt-4">
                             </div>
                         </div>
                     </a>
-
+                    
                     <!-- View All Card -->
-                    <a href="https://your.google.drive.link/all-files" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <a href="https://drive.google.com/drive/folders/1Kb_uMHPQs-pNwaDouh7mAySCKObXsLW3?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                         <div class="flex flex-col h-full">
                             <div class="flex-grow">
                                 <h3 class="font-semibold text-lg text-gray-900 text-gray-brand">
@@ -284,12 +296,12 @@
                 </div>
             
                 <!-- Left and Right Buttons -->
-                <button id="scroll-left" class="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-200/50 backdrop-blur-sm p-3 rounded-full shadow-lg transition-all duration-300 z-10 opacity-0 group-hover:opacity-100">
+                <button id="scroll-left" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white">
                     <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                     </svg>
                 </button>
-                <button id="scroll-right" class="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-200/50 backdrop-blur-sm p-3 rounded-full shadow-lg transition-all duration-300 z-10 opacity-0 group-hover:opacity-100">
+                <button id="scroll-right" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white">
                     <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
@@ -315,10 +327,8 @@
                     <a href="mailto:dustinejao@gmail.com" class="text-lg color-pink hover:text-pink-600 transition-colors duration-300 font-medium">dustinejao@gmail.com</a>
                     <div class="flex space-x-6 justify-center mt-4">
                         <!-- LinkedIn SVG Icon -->
-                        <a href="https://bit.ly/DustineJaoPortfolio" target="_blank" class="text-gray-600 hover:text-gray-900 transition-colors duration-300" aria-label="LinkedIn profile of Dustine Jao">
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM4 14.996V21h-4v-7h4zM4.004 4a2 2 0 10-.008 4.008A2 2 0 004.004 4z" />
-                            </svg>
+                        <a href="https://www.linkedin.com/in/dustinejao/" target="_blank" class="text-gray-600 hover:text-gray-900 transition-colors duration-300" aria-label="LinkedIn profile of Dustine Jao">
+                            <img src="/images/linkedin.svg" alt="LinkedIn Icon" class="w-8 h-8">
                         </a>
                     </div>
                 </div>
