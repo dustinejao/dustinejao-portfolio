@@ -1,28 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<urlset xmlns="[suspicious link removed]">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://dustinejao.com/</loc>
+<loc>https://www.dustinejao.com/</loc>
 <lastmod>2025-09-06</lastmod>
-<changefreq>monthly</changefreq>
 <priority>1.0</priority>
-</url>
-<url>
-<loc>https://www.google.com/search?q=https://dustinejao.com/%23about</loc>
-<lastmod>2025-09-06</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.8</priority>
-</url>
-<url>
-<loc>https://www.google.com/search?q=https://dustinejao.com/%23work</loc>
-<lastmod>2025-09-06</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.8</priority>
-</url>
-<url>
-<loc>https://www.google.com/search?q=https://dustinejao.com/%23contact</loc>
-<lastmod>2025-09-06</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.8</priority>
 </url>
 </urlset>
