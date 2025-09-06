@@ -1,0 +1,22 @@
+{
+  "name": "Dustine Jao Portfolio",
+  "short_name": "Dustine Jao",
+  "start_url": ".",
+  "display": "fullscreen",
+  "background_color": "#ffffff",
+  "theme_color": "#FF007F",
+  "description": "Portfolio of Dustine Jao, a multimedia artist specializing in video, audio, and design.",
+  "icons": [
+    {
+      "src": "/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

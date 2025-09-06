@@ -1,415 +1,384 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dustine Jao Portfolio</title>
-<!-- PWA Settings for Fullscreen Mode on iOS & Android -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dustine Jao Portfolio</title>
+    
+    <meta name="description" content="Portfolio of Dustine Jao, a multimedia artist specializing in video, audio, and design. View my featured work and get in touch to collaborate on your next project.">
+    <meta name="keywords" content="Dustine Jao, portfolio, multimedia, video editing, audio production, graphic design, UI/UX, artist, creative, freelancer, digital media">
+    
+    <meta name="theme-color" content="#FF007F">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="/manifest.json">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Dustine Jao">
+    
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg"> <link rel="icon" type="image/png" href="/images/favicon.png"> <link rel="apple-touch-icon" href="/images/icon-512.png"> <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#FF007F"> <meta property="og:image" content="https://dustinejao.com/images/og-image.png">
+    <meta property="og:title" content="Dustine Jao | Multimedia Artist">
+    <meta property="og:description" content="Portfolio of a multimedia artist specializing in video, audio, and design.">
 
-<!-- SEO Meta Tags -->
-<meta name="description" content="Portfolio of Dustine Jao, a multimedia artist specializing in video, audio, and design. View my featured work and get in touch to collaborate on your next project.">
-<meta name="keywords" content="Dustine Jao, portfolio, multimedia, video editing, audio production, graphic design, UI/UX, artist, creative, freelancer, digital media">
-<!-- Favicon & PWA Home Screen Icon -->
-<!-- For Safari Pinned Tabs -->
-<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#FF007F">
-<!-- Use SVG for modern browsers -->
-<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
-<!-- Use PNG for broader compatibility and as a fallback -->
-<link rel="icon" type="image/png" href="/images/favicon.png">
-<!-- 16x16 PNG for Safari and older browsers -->
-<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
-<!-- Apple Touch Icon for iOS home screen shortcut -->
-<link rel="apple-touch-icon" href="/images/icon-512.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+    /* Define the glassmorphism effect for the light theme */
+    .glass-nav, .glass-footer {
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    }
 
-<!-- Open Graph (OG) Image for social media sharing -->
-<meta property="og:image" content="https://dustinejao.com/images/og-image.png">
-<meta property="og:title" content="Dustine Jao | Multimedia Artist">
-<meta property="og:description" content="Portfolio of a multimedia artist specializing in video, audio, and design.">
+    /* Define the light theme background with a dynamic gradient and noise texture */
+    body {
+    font-family: 'Inter', sans-serif;
+    color: #111111;
+    /* Use CSS variables for the colors to allow dynamic updates */
+    --radial-pink-1: rgba(255, 0, 127, 0.3);
+    --radial-pink-2: rgba(255, 0, 127, 0.2);
 
-<!-- Modern Font: Inter for a clean and professional look -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-/* Define the glassmorphism effect for the light theme */
-.glass-nav, .glass-footer {
-background-color: rgba(255, 255, 255, 0.4);
-backdrop-filter: blur(10px);
--webkit-backdrop-filter: blur(10px);
-border: 1px solid rgba(0, 0, 0, 0.1);
-}
+    /* Layered background with noise texture and a radial gradient */
+    background-image:
+    /* Subtle noise texture */
+    url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMDAnIGhlaWdodD0nMzAwJz4KICA8ZmlsdGVyIGlkPSdhJz4KICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0ndHVyYnVsZW5jZScgYmFzZUZyZXF1ZW5jeT0nMC42NScgc3RpdGNoVGlsZXM9J3N0aXRjaCcgLz4KICAgIDxmZUNvbG9yTWF0cml4IHR5cGU9J21hdHJpeCdyb3dzPScxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMC41IDAuNSA0LjUgMCcgLz4KICA8L2ZpbHRlcj4KICA8cmVjdCB3aWR0aD0nMzAwJyBoZWlnaHQ9JzMwMCcgZmlsbD0naHNsKDAsIDAlLCAxMDAlKScgZmlsdGVyPSd1cmwoI2EpJy8+Cjwvc3ZnPg=='),
+    /* The vibrant radial gradient, now using CSS variables */
+    radial-gradient(circle at 120% 120%, var(--radial-pink-1) 0%, transparent 50%),
+    radial-gradient(circle at -20% -20%, var(--radial-pink-2) 0%, transparent 50%),
+    linear-gradient(to bottom, #ffffff, #f0f0f0);
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: overlay, normal, normal;
+    }
 
-/* Define the light theme background with a dynamic gradient and noise texture */
-body {
-font-family: 'Inter', sans-serif;
-color: #111111;
-/* Use CSS variables for the colors to allow dynamic updates */
---radial-pink-1: rgba(255, 0, 127, 0.3);
---radial-pink-2: rgba(255, 0, 127, 0.2);
+    /* Use Inter for all text and headers for a consistent, modern feel */
+    h1, h2, h3, p, a, button, span {
+    font-family: 'Inter', sans-serif;
+    }
 
-/* Layered background with noise texture and a radial gradient */
-background-image:
-/* Subtle noise texture */
-url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMDAnIGhlaWdodD0nMzAwJz4KICA8ZmlsdGVyIGlkPSdhJz4KICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0ndHVyYnVsZW5jZScgYmFzZUZyZXF1ZW5jeT0nMC42NScgc3RpdGNoVGlsZXM9J3N0aXRjaCcgLz4KICAgIDxmZUNvbG9yTWF0cml4IHR5cGU9J21hdHJpeCdyb3dzPScxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMC41IDAuNSA0LjUgMCcgLz4KICA8L2ZpbHRlcj4KICA8cmVjdCB3aWR0aD0nMzAwJyBoZWlnaHQ9JzMwMCcgZmlsbD0naHNsKDAsIDAlLCAxMDAlKScgZmlsdGVyPSd1cmwoI2EpJy8+Cjwvc3ZnPg=='),
-/* The vibrant radial gradient, now using CSS variables */
-radial-gradient(circle at 120% 120%, var(--radial-pink-1) 0%, transparent 50%),
-radial-gradient(circle at -20% -20%, var(--radial-pink-2) 0%, transparent 50%),
-linear-gradient(to bottom, #ffffff, #f0f0f0);
-background-size: cover;
-background-attachment: fixed;
-background-blend-mode: overlay, normal, normal;
-}
+    /* Custom color palette from user */
+    .color-pink { color: #FF007F; }
+    .bg-pink-brand { background-color: #FF007F; }
+    .text-blue-brand { color: #0071bc; }
+    .text-red-brand { color: #c1272d; }
+    .text-gray-brand { color: #4b5563; }
 
-/* Use Inter for all text and headers for a consistent, modern feel */
-h1, h2, h3, p, a, button, span {
-font-family: 'Inter', sans-serif;
-}
+    /* Custom button-like styles for the nav links */
+    .nav-btn {
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    }
 
-/* Custom color palette from user */
-.color-pink { color: #FF007F; }
-.bg-pink-brand { background-color: #FF007F; }
-.text-blue-brand { color: #0071bc; }
-.text-red-brand { color: #c1272d; }
-.text-gray-brand { color: #4b5563; }
+    .nav-btn:hover {
+    /* Apply glass effect on hover */
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: #FF007F;
+    transform: scale(1.1);
+    }
 
-/* Custom button-like styles for the nav links */
-.nav-btn {
-background-color: transparent;
-padding: 0.5rem 1rem;
-border-radius: 9999px;
-transition: all 0.3s ease;
-font-weight: 500;
-}
+    /* Reusable glass effect on hover for other elements */
+    .glass-on-hover:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    }
 
-.nav-btn:hover {
-/* Apply glass effect on hover */
-background-color: rgba(255, 255, 255, 0.8);
-backdrop-filter: blur(10px);
--webkit-backdrop-filter: blur(10px);
-border: 1px solid rgba(255, 255, 255, 0.3);
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-color: #FF007F;
-transform: scale(1.1);
-}
+    /* Animate the hero text for a more dynamic feel */
+    .hero-text-animation {
+    animation: fadeIn 1s ease-out;
+    }
 
-/* Reusable glass effect on hover for other elements */
-.glass-on-hover:hover {
-background-color: rgba(255, 255, 255, 0.6);
-backdrop-filter: blur(10px);
--webkit-backdrop-filter: blur(10px);
-border: 1px solid rgba(255, 255, 255, 0.3);
-box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-}
+    @keyframes fadeIn {
+    from {
+    opacity: 0;
+    transform: translateY(20px);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }
 
-/* Animate the hero text for a more dynamic feel */
-.hero-text-animation {
-animation: fadeIn 1s ease-out;
-}
-
-@keyframes fadeIn {
-from {
-opacity: 0;
-transform: translateY(20px);
-}
-to {
-opacity: 1;
-transform: translateY(0);
-}
-}
-
-/* Custom CSS to hide scrollbar while keeping scrolling functionality */
-.hide-scrollbar {
--ms-overflow-style: none; /* Internet Explorer 10+ */
-scrollbar-width: none; /* Firefox */
-}
-.hide-scrollbar::-webkit-scrollbar {
-display: none; /* Safari and Chrome */
-}
-</style>
+    /* Custom CSS to hide scrollbar while keeping scrolling functionality */
+    .hide-scrollbar {
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+    }
+    </style>
 </head>
 <body class="antialiased">
 
-<!-- Navigation Bar (Apple TV-like) -->
-<header class="sticky top-0 z-50 py-4 px-6 flex justify-between items-center">
-<!-- Left side: Logo -->
-<a href="#hero" class="w-12 h-12">
-<img src="/images/logo.svg" alt="Portfolio Logo" class="rounded-full">
-</a>
-<!-- Right side: Floating Nav Buttons -->
-<nav class="w-fit glass-nav rounded-full shadow-lg p-2 md:p-3 flex items-center space-x-2 md:space-x-4">
-<a href="#about" class="nav-btn text-gray-800">About</a>
-<a href="#work" class="nav-btn text-gray-800">Work</a>
-<a href="#contact" class="nav-btn text-gray-800">Contact</a>
-</nav>
-</header>
+    <header class="sticky top-0 z-50 py-4 px-6 flex justify-between items-center">
+    <a href="#hero" class="w-12 h-12">
+    <img src="/images/logo.svg" alt="Portfolio Logo" class="rounded-full">
+    </a>
+    <nav class="w-fit glass-nav rounded-full shadow-lg p-2 md:p-3 flex items-center space-x-2 md:space-x-4">
+    <a href="#about" class="nav-btn text-gray-800">About</a>
+    <a href="#work" class="nav-btn text-gray-800">Work</a>
+    <a href="#contact" class="nav-btn text-gray-800">Contact</a>
+    </nav>
+    </header>
 
-<main class="container mx-auto px-6 py-12 md:py-20">
+    <main class="container mx-auto px-6 py-12 md:py-20">
 
-<!-- Hero Section -->
-<section id="hero" class="text-center py-16 md:py-24">
-<div class="max-w-4xl mx-auto hero-text-animation">
-<h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-2">
-Your story, brought to life.
-</h1>
-<p class="text-lg md:text-xl text-gray-600 mb-6">
-Multimedia artist specializing in video, audio, and design.
-</p>
-<a href="#work" class="inline-block bg-pink-brand text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 glass-on-hover">
-View My Work
-</a>
-</div>
-</section>
+    <section id="hero" class="text-center py-16 md:py-24">
+    <div class="max-w-4xl mx-auto hero-text-animation">
+    <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-2">
+    Your story, brought to life.
+    </h1>
+    <p class="text-lg md:text-xl text-gray-600 mb-6">
+    Multimedia artist specializing in video, audio, and design.
+    </p>
+    <a href="#work" class="inline-block bg-pink-brand text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 glass-on-hover">
+    View My Work
+    </a>
+    </div>
+    </section>
 
-<!-- About Section -->
-<section id="about" class="py-12 md:py-20">
-<div class="max-w-5xl mx-auto px-6 bg-white rounded-3xl shadow-lg p-8 md:p-12 glass-on-hover">
-<h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">About Me</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-<img src="/images/dj.jpg" alt="Headshot of Dustine Jao, a multimedia artist" class="rounded-2xl shadow-lg w-full">
-<div class="text-gray-700 leading-normal">
-<p class="mb-4 font-bold text-gray-900">
-Hi! I'm Dustine Jao. Bringing Your Vision to Life.
-</p>
-<p class="mb-4">
-I help clients tell their stories effectively through powerful video, crisp audio, and clean design. I handle everything from social media video editing to professional podcast production.
-</p>
-<p class="mb-4">
-My goal is to make sure your content not only looks and sounds great, but also connects with your audience. I'm a hands-on creative partner ready to bring your next project to life.
-</p>
-</div>
-</div>
-</div>
-</section>
+    <section id="about" class="py-12 md:py-20">
+    <div class="max-w-5xl mx-auto px-6 bg-white rounded-3xl shadow-lg p-8 md:p-12 glass-on-hover">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">About Me</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <img src="/images/dj.jpg" alt="Headshot of Dustine Jao, a multimedia artist" class="rounded-2xl shadow-lg w-full">
+    <div class="text-gray-700 leading-normal">
+    <p class="mb-4 font-bold text-gray-900">
+    Hi! I'm Dustine Jao. Bringing Your Vision to Life.
+    </p>
+    <p class="mb-4">
+    I help clients tell their stories effectively through powerful video, crisp audio, and clean design. I handle everything from social media video editing to professional podcast production.
+    </p>
+    <p class="mb-4">
+    My goal is to make sure your content not only looks and sounds great, but also connects with your audience. I'm a hands-on creative partner ready to bring your next project to life.
+    </p>
+    </div>
+    </div>
+    </div>
+    </section>
 
-<!-- Portfolio Section (Horizontal Carousel) -->
-<section id="work" class="py-12 md:py-20">
-<h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">Featured Work</h2>
-<div class="relative max-w-7xl mx-auto px-6 group">
-<!-- Carousel Container -->
-<div id="carousel-container" class="flex flex-row overflow-x-scroll snap-x snap-mandatory space-x-6 pb-4 hide-scrollbar">
-<!-- Video Editing Card -->
-<a href="https://drive.google.com/drive/folders/1-B7w20bdZBiH6UdLjG9bnkEr2qlXZFrq?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-<div class="flex flex-col h-full">
-<div class="flex-grow">
-<h3 class="font-semibold text-lg text-gray-900 color-pink">
-<span class="mr-2">🎬</span> Video Editing
-</h3>
-<p class="text-sm text-gray-600 mt-1 mb-4">Crafting high-quality video content for brands and creators.</p>
-<button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-</div>
-<div class="mt-auto">
-<img src="/images/video.jpg" alt="A video timeline or a frame from a polished video project" class="w-full h-auto object-cover rounded-2xl mt-4">
-</div>
-</div>
-</a>
+    <section id="work" class="py-12 md:py-20">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">Featured Work</h2>
+    <div class="relative max-w-7xl mx-auto px-6 group">
+    <div id="carousel-container" class="flex flex-row overflow-x-scroll snap-x snap-mandatory space-x-6 pb-4 hide-scrollbar">
+    <a href="https://drive.google.com/drive/folders/1-B7w20bdZBiH6UdLjG9bnkEr2qlXZFrq?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+    <div class="flex flex-col h-full">
+    <div class="flex-grow">
+    <h3 class="font-semibold text-lg text-gray-900 color-pink">
+    <span class="mr-2">🎬</span> Video Editing
+    </h3>
+    <p class="text-sm text-gray-600 mt-1 mb-4">Crafting high-quality video content for brands and creators.</p>
+    <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
+    </div>
+    <div class="mt-auto">
+    <img src="/images/video.jpg" alt="A video timeline or a frame from a polished video project" class="w-full h-auto object-cover rounded-2xl mt-4">
+    </div>
+    </div>
+    </a>
 
-<!-- Audio Production Card -->
-<a href="https://drive.google.com/drive/folders/1noD9AV2oRemMNX8z9yH80DtAyZFEtGE8?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-<div class="flex flex-col h-full">
-<div class="flex-grow">
-<h3 class="font-semibold text-lg text-gray-900 text-red-brand">
-<span class="mr-2">🎧</span> Audio Production
-</h3>
-<p class="text-sm text-gray-600 mt-1 mb-4">Polishing podcasts and audio for a professional sound experience.</p>
-<button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-</div>
-<div class="mt-auto">
-<img src="/images/audio.jpg" alt="A sound wave visual representing audio production and editing" class="w-full h-auto object-cover rounded-2xl mt-4">
-</div>
-</div>
-</a>
-<!-- Podcast Card -->
-<a href="https://drive.google.com/drive/folders/1kTA192Qd_rEp33ofGbFXrlda8Yvkh_LZ?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-<div class="flex flex-col h-full">
-<div class="flex-grow">
-<h3 class="font-semibold text-lg text-gray-900 text-red-brand">
-<span class="mr-2">🎙️</span> Podcast
-</h3>
-<p class="text-sm text-gray-600 mt-1 mb-4">Storytelling through audio to create engaging podcast series.</p>
-<button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-</div>
-<div class="mt-auto">
-<img src="/images/podcast.jpg" alt="An image representing a podcast, such as a microphone or podcast logo" class="w-full h-auto object-cover rounded-2xl mt-4">
-</div>
-</div>
-</a>
+    <a href="https://drive.google.com/drive/folders/1noD9AV2oRemMNX8z9yH80DtAyZFEtGE8?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+    <div class="flex flex-col h-full">
+    <div class="flex-grow">
+    <h3 class="font-semibold text-lg text-gray-900 text-red-brand">
+    <span class="mr-2">🎧</span> Audio Production
+    </h3>
+    <p class="text-sm text-gray-600 mt-1 mb-4">Polishing podcasts and audio for a professional sound experience.</p>
+    <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
+    </div>
+    <div class="mt-auto">
+    <img src="/images/audio.jpg" alt="A sound wave visual representing audio production and editing" class="w-full h-auto object-cover rounded-2xl mt-4">
+    </div>
+    </div>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1kTA192Qd_rEp33ofGbFXrlda8Yvkh_LZ?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+    <div class="flex flex-col h-full">
+    <div class="flex-grow">
+    <h3 class="font-semibold text-lg text-gray-900 text-red-brand">
+    <span class="mr-2">🎙️</span> Podcast
+    </h3>
+    <p class="text-sm text-gray-600 mt-1 mb-4">Storytelling through audio to create engaging podcast series.</p>
+    <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
+    </div>
+    <div class="mt-auto">
+    <img src="/images/podcast.jpg" alt="An image representing a podcast, such as a microphone or podcast logo" class="w-full h-auto object-cover rounded-2xl mt-4">
+    </div>
+    </div>
+    </a>
 
-<!-- Short-Form Card -->
-<a href="https://drive.google.com/drive/folders/12vq4To9uycPHeGFO1Gyky6y7-600MZxx?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-<div class="flex flex-col h-full">
-<div class="flex-grow">
-<h3 class="font-semibold text-lg text-gray-900 color-pink">
-<span class="mr-2">📱</span> Short-Form
-</h3>
-<p class="text-sm text-gray-600 mt-1 mb-4">Developing engaging reels and clips for social platforms.</p>
-<button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-</div>
-<div class="mt-auto">
-<img src="/images/shorts.jpg" alt="A vertical video thumbnail representing short-form content" class="w-full h-auto object-cover rounded-2xl mt-4">
-</div>
-</div>
-</a>
+    <a href="https://drive.google.com/drive/folders/12vq4To9uycPHeGFO1Gyky6y7-600MZxx?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+    <div class="flex flex-col h-full">
+    <div class="flex-grow">
+    <h3 class="font-semibold text-lg text-gray-900 color-pink">
+    <span class="mr-2">📱</span> Short-Form
+    </h3>
+    <p class="text-sm text-gray-600 mt-1 mb-4">Developing engaging reels and clips for social platforms.</p>
+    <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
+    </div>
+    <div class="mt-auto">
+    <img src="/images/shorts.jpg" alt="A vertical video thumbnail representing short-form content" class="w-full h-auto object-cover rounded-2xl mt-4">
+    </div>
+    </div>
+    </a>
 
-<!-- UI-UX Card -->
-<a href="https://drive.google.com/drive/folders/1-vueEsBhWvrtQZ1nFtAVgT16VmeKaV3V?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-<div class="flex flex-col h-full">
-<div class="flex-grow">
-<h3 class="font-semibold text-lg text-gray-900 text-red-brand">
-<span class="mr-2">🖥️</span> UI-UX
-</h3>
-<p class="text-sm text-gray-600 mt-1 mb-4">Designing intuitive and user-friendly digital experiences.</p>
-<button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-</div>
-<div class="mt-auto">
-<img src="/images/uiux.jpg" alt="A screenshot of a mobile app interface or a website mock-up" class="w-full h-auto object-cover rounded-2xl mt-4">
-</div>
-</div>
-</a>
-<!-- Graphic Design Card -->
-<a href="https://drive.google.com/drive/folders/1J7j1uSKUYyHEmMhkj50uJSaVF9TFu9Be?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-<div class="flex flex-col h-full">
-<div class="flex-grow">
-<h3 class="font-semibold text-lg text-gray-900 text-blue-brand">
-<span class="mr-2">🎨</span> Graphic Design
-</h3>
-<p class="text-sm text-gray-600 mt-1 mb-4">Creating eye-catching visuals for digital and print media.</p>
-<button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-</div>
-<div class="mt-auto">
-<img src="/images/graphic.jpg" alt="A mock-up of a graphic design project, such as a logo or poster" class="w-full h-auto object-cover rounded-2xl mt-4">
-</div>
-</div>
-</a>
-<!-- View All Card -->
-<a href="https://drive.google.com/drive/folders/1Kb_uMHPQs-pNwaDouh7mAySCKObXsLW3?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-<div class="flex flex-col h-full">
-<div class="flex-grow">
-<h3 class="font-semibold text-lg text-gray-900 text-gray-brand">
-<span class="mr-2">📁</span> View All
-</h3>
-<p class="text-sm text-gray-600 mt-1 mb-4">Explore the complete collection of my projects and assets.</p>
-<button class="mt-4 inline-block px-4 py-2 text-white bg-gray-600 rounded-full text-sm font-semibold hover:bg-gray-700 transition-colors duration-300">View</button>
-</div>
-<div class="mt-auto">
-<img src="/images/other.jpg" alt="A collage representing various other projects" class="w-full h-auto object-cover rounded-2xl mt-4">
-</div>
-</div>
-</a>
-</div>
-<!-- Left and Right Buttons -->
-<button id="scroll-left" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white">
-<svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-</svg>
-</button>
-<button id="scroll-right" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white">
-<svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-</svg>
-</button>
-</div>
-<!-- New CTA Section -->
-<div class="text-center mt-12">
-<a href="#contact" class="inline-block bg-pink-brand text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 glass-on-hover">
-Ready to Collaborate? Get in Touch
-</a>
-</div>
-</section>
+    <a href="https://drive.google.com/drive/folders/1-vueEsBhWvrtQZ1nFtAVgT16VmeKaV3V?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+    <div class="flex flex-col h-full">
+    <div class="flex-grow">
+    <h3 class="font-semibold text-lg text-gray-900 text-red-brand">
+    <span class="mr-2">🖥️</span> UI-UX
+    </h3>
+    <p class="text-sm text-gray-600 mt-1 mb-4">Designing intuitive and user-friendly digital experiences.</p>
+    <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
+    </div>
+    <div class="mt-auto">
+    <img src="/images/uiux.jpg" alt="A screenshot of a mobile app interface or a website mock-up" class="w-full h-auto object-cover rounded-2xl mt-4">
+    </div>
+    </div>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1J7j1uSKUYyHEmMhkj50uJSaVF9TFu9Be?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+    <div class="flex flex-col h-full">
+    <div class="flex-grow">
+    <h3 class="font-semibold text-lg text-gray-900 text-blue-brand">
+    <span class="mr-2">🎨</span> Graphic Design
+    </h3>
+    <p class="text-sm text-gray-600 mt-1 mb-4">Creating eye-catching visuals for digital and print media.</p>
+    <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
+    </div>
+    <div class="mt-auto">
+    <img src="/images/graphic.jpg" alt="A mock-up of a graphic design project, such as a logo or poster" class="w-full h-auto object-cover rounded-2xl mt-4">
+    </div>
+    </div>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1Kb_uMHPQs-pNwaDouh7mAySCKObXsLW3?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+    <div class="flex flex-col h-full">
+    <div class="flex-grow">
+    <h3 class="font-semibold text-lg text-gray-900 text-gray-brand">
+    <span class="mr-2">📁</span> View All
+    </h3>
+    <p class="text-sm text-gray-600 mt-1 mb-4">Explore the complete collection of my projects and assets.</p>
+    <button class="mt-4 inline-block px-4 py-2 text-white bg-gray-600 rounded-full text-sm font-semibold hover:bg-gray-700 transition-colors duration-300">View</button>
+    </div>
+    <div class="mt-auto">
+    <img src="/images/other.jpg" alt="A collage representing various other projects" class="w-full h-auto object-cover rounded-2xl mt-4">
+    </div>
+    </div>
+    </a>
+    </div>
+    <button id="scroll-left" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white">
+    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+    </svg>
+    </button>
+    <button id="scroll-right" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white">
+    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+    </svg>
+    </button>
+    </div>
+    <div class="text-center mt-12">
+    <a href="#contact" class="inline-block bg-pink-brand text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 glass-on-hover">
+    Ready to Collaborate? Get in Touch
+    </a>
+    </div>
+    </section>
 
-<!-- Contact Section -->
-<section id="contact" class="py-12 md:py-20">
-<div class="max-w-xl mx-auto px-6 bg-white rounded-3xl shadow-lg p-8 md:p-12 text-center glass-on-hover">
-<h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-<span class="mr-2">👋</span> Let's Connect
-</h2>
-<p class="text-gray-600 mb-6">I'm excited to collaborate and bring your next project to life. Feel free to reach out.</p>
-<div class="flex flex-col space-y-4 items-center">
-<a href="mailto:dustinejao@gmail.com" class="text-lg color-pink hover:text-pink-600 transition-colors duration-300 font-medium">dustinejao@gmail.com</a>
-<div class="flex space-x-6 justify-center mt-4">
-<!-- LinkedIn SVG Icon -->
-<a href="https://www.linkedin.com/in/dustinejao/" target="_blank" class="text-gray-600 hover:text-gray-900 transition-colors duration-300" aria-label="LinkedIn profile of Dustine Jao">
-<img src="/images/linkedin.svg" alt="LinkedIn Icon" class="w-8 h-8">
-</a>
-</div>
-</div>
-</div>
-</section>
-</main>
+    <section id="contact" class="py-12 md:py-20">
+    <div class="max-w-xl mx-auto px-6 bg-white rounded-3xl shadow-lg p-8 md:p-12 text-center glass-on-hover">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+    <span class="mr-2">👋</span> Let's Connect
+    </h2>
+    <p class="text-gray-600 mb-6">I'm excited to collaborate and bring your next project to life. Feel free to reach out.</p>
+    <div class="flex flex-col space-y-4 items-center">
+    <a href="mailto:dustinejao@gmail.com" class="text-lg color-pink hover:text-pink-600 transition-colors duration-300 font-medium">dustinejao@gmail.com</a>
+    <div class="flex space-x-6 justify-center mt-4">
+    <a href="https://www.linkedin.com/in/dustinejao/" target="_blank" class="text-gray-600 hover:text-gray-900 transition-colors duration-300" aria-label="LinkedIn profile of Dustine Jao">
+    <img src="/images/linkedin.svg" alt="LinkedIn Icon" class="w-8 h-8">
+    </a>
+    </div>
+    </div>
+    </div>
+    </section>
+    </main>
 
-<!-- Footer -->
-<footer class="glass-footer text-gray-800 py-6 text-center mt-12 rounded-t-2xl">
-<p>&copy; 2025 Dustine Jao. All Rights Reserved.</p>
-<p>Website Development from Scratch by Dustine Jao</p>
-</footer>
+    <footer class="glass-footer text-gray-800 py-6 text-center mt-12 rounded-t-2xl">
+    <p>&copy; 2025 Dustine Jao. All Rights Reserved.</p>
+    <p>Website Development from Scratch by Dustine Jao</p>
+    </footer>
 
-<!-- JavaScript for smooth scrolling & Slideshow logic -->
-<script>
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-anchor.addEventListener('click', function (e) {
-e.preventDefault();
-const targetId = this.getAttribute('href');
-const targetElement = document.querySelector(targetId);
-if (targetElement) {
-window.scrollTo({
-top: targetElement.offsetTop - 80, 
-behavior: 'smooth'
-});
-}
-});
-});
+    <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+    window.scrollTo({
+    top: targetElement.offsetTop - 80, 
+    behavior: 'smooth'
+    });
+    }
+    });
+    });
 
-// Background color change on scroll
-window.addEventListener('scroll', () => {
-const scrollHeight = document.body.scrollHeight - window.innerHeight;
-const scrollPosition = window.scrollY;
-// Calculate a progress value from 0 to 1 based on scroll position
-const progress = Math.min(scrollPosition / 400, 1); // Adjust 400 for how fast the color changes
-// Interpolate the opacity of the pink radial gradients
-const initialOpacity1 = 0.3;
-const finalOpacity1 = 0.05;
-const initialOpacity2 = 0.2;
-const finalOpacity2 = 0.05;
-const newOpacity1 = initialOpacity1 - (progress * (initialOpacity1 - finalOpacity1));
-const newOpacity2 = initialOpacity2 - (progress * (initialOpacity2 - finalOpacity2));
-document.body.style.setProperty('--radial-pink-1', `rgba(255, 0, 127, ${newOpacity1})`);
-document.body.style.setProperty('--radial-pink-2', `rgba(255, 0, 127, ${newOpacity2})`);
-});
+    // Background color change on scroll
+    window.addEventListener('scroll', () => {
+    const scrollHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollPosition = window.scrollY;
+    // Calculate a progress value from 0 to 1 based on scroll position
+    const progress = Math.min(scrollPosition / 400, 1); // Adjust 400 for how fast the color changes
+    // Interpolate the opacity of the pink radial gradients
+    const initialOpacity1 = 0.3;
+    const finalOpacity1 = 0.05;
+    const initialOpacity2 = 0.2;
+    const finalOpacity2 = 0.05;
+    const newOpacity1 = initialOpacity1 - (progress * (initialOpacity1 - finalOpacity1));
+    const newOpacity2 = initialOpacity2 - (progress * (initialOpacity2 - finalOpacity2));
+    document.body.style.setProperty('--radial-pink-1', `rgba(255, 0, 127, ${newOpacity1})`);
+    document.body.style.setProperty('--radial-pink-2', `rgba(255, 0, 127, ${newOpacity2})`);
+    });
 
-// Carousel scrolling logic
-const carousel = document.getElementById('carousel-container');
-const scrollLeftBtn = document.getElementById('scroll-left');
-const scrollRightBtn = document.getElementById('scroll-right');
-// Function to scroll the carousel
-const scrollCarousel = (direction) => {
-const cardWidth = 320; // Tailwind w-80 is 320px
-const gap = 24; // Tailwind space-x-6 is 24px
-const scrollAmount = cardWidth + gap;
-if (direction === 'left') {
-carousel.scrollBy({
-left: -scrollAmount,
-behavior: 'smooth'
-});
-} else if (direction === 'right') {
-carousel.scrollBy({
-left: scrollAmount,
-behavior: 'smooth'
-});
-}
-};
+    // Carousel scrolling logic
+    const carousel = document.getElementById('carousel-container');
+    const scrollLeftBtn = document.getElementById('scroll-left');
+    const scrollRightBtn = document.getElementById('scroll-right');
+    // Function to scroll the carousel
+    const scrollCarousel = (direction) => {
+    const cardWidth = 320; // Tailwind w-80 is 320px
+    const gap = 24; // Tailwind space-x-6 is 24px
+    const scrollAmount = cardWidth + gap;
+    if (direction === 'left') {
+    carousel.scrollBy({
+    left: -scrollAmount,
+    behavior: 'smooth'
+    });
+    } else if (direction === 'right') {
+    carousel.scrollBy({
+    left: scrollAmount,
+    behavior: 'smooth'
+    });
+    }
+    };
 
-// Event listeners for the buttons
-scrollLeftBtn.addEventListener('click', () => scrollCarousel('left'));
-scrollRightBtn.addEventListener('click', () => scrollCarousel('right'));
-</script>
-<!-- Vercel Analytics -->
-<script>
-  window.va = window.va || function () { (window.va.q = window.va.q || []).push(arguments); };
-</script>
-<script src="/_vercel/insights/script.js" defer></script>
+    // Event listeners for the buttons
+    scrollLeftBtn.addEventListener('click', () => scrollCarousel('left'));
+    scrollRightBtn.addEventListener('click', () => scrollCarousel('right'));
+    </script>
+    <script>
+    window.va = window.va || function () { (window.va.q = window.va.q || []).push(arguments); };
+    </script>
+    <script src="/_vercel/insights/script.js" defer></script>
 </body>
 </html>
