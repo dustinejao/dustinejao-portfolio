@@ -36,7 +36,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 /* Define the glassmorphism effect for the light theme */
-.glass-nav, .glass-footer {
+.glass-nav {
 background-color: rgba(255, 255, 255, 0.4);
 backdrop-filter: blur(10px);
 -webkit-backdrop-filter: blur(10px);
@@ -47,22 +47,41 @@ border: 1px solid rgba(0, 0, 0, 0.1);
 body {
 font-family: 'Inter', sans-serif;
 color: #111111;
+background-color: #111111; /* Set the base background to dark */
 /* Use CSS variables for the colors to allow dynamic updates */
 --radial-pink-1: rgba(255, 0, 127, 0.3);
 --radial-pink-2: rgba(255, 0, 127, 0.2);
-
-/* Layered background with noise texture and a radial gradient */
-background-image:
-/* Subtle noise texture */
-url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMDAnIGhlaWdodD0nMzAwJz4KICA8ZmlsdGVyIGlkPSdhJz4KICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0ndHVyYnVsZW5jZScgYmFzZUZyZXF1ZW5jeT0nMC4וNScgc3RpdGNoVGlsZXM9J3N0aXRjaCcgLz4KICAgIDxmZUNvbG9yTWF0cml4IHR5cGU9J21hdHJpeCdyb3dzPScxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMC41IDAuNSA0LjUgMCcgLz4KICA8L2ZpbHRlcj4KICA8cmVjdCB3aWR0aD0nMzAwJyBoZWlnaHQ9JzMwMCcgZmlsbD0naHNsKDAsIDAlLCAxMDAlKScgZmlsdGVyPSd1cmwoI2EpJy8+Cjwvc3ZnPg=='),
-/* The vibrant radial gradient, now using CSS variables */
-radial-gradient(circle at 120% 120%, var(--radial-pink-1) 0%, transparent 50%),
-radial-gradient(circle at -20% -20%, var(--radial-pink-2) 0%, transparent 50%),
-linear-gradient(to bottom, #ffffff, #f0f0f0);
-background-size: cover;
-background-attachment: fixed;
-background-blend-mode: overlay, normal, normal;
 }
+
+.background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#light-bg {
+    background-color: #f3f4f6;
+    background-image:
+    url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMDAnIGhlaWdodD0nMzAwJz4KICA8ZmlsdGVyIGlkPSdhJz4KICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0ndHVyYnVsZW5jZScgYmFzZUZyZXF1ZW5jeT0nMC4וNScgc3RpdGNoVGlsZXM9J3N0aXRjaCcgLz4KICAgIDxmZUNvbG9yTWF0cml4IHR5cGU9J21hdHJpeCdyb3dzPScxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMC41IDAuNSA0LjUgMCcgLz4KICA8L2ZpbHRlcj4KICA8cmVjdCB3aWR0aD0nMzAwJyBoZWlnaHQ9JzMwMCcgZmlsbD0naHNsKDAsIDAlLCAxMDAlKScgZmlsdGVyPSd1cmwoI2EpJy8+Cjwvc3ZnPg=='),
+    radial-gradient(circle at 120% 120%, var(--radial-pink-1) 0%, transparent 50%),
+    radial-gradient(circle at -20% -20%, var(--radial-pink-2) 0%, transparent 50%);
+    background-blend-mode: overlay, normal, normal;
+    z-index: -2;
+    transition: opacity 0.5s ease;
+}
+
+#dark-bg {
+    background-color: #111111;
+    background-image:
+    radial-gradient(circle at 150% 150%, rgba(255, 0, 127, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at -50% -50%, rgba(255, 0, 127, 0.1) 0%, transparent 40%);
+    z-index: -3;
+}
+
 
 /* Use Inter for all text and headers for a consistent, modern feel */
 h1, h2, h3, p, a, button, span {
@@ -142,314 +161,347 @@ scrollbar-width: none; /* Firefox */
 .hide-scrollbar::-webkit-scrollbar {
 display: none; /* Safari and Chrome */
 }
+
+/* Animation for music section content */
+.music-content > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.music-content.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger the animation of the children */
+.music-content.is-visible > *:nth-child(1) { transition-delay: 0.1s; }
+.music-content.is-visible > *:nth-child(2) { transition-delay: 0.2s; }
+.music-content.is-visible > *:nth-child(3) { transition-delay: 0.3s; }
+.music-content.is-visible > *:nth-child(4) { transition-delay: 0.4s; }
+
 </style>
 </head>
 <body class="antialiased">
+<div id="light-bg" class="background-layer"></div>
+<div id="dark-bg" class="background-layer"></div>
 
-<!-- Navigation Bar (Apple TV-like) -->
-<header class="sticky top-0 z-50 py-4 px-6 flex justify-between items-center">
-<!-- Left side: Logo -->
-<a href="#hero" class="w-12 h-12 flex-shrink-0">
-<img src="/images/logo.svg" alt="Portfolio Logo" class="rounded-full">
-</a>
-<!-- Right side: Static Nav Container with Sliding Bubble -->
-<nav id="main-nav" class="relative glass-nav rounded-full shadow-lg p-2 flex items-center space-x-2">
-    <!-- The sliding bubble -->
-    <div id="nav-active-bubble" class="absolute top-2 bottom-2 rounded-full" style="opacity: 0;"></div>
-    <!-- The links (positioned on top of the bubble) -->
-    <a href="#about" class="nav-btn text-gray-800">About</a>
-    <a href="#work" class="nav-btn text-gray-800">Work</a>
-    <a href="#contact" class="nav-btn text-gray-800">Contact</a>
-</nav>
-</header>
+<div class="relative z-10">
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 py-4 px-6 flex justify-between items-center">
+    <a href="#hero" class="w-12 h-12 flex-shrink-0">
+    <img src="/images/logo.svg" alt="Portfolio Logo" class="rounded-full">
+    </a>
+    <nav id="main-nav" class="relative glass-nav rounded-full shadow-lg p-2 flex items-center space-x-2">
+        <div id="nav-active-bubble" class="absolute top-2 bottom-2 rounded-full" style="opacity: 0;"></div>
+        <a href="#about" class="nav-btn text-gray-800">About</a>
+        <a href="#work" class="nav-btn text-gray-800">Work</a>
+        <a href="#contact" class="nav-btn text-gray-800">Contact</a>
+    </nav>
+    </header>
 
-<main class="container mx-auto px-6 py-12 md:py-20">
+    <main>
+        <div class="container mx-auto px-6 py-12 md:py-20">
+            <!-- Hero Section -->
+            <section id="hero" class="text-center py-16 md:py-24">
+            <div class="max-w-4xl mx-auto hero-text-animation">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-2">
+            Your story, brought to life.
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-6">
+            Multimedia artist specializing in video, audio, and design.
+            </p>
+            <a href="#work" class="inline-block bg-pink-brand text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 glass-on-hover">
+            View My Work
+            </a>
+            </div>
+            </section>
 
-<!-- Hero Section -->
-<section id="hero" class="text-center py-16 md:py-24">
-<div class="max-w-4xl mx-auto hero-text-animation">
-<h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-2">
-Your story, brought to life.
-</h1>
-<p class="text-lg md:text-xl text-gray-600 mb-6">
-Multimedia artist specializing in video, audio, and design.
-</p>
-<a href="#work" class="inline-block bg-pink-brand text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 glass-on-hover">
-View My Work
-</a>
+            <!-- About Section -->
+            <section id="about" class="py-12 md:py-20">
+            <div class="max-w-5xl mx-auto px-6 bg-white rounded-3xl shadow-lg p-8 md:p-12 glass-on-hover">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">About Me</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <img src="/images/dj.jpg" alt="Headshot of Dustine Jao, a multimedia artist" class="rounded-2xl shadow-lg w-full">
+            <div class="text-gray-700 leading-normal">
+            <p class="mb-4 font-bold text-gray-900">
+            Hi! I'm Dustine Jao. Bringing Your Vision to Life.
+            </p>
+            <p class="mb-4">
+            I help clients tell their stories effectively through powerful video, crisp audio, and clean design. I handle everything from social media video editing to professional podcast production.
+            </p>
+            <p class="mb-4">
+            My goal is to make sure your content not only looks and sounds great, but also connects with your audience. I'm a hands-on creative partner ready to bring your next project to life.
+            </p>
+            </div>
+            </div>
+            </div>
+            </section>
+
+            <!-- Portfolio Section (Horizontal Carousel) -->
+            <section id="work" class="py-12 md:py-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">Featured Work</h2>
+            <div class="relative max-w-7xl mx-auto px-6 group">
+            <div id="carousel-container" class="flex flex-row overflow-x-scroll snap-x snap-mandatory space-x-6 pb-4 hide-scrollbar">
+            <a href="https://drive.google.com/drive/folders/1-B7w20bdZBiH6UdLjG9bnkEr2qlXZFrq?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex flex-col h-full">
+            <div class="flex-grow">
+            <h3 class="font-semibold text-lg text-gray-900 color-pink"><span class="mr-2">🎬</span> Video Editing</h3>
+            <p class="text-sm text-gray-600 mt-1 mb-4">Crafting high-quality video content for brands and creators.</p>
+            <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
+            </div>
+            <div class="mt-auto">
+            <img src="/images/video.jpg" alt="A video timeline or a frame from a polished video project" class="w-full h-auto object-cover rounded-2xl mt-4">
+            </div>
+            </div>
+            </a>
+            <a href="https://drive.google.com/drive/folders/1noD9AV2oRemMNX8z9yH80DtAyZFEtGE8?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex flex-col h-full">
+            <div class="flex-grow">
+            <h3 class="font-semibold text-lg text-gray-900 text-red-brand"><span class="mr-2">🎧</span> Audio Production</h3>
+            <p class="text-sm text-gray-600 mt-1 mb-4">Polishing podcasts and audio for a professional sound experience.</p>
+            <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
+            </div>
+            <div class="mt-auto">
+            <img src="/images/audio.jpg" alt="A sound wave visual representing audio production and editing" class="w-full h-auto object-cover rounded-2xl mt-4">
+            </div>
+            </div>
+            </a>
+            <a href="https://drive.google.com/drive/folders/1kTA192Qd_rEp33ofGbFXrlda8Yvkh_LZ?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex flex-col h-full">
+            <div class="flex-grow">
+            <h3 class="font-semibold text-lg text-gray-900 text-red-brand"><span class="mr-2">🎙️</span> Podcast</h3>
+            <p class="text-sm text-gray-600 mt-1 mb-4">Storytelling through audio to create engaging podcast series.</p>
+            <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
+            </div>
+            <div class="mt-auto">
+            <img src="/images/podcast.jpg" alt="An image representing a podcast, such as a microphone or podcast logo" class="w-full h-auto object-cover rounded-2xl mt-4">
+            </div>
+            </div>
+            </a>
+            <a href="https://drive.google.com/drive/folders/12vq4To9uycPHeGFO1Gyky6y7-600MZxx?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex flex-col h-full">
+            <div class="flex-grow">
+            <h3 class="font-semibold text-lg text-gray-900 color-pink"><span class="mr-2">📱</span> Short-Form</h3>
+            <p class="text-sm text-gray-600 mt-1 mb-4">Developing engaging reels and clips for social platforms.</p>
+            <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
+            </div>
+            <div class="mt-auto">
+            <img src="/images/shorts.jpg" alt="A vertical video thumbnail representing short-form content" class="w-full h-auto object-cover rounded-2xl mt-4">
+            </div>
+            </div>
+            </a>
+            <a href="https://drive.google.com/drive/folders/1-vueEsBhWvrtQZ1nFtAVgT16VmeKaV3V?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex flex-col h-full">
+            <div class="flex-grow">
+            <h3 class="font-semibold text-lg text-gray-900 text-red-brand"><span class="mr-2">🖥️</span> UI-UX</h3>
+            <p class="text-sm text-gray-600 mt-1 mb-4">Designing intuitive and user-friendly digital experiences.</p>
+            <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
+            </div>
+            <div class="mt-auto">
+            <img src="/images/uiux.jpg" alt="A screenshot of a mobile app interface or a website mock-up" class="w-full h-auto object-cover rounded-2xl mt-4">
+            </div>
+            </div>
+            </a>
+            <a href="https://drive.google.com/drive/folders/1J7j1uSKUYyHEmMhkj50uJSaVF9TFu9Be?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex flex-col h-full">
+            <div class="flex-grow">
+            <h3 class="font-semibold text-lg text-gray-900 text-blue-brand"><span class="mr-2">🎨</span> Graphic Design</h3>
+            <p class="text-sm text-gray-600 mt-1 mb-4">Creating eye-catching visuals for digital and print media.</p>
+            <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
+            </div>
+            <div class="mt-auto">
+            <img src="/images/graphic.jpg" alt="A mock-up of a graphic design project, such as a logo or poster" class="w-full h-auto object-cover rounded-2xl mt-4">
+            </div>
+            </div>
+            </a>
+            <a href="https://drive.google.com/drive/folders/1Kb_uMHPQs-pNwaDouh7mAySCKObXsLW3?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex flex-col h-full">
+            <div class="flex-grow">
+            <h3 class="font-semibold text-lg text-gray-900 text-gray-brand"><span class="mr-2">📁</span> View All</h3>
+            <p class="text-sm text-gray-600 mt-1 mb-4">Explore the complete collection of my projects and assets.</p>
+            <button class="mt-4 inline-block px-4 py-2 text-white bg-gray-600 rounded-full text-sm font-semibold hover:bg-gray-700 transition-colors duration-300">View</button>
+            </div>
+            <div class="mt-auto">
+            <img src="/images/other.jpg" alt="A collage representing various other projects" class="w-full h-auto object-cover rounded-2xl mt-4">
+            </div>
+            </div>
+            </a>
+            </div>
+            <button id="scroll-left" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
+            <button id="scroll-right" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+            </div>
+            <div class="text-center mt-12">
+            <a href="#contact" class="inline-block bg-pink-brand text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 glass-on-hover">Ready to Collaborate? Get in Touch</a>
+            </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="py-12 md:py-20">
+            <div class="max-w-xl mx-auto px-6 bg-white rounded-3xl shadow-lg p-8 md:p-12 text-center glass-on-hover">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900"><span class="mr-2">👋</span> Let's Connect</h2>
+            <p class="text-gray-600 mb-6">I'm excited to collaborate and bring your next project to life. Feel free to reach out.</p>
+            <div class="flex flex-col space-y-4 items-center">
+            <a href="mailto:dustinejao@gmail.com" class="text-lg color-pink hover:text-pink-600 transition-colors duration-300 font-medium">dustinejao@gmail.com</a>
+            <div class="flex space-x-6 justify-center mt-4">
+            <a href="https://www.linkedin.com/in/dustinejao/" target="_blank" class="text-gray-600 hover:text-gray-900 transition-colors duration-300" aria-label="LinkedIn profile of Dustine Jao">
+            <img src="/images/linkedin.svg" alt="LinkedIn Icon" class="w-8 h-8">
+            </a>
+            </div>
+            </div>
+            </div>
+            </section>
+        </div>
+    </main>
 </div>
+
+<!-- Music Section -->
+<section id="music" class="text-gray-200 -mx-6 md:-mx-20 relative">
+  <div class="container mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-32 music-content">
+    <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+          Beyond the Edit: My Music
+        </h2>
+        <p class="text-gray-400 mb-12 max-w-2xl mx-auto">
+          When I'm not behind the camera or in the design studio, I'm creating stories with sound. Stream my latest releases and follow the journey on your favorite platform.
+        </p>
+    </div>
+    
+    <!-- Spotify Embed -->
+    <div class="max-w-2xl mx-auto mb-16 shadow-2xl shadow-pink-900/20">
+      <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/68DwCkSU60eR5Nze2xjgZF?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+    <!-- Social & Streaming Links -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12 max-w-md mx-auto">
+        <!-- Streaming Column -->
+        <div class="text-center">
+          <h3 class="text-xl font-semibold text-white mb-4">Streaming</h3>
+          <div class="inline-flex flex-col items-start space-y-4">
+              <a href="https://open.spotify.com/artist/68DwCkSU60eR5Nze2xjgZF?si=Y4Xr5p0kRc2hDFqwhHPL_Q" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
+                <img src="/images/spotify.svg" alt="Spotify" class="w-6 h-6">
+                <span>Spotify</span>
+              </a>
+              <a href="https://music.apple.com/ph/artist/dustine-jao/1787215793" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
+                <img src="/images/apple.svg" alt="Apple Music" class="w-6 h-6">
+                <span>Apple Music</span>
+              </a>
+               <a href="https://www.youtube.com/@dustinejao_" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
+                <img src="/images/youtube.svg" alt="YouTube" class="w-6 h-6">
+                <span>YouTube</span>
+              </a>
+          </div>
+        </div>
+        <!-- Socials Column -->
+        <div class="text-center">
+          <h3 class="text-xl font-semibold text-white mb-4">Socials</h3>
+          <div class="inline-flex flex-col items-start space-y-4">
+              <a href="https://www.instagram.com/dustinejao_/" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
+                <img src="/images/instagram.svg" alt="Instagram" class="w-6 h-6">
+                <span>Instagram</span>
+              </a>
+              <a href="https://www.tiktok.com/@dustinejao" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
+                <img src="/images/tiktok.svg" alt="TikTok" class="w-6 h-6">
+                <span>TikTok</span>
+              </a>
+              <a href="https://www.facebook.com/dustinejao" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
+                <img src="/images/facebook.svg" alt="Facebook" class="w-6 h-6">
+                <span>Facebook</span>
+              </a>
+          </div>
+        </div>
+      </div>
+
+  </div>
 </section>
-
-<!-- About Section -->
-<section id="about" class="py-12 md:py-20">
-<div class="max-w-5xl mx-auto px-6 bg-white rounded-3xl shadow-lg p-8 md:p-12 glass-on-hover">
-<h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">About Me</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-<img src="/images/dj.jpg" alt="Headshot of Dustine Jao, a multimedia artist" class="rounded-2xl shadow-lg w-full">
-<div class="text-gray-700 leading-normal">
-<p class="mb-4 font-bold text-gray-900">
-Hi! I'm Dustine Jao. Bringing Your Vision to Life.
-</p>
-<p class="mb-4">
-I help clients tell their stories effectively through powerful video, crisp audio, and clean design. I handle everything from social media video editing to professional podcast production.
-</p>
-<p class="mb-4">
-My goal is to make sure your content not only looks and sounds great, but also connects with your audience. I'm a hands-on creative partner ready to bring your next project to life.
-</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- Portfolio Section (Horizontal Carousel) -->
-<section id="work" class="py-12 md:py-20">
-<h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">Featured Work</h2>
-<div class="relative max-w-7xl mx-auto px-6 group">
-<!-- Carousel Container -->
-<div id="carousel-container" class="flex flex-row overflow-x-scroll snap-x snap-mandatory space-x-6 pb-4 hide-scrollbar">
-<!-- Video Editing Card -->
-<a href="https://drive.google.com/drive/folders/1-B7w20bdZBiH6UdLjG9bnkEr2qlXZFrq?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-<div class="flex flex-col h-full">
-<div class="flex-grow">
-<h3 class="font-semibold text-lg text-gray-900 color-pink">
-<span class="mr-2">🎬</span> Video Editing
-</h3>
-<p class="text-sm text-gray-600 mt-1 mb-4">Crafting high-quality video content for brands and creators.</p>
-<button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-</div>
-<div class="mt-auto">
-<img src="/images/video.jpg" alt="A video timeline or a frame from a polished video project" class="w-full h-auto object-cover rounded-2xl mt-4">
-</div>
-</div>
-</a>
-
-<!-- Audio Production Card -->
-<a href="https://drive.google.com/drive/folders/1noD9AV2oRemMNX8z9yH80DtAyZFEtGE8?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-<div class="flex flex-col h-full">
-<div class="flex-grow">
-<h3 class="font-semibold text-lg text-gray-900 text-red-brand">
-<span class="mr-2">🎧</span> Audio Production
-</h3>
-<p class="text-sm text-gray-600 mt-1 mb-4">Polishing podcasts and audio for a professional sound experience.</p>
-<button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-</div>
-<div class="mt-auto">
-<img src="/images/audio.jpg" alt="A sound wave visual representing audio production and editing" class="w-full h-auto object-cover rounded-2xl mt-4">
-</div>
-</div>
-</a>
-<!-- Podcast Card -->
-<a href="https://drive.google.com/drive/folders/1kTA192Qd_rEp33ofGbFXrlda8Yvkh_LZ?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-<div class="flex flex-col h-full">
-<div class="flex-grow">
-<h3 class="font-semibold text-lg text-gray-900 text-red-brand">
-<span class="mr-2">🎙️</span> Podcast
-</h3>
-<p class="text-sm text-gray-600 mt-1 mb-4">Storytelling through audio to create engaging podcast series.</p>
-<button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-</div>
-<div class="mt-auto">
-<img src="/images/podcast.jpg" alt="An image representing a podcast, such as a microphone or podcast logo" class="w-full h-auto object-cover rounded-2xl mt-4">
-</div>
-</div>
-</a>
-
-<!-- Short-Form Card -->
-<a href="https://drive.google.com/drive/folders/12vq4To9uycPHeGFO1Gyky6y7-600MZxx?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-<div class="flex flex-col h-full">
-<div class="flex-grow">
-<h3 class="font-semibold text-lg text-gray-900 color-pink">
-<span class="mr-2">📱</span> Short-Form
-</h3>
-<p class="text-sm text-gray-600 mt-1 mb-4">Developing engaging reels and clips for social platforms.</p>
-<button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-</div>
-<div class="mt-auto">
-<img src="/images/shorts.jpg" alt="A vertical video thumbnail representing short-form content" class="w-full h-auto object-cover rounded-2xl mt-4">
-</div>
-</div>
-</a>
-
-<!-- UI-UX Card -->
-<a href="https://drive.google.com/drive/folders/1-vueEsBhWvrtQZ1nFtAVgT16VmeKaV3V?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-<div class="flex flex-col h-full">
-<div class="flex-grow">
-<h3 class="font-semibold text-lg text-gray-900 text-red-brand">
-<span class="mr-2">🖥️</span> UI-UX
-</h3>
-<p class="text-sm text-gray-600 mt-1 mb-4">Designing intuitive and user-friendly digital experiences.</p>
-<button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-</div>
-<div class="mt-auto">
-<img src="/images/uiux.jpg" alt="A screenshot of a mobile app interface or a website mock-up" class="w-full h-auto object-cover rounded-2xl mt-4">
-</div>
-</div>
-</a>
-<!-- Graphic Design Card -->
-<a href="https://drive.google.com/drive/folders/1J7j1uSKUYyHEmMhkj50uJSaVF9TFu9Be?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-<div class="flex flex-col h-full">
-<div class="flex-grow">
-<h3 class="font-semibold text-lg text-gray-900 text-blue-brand">
-<span class="mr-2">🎨</span> Graphic Design
-</h3>
-<p class="text-sm text-gray-600 mt-1 mb-4">Creating eye-catching visuals for digital and print media.</p>
-<button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-</div>
-<div class="mt-auto">
-<img src="/images/graphic.jpg" alt="A mock-up of a graphic design project, such as a logo or poster" class="w-full h-auto object-cover rounded-2xl mt-4">
-</div>
-</div>
-</a>
-<!-- View All Card -->
-<a href="https://drive.google.com/drive/folders/1Kb_uMHPQs-pNwaDouh7mAySCKObXsLW3?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-<div class="flex flex-col h-full">
-<div class="flex-grow">
-<h3 class="font-semibold text-lg text-gray-900 text-gray-brand">
-<span class="mr-2">📁</span> View All
-</h3>
-<p class="text-sm text-gray-600 mt-1 mb-4">Explore the complete collection of my projects and assets.</p>
-<button class="mt-4 inline-block px-4 py-2 text-white bg-gray-600 rounded-full text-sm font-semibold hover:bg-gray-700 transition-colors duration-300">View</button>
-</div>
-<div class="mt-auto">
-<img src="/images/other.jpg" alt="A collage representing various other projects" class="w-full h-auto object-cover rounded-2xl mt-4">
-</div>
-</div>
-</a>
-</div>
-<!-- Left and Right Buttons -->
-<button id="scroll-left" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white">
-<svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-</svg>
-</button>
-<button id="scroll-right" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white">
-<svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-</svg>
-</button>
-</div>
-<!-- New CTA Section -->
-<div class="text-center mt-12">
-<a href="#contact" class="inline-block bg-pink-brand text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 glass-on-hover">
-Ready to Collaborate? Get in Touch
-</a>
-</div>
-</section>
-
-<!-- Contact Section -->
-<section id="contact" class="py-12 md:py-20">
-<div class="max-w-xl mx-auto px-6 bg-white rounded-3xl shadow-lg p-8 md:p-12 text-center glass-on-hover">
-<h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-<span class="mr-2">👋</span> Let's Connect
-</h2>
-<p class="text-gray-600 mb-6">I'm excited to collaborate and bring your next project to life. Feel free to reach out.</p>
-<div class="flex flex-col space-y-4 items-center">
-<a href="mailto:dustinejao@gmail.com" class="text-lg color-pink hover:text-pink-600 transition-colors duration-300 font-medium">dustinejao@gmail.com</a>
-<div class="flex space-x-6 justify-center mt-4">
-<!-- LinkedIn SVG Icon -->
-<a href="https://www.linkedin.com/in/dustinejao/" target="_blank" class="text-gray-600 hover:text-gray-900 transition-colors duration-300" aria-label="LinkedIn profile of Dustine Jao">
-<img src="/images/linkedin.svg" alt="LinkedIn Icon" class="w-8 h-8">
-</a>
-</div>
-</div>
-</div>
-</section>
-</main>
 
 <!-- Footer -->
-<footer class="glass-footer text-gray-800 py-6 text-center mt-12 rounded-t-2xl">
+<footer class="text-gray-400 py-3 text-center text-sm">
 <p>&copy; 2025 Dustine Jao. All Rights Reserved.</p>
-<p>Website Development from Scratch by Dustine Jao</p>
+<p>Web Dev from Scratch by Dustine Jao</p>
 </footer>
+
+</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Advanced Nav Logic: Sliding Bubble ---
     const sections = document.querySelectorAll('main section[id]');
+    const musicSection = document.getElementById('music');
+    const musicContent = document.querySelector('.music-content');
     const mainNav = document.getElementById('main-nav');
     const navLinks = mainNav.querySelectorAll('a');
     const navBubble = document.getElementById('nav-active-bubble');
+    const lightBg = document.getElementById('light-bg');
+    const contactSection = document.getElementById('contact');
+    
     let isDragging = false;
+    let isScrolling = false;
+    let scrollTimeout;
+
+    const clearActiveLink = () => {
+        navLinks.forEach(link => link.classList.remove('nav-btn-active-text'));
+        navBubble.style.opacity = '0';
+    };
 
     const updateActiveLink = (id) => {
         let activeLinkFound = false;
         navLinks.forEach(link => {
             link.classList.remove('nav-btn-active-text');
-            if (link.getAttribute('href') === `#${id}` && id !== 'hero') {
+            if (link.getAttribute('href') === `#${id}`) {
                 activeLinkFound = true;
                 link.classList.add('nav-btn-active-text');
-
-                // Move the bubble
-                const linkRect = link.getBoundingClientRect();
-                const navRect = mainNav.getBoundingClientRect();
                 navBubble.style.left = `${link.offsetLeft}px`;
                 navBubble.style.width = `${link.offsetWidth}px`;
                 navBubble.style.opacity = '1';
             }
         });
         if (!activeLinkFound) {
-            navBubble.style.opacity = '0';
+            clearActiveLink();
         }
     };
 
-    // Use Intersection Observer for efficient section visibility tracking
-    const observerOptions = {
-        root: null,
-        rootMargin: '-35% 0px -35% 0px',
-        threshold: 0
-    };
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-        if (isDragging) return; // Don't update from scrolling while user is dragging
+    // Observer for main sections (for nav bubble)
+    const mainObserver = new IntersectionObserver((entries) => {
+        if (isDragging || isScrolling) return; 
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 updateActiveLink(entry.target.id);
             }
         });
-    }, observerOptions);
+    }, { rootMargin: '-35% 0px -35% 0px', threshold: 0 });
 
-    sections.forEach(section => {
-        sectionObserver.observe(section);
-    });
+    sections.forEach(section => mainObserver.observe(section));
+
+    // Observer for the music section (to clear nav bubble and trigger animations)
+    const musicObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                clearActiveLink();
+                musicContent.classList.add('is-visible');
+            } else {
+                 musicContent.classList.remove('is-visible');
+            }
+        });
+    }, { rootMargin: '-30% 0px -30% 0px', threshold: 0.1 });
+
+    musicObserver.observe(musicSection);
     
     // --- Touch controls for mobile nav bubble ---
     mainNav.addEventListener('touchstart', (e) => {
+        if (window.innerWidth >= 768) return;
         isDragging = true;
+        navBubble.style.transition = 'none';
     });
 
     mainNav.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
+        if (!isDragging || window.innerWidth >= 768) return;
         e.preventDefault();
-
         const touchX = e.touches[0].clientX;
+        const navRect = mainNav.getBoundingClientRect();
         
-        let targetLink = null;
-        navLinks.forEach(link => {
-            const linkRect = link.getBoundingClientRect();
-            if (touchX >= linkRect.left && touchX <= linkRect.right) {
-                targetLink = link;
-            }
-        });
-
-        if (targetLink) {
-            navLinks.forEach(link => link.classList.remove('nav-btn-active-text'));
-            targetLink.classList.add('nav-btn-active-text');
-            navBubble.style.left = `${targetLink.offsetLeft}px`;
-            navBubble.style.width = `${targetLink.offsetWidth}px`;
-            navBubble.style.opacity = '1';
-        }
-    });
-
-    mainNav.addEventListener('touchend', (e) => {
-        if (!isDragging) return;
-        isDragging = false;
-
-        const touchX = e.changedTouches[0].clientX;
-
         let closestLink = null;
         let minDistance = Infinity;
-
         navLinks.forEach(link => {
             const linkRect = link.getBoundingClientRect();
             const linkCenterX = linkRect.left + linkRect.width / 2;
@@ -461,44 +513,83 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (closestLink) {
-            const targetId = closestLink.getAttribute('href');
+            navLinks.forEach(link => link.classList.remove('nav-btn-active-text'));
+            closestLink.classList.add('nav-btn-active-text');
+            const bubbleWidth = closestLink.offsetWidth;
+            const newLeft = touchX - navRect.left - (bubbleWidth / 2);
+            const constrainedLeft = Math.max(0, Math.min(newLeft, mainNav.offsetWidth - bubbleWidth));
+            navBubble.style.left = `${constrainedLeft}px`;
+            navBubble.style.width = `${bubbleWidth}px`;
+            navBubble.style.opacity = '1';
+        }
+    });
+
+    mainNav.addEventListener('touchend', (e) => {
+        if (!isDragging || window.innerWidth >= 768) return;
+        isDragging = false;
+        navBubble.style.transition = 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)';
+        
+        const activeLink = mainNav.querySelector('.nav-btn-active-text');
+        if (activeLink) {
+            const targetId = activeLink.getAttribute('href');
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+                isScrolling = true;
+                window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => { isScrolling = false; }, 1000);
             }
         }
     });
 
-
-    // --- Smooth scrolling for nav and hero link clicks ---
+    // --- Smooth scrolling for link clicks (NOW WITH BUBBLE UPDATE) ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
+
+            // Check if the clicked link is in the main nav
+            if (this.classList.contains('nav-btn')) {
+                // Instantly update the bubble position on click
+                updateActiveLink(targetId.substring(1));
+            }
+
             if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+                 if (this.classList.contains('nav-btn')) {
+                    isScrolling = true;
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => { isScrolling = false; }, 1000);
+                 }
+                window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
             }
         });
     });
 
-
-    // --- Background color change on scroll ---
+    // --- Advanced scroll effects listener ---
     window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
-        const progress = Math.min(scrollPosition / 400, 1);
+        const scrollY = window.scrollY;
+        // Background color change for top of page
+        const progress = Math.min(scrollY / 400, 1);
         const newOpacity1 = 0.3 - (progress * 0.25);
         const newOpacity2 = 0.2 - (progress * 0.15);
         document.body.style.setProperty('--radial-pink-1', `rgba(255, 0, 127, ${newOpacity1})`);
         document.body.style.setProperty('--radial-pink-2', `rgba(255, 0, 127, ${newOpacity2})`);
-    });
+        
+        // Cinematic Crossfade Transition
+        if (contactSection && lightBg) {
+            const viewportHeight = window.innerHeight;
+            // Define the start and end points of the transition based on the contact section's position
+            const startFade = contactSection.offsetTop - viewportHeight * 0.7;
+            const endFade = contactSection.offsetTop + contactSection.offsetHeight - viewportHeight * 0.3;
 
+            const transitionProgress = (scrollY - startFade) / (endFade - startFade);
+            const clampedProgress = Math.max(0, Math.min(1, transitionProgress));
+            
+            // Fade out the light background to reveal the dark one behind it
+            lightBg.style.opacity = 1 - clampedProgress;
+        }
+    });
 
     // --- Polished carousel scrolling logic ---
     const carousel = document.getElementById('carousel-container');
@@ -509,32 +600,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollCarousel = (direction) => {
         if (isCarouselScrolling) return;
         isCarouselScrolling = true;
-
         const firstCard = carousel.querySelector('a');
-        if (!firstCard) {
-            isCarouselScrolling = false;
-            return;
-        }
-        const cardWidth = firstCard.offsetWidth;
-        const gap = 24;
-        const scrollAmount = cardWidth + gap;
+        if (!firstCard) { isCarouselScrolling = false; return; }
+        const scrollAmount = firstCard.offsetWidth + 24;
         const currentScroll = carousel.scrollLeft;
-        const currentCardIndex = Math.round(currentScroll / scrollAmount);
-        
-        const targetCardIndex = direction === 'left' ? currentCardIndex - 1 : currentCardIndex + 1;
-        let targetScrollLeft = targetCardIndex * scrollAmount;
-
-        const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
-        targetScrollLeft = Math.max(0, Math.min(targetScrollLeft, maxScrollLeft));
-
-        carousel.scrollTo({
-            left: targetScrollLeft,
-            behavior: 'smooth'
-        });
-
-        setTimeout(() => {
-            isCarouselScrolling = false;
-        }, 400);
+        const targetScrollLeft = direction === 'left' ? currentScroll - scrollAmount : currentScroll + scrollAmount;
+        carousel.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
+        setTimeout(() => { isCarouselScrolling = false; }, 400);
     };
 
     scrollLeftBtn.addEventListener('click', () => scrollCarousel('left'));
