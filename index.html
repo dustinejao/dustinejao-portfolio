@@ -81,7 +81,7 @@ font-family: 'Inter', sans-serif;
 background-color: transparent;
 padding: 0.5rem 1rem;
 border-radius: 9999px;
-transition: all 0.3s ease;
+transition: color 0.3s ease, transform 0.3s ease;
 font-weight: 500;
 flex-shrink: 0; /* Prevent links from shrinking */
 position: relative;
@@ -89,14 +89,13 @@ z-index: 10;
 }
 
 .nav-btn:hover {
-/* Apply glass effect on hover */
 color: #FF007F;
-transform: scale(1.1);
 }
 
 /* Style for the text of the active nav link */
 .nav-btn-active-text {
     color: #FF007F;
+    transform: scale(1.1);
 }
 
 /* Style for the sliding bubble */
@@ -106,7 +105,6 @@ transform: scale(1.1);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transform: scale(1.1);
     z-index: 5;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -157,7 +155,7 @@ display: none; /* Safari and Chrome */
 <!-- Right side: Static Nav Container with Sliding Bubble -->
 <nav id="main-nav" class="relative glass-nav rounded-full shadow-lg p-2 flex items-center space-x-2">
     <!-- The sliding bubble -->
-    <div id="nav-active-bubble" class="absolute top-0 h-full rounded-full" style="opacity: 0;"></div>
+    <div id="nav-active-bubble" class="absolute top-2 bottom-2 rounded-full" style="opacity: 0;"></div>
     <!-- The links (positioned on top of the bubble) -->
     <a href="#about" class="nav-btn text-gray-800">About</a>
     <a href="#work" class="nav-btn text-gray-800">Work</a>
@@ -372,6 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainNav = document.getElementById('main-nav');
     const navLinks = mainNav.querySelectorAll('a');
     const navBubble = document.getElementById('nav-active-bubble');
+    let isDragging = false;
 
     const updateActiveLink = (id) => {
         let activeLinkFound = false;
@@ -382,6 +381,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.classList.add('nav-btn-active-text');
 
                 // Move the bubble
+                const linkRect = link.getBoundingClientRect();
+                const navRect = mainNav.getBoundingClientRect();
                 navBubble.style.left = `${link.offsetLeft}px`;
                 navBubble.style.width = `${link.offsetWidth}px`;
                 navBubble.style.opacity = '1';
@@ -400,6 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const sectionObserver = new IntersectionObserver((entries) => {
+        if (isDragging) return; // Don't update from scrolling while user is dragging
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 updateActiveLink(entry.target.id);
@@ -410,6 +412,66 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => {
         sectionObserver.observe(section);
     });
+    
+    // --- Touch controls for mobile nav bubble ---
+    mainNav.addEventListener('touchstart', (e) => {
+        isDragging = true;
+    });
+
+    mainNav.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        const touchX = e.touches[0].clientX;
+        
+        let targetLink = null;
+        navLinks.forEach(link => {
+            const linkRect = link.getBoundingClientRect();
+            if (touchX >= linkRect.left && touchX <= linkRect.right) {
+                targetLink = link;
+            }
+        });
+
+        if (targetLink) {
+            navLinks.forEach(link => link.classList.remove('nav-btn-active-text'));
+            targetLink.classList.add('nav-btn-active-text');
+            navBubble.style.left = `${targetLink.offsetLeft}px`;
+            navBubble.style.width = `${targetLink.offsetWidth}px`;
+            navBubble.style.opacity = '1';
+        }
+    });
+
+    mainNav.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+
+        const touchX = e.changedTouches[0].clientX;
+
+        let closestLink = null;
+        let minDistance = Infinity;
+
+        navLinks.forEach(link => {
+            const linkRect = link.getBoundingClientRect();
+            const linkCenterX = linkRect.left + linkRect.width / 2;
+            const distance = Math.abs(touchX - linkCenterX);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestLink = link;
+            }
+        });
+
+        if (closestLink) {
+            const targetId = closestLink.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+
 
     // --- Smooth scrolling for nav and hero link clicks ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
