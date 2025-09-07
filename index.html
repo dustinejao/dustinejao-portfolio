@@ -486,15 +486,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     musicObserver.observe(musicSection);
     
-    // --- Touch controls for mobile nav bubble ---
-    mainNav.addEventListener('touchstart', (e) => {
-        if (window.innerWidth >= 768) return;
+    // --- Touch controls for ALL touch devices ---
+    const handleTouchStart = (e) => {
         isDragging = true;
         navBubble.style.transition = 'none';
-    });
+    };
 
-    mainNav.addEventListener('touchmove', (e) => {
-        if (!isDragging || window.innerWidth >= 768) return;
+    const handleTouchMove = (e) => {
+        if (!isDragging) return;
         e.preventDefault();
         const touchX = e.touches[0].clientX;
         const navRect = mainNav.getBoundingClientRect();
@@ -521,10 +520,10 @@ document.addEventListener('DOMContentLoaded', () => {
             navBubble.style.width = `${bubbleWidth}px`;
             navBubble.style.opacity = '1';
         }
-    });
+    };
 
-    mainNav.addEventListener('touchend', (e) => {
-        if (!isDragging || window.innerWidth >= 768) return;
+    const handleTouchEnd = (e) => {
+        if (!isDragging) return;
         isDragging = false;
         navBubble.style.transition = 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)';
         
@@ -543,7 +542,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 scrollTimeout = setTimeout(() => { isScrolling = false; }, 1000);
             }
         }
-    });
+    };
+    
+    mainNav.addEventListener('touchstart', handleTouchStart);
+    mainNav.addEventListener('touchmove', handleTouchMove);
+    mainNav.addEventListener('touchend', handleTouchEnd);
+
 
     // --- Smooth scrolling for link clicks (NOW WITH BUBBLE UPDATE) ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
