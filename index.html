@@ -83,6 +83,7 @@ padding: 0.5rem 1rem;
 border-radius: 9999px;
 transition: all 0.3s ease;
 font-weight: 500;
+flex-shrink: 0; /* Prevent links from shrinking */
 }
 
 .nav-btn:hover {
@@ -95,6 +96,18 @@ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 color: #FF007F;
 transform: scale(1.1);
 }
+
+/* Style for the currently active nav link */
+.nav-btn-active {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: #FF007F;
+    transform: scale(1.1);
+}
+
 
 /* Reusable glass effect on hover for other elements */
 .glass-on-hover:hover {
@@ -136,15 +149,19 @@ display: none; /* Safari and Chrome */
 <!-- Navigation Bar (Apple TV-like) -->
 <header class="sticky top-0 z-50 py-4 px-6 flex justify-between items-center">
 <!-- Left side: Logo -->
-<a href="#hero" class="w-12 h-12">
+<a href="#hero" class="w-12 h-12 flex-shrink-0">
 <img src="/images/logo.svg" alt="Portfolio Logo" class="rounded-full">
 </a>
-<!-- Right side: Floating Nav Buttons -->
-<nav class="w-fit glass-nav rounded-full shadow-lg p-2 md:p-3 flex items-center space-x-2 md:space-x-4">
-<a href="#about" class="nav-btn text-gray-800">About</a>
-<a href="#work" class="nav-btn text-gray-800">Work</a>
-<a href="#contact" class="nav-btn text-gray-800">Contact</a>
-</nav>
+<!-- Right side: Sliding Nav Container -->
+<div class="flex-grow min-w-0 ml-4">
+    <div id="nav-container" class="w-full md:w-auto md:flex md:justify-center overflow-x-auto hide-scrollbar">
+        <nav id="sliding-nav" class="inline-flex w-auto mx-auto glass-nav rounded-full shadow-lg p-2 flex items-center space-x-2">
+            <a href="#about" class="nav-btn text-gray-800">About</a>
+            <a href="#work" class="nav-btn text-gray-800">Work</a>
+            <a href="#contact" class="nav-btn text-gray-800">Contact</a>
+        </nav>
+    </div>
+</div>
 </header>
 
 <main class="container mx-auto px-6 py-12 md:py-20">
@@ -346,93 +363,136 @@ Ready to Collaborate? Get in Touch
 <p>Website Development from Scratch by Dustine Jao</p>
 </footer>
 
-<!-- JavaScript for smooth scrolling & Slideshow logic -->
 <script>
-// --- State flags to prevent animation spam ---
-let isNavScrolling = false;
-let isCarouselScrolling = false;
+document.addEventListener('DOMContentLoaded', () => {
 
-// --- Smarter smooth scrolling for navigation links ---
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        if (isNavScrolling) return; // Don't scroll if already scrolling
-        isNavScrolling = true;
+    // --- Advanced Nav Logic: Active State & Sliding ---
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('#sliding-nav a');
+    const navContainer = document.getElementById('nav-container');
 
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80, 
+    const updateActiveLink = (id) => {
+        let activeLink = null;
+        navLinks.forEach(link => {
+            link.classList.remove('nav-btn-active');
+            if (link.getAttribute('href') === `#${id}`) {
+                if (id !== 'hero') {
+                    link.classList.add('nav-btn-active');
+                    activeLink = link;
+                }
+            }
+        });
+        autoSlideNav(activeLink);
+    };
+
+    const autoSlideNav = (activeLink) => {
+        if (window.innerWidth < 768) return; // Only auto-slide on desktop
+        
+        if (activeLink) {
+            const containerRect = navContainer.getBoundingClientRect();
+            const linkRect = activeLink.getBoundingClientRect();
+            // Calculate the ideal scroll position to center the link
+            const scrollLeft = navContainer.scrollLeft + linkRect.left - containerRect.left - (containerRect.width / 2) + (linkRect.width / 2);
+            
+            navContainer.scrollTo({
+                left: scrollLeft,
+                behavior: 'smooth'
+            });
+        } else {
+            // No active link (hero section), scroll nav back to the start
+            navContainer.scrollTo({
+                left: 0,
                 behavior: 'smooth'
             });
         }
-        
-        // Use a scroll listener to intelligently detect when scrolling has finished
-        let scrollTimeout;
-        const scrollEndListener = () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                isNavScrolling = false;
-                window.removeEventListener('scroll', scrollEndListener);
-            }, 150); // Assumes scrolling is done if no scroll events for 150ms
-        };
-        window.addEventListener('scroll', scrollEndListener);
-    });
-});
-
-
-// --- Background color change on scroll ---
-window.addEventListener('scroll', () => {
-    const scrollHeight = document.body.scrollHeight - window.innerHeight;
-    const scrollPosition = window.scrollY;
-    // Calculate a progress value from 0 to 1 based on scroll position
-    const progress = Math.min(scrollPosition / 400, 1); // Adjust 400 for how fast the color changes
-    // Interpolate the opacity of the pink radial gradients
-    const initialOpacity1 = 0.3;
-    const finalOpacity1 = 0.05;
-    const initialOpacity2 = 0.2;
-    const finalOpacity2 = 0.05;
-    const newOpacity1 = initialOpacity1 - (progress * (initialOpacity1 - finalOpacity1));
-    const newOpacity2 = initialOpacity2 - (progress * (initialOpacity2 - finalOpacity2));
-    document.body.style.setProperty('--radial-pink-1', `rgba(255, 0, 127, ${newOpacity1})`);
-    document.body.style.setProperty('--radial-pink-2', `rgba(255, 0, 127, ${newOpacity2})`);
-});
-
-
-// --- Smarter carousel scrolling logic ---
-const carousel = document.getElementById('carousel-container');
-const scrollLeftBtn = document.getElementById('scroll-left');
-const scrollRightBtn = document.getElementById('scroll-right');
-
-const scrollCarousel = (direction) => {
-    if (isCarouselScrolling) return;
-    isCarouselScrolling = true;
-
-    const cardWidth = 320; // Tailwind w-80 is 320px
-    const gap = 24; // Tailwind space-x-6 is 24px
-    const scrollAmount = cardWidth + gap;
-    
-    carousel.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-    });
-
-    // Use a scroll listener to intelligently detect when scrolling has finished
-    let scrollTimeout;
-    const scrollEndListener = () => {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            isCarouselScrolling = false;
-            carousel.removeEventListener('scroll', scrollEndListener);
-        }, 150); // Assumes scrolling is done if no scroll events for 150ms
     };
-    carousel.addEventListener('scroll', scrollEndListener);
-};
 
-// Event listeners for the buttons
-scrollLeftBtn.addEventListener('click', () => scrollCarousel('left'));
-scrollRightBtn.addEventListener('click', () => scrollCarousel('right'));
+    // Use Intersection Observer for efficient section visibility tracking
+    const observerOptions = {
+        root: null,
+        rootMargin: '-40% 0px -40% 0px', // A horizontal band in the middle of the viewport
+        threshold: 0
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                updateActiveLink(entry.target.id);
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+
+    // --- Smooth scrolling for nav and hero link clicks ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+
+    // --- Background color change on scroll ---
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        const progress = Math.min(scrollPosition / 400, 1);
+        const newOpacity1 = 0.3 - (progress * 0.25);
+        const newOpacity2 = 0.2 - (progress * 0.15);
+        document.body.style.setProperty('--radial-pink-1', `rgba(255, 0, 127, ${newOpacity1})`);
+        document.body.style.setProperty('--radial-pink-2', `rgba(255, 0, 127, ${newOpacity2})`);
+    });
+
+
+    // --- Polished carousel scrolling logic ---
+    const carousel = document.getElementById('carousel-container');
+    const scrollLeftBtn = document.getElementById('scroll-left');
+    const scrollRightBtn = document.getElementById('scroll-right');
+    let isCarouselScrolling = false;
+
+    const scrollCarousel = (direction) => {
+        if (isCarouselScrolling) return;
+        isCarouselScrolling = true;
+
+        const firstCard = carousel.querySelector('a');
+        if (!firstCard) {
+            isCarouselScrolling = false;
+            return;
+        }
+        const cardWidth = firstCard.offsetWidth;
+        const gap = 24;
+        const scrollAmount = cardWidth + gap;
+        const currentScroll = carousel.scrollLeft;
+        const currentCardIndex = Math.round(currentScroll / scrollAmount);
+        
+        const targetCardIndex = direction === 'left' ? currentCardIndex - 1 : currentCardIndex + 1;
+        let targetScrollLeft = targetCardIndex * scrollAmount;
+
+        const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+        targetScrollLeft = Math.max(0, Math.min(targetScrollLeft, maxScrollLeft));
+
+        carousel.scrollTo({
+            left: targetScrollLeft,
+            behavior: 'smooth'
+        });
+
+        setTimeout(() => {
+            isCarouselScrolling = false;
+        }, 400);
+    };
+
+    scrollLeftBtn.addEventListener('click', () => scrollCarousel('left'));
+    scrollRightBtn.addEventListener('click', () => scrollCarousel('right'));
+});
 </script>
 <!-- Vercel Analytics -->
 <script>
