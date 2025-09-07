@@ -51,7 +51,7 @@ background-color: #111111; /* Set the base background to dark */
 /* Use CSS variables for the colors to allow dynamic updates */
 --radial-pink-1: rgba(255, 0, 127, 0.3);
 --radial-pink-2: rgba(255, 0, 127, 0.2);
-padding-top: env(safe-area-inset-top);
+/* Removed padding-top here as it's now handled by the header */
 }
 
 .background-layer {
@@ -189,11 +189,11 @@ display: none; /* Safari and Chrome */
 
 <div class="relative z-10">
     <!-- Navigation Bar -->
-    <header class="sticky top-0 z-50 py-4 px-6 flex justify-between items-center">
-    <a href="#hero" class="w-12 h-12 flex-shrink-0">
+    <header class="sticky top-0 z-50 pt-[env(safe-area-inset-top)] pb-4 px-6 flex justify-between items-center">
+    <a href="#hero" class="w-12 h-12 flex-shrink-0 mt-2">
     <img src="/images/logo.svg" alt="Portfolio Logo" class="rounded-full">
     </a>
-    <nav id="main-nav" class="relative glass-nav rounded-full shadow-lg p-2 flex items-center space-x-2">
+    <nav id="main-nav" class="relative glass-nav rounded-full shadow-lg p-2 flex items-center space-x-2 mt-2">
         <div id="nav-active-bubble" class="absolute top-2 bottom-2 rounded-full" style="opacity: 0;"></div>
         <a href="#about" class="nav-btn text-gray-800">About</a>
         <a href="#work" class="nav-btn text-gray-800">Work</a>
