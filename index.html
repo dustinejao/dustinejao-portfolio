@@ -54,7 +54,7 @@ color: #111111;
 /* Layered background with noise texture and a radial gradient */
 background-image:
 /* Subtle noise texture */
-url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMDAnIGhlaWdodD0nMzAwJz4KICA8ZmlsdGVyIGlkPSdhJz4KICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0ndHVyYnVsZW5jZScgYmFzZUZyZXF1ZW5jeT0nMC42NScgc3RpdGNoVGlsZXM9J3N0aXRjaCcgLz4KICAgIDxmZUNvbG9yTWF0cml4IHR5cGU9J21hdHJpeCdyb3dzPScxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMC41IDAuNSA0LjUgMCcgLz4KICA8L2ZpbHRlcj4KICA8cmVjdCB3aWR0aD0nMzAwJyBoZWlnaHQ9JzMwMCcgZmlsbD0naHNsKDAsIDAlLCAxMDAlKScgZmlsdGVyPSd1cmwoI2EpJy8+Cjwvc3ZnPg=='),
+url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMDAnIGhlaWdodD0nMzAwJz4KICA8ZmlsdGVyIGlkPSdhJz4KICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0ndHVyYnVsZW5jZScgYmFzZUZyZXF1ZW5jeT0nMC4וNScgc3RpdGNoVGlsZXM9J3N0aXRjaCcgLz4KICAgIDxmZUNvbG9yTWF0cml4IHR5cGU9J21hdHJpeCdyb3dzPScxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMC41IDAuNSA0LjUgMCcgLz4KICA8L2ZpbHRlcj4KICA8cmVjdCB3aWR0aD0nMzAwJyBoZWlnaHQ9JzMwMCcgZmlsbD0naHNsKDAsIDAlLCAxMDAlKScgZmlsdGVyPSd1cmwoI2EpJy8+Cjwvc3ZnPg=='),
 /* The vibrant radial gradient, now using CSS variables */
 radial-gradient(circle at 120% 120%, var(--radial-pink-1) 0%, transparent 50%),
 radial-gradient(circle at -20% -20%, var(--radial-pink-2) 0%, transparent 50%),
@@ -147,14 +147,14 @@ display: none; /* Safari and Chrome */
 <body class="antialiased">
 
 <!-- Navigation Bar (Apple TV-like) -->
-<header class="sticky top-0 z-50 py-4 px-6 flex justify-between items-center">
+<header class="sticky top-0 z-50 py-4 px-6 flex justify-between items-center space-x-4">
 <!-- Left side: Logo -->
 <a href="#hero" class="w-12 h-12 flex-shrink-0">
 <img src="/images/logo.svg" alt="Portfolio Logo" class="rounded-full">
 </a>
 <!-- Right side: Sliding Nav Container -->
-<div id="nav-container" class="overflow-x-auto hide-scrollbar">
-    <div class="pt-4 pb-6 px-2">
+<div id="nav-container" class="flex-1 min-w-0 flex justify-end overflow-x-auto hide-scrollbar">
+    <div class="pt-4 pb-6 px-4">
         <nav id="sliding-nav" class="inline-flex w-auto glass-nav rounded-full shadow-lg p-2 flex items-center space-x-2">
             <a href="#about" class="nav-btn text-gray-800">About</a>
             <a href="#work" class="nav-btn text-gray-800">Work</a>
@@ -410,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Use Intersection Observer for efficient section visibility tracking
     const observerOptions = {
         root: null,
-        rootMargin: '-40% 0px -40% 0px', // A horizontal band in the middle of the viewport
+        rootMargin: '-35% 0px -35% 0px', // Adjusted margin for better mobile detection
         threshold: 0
     };
 
