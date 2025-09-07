@@ -186,21 +186,23 @@ display: none; /* Safari and Chrome */
 <div id="light-bg" class="background-layer"></div>
 <div id="dark-bg" class="background-layer"></div>
 
-<div class="relative z-10">
+<div class="relative z-10 min-h-screen flex flex-col">
     <!-- Navigation Bar -->
     <header class="sticky top-0 z-50 py-4 px-6 flex justify-between items-center">
     <a href="#hero" class="w-12 h-12 flex-shrink-0">
     <img src="/images/logo.svg" alt="Portfolio Logo" class="rounded-full">
     </a>
-    <nav id="main-nav" class="relative glass-nav rounded-full shadow-lg p-2 flex items-center space-x-2">
-        <div id="nav-active-bubble" class="absolute top-2 bottom-2 rounded-full" style="opacity: 0;"></div>
-        <a href="#about" class="nav-btn text-gray-800">About</a>
-        <a href="#work" class="nav-btn text-gray-800">Work</a>
-        <a href="#contact" class="nav-btn text-gray-800">Contact</a>
-    </nav>
+    <div class="flex-1 flex justify-end">
+        <nav id="main-nav" class="relative glass-nav rounded-full shadow-lg p-2 inline-flex items-center space-x-2">
+            <div id="nav-active-bubble" class="absolute top-2 bottom-2 rounded-full" style="opacity: 0;"></div>
+            <a href="#about" class="nav-btn text-gray-800">About</a>
+            <a href="#work" class="nav-btn text-gray-800">Work</a>
+            <a href="#contact" class="nav-btn text-gray-800">Contact</a>
+        </nav>
+    </div>
     </header>
 
-    <main>
+    <main class="flex-grow">
         <div class="container mx-auto px-6 py-12 md:py-20">
             <!-- Hero Section -->
             <section id="hero" class="text-center py-16 md:py-24">
@@ -328,8 +330,8 @@ display: none; /* Safari and Chrome */
             </div>
             </a>
             </div>
-            <button id="scroll-left" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
-            <button id="scroll-right" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+            <button id="scroll-left" class="absolute left-2 top-1_2 -translate-y-1_2 bg-white_70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http:_www.w3.org_2000_svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
+            <button id="scroll-right" class="absolute right-2 top-1_2 -translate-y-1_2 bg-white_70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http:_www.w3.org_2000_svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
             </div>
             <div class="text-center mt-12">
             <a href="#contact" class="inline-block bg-pink-brand text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 glass-on-hover">Ready to Collaborate? Get in Touch</a>
@@ -353,73 +355,72 @@ display: none; /* Safari and Chrome */
             </section>
         </div>
     </main>
-</div>
 
-<!-- Music Section -->
-<section id="music" class="text-gray-200 -mx-6 md:-mx-20 relative">
-  <div class="container mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-32 music-content">
-    <div class="text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
-          Beyond the Edit: My Music
-        </h2>
-        <p class="text-gray-400 mb-12 max-w-2xl mx-auto">
-          When I'm not behind the camera or in the design studio, I'm creating stories with sound. Stream my latest releases and follow the journey on your favorite platform.
-        </p>
-    </div>
-    
-    <!-- Spotify Embed -->
-    <div class="max-w-2xl mx-auto mb-16 shadow-2xl shadow-pink-900/20">
-      <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/68DwCkSU60eR5Nze2xjgZF?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
+    <!-- Music Section -->
+    <section id="music" class="text-gray-200 relative">
+      <div class="container mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-32 music-content">
+        <div class="text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+              Beyond the Edit: My Music
+            </h2>
+            <p class="text-gray-400 mb-12 max-w-2xl mx-auto">
+              When I'm not behind the camera or in the design studio, I'm creating stories with sound. Stream my latest releases and follow the journey on your favorite platform.
+            </p>
+        </div>
+        
+        <!-- Spotify Embed -->
+        <div class="max-w-2xl mx-auto mb-16 shadow-2xl shadow-pink-900_20">
+          <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/68DwCkSU60eR5Nze2xjgZF?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
 
-    <!-- Social & Streaming Links -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12 max-w-md mx-auto">
-        <!-- Streaming Column -->
-        <div class="text-center">
-          <h3 class="text-xl font-semibold text-white mb-4">Streaming</h3>
-          <div class="inline-flex flex-col items-start space-y-4">
-              <a href="https://open.spotify.com/artist/68DwCkSU60eR5Nze2xjgZF?si=Y4Xr5p0kRc2hDFqwhHPL_Q" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
-                <img src="/images/spotify.svg" alt="Spotify" class="w-6 h-6">
-                <span>Spotify</span>
-              </a>
-              <a href="https://music.apple.com/ph/artist/dustine-jao/1787215793" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
-                <img src="/images/apple.svg" alt="Apple Music" class="w-6 h-6">
-                <span>Apple Music</span>
-              </a>
-               <a href="https://www.youtube.com/@dustinejao_" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
-                <img src="/images/youtube.svg" alt="YouTube" class="w-6 h-6">
-                <span>YouTube</span>
-              </a>
+        <!-- Social & Streaming Links -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12 max-w-md mx-auto">
+            <!-- Streaming Column -->
+            <div class="text-center">
+              <h3 class="text-xl font-semibold text-white mb-4">Streaming</h3>
+              <div class="inline-flex flex-col items-start space-y-4">
+                  <a href="https://open.spotify.com/artist/68DwCkSU60eR5Nze2xjgZF?si=Y4Xr5p0kRc2hDFqwhHPL_Q" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
+                    <img src="/images/spotify.svg" alt="Spotify" class="w-6 h-6">
+                    <span>Spotify</span>
+                  </a>
+                  <a href="https://music.apple.com/ph/artist/dustine-jao/1787215793" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
+                    <img src="/images/apple.svg" alt="Apple Music" class="w-6 h-6">
+                    <span>Apple Music</span>
+                  </a>
+                   <a href="https://www.youtube.com/@dustinejao_" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
+                    <img src="/images/youtube.svg" alt="YouTube" class="w-6 h-6">
+                    <span>YouTube</span>
+                  </a>
+              </div>
+            </div>
+            <!-- Socials Column -->
+            <div class="text-center">
+              <h3 class="text-xl font-semibold text-white mb-4">Socials</h3>
+              <div class="inline-flex flex-col items-start space-y-4">
+                  <a href="https://www.instagram.com/dustinejao_/" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
+                    <img src="/images/instagram.svg" alt="Instagram" class="w-6 h-6">
+                    <span>Instagram</span>
+                  </a>
+                  <a href="https://www.tiktok.com/@dustinejao" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
+                    <img src="/images/tiktok.svg" alt="TikTok" class="w-6 h-6">
+                    <span>TikTok</span>
+                  </a>
+                  <a href="https://www.facebook.com/dustinejao" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
+                    <img src="/images/facebook.svg" alt="Facebook" class="w-6 h-6">
+                    <span>Facebook</span>
+                  </a>
+              </div>
+            </div>
           </div>
-        </div>
-        <!-- Socials Column -->
-        <div class="text-center">
-          <h3 class="text-xl font-semibold text-white mb-4">Socials</h3>
-          <div class="inline-flex flex-col items-start space-y-4">
-              <a href="https://www.instagram.com/dustinejao_/" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
-                <img src="/images/instagram.svg" alt="Instagram" class="w-6 h-6">
-                <span>Instagram</span>
-              </a>
-              <a href="https://www.tiktok.com/@dustinejao" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
-                <img src="/images/tiktok.svg" alt="TikTok" class="w-6 h-6">
-                <span>TikTok</span>
-              </a>
-              <a href="https://www.facebook.com/dustinejao" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
-                <img src="/images/facebook.svg" alt="Facebook" class="w-6 h-6">
-                <span>Facebook</span>
-              </a>
-          </div>
-        </div>
+
       </div>
+    </section>
 
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="text-gray-400 py-3 text-center text-sm">
-<p>&copy; 2025 Dustine Jao. All Rights Reserved.</p>
-<p>Web Dev from Scratch by Dustine Jao</p>
-</footer>
+    <!-- Footer -->
+    <footer class="text-gray-400 py-3 text-center text-sm">
+    <p>&copy; 2025 Dustine Jao. All Rights Reserved.</p>
+    <p>Web Dev from Scratch by Dustine Jao</p>
+    </footer>
 
 </div>
 
@@ -531,6 +532,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const activeLink = mainNav.querySelector('.nav-btn-active-text');
         if (activeLink) {
+             // Snap bubble to the final position
+            navBubble.style.left = `${activeLink.offsetLeft}px`;
+            navBubble.style.width = `${activeLink.offsetWidth}px`;
+            
             const targetId = activeLink.getAttribute('href');
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
