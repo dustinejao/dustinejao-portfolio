@@ -186,23 +186,21 @@ display: none; /* Safari and Chrome */
 <div id="light-bg" class="background-layer"></div>
 <div id="dark-bg" class="background-layer"></div>
 
-<div class="relative z-10 min-h-screen flex flex-col">
+<div class="relative z-10">
     <!-- Navigation Bar -->
     <header class="sticky top-0 z-50 py-4 px-6 flex justify-between items-center">
     <a href="#hero" class="w-12 h-12 flex-shrink-0">
     <img src="/images/logo.svg" alt="Portfolio Logo" class="rounded-full">
     </a>
-    <div class="flex-1 flex justify-end">
-        <nav id="main-nav" class="relative glass-nav rounded-full shadow-lg p-2 inline-flex items-center space-x-2">
-            <div id="nav-active-bubble" class="absolute top-2 bottom-2 rounded-full" style="opacity: 0;"></div>
-            <a href="#about" class="nav-btn text-gray-800">About</a>
-            <a href="#work" class="nav-btn text-gray-800">Work</a>
-            <a href="#contact" class="nav-btn text-gray-800">Contact</a>
-        </nav>
-    </div>
+    <nav id="main-nav" class="relative glass-nav rounded-full shadow-lg p-2 flex items-center space-x-2">
+        <div id="nav-active-bubble" class="absolute top-2 bottom-2 rounded-full" style="opacity: 0;"></div>
+        <a href="#about" class="nav-btn text-gray-800">About</a>
+        <a href="#work" class="nav-btn text-gray-800">Work</a>
+        <a href="#contact" class="nav-btn text-gray-800">Contact</a>
+    </nav>
     </header>
 
-    <main class="flex-grow">
+    <main class="bg-white/0">
         <div class="container mx-auto px-6 py-12 md:py-20">
             <!-- Hero Section -->
             <section id="hero" class="text-center py-16 md:py-24">
@@ -330,8 +328,8 @@ display: none; /* Safari and Chrome */
             </div>
             </a>
             </div>
-            <button id="scroll-left" class="absolute left-2 top-1_2 -translate-y-1_2 bg-white_70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http:_www.w3.org_2000_svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
-            <button id="scroll-right" class="absolute right-2 top-1_2 -translate-y-1_2 bg-white_70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http:_www.w3.org_2000_svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+            <button id="scroll-left" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
+            <button id="scroll-right" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
             </div>
             <div class="text-center mt-12">
             <a href="#contact" class="inline-block bg-pink-brand text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 glass-on-hover">Ready to Collaborate? Get in Touch</a>
@@ -355,7 +353,7 @@ display: none; /* Safari and Chrome */
             </section>
         </div>
     </main>
-
+    
     <!-- Music Section -->
     <section id="music" class="text-gray-200 relative">
       <div class="container mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-32 music-content">
@@ -369,7 +367,7 @@ display: none; /* Safari and Chrome */
         </div>
         
         <!-- Spotify Embed -->
-        <div class="max-w-2xl mx-auto mb-16 shadow-2xl shadow-pink-900_20">
+        <div class="max-w-2xl mx-auto mb-16 shadow-2xl shadow-pink-900/20">
           <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/68DwCkSU60eR5Nze2xjgZF?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
 
