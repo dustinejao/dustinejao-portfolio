@@ -348,11 +348,11 @@ Ready to Collaborate? Get in Touch
 
 <!-- JavaScript for smooth scrolling & Slideshow logic -->
 <script>
-// --- Debounce logic for scroll animations ---
+// --- State flags to prevent animation spam ---
 let isNavScrolling = false;
 let isCarouselScrolling = false;
 
-// Smooth scrolling for navigation links
+// --- Smarter smooth scrolling for navigation links ---
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -368,61 +368,66 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
         
-        // Reset the flag after the animation duration
-        setTimeout(() => {
-            isNavScrolling = false;
-        }, 800); // 800ms should be enough time for the scroll to complete
+        // Use a scroll listener to intelligently detect when scrolling has finished
+        let scrollTimeout;
+        const scrollEndListener = () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                isNavScrolling = false;
+                window.removeEventListener('scroll', scrollEndListener);
+            }, 150); // Assumes scrolling is done if no scroll events for 150ms
+        };
+        window.addEventListener('scroll', scrollEndListener);
     });
 });
 
 
-// Background color change on scroll
+// --- Background color change on scroll ---
 window.addEventListener('scroll', () => {
-const scrollHeight = document.body.scrollHeight - window.innerHeight;
-const scrollPosition = window.scrollY;
-// Calculate a progress value from 0 to 1 based on scroll position
-const progress = Math.min(scrollPosition / 400, 1); // Adjust 400 for how fast the color changes
-// Interpolate the opacity of the pink radial gradients
-const initialOpacity1 = 0.3;
-const finalOpacity1 = 0.05;
-const initialOpacity2 = 0.2;
-const finalOpacity2 = 0.05;
-const newOpacity1 = initialOpacity1 - (progress * (initialOpacity1 - finalOpacity1));
-const newOpacity2 = initialOpacity2 - (progress * (initialOpacity2 - finalOpacity2));
-document.body.style.setProperty('--radial-pink-1', `rgba(255, 0, 127, ${newOpacity1})`);
-document.body.style.setProperty('--radial-pink-2', `rgba(255, 0, 127, ${newOpacity2})`);
+    const scrollHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollPosition = window.scrollY;
+    // Calculate a progress value from 0 to 1 based on scroll position
+    const progress = Math.min(scrollPosition / 400, 1); // Adjust 400 for how fast the color changes
+    // Interpolate the opacity of the pink radial gradients
+    const initialOpacity1 = 0.3;
+    const finalOpacity1 = 0.05;
+    const initialOpacity2 = 0.2;
+    const finalOpacity2 = 0.05;
+    const newOpacity1 = initialOpacity1 - (progress * (initialOpacity1 - finalOpacity1));
+    const newOpacity2 = initialOpacity2 - (progress * (initialOpacity2 - finalOpacity2));
+    document.body.style.setProperty('--radial-pink-1', `rgba(255, 0, 127, ${newOpacity1})`);
+    document.body.style.setProperty('--radial-pink-2', `rgba(255, 0, 127, ${newOpacity2})`);
 });
 
-// Carousel scrolling logic
+
+// --- Smarter carousel scrolling logic ---
 const carousel = document.getElementById('carousel-container');
 const scrollLeftBtn = document.getElementById('scroll-left');
 const scrollRightBtn = document.getElementById('scroll-right');
 
-// Function to scroll the carousel
 const scrollCarousel = (direction) => {
-    if (isCarouselScrolling) return; // Don't scroll if already scrolling
+    if (isCarouselScrolling) return;
     isCarouselScrolling = true;
 
     const cardWidth = 320; // Tailwind w-80 is 320px
     const gap = 24; // Tailwind space-x-6 is 24px
     const scrollAmount = cardWidth + gap;
     
-    if (direction === 'left') {
-        carousel.scrollBy({
-            left: -scrollAmount,
-            behavior: 'smooth'
-        });
-    } else if (direction === 'right') {
-        carousel.scrollBy({
-            left: scrollAmount,
-            behavior: 'smooth'
-        });
-    }
+    carousel.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+    });
 
-    // Reset the flag after animation duration
-    setTimeout(() => {
-        isCarouselScrolling = false;
-    }, 600); // 600ms should be enough for the carousel scroll
+    // Use a scroll listener to intelligently detect when scrolling has finished
+    let scrollTimeout;
+    const scrollEndListener = () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            isCarouselScrolling = false;
+            carousel.removeEventListener('scroll', scrollEndListener);
+        }, 150); // Assumes scrolling is done if no scroll events for 150ms
+    };
+    carousel.addEventListener('scroll', scrollEndListener);
 };
 
 // Event listeners for the buttons
