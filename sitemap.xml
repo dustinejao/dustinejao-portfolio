@@ -3,7 +3,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.dustinejao.com/</loc>
-<lastmod>2025-09-06</lastmod>
+<lastmod>2026-07-17</lastmod>
 <priority>1.0</priority>
+</url>
+<url>
+<loc>https://www.dustinejao.com/music/</loc>
+<lastmod>2026-07-17</lastmod>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://www.dustinejao.com/apps/</loc>
+<lastmod>2026-07-17</lastmod>
+<priority>0.8</priority>
 </url>
 </urlset>

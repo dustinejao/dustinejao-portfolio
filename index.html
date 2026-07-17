@@ -1,633 +1,344 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Dustine Jao Portfolio</title>
-<!-- PWA Settings for Fullscreen Mode on iOS & Android -->
+<title>Dustine Jao | Multimedia Artist &amp; Video Editor</title>
+
+<!-- Set theme before first paint (no flash) -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t}catch(e){}})();</script>
+
+<meta name="theme-color" content="#ffffff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<!-- SEO Meta Tags -->
-<meta name="description" content="Portfolio of Dustine Jao, a multimedia artist specializing in video, audio, and design. View my featured work and get in touch to collaborate on your next project.">
-<meta name="keywords" content="Dustine Jao, portfolio, multimedia, video editing, audio production, graphic design, UI/UX, artist, creative, freelancer, digital media">
-<!-- Favicon & PWA Home Screen Icon -->
-<!-- For Safari Pinned Tabs -->
-<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#FF007F">
-<!-- Use SVG for modern browsers -->
+<!-- SEO -->
+<meta name="description" content="Dustine Jao is a multimedia artist specializing in video production: video editing, audio post, short-form, and design. Cum laude, BA Multimedia Arts. Available for remote work worldwide.">
+<meta name="keywords" content="Dustine Jao, video editor, video production, multimedia artist, audio post production, short-form video, podcast editing, Manila, remote video editor">
+<link rel="canonical" href="https://www.dustinejao.com/">
+
+<!-- Icons -->
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
-<!-- Use PNG for broader compatibility and as a fallback -->
-<link rel="icon" type="image/png" href="/images/favicon.png">
-<!-- 16x16 PNG for Safari and older browsers -->
 <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
-<!-- Apple Touch Icon for iOS home screen shortcut -->
 <link rel="apple-touch-icon" href="/images/icon-512.png">
+<link rel="manifest" href="/manifest.json">
 
-<!-- Open Graph (OG) Image for social media sharing -->
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.dustinejao.com/">
+<meta property="og:title" content="Dustine Jao | Multimedia Artist, Video Production">
+<meta property="og:description" content="Your story, brought to life. Video editing, audio post & design that connects.">
 <meta property="og:image" content="https://dustinejao.com/images/og-image.png">
-<meta property="og:title" content="Dustine Jao | Multimedia Artist">
-<meta property="og:description" content="Portfolio of a multimedia artist specializing in video, audio, and design.">
 
-<!-- Modern Font: Inter for a clean and professional look -->
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-/* Define the glassmorphism effect for the light theme */
-.glass-nav {
-background-color: rgba(255, 255, 255, 0.4);
-backdrop-filter: blur(10px);
--webkit-backdrop-filter: blur(10px);
-border: 1px solid rgba(0, 0, 0, 0.1);
-}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 
-/* Define the light theme background with a dynamic gradient and noise texture */
-body {
-font-family: 'Inter', sans-serif;
-color: #111111;
-background-color: #111111; /* Set the base background to dark */
-/* Use CSS variables for the colors to allow dynamic updates */
---radial-pink-1: rgba(255, 0, 127, 0.3);
---radial-pink-2: rgba(255, 0, 127, 0.2);
-/* Removed padding-top here as it's now handled by the header */
-}
+<link rel="stylesheet" href="/styles.css">
 
-.background-layer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-attachment: fixed;
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Dustine Jao",
+  "url": "https://www.dustinejao.com/",
+  "jobTitle": "Multimedia Artist, Video Production",
+  "alumniOf": "De La Salle-College of Saint Benilde",
+  "email": "mailto:dustinejao@gmail.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/dustinejao/",
+    "https://github.com/dustinejao",
+    "https://www.instagram.com/dustinejao_/",
+    "https://open.spotify.com/artist/68DwCkSU60eR5Nze2xjgZF"
+  ]
 }
-
-#light-bg {
-    background-color: #f3f4f6;
-    background-image:
-    url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMDAnIGhlaWdodD0nMzAwJz4KICA8ZmlsdGVyIGlkPSdhJz4KICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0ndHVyYnVsZW5jZScgYmFzZUZyZXF1ZW5jeT0nMC4וNScgc3RpdGNoVGlsZXM9J3N0aXRjaCcgLz4KICAgIDxmZUNvbG9yTWF0cml4IHR5cGU9J21hdHJpeCdyb3dzPScxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMC41IDAuNSA0LjUgMCcgLz4KICA8L2ZpbHRlcj4KICA8cmVjdCB3aWR0aD0nMzAwJyBoZWlnaHQ9JzMwMCcgZmlsbD0naHNsKDAsIDAlLCAxMDAlKScgZmlsdGVyPSd1cmwoI2EpJy8+Cjwvc3ZnPg=='),
-    radial-gradient(circle at 120% 120%, var(--radial-pink-1) 0%, transparent 50%),
-    radial-gradient(circle at -20% -20%, var(--radial-pink-2) 0%, transparent 50%);
-    background-blend-mode: overlay, normal, normal;
-    z-index: -2;
-    transition: opacity 0.5s ease;
-}
-
-#dark-bg {
-    background-color: #111111;
-    background-image:
-    radial-gradient(circle at 150% 150%, rgba(255, 0, 127, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at -50% -50%, rgba(255, 0, 127, 0.1) 0%, transparent 40%);
-    z-index: -3;
-}
-
-
-/* Use Inter for all text and headers for a consistent, modern feel */
-h1, h2, h3, p, a, button, span {
-font-family: 'Inter', sans-serif;
-}
-
-/* Custom color palette from user */
-.color-pink { color: #FF007F; }
-.bg-pink-brand { background-color: #FF007F; }
-.text-blue-brand { color: #0071bc; }
-.text-red-brand { color: #c1272d; }
-.text-gray-brand { color: #4b5563; }
-
-/* Custom button-like styles for the nav links */
-.nav-btn {
-background-color: transparent;
-padding: 0.5rem 1rem;
-border-radius: 9999px;
-transition: color 0.3s ease, transform 0.3s ease;
-font-weight: 500;
-flex-shrink: 0; /* Prevent links from shrinking */
-position: relative;
-z-index: 10;
-}
-
-.nav-btn:hover {
-color: #FF007F;
-}
-
-/* Style for the text of the active nav link */
-.nav-btn-active-text {
-    color: #FF007F;
-    transform: scale(1.1);
-}
-
-/* Style for the sliding bubble */
-#nav-active-bubble {
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 5;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-/* Reusable glass effect on hover for other elements */
-.glass-on-hover:hover {
-background-color: rgba(255, 255, 255, 0.6);
-backdrop-filter: blur(10px);
--webkit-backdrop-filter: blur(10px);
-border: 1px solid rgba(255, 255, 255, 0.3);
-box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-}
-
-/* Animate the hero text for a more dynamic feel */
-.hero-text-animation {
-animation: fadeIn 1s ease-out;
-}
-
-@keyframes fadeIn {
-from {
-opacity: 0;
-transform: translateY(20px);
-}
-to {
-opacity: 1;
-transform: translateY(0);
-}
-}
-
-/* Custom CSS to hide scrollbar while keeping scrolling functionality */
-.hide-scrollbar {
--ms-overflow-style: none; /* Internet Explorer 10+ */
-scrollbar-width: none; /* Firefox */
-}
-.hide-scrollbar::-webkit-scrollbar {
-display: none; /* Safari and Chrome */
-}
-
-/* Animation for music section content */
-.music-content > * {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.music-content.is-visible > * {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Stagger the animation of the children */
-.music-content.is-visible > *:nth-child(1) { transition-delay: 0.1s; }
-.music-content.is-visible > *:nth-child(2) { transition-delay: 0.2s; }
-.music-content.is-visible > *:nth-child(3) { transition-delay: 0.3s; }
-.music-content.is-visible > *:nth-child(4) { transition-delay: 0.4s; }
-
-</style>
+</script>
 </head>
-<body class="antialiased">
-<div id="light-bg" class="background-layer"></div>
-<div id="dark-bg" class="background-layer"></div>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
 
-<div class="relative z-10">
-    <!-- Navigation Bar -->
-    <header class="sticky top-0 z-50 pt-[env(safe-area-inset-top)] pb-4 px-6 flex justify-between items-center">
-    <a href="#hero" class="w-12 h-12 flex-shrink-0 mt-2">
-    <img src="/images/logo.svg" alt="Portfolio Logo" class="rounded-full">
-    </a>
-    <nav id="main-nav" class="relative glass-nav rounded-full shadow-lg p-2 flex items-center space-x-2 mt-2">
-        <div id="nav-active-bubble" class="absolute top-2 bottom-2 rounded-full" style="opacity: 0;"></div>
-        <a href="#about" class="nav-btn text-gray-800">About</a>
-        <a href="#work" class="nav-btn text-gray-800">Work</a>
-        <a href="#contact" class="nav-btn text-gray-800">Contact</a>
-    </nav>
-    </header>
+<header class="site-header">
+  <a href="/" class="logo" aria-label="Dustine Jao, home">
+    <img src="/images/logo.svg" alt="Dustine Jao logo" width="46" height="46">
+  </a>
+  <nav class="nav-pill" aria-label="Main navigation">
+    <a href="#about" class="nav-link">About</a>
+    <a href="#work" class="nav-link">Work</a>
+    <a href="#experience" class="nav-link nav-desktop-only">Experience</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <a href="/music/" class="nav-link">Music</a>
+    <a href="/apps/" class="nav-link">Apps</a>
+  </nav>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+  </button>
+</header>
 
-    <main class="bg-white/0">
-        <div class="container mx-auto px-6 py-12 md:py-20">
-            <!-- Hero Section -->
-            <section id="hero" class="text-center py-16 md:py-24">
-            <div class="max-w-4xl mx-auto hero-text-animation">
-            <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-2">
-            Your story, brought to life.
-            </h1>
-            <p class="text-lg md:text-xl text-gray-600 mb-6">
-            Multimedia artist specializing in video, audio, and design.
-            </p>
-            <a href="#work" class="inline-block bg-pink-brand text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 glass-on-hover">
-            View My Work
-            </a>
-            </div>
-            </section>
+<main>
+  <!-- ============ HERO ============ -->
+  <section class="hero container" id="top">
+    <p class="hero-hello">Hi, I'm Dustine <span class="wave">👋</span></p>
+    <h1>Your story,<br><span class="accent">brought to life.</span></h1>
+    <p class="hero-sub">Multimedia artist specializing in <strong>video production</strong>, plus audio post &amp; design that actually connects with your audience.</p>
+    <div class="hero-cta">
+      <a href="#work" class="btn btn-pink">View My Work</a>
+      <a href="#contact" class="btn btn-ghost">Let's Talk</a>
+    </div>
 
-            <!-- About Section -->
-            <section id="about" class="py-12 md:py-20">
-            <div class="max-w-5xl mx-auto px-6 bg-white rounded-3xl shadow-lg p-8 md:p-12 glass-on-hover">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">About Me</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <img src="/images/dj.jpg" alt="Headshot of Dustine Jao, a multimedia artist" class="rounded-2xl shadow-lg w-full">
-            <div class="text-gray-700 leading-normal">
-            <p class="mb-4 font-bold text-gray-900">
-            Hi! I'm Dustine Jao. Bringing Your Vision to Life.
-            </p>
-            <p class="mb-4">
-            I help clients tell their stories effectively through powerful video, crisp audio, and clean design. I handle everything from social media video editing to professional podcast production.
-            </p>
-            <p class="mb-4">
-            My goal is to make sure your content not only looks and sounds great, but also connects with your audience. I'm a hands-on creative partner ready to bring your next project to life.
-            </p>
-            </div>
-            </div>
-            </div>
-            </section>
-
-            <!-- Portfolio Section (Horizontal Carousel) -->
-            <section id="work" class="py-12 md:py-20">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">Featured Work</h2>
-            <div class="relative max-w-7xl mx-auto px-6 group">
-            <div id="carousel-container" class="flex flex-row overflow-x-scroll snap-x snap-mandatory space-x-6 pb-4 hide-scrollbar">
-            <a href="https://drive.google.com/drive/folders/1-B7w20bdZBiH6UdLjG9bnkEr2qlXZFrq?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-            <div class="flex flex-col h-full">
-            <div class="flex-grow">
-            <h3 class="font-semibold text-lg text-gray-900 color-pink"><span class="mr-2">🎬</span> Video Editing</h3>
-            <p class="text-sm text-gray-600 mt-1 mb-4">Crafting high-quality video content for brands and creators.</p>
-            <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-            </div>
-            <div class="mt-auto">
-            <img src="/images/video.jpg" alt="A video timeline or a frame from a polished video project" class="w-full h-auto object-cover rounded-2xl mt-4">
-            </div>
-            </div>
-            </a>
-            <a href="https://drive.google.com/drive/folders/1noD9AV2oRemMNX8z9yH80DtAyZFEtGE8?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-            <div class="flex flex-col h-full">
-            <div class="flex-grow">
-            <h3 class="font-semibold text-lg text-gray-900 text-red-brand"><span class="mr-2">🎧</span> Audio Production</h3>
-            <p class="text-sm text-gray-600 mt-1 mb-4">Polishing podcasts and audio for a professional sound experience.</p>
-            <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-            </div>
-            <div class="mt-auto">
-            <img src="/images/audio.jpg" alt="A sound wave visual representing audio production and editing" class="w-full h-auto object-cover rounded-2xl mt-4">
-            </div>
-            </div>
-            </a>
-            <a href="https://drive.google.com/drive/folders/1kTA192Qd_rEp33ofGbFXrlda8Yvkh_LZ?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-            <div class="flex flex-col h-full">
-            <div class="flex-grow">
-            <h3 class="font-semibold text-lg text-gray-900 text-red-brand"><span class="mr-2">🎙️</span> Podcast</h3>
-            <p class="text-sm text-gray-600 mt-1 mb-4">Storytelling through audio to create engaging podcast series.</p>
-            <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-            </div>
-            <div class="mt-auto">
-            <img src="/images/podcast.jpg" alt="An image representing a podcast, such as a microphone or podcast logo" class="w-full h-auto object-cover rounded-2xl mt-4">
-            </div>
-            </div>
-            </a>
-            <a href="https://drive.google.com/drive/folders/12vq4To9uycPHeGFO1Gyky6y7-600MZxx?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-            <div class="flex flex-col h-full">
-            <div class="flex-grow">
-            <h3 class="font-semibold text-lg text-gray-900 color-pink"><span class="mr-2">📱</span> Short-Form</h3>
-            <p class="text-sm text-gray-600 mt-1 mb-4">Developing engaging reels and clips for social platforms.</p>
-            <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-            </div>
-            <div class="mt-auto">
-            <img src="/images/shorts.jpg" alt="A vertical video thumbnail representing short-form content" class="w-full h-auto object-cover rounded-2xl mt-4">
-            </div>
-            </div>
-            </a>
-            <a href="https://drive.google.com/drive/folders/1-vueEsBhWvrtQZ1nFtAVgT16VmeKaV3V?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-            <div class="flex flex-col h-full">
-            <div class="flex-grow">
-            <h3 class="font-semibold text-lg text-gray-900 text-red-brand"><span class="mr-2">🖥️</span> UI-UX</h3>
-            <p class="text-sm text-gray-600 mt-1 mb-4">Designing intuitive and user-friendly digital experiences.</p>
-            <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-            </div>
-            <div class="mt-auto">
-            <img src="/images/uiux.jpg" alt="A screenshot of a mobile app interface or a website mock-up" class="w-full h-auto object-cover rounded-2xl mt-4">
-            </div>
-            </div>
-            </a>
-            <a href="https://drive.google.com/drive/folders/1J7j1uSKUYyHEmMhkj50uJSaVF9TFu9Be?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-            <div class="flex flex-col h-full">
-            <div class="flex-grow">
-            <h3 class="font-semibold text-lg text-gray-900 text-blue-brand"><span class="mr-2">🎨</span> Graphic Design</h3>
-            <p class="text-sm text-gray-600 mt-1 mb-4">Creating eye-catching visuals for digital and print media.</p>
-            <button class="mt-4 inline-block px-4 py-2 text-white bg-pink-brand rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors duration-300">View</button>
-            </div>
-            <div class="mt-auto">
-            <img src="/images/graphic.jpg" alt="A mock-up of a graphic design project, such as a logo or poster" class="w-full h-auto object-cover rounded-2xl mt-4">
-            </div>
-            </div>
-            </a>
-            <a href="https://drive.google.com/drive/folders/1Kb_uMHPQs-pNwaDouh7mAySCKObXsLW3?usp=share_link" target="_blank" class="block flex-shrink-0 w-80 snap-start bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-            <div class="flex flex-col h-full">
-            <div class="flex-grow">
-            <h3 class="font-semibold text-lg text-gray-900 text-gray-brand"><span class="mr-2">📁</span> View All</h3>
-            <p class="text-sm text-gray-600 mt-1 mb-4">Explore the complete collection of my projects and assets.</p>
-            <button class="mt-4 inline-block px-4 py-2 text-white bg-gray-600 rounded-full text-sm font-semibold hover:bg-gray-700 transition-colors duration-300">View</button>
-            </div>
-            <div class="mt-auto">
-            <img src="/images/other.jpg" alt="A collage representing various other projects" class="w-full h-auto object-cover rounded-2xl mt-4">
-            </div>
-            </div>
-            </a>
-            </div>
-            <button id="scroll-left" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
-            <button id="scroll-right" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 border border-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 z-10 hover:bg-white"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
-            </div>
-            <div class="text-center mt-12">
-            <a href="#contact" class="inline-block bg-pink-brand text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 glass-on-hover">Ready to Collaborate? Get in Touch</a>
-            </div>
-            </section>
-
-            <!-- Contact Section -->
-            <section id="contact" class="py-12 md:py-20">
-            <div class="max-w-xl mx-auto px-6 bg-white rounded-3xl shadow-lg p-8 md:p-12 text-center glass-on-hover">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900"><span class="mr-2">👋</span> Let's Connect</h2>
-            <p class="text-gray-600 mb-6">I'm excited to collaborate and bring your next project to life. Feel free to reach out.</p>
-            <div class="flex flex-col space-y-4 items-center">
-            <a href="mailto:dustinejao@gmail.com" class="text-lg color-pink hover:text-pink-600 transition-colors duration-300 font-medium">dustinejao@gmail.com</a>
-            <div class="flex space-x-6 justify-center mt-4">
-            <a href="https://www.linkedin.com/in/dustinejao/" target="_blank" class="text-gray-600 hover:text-gray-900 transition-colors duration-300" aria-label="LinkedIn profile of Dustine Jao">
-            <img src="/images/linkedin.svg" alt="LinkedIn Icon" class="w-8 h-8">
-            </a>
-            <a href="https://github.com/dustinejao" target="_blank" class="text-gray-600 hover:text-gray-900 transition-colors duration-300" aria-label="GitHub profile of Dustine Jao">
-            <img src="/images/github.svg" alt="GitHub Icon" class="w-8 h-8">
-            </a>
-            </div>
-            </div>
-            </div>
-            </section>
+    <div class="hero-scene" aria-hidden="true">
+      <span class="hero-pill pink hp1">🎬 VIDEO EDITOR</span>
+      <span class="hero-pill hp2">🎧 AUDIO POST</span>
+      <span class="hero-pill hp3">📱 SHORT-FORM</span>
+      <span class="hero-pill pink hp4">🎓 CUM LAUDE</span>
+      <div class="folder">
+        <div class="folder-back"></div>
+        <div class="f-card c1" data-label="VIDEO"><img src="/images/video.jpg" alt="" width="300" height="400" fetchpriority="high"></div>
+        <div class="f-card c2" data-label="SHORTS"><img src="/images/shorts.jpg" alt="" width="300" height="400"></div>
+        <div class="f-card c3" data-label="AUDIO"><img src="/images/podcast.jpg" alt="" width="300" height="400"></div>
+        <div class="folder-front">
+          <span class="folder-label">✦ Dustine Jao · Selected Work ✦</span>
+          <div class="folder-dots"><span></span><span></span><span></span></div>
         </div>
-    </main>
-    
-    <!-- Music Section -->
-    <section id="music" class="text-gray-200 relative">
-      <div class="container mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-32 music-content">
-        <div class="text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
-              Beyond the Edit: My Music
-            </h2>
-            <p class="text-gray-400 mb-12 max-w-2xl mx-auto">
-              When I'm not behind the camera or in the design studio, I'm creating stories with sound. Stream my latest releases and follow the journey on your favorite platform.
-            </p>
-        </div>
-        
-        <!-- Spotify Embed -->
-        <div class="max-w-2xl mx-auto mb-16 shadow-2xl shadow-pink-900/20">
-          <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/68DwCkSU60eR5Nze2xjgZF?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
-
-        <!-- Social & Streaming Links -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12 max-w-md mx-auto">
-            <!-- Streaming Column -->
-            <div class="text-center">
-              <h3 class="text-xl font-semibold text-white mb-4">Streaming</h3>
-              <div class="inline-flex flex-col items-start space-y-4">
-                  <a href="https://open.spotify.com/artist/68DwCkSU60eR5Nze2xjgZF?si=Y4Xr5p0kRc2hDFqwhHPL_Q" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
-                    <img src="/images/spotify.svg" alt="Spotify" class="w-6 h-6">
-                    <span>Spotify</span>
-                  </a>
-                  <a href="https://music.apple.com/ph/artist/dustine-jao/1787215793" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
-                    <img src="/images/apple.svg" alt="Apple Music" class="w-6 h-6">
-                    <span>Apple Music</span>
-                  </a>
-                   <a href="https://www.youtube.com/@dustinejao_" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
-                    <img src="/images/youtube.svg" alt="YouTube" class="w-6 h-6">
-                    <span>YouTube</span>
-                  </a>
-              </div>
-            </div>
-            <!-- Socials Column -->
-            <div class="text-center">
-              <h3 class="text-xl font-semibold text-white mb-4">Socials</h3>
-              <div class="inline-flex flex-col items-start space-y-4">
-                  <a href="https://www.instagram.com/dustinejao_/" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
-                    <img src="/images/instagram.svg" alt="Instagram" class="w-6 h-6">
-                    <span>Instagram</span>
-                  </a>
-                  <a href="https://www.tiktok.com/@dustinejao" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
-                    <img src="/images/tiktok.svg" alt="TikTok" class="w-6 h-6">
-                    <span>TikTok</span>
-                  </a>
-                  <a href="https://www.facebook.com/dustinejao" target="_blank" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
-                    <img src="/images/facebook.svg" alt="Facebook" class="w-6 h-6">
-                    <span>Facebook</span>
-                  </a>
-              </div>
-            </div>
-          </div>
-
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="text-gray-400 py-3 text-center text-sm">
-    <p>&copy; 2025 Dustine Jao. All Rights Reserved.</p>
-    <p>Web Dev from Scratch by Dustine Jao</p>
-    </footer>
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Video Editing</span><span>Audio Post</span><span>Short-Form</span><span>Podcast Production</span><span>Motion &amp; Design</span><span>Real Estate Media</span><span>AI-Assisted Workflows</span>
+      <span>Video Editing</span><span>Audio Post</span><span>Short-Form</span><span>Podcast Production</span><span>Motion &amp; Design</span><span>Real Estate Media</span><span>AI-Assisted Workflows</span>
+    </div>
+  </div>
 
-</div>
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="container">
+    <div class="about-grid">
+      <div class="about-photo" data-reveal>
+        <img src="/images/dj.jpg" alt="Headshot of Dustine Jao, multimedia artist" loading="lazy" width="600" height="600">
+        <span class="hero-pill pink">📍 Manila · Remote-ready</span>
+      </div>
+      <div class="about-text" data-reveal style="--reveal-delay:.1s">
+        <span class="section-tag">About Me</span>
+        <h2 class="section-title">A hands-on creative <span class="accent">partner.</span></h2>
+        <p class="lede">I help brands and creators tell their stories through powerful video, crisp audio, and clean design.</p>
+        <p>From social media edits to full podcast production, I handle the whole pipeline: cutting, sound, color, and delivery. I've edited remotely for teams in the US and Canada, specializing in real-estate media and AI-assisted workflows.</p>
+        <p>My goal is simple: content that doesn't just look and sound great, but genuinely connects with your audience.</p>
+        <div class="chips">
+          <span class="chip">🎓 BA Multimedia Arts · Cum Laude</span>
+          <span class="chip">🏅 8-Term Dean's Lister</span>
+          <span class="chip">🌏 Remote · US · CA · PH</span>
+          <span class="chip">⚡ AI workflows (Higgsfield)</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
+  <!-- ============ WORK ============ -->
+  <section id="work" class="container">
+    <div data-reveal>
+      <span class="section-tag">Featured Work</span>
+      <h2 class="section-title">Video first. <span class="accent">Everything else follows.</span></h2>
+    </div>
+    <div class="work-grid" style="margin-top:2rem">
+      <a href="https://drive.google.com/drive/folders/1-B7w20bdZBiH6UdLjG9bnkEr2qlXZFrq?usp=share_link" target="_blank" rel="noopener" class="work-card wc-video" data-reveal>
+        <span class="work-badge">★ Main Craft</span>
+        <div class="thumb"><img src="/images/video.jpg" alt="Video editing project frame" loading="lazy" width="800" height="420"></div>
+        <div class="meta">
+          <div>
+            <h3>🎬 Video Editing</h3>
+            <p>High-quality video content for brands and creators. My core craft.</p>
+          </div>
+          <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="https://drive.google.com/drive/folders/12vq4To9uycPHeGFO1Gyky6y7-600MZxx?usp=share_link" target="_blank" rel="noopener" class="work-card wc-shorts" data-reveal style="--reveal-delay:.08s">
+        <div class="thumb"><img src="/images/shorts.jpg" alt="Short-form vertical video thumbnail" loading="lazy" width="400" height="250"></div>
+        <div class="meta">
+          <div>
+            <h3>📱 Short-Form</h3>
+            <p>Scroll-stopping reels &amp; clips for social platforms.</p>
+          </div>
+          <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1noD9AV2oRemMNX8z9yH80DtAyZFEtGE8?usp=share_link" target="_blank" rel="noopener" class="work-card wc-audio" data-reveal>
+        <div class="thumb"><img src="/images/audio.jpg" alt="Sound wave representing audio production" loading="lazy" width="500" height="313"></div>
+        <div class="meta">
+          <div>
+            <h3>🎧 Audio Production</h3>
+            <p>Polished podcasts &amp; pro sound experiences.</p>
+          </div>
+          <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1kTA192Qd_rEp33ofGbFXrlda8Yvkh_LZ?usp=share_link" target="_blank" rel="noopener" class="work-card wc-podcast" data-reveal style="--reveal-delay:.08s">
+        <div class="thumb"><img src="/images/podcast.jpg" alt="Podcast microphone setup" loading="lazy" width="500" height="313"></div>
+        <div class="meta">
+          <div>
+            <h3>🎙️ Podcast</h3>
+            <p>Audio storytelling for engaging series.</p>
+          </div>
+          <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1J7j1uSKUYyHEmMhkj50uJSaVF9TFu9Be?usp=share_link" target="_blank" rel="noopener" class="work-card wc-graphic" data-reveal>
+        <div class="thumb"><img src="/images/graphic.jpg" alt="Graphic design poster mock-up" loading="lazy" width="500" height="313"></div>
+        <div class="meta">
+          <div>
+            <h3>🎨 Graphic Design</h3>
+            <p>Eye-catching visuals for digital &amp; print.</p>
+          </div>
+          <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1-vueEsBhWvrtQZ1nFtAVgT16VmeKaV3V?usp=share_link" target="_blank" rel="noopener" class="work-card wc-uiux" data-reveal style="--reveal-delay:.08s">
+        <div class="thumb"><img src="/images/uiux.jpg" alt="Mobile app interface mock-up" loading="lazy" width="500" height="313"></div>
+        <div class="meta">
+          <div>
+            <h3>🖥️ UI / UX</h3>
+            <p>Intuitive, user-friendly digital experiences.</p>
+          </div>
+          <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1Kb_uMHPQs-pNwaDouh7mAySCKObXsLW3?usp=share_link" target="_blank" rel="noopener" class="work-card wc-all" data-reveal>
+        <div class="thumb"><img src="/images/other.jpg" alt="Collage of various projects" loading="lazy" width="440" height="248"></div>
+        <div class="meta">
+          <div>
+            <h3>📁 View Everything</h3>
+            <p>The complete collection of my projects and assets, all in one place.</p>
+          </div>
+          <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </section>
 
-    const sections = document.querySelectorAll('main section[id]');
-    const musicSection = document.getElementById('music');
-    const musicContent = document.querySelector('.music-content');
-    const mainNav = document.getElementById('main-nav');
-    const navLinks = mainNav.querySelectorAll('a');
-    const navBubble = document.getElementById('nav-active-bubble');
-    const lightBg = document.getElementById('light-bg');
-    const contactSection = document.getElementById('contact');
-    
-    let isDragging = false;
-    let isScrolling = false;
-    let scrollTimeout;
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience" class="container">
+    <div data-reveal>
+      <span class="section-tag">Experience</span>
+      <h2 class="section-title">Where I've <span class="accent">been.</span></h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item" data-reveal>
+        <span class="tl-date">Apr 2026 → Jun 2026</span>
+        <h3>Video Editor</h3>
+        <div class="tl-org">Charlotte Real Estate Media <span class="dot">· Part-time · Remote (Charlotte, NC, US)</span></div>
+        <p>Video editing with a specialization in AI-assisted workflows using Higgsfield.</p>
+        <div class="tl-tags"><span>Video Editing</span><span>Real Estate</span><span>AI · Higgsfield</span></div>
+      </div>
+      <div class="tl-item" data-reveal>
+        <span class="tl-date">Sep 2025 → Jan 2026</span>
+        <h3>Video Production Specialist</h3>
+        <div class="tl-org">Essential Media <span class="dot">· Full-time · Remote (Kamloops, BC, Canada)</span></div>
+        <p>Video editing for real-estate photography, media and marketing services.</p>
+        <div class="tl-tags"><span>Video Editing</span><span>Internet Video Production</span></div>
+      </div>
+      <div class="tl-item" data-reveal>
+        <span class="tl-date">Jun 2025 → Jul 2025</span>
+        <h3>Production</h3>
+        <div class="tl-org">Podcast Network Asia <span class="dot">· Internship · Hybrid (Metro Manila, PH)</span></div>
+        <p>Video editing and audio post production for podcast shows.</p>
+        <div class="tl-tags"><span>Video Editing</span><span>Audio Post</span></div>
+      </div>
+      <div class="tl-item" data-reveal>
+        <span class="tl-date">Mar 2024 → Jun 2025</span>
+        <h3>Video Editor</h3>
+        <div class="tl-org">The EdTech Lab <span class="dot">· Internship · Remote (New York, US)</span></div>
+        <p>Video editing and audio post production for educational content.</p>
+        <div class="tl-tags"><span>Video Editing</span><span>Audio Post</span></div>
+      </div>
+      <div class="tl-item" data-reveal>
+        <span class="tl-date">Aug 2022 → Oct 2025</span>
+        <h3>BA Multimedia Arts, Intermedia / Multimedia</h3>
+        <div class="tl-org">De La Salle-College of Saint Benilde <span class="dot">· Manila, PH</span></div>
+        <p>Graduated Cum Laude with Latin Honors · 8-term Dean's Lister.</p>
+        <div class="tl-tags"><span>Cum Laude</span><span>Dean's Lister ×8</span></div>
+      </div>
+    </div>
+  </section>
 
-    const clearActiveLink = () => {
-        navLinks.forEach(link => link.classList.remove('nav-btn-active-text'));
-        navBubble.style.opacity = '0';
-    };
+  <!-- ============ MORE FROM ME ============ -->
+  <section id="more" class="container">
+    <div data-reveal>
+      <span class="section-tag">Beyond the Edit</span>
+      <h2 class="section-title">More from <span class="accent">me.</span></h2>
+    </div>
+    <div class="more-grid" style="margin-top:2rem">
+      <a href="/music/" class="door-card door-music" data-reveal>
+        <div class="door-covers" aria-hidden="true">
+          <img src="/images/music/rightshi.jpg" alt="" width="120" height="120" loading="lazy">
+          <img src="/images/music/dakoyan.jpg" alt="" width="120" height="120" loading="lazy">
+          <img src="/images/music/fixthishi.jpg" alt="" width="120" height="120" loading="lazy">
+        </div>
+        <div class="eq" aria-hidden="true">
+          <span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span>
+        </div>
+        <h3>I make music too. 🎶</h3>
+        <p>16 releases on Spotify, Apple Music &amp; YouTube.</p>
+        <span class="door-go">Listen to my releases <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="/apps/" class="door-card door-apps" data-reveal style="--reveal-delay:.1s">
+        <div class="term-mini" aria-hidden="true">
+          <span class="path">~/apps</span> <span class="prompt">$</span> <span class="cmd">ls</span><br>
+          liriko/&nbsp; listingflow/ <span class="cursor"></span>
+        </div>
+        <h3>I'm building apps. 🛠️</h3>
+        <p>Liriko &amp; ListingFlow, shipping soon.</p>
+        <span class="door-go">Peek at what's cooking <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </section>
 
-    const updateActiveLink = (id) => {
-        let activeLinkFound = false;
-        navLinks.forEach(link => {
-            link.classList.remove('nav-btn-active-text');
-            if (link.getAttribute('href') === `#${id}`) {
-                activeLinkFound = true;
-                link.classList.add('nav-btn-active-text');
-                navBubble.style.left = `${link.offsetLeft}px`;
-                navBubble.style.width = `${link.offsetWidth}px`;
-                navBubble.style.opacity = '1';
-            }
-        });
-        if (!activeLinkFound) {
-            clearActiveLink();
-        }
-    };
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="container">
+    <div class="contact-card" data-reveal>
+      <span class="section-tag">Contact</span>
+      <h2>Let's make something <span class="accent">great.</span></h2>
+      <p>I'm excited to collaborate and bring your next project to life. One email away.</p>
+      <a href="mailto:dustinejao@gmail.com" class="btn btn-pink">dustinejao@gmail.com</a>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/dustinejao/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+        </a>
+        <a href="https://github.com/dustinejao" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+        <a href="https://www.instagram.com/dustinejao_/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@dustinejao" target="_blank" rel="noopener" class="social-btn" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/dustinejao" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
 
-    // Observer for main sections (for nav bubble)
-    const mainObserver = new IntersectionObserver((entries) => {
-        if (isDragging || isScrolling) return; 
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                updateActiveLink(entry.target.id);
-            }
-        });
-    }, { rootMargin: '-35% 0px -35% 0px', threshold: 0 });
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="/music/">Music</a>
+    <a href="/apps/">Apps</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p class="fine">&copy; <span id="year">2026</span> Dustine Jao. All Rights Reserved.</p>
+  <p class="fine">Designed &amp; coded from scratch by Dustine Jao ✦ Manila, PH</p>
+</footer>
 
-    sections.forEach(section => mainObserver.observe(section));
-
-    // Observer for the music section (to clear nav bubble and trigger animations)
-    const musicObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                clearActiveLink();
-                musicContent.classList.add('is-visible');
-            } else {
-                 musicContent.classList.remove('is-visible');
-            }
-        });
-    }, { rootMargin: '-30% 0px -30% 0px', threshold: 0.1 });
-
-    musicObserver.observe(musicSection);
-    
-    // --- Touch controls for ALL touch devices ---
-    const handleTouchStart = (e) => {
-        isDragging = true;
-        navBubble.style.transition = 'none';
-    };
-
-    const handleTouchMove = (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const touchX = e.touches[0].clientX;
-        const navRect = mainNav.getBoundingClientRect();
-        
-        let closestLink = null;
-        let minDistance = Infinity;
-        navLinks.forEach(link => {
-            const linkRect = link.getBoundingClientRect();
-            const linkCenterX = linkRect.left + linkRect.width / 2;
-            const distance = Math.abs(touchX - linkCenterX);
-            if (distance < minDistance) {
-                minDistance = distance;
-                closestLink = link;
-            }
-        });
-
-        if (closestLink) {
-            navLinks.forEach(link => link.classList.remove('nav-btn-active-text'));
-            closestLink.classList.add('nav-btn-active-text');
-            const bubbleWidth = closestLink.offsetWidth;
-            const newLeft = touchX - navRect.left - (bubbleWidth / 2);
-            const constrainedLeft = Math.max(0, Math.min(newLeft, mainNav.offsetWidth - bubbleWidth));
-            navBubble.style.left = `${constrainedLeft}px`;
-            navBubble.style.width = `${bubbleWidth}px`;
-            navBubble.style.opacity = '1';
-        }
-    };
-
-    const handleTouchEnd = (e) => {
-        if (!isDragging) return;
-        isDragging = false;
-        navBubble.style.transition = 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)';
-        
-        const activeLink = mainNav.querySelector('.nav-btn-active-text');
-        if (activeLink) {
-             // Snap bubble to the final position
-            navBubble.style.left = `${activeLink.offsetLeft}px`;
-            navBubble.style.width = `${activeLink.offsetWidth}px`;
-            
-            const targetId = activeLink.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                isScrolling = true;
-                window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => { isScrolling = false; }, 1000);
-            }
-        }
-    };
-    
-    mainNav.addEventListener('touchstart', handleTouchStart);
-    mainNav.addEventListener('touchmove', handleTouchMove);
-    mainNav.addEventListener('touchend', handleTouchEnd);
-
-
-    // --- Smooth scrolling for link clicks (NOW WITH BUBBLE UPDATE) ---
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-
-            // Check if the clicked link is in the main nav
-            if (this.classList.contains('nav-btn')) {
-                // Instantly update the bubble position on click
-                updateActiveLink(targetId.substring(1));
-            }
-
-            if (targetElement) {
-                 if (this.classList.contains('nav-btn')) {
-                    isScrolling = true;
-                    clearTimeout(scrollTimeout);
-                    scrollTimeout = setTimeout(() => { isScrolling = false; }, 1000);
-                 }
-                window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
-            }
-        });
-    });
-
-    // --- Advanced scroll effects listener ---
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        // Background color change for top of page
-        const progress = Math.min(scrollY / 400, 1);
-        const newOpacity1 = 0.3 - (progress * 0.25);
-        const newOpacity2 = 0.2 - (progress * 0.15);
-        document.body.style.setProperty('--radial-pink-1', `rgba(255, 0, 127, ${newOpacity1})`);
-        document.body.style.setProperty('--radial-pink-2', `rgba(255, 0, 127, ${newOpacity2})`);
-        
-        // Cinematic Crossfade Transition
-        if (contactSection && lightBg) {
-            const viewportHeight = window.innerHeight;
-            // Define the start and end points of the transition based on the contact section's position
-            const startFade = contactSection.offsetTop - viewportHeight * 0.7;
-            const endFade = contactSection.offsetTop + contactSection.offsetHeight - viewportHeight * 0.3;
-
-            const transitionProgress = (scrollY - startFade) / (endFade - startFade);
-            const clampedProgress = Math.max(0, Math.min(1, transitionProgress));
-            
-            // Fade out the light background to reveal the dark one behind it
-            lightBg.style.opacity = 1 - clampedProgress;
-        }
-    });
-
-    // --- Polished carousel scrolling logic ---
-    const carousel = document.getElementById('carousel-container');
-    const scrollLeftBtn = document.getElementById('scroll-left');
-    const scrollRightBtn = document.getElementById('scroll-right');
-    let isCarouselScrolling = false;
-
-    const scrollCarousel = (direction) => {
-        if (isCarouselScrolling) return;
-        isCarouselScrolling = true;
-        const firstCard = carousel.querySelector('a');
-        if (!firstCard) { isCarouselScrolling = false; return; }
-        const scrollAmount = firstCard.offsetWidth + 24;
-        const currentScroll = carousel.scrollLeft;
-        const targetScrollLeft = direction === 'left' ? currentScroll - scrollAmount : currentScroll + scrollAmount;
-        carousel.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
-        setTimeout(() => { isCarouselScrolling = false; }, 400);
-    };
-
-    scrollLeftBtn.addEventListener('click', () => scrollCarousel('left'));
-    scrollRightBtn.addEventListener('click', () => scrollCarousel('right'));
-});
-</script>
+<script src="/app.js" defer></script>
 <!-- Vercel Analytics -->
-<script>
-  window.va = window.va || function () { (window.va.q = window.va.q || []).push(arguments); };
-</script>
+<script>window.va = window.va || function () { (window.va.q = window.va.q || []).push(arguments); };</script>
 <script src="/_vercel/insights/script.js" defer></script>
 </body>
 </html>
