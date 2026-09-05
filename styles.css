@@ -177,7 +177,9 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   flex-shrink: 0;
 }
 
-.theme-toggle {
+.header-tools { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
+
+.icon-btn {
   flex-shrink: 0;
   width: 46px;
   height: 46px;
@@ -192,15 +194,44 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   box-shadow: var(--shadow);
   transition: transform .25s ease, color .25s ease;
 }
-.theme-toggle:hover { transform: scale(1.08); color: var(--pink); }
-.theme-toggle svg { width: 20px; height: 20px; }
+.icon-btn:hover { transform: scale(1.08); color: var(--pink); }
+.icon-btn:active { transform: scale(.96); }
+.icon-btn svg { width: 20px; height: 20px; }
 .icon-moon { display: none; }
 [data-theme="dark"] .icon-moon { display: block; }
 [data-theme="dark"] .icon-sun { display: none; }
 
+/* Sound is off until asked for, so the crossed-out speaker is the resting state. */
+.icon-sound-on { display: none; }
+[data-sound="on"] .icon-sound-on { display: block; }
+[data-sound="on"] .icon-sound-off { display: none; }
+[data-sound="on"] .sound-toggle { color: var(--pink); border-color: var(--pink-glow); }
+
+@media (max-width: 420px) {
+  .header-tools { gap: .35rem; }
+  .icon-btn { width: 40px; height: 40px; }
+  .icon-btn svg { width: 18px; height: 18px; }
+}
+
 @media (max-width: 720px) {
-  .nav-link { padding: .5rem .7rem; font-size: .85rem; }
+  .nav-link { padding: .5rem .6rem; font-size: .82rem; }
   .nav-desktop-only { display: none; }
+  /*
+     Five links do not fit beside a logo and two buttons on a phone. They used
+     to simply be cut off, with Music and Apps unreachable; the pill scrolls
+     instead, so every destination is still gettable.
+  */
+  .nav-pill {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overscroll-behavior-x: contain;
+  }
+  .nav-pill::-webkit-scrollbar { display: none; }
+}
+@media (max-width: 420px) {
+  .nav-link { padding: .5rem .5rem; font-size: .8rem; }
+  .site-header { gap: .45rem; padding-inline: .7rem; }
 }
 
 /* ---------- Buttons ------------------------------------------ */
@@ -699,23 +730,122 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
 }
 
 /* bento spans: video is the star */
-.wc-video   { grid-column: span 4; }
-.wc-shorts  { grid-column: span 2; }
-.wc-audio, .wc-podcast { grid-column: span 3; }
-.wc-graphic, .wc-uiux  { grid-column: span 3; }
-.wc-all     { grid-column: span 6; flex-direction: row; align-items: center; }
+.wc-video   { grid-column: span 6; }
+.wc-audio, .wc-graphic { grid-column: span 3; }
+.wc-uiux    { grid-column: span 4; }
+.wc-all     { grid-column: span 2; }
 
-.wc-video .thumb { aspect-ratio: 16 / 8.4; }
-.wc-all .thumb { width: 220px; aspect-ratio: 16 / 9; flex-shrink: 0; }
+.wc-video .thumb { aspect-ratio: 16 / 7.4; }
+
+/*
+   Tool marks instead of a stock photo.
+
+   Six of the seven cards used to open with a photograph that was not of the
+   work, only near it. What a visitor actually wants to know is what the thing
+   is made in, so the cards now show the tools: Simple Icons marks, masked to
+   currentColor so they theme with the page and read as one family rather than
+   a row of clashing brand colours. Only Video Editing keeps a frame, because
+   there the picture is the work.
+*/
+.icon-strip {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.5rem 1.5rem .35rem;
+  min-height: 76px;
+}
+.tools { display: flex; align-items: center; gap: .85rem; flex-wrap: wrap; }
+.tool {
+  display: block;
+  width: 26px;
+  height: 26px;
+  background-color: var(--text);
+  opacity: .78;
+  -webkit-mask: var(--src) center / contain no-repeat;
+  mask: var(--src) center / contain no-repeat;
+  transition: opacity .3s ease, transform .3s ease;
+}
+.work-card:hover .tool { opacity: 1; transform: translateY(-2px); }
+.tools .tool:nth-child(2) { transition-delay: .04s; }
+.tools .tool:nth-child(3) { transition-delay: .08s; }
+.tools .tool:nth-child(4) { transition-delay: .12s; }
+.tools .tool:nth-child(5) { transition-delay: .16s; }
+.tools .tool:nth-child(6) { transition-delay: .2s; }
+.strip-wide .tool { width: 34px; height: 34px; }
+
+/* the equalizer, kept from the old music doorway card */
+.eq { display: flex; align-items: flex-end; gap: 4px; height: 30px; }
+.eq span {
+  width: 5px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #ff58ab, var(--pink));
+  animation: eq 1.1s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i) * 0.13s);
+  height: 30%;
+}
+@keyframes eq {
+  from { height: 20%; }
+  to   { height: 100%; }
+}
+
+/*
+   Sub-categories.
+
+   Short-Form is video, so it carries the video hue. Podcast is genuinely both
+   a cut and a mix, so rather than filing it under one parent it appears on
+   both, in a chip that gradients from one hue to the other. Seeing the same
+   two-tone chip in two places is the point: that is what the overlap looks
+   like.
+*/
+/*
+   The card is an <article>, not an <a>, because it contains links of its own
+   and a link inside a link is not valid HTML: the parser closes the outer
+   anchor at the first chip and reopens it after, which splits one card into
+   three. The heading link stretches over the whole card instead, and the chips
+   sit above that overlay.
+*/
+.work-main { color: inherit; text-decoration: none; }
+.work-main::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.work-card:focus-within { border-color: var(--pink-glow); }
+
+.subs { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .7rem; }
+.sub-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .28rem .7rem .28rem .55rem;
+  border-radius: 999px;
+  font-size: .74rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease;
+}
+.sub-chip svg { width: 13px; height: 13px; }
+.sub-chip.is-video { border-color: var(--pink-glow); }
+.sub-chip.is-video:hover { background: var(--pink); border-color: transparent; color: #fff; }
+.sub-chip.is-both {
+  border-color: transparent;
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(100deg, var(--pink), #29abe2) border-box;
+  border: 1px solid transparent;
+}
+.sub-chip.is-both:hover {
+  background: linear-gradient(100deg, var(--pink), #29abe2);
+  color: #fff;
+}
 
 @media (max-width: 900px) {
-  .wc-video, .wc-shorts { grid-column: span 6; }
-  .wc-audio, .wc-podcast, .wc-graphic, .wc-uiux { grid-column: span 3; }
+  .wc-video { grid-column: span 6; }
+  .wc-audio, .wc-graphic, .wc-uiux, .wc-all { grid-column: span 3; }
 }
 @media (max-width: 620px) {
   .work-grid > * { grid-column: span 6 !important; }
-  .wc-all { flex-direction: column; align-items: stretch; }
-  .wc-all .thumb { width: 100%; }
+  .icon-strip { padding: 1.25rem 1.25rem .25rem; min-height: 66px; gap: .9rem; }
+  .tool { width: 23px; height: 23px; }
+  .tools { gap: .7rem; }
 }
 
 /* ============================================================
@@ -774,132 +904,6 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
   border-radius: 999px;
   background: var(--pink-soft);
   color: var(--pink);
-}
-
-/* ============================================================
-   MORE : music & apps doorway cards
-   ============================================================ */
-.more-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-}
-@media (max-width: 780px) { .more-grid { grid-template-columns: 1fr; } }
-
-.door-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  min-height: 280px;
-  padding: 1.75rem;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  color: #fff;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s ease;
-}
-.door-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lift); }
-
-.door-card h3 { font-size: 1.5rem; margin-bottom: .25rem; }
-.door-card p { margin: 0 0 1.1rem; font-size: .92rem; color: rgba(255, 255, 255, 0.75); }
-
-.door-go {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  font-weight: 650;
-  font-size: .9rem;
-}
-.door-go svg { width: 16px; height: 16px; transition: transform .3s ease; }
-.door-card:hover .door-go svg { transform: translateX(5px); }
-
-.door-music {
-  background:
-    radial-gradient(400px 260px at 90% -10%, rgba(255, 0, 127, 0.55), transparent 70%),
-    radial-gradient(340px 240px at -10% 110%, rgba(124, 58, 237, 0.5), transparent 70%),
-    #131016;
-}
-.door-apps {
-  background:
-    radial-gradient(400px 260px at -10% -20%, rgba(255, 0, 127, 0.3), transparent 70%),
-    #0d1117;
-}
-
-/* the three real app icons, in place of the fake shell that used to sit here */
-.door-icons {
-  display: flex;
-  align-items: center;
-  gap: .7rem;
-  height: 56px;
-  margin-bottom: 1.25rem;
-}
-.door-icons img {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  background: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-}
-
-/* fanned real album covers in the music doorway card */
-.door-covers {
-  position: absolute;
-  top: -18px;
-  right: 18px;
-  z-index: 0;
-  pointer-events: none;
-}
-.door-covers img {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 96px;
-  height: 96px;
-  border-radius: 12px;
-  object-fit: cover;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-.door-covers img:nth-child(1) { transform: translateX(-84px) rotate(-11deg); }
-.door-covers img:nth-child(2) { transform: translateX(-42px) rotate(-3deg) translateY(6px); }
-.door-covers img:nth-child(3) { transform: rotate(7deg) translateY(2px); z-index: 1; }
-/* scrim so the text below stays legible over the covers */
-.door-music::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 30%, rgba(19, 16, 22, 0.55) 62%, rgba(19, 16, 22, 0.92) 100%);
-  z-index: 1;
-  pointer-events: none;
-}
-.door-music > * { position: relative; z-index: 2; }
-.door-music .door-covers { z-index: 1; }
-@media (max-width: 420px) {
-  .door-covers img { width: 78px; height: 78px; }
-}
-
-/* mini equalizer in music card */
-.eq {
-  display: flex;
-  align-items: flex-end;
-  gap: 5px;
-  height: 44px;
-  margin-bottom: 1.25rem;
-}
-.eq span {
-  width: 7px;
-  border-radius: 4px;
-  background: linear-gradient(180deg, #ff58ab, var(--pink));
-  animation: eq 1.1s ease-in-out infinite alternate;
-  animation-delay: calc(var(--i) * 0.13s);
-  height: 30%;
-}
-@keyframes eq {
-  from { height: 18%; }
-  to   { height: 100%; }
 }
 
 /* ============================================================

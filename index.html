@@ -72,10 +72,16 @@
     <a href="/music/" class="nav-link">Music</a>
     <a href="/apps/" class="nav-link">Apps</a>
   </nav>
-  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <div class="header-tools">
+    <button id="theme-toggle" class="icon-btn theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
     <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
     <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
   </button>
+    <button id="sound-toggle" class="icon-btn sound-toggle" aria-label="Toggle interface sounds" aria-pressed="false">
+    <svg class="icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+    <svg class="icon-sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="m16 9.5 5 5M21 9.5l-5 5"/></svg>
+  </button>
+  </div>
 </header>
 
 <main>
@@ -156,21 +162,16 @@
     <div class="about-grid">
       <div class="about-photo" data-reveal>
         <img src="/images/dj.jpg" alt="Headshot of Dustine Jao, multimedia artist" loading="lazy" width="600" height="600">
-        <span class="hero-pill pink">Manila · Remote-ready</span>
       </div>
       <div class="about-text" data-reveal style="--reveal-delay:.1s">
         <span class="section-tag">About Me</span>
-        <h2 class="section-title">A hands-on creative <span class="accent">partner.</span></h2>
-        <p class="lede">I help brands and creators tell their stories through powerful video, crisp audio, and clean design.</p>
-        <p>From social media edits to full podcast production, I handle the whole pipeline: cutting, sound, color, and delivery. I've edited remotely for teams in the US and Canada, specializing in real-estate media and AI-assisted workflows.</p>
-        <p>My goal is simple: content that doesn't just look and sound great, but genuinely connects with your audience.</p>
+        <h2 class="section-title">One person. <span class="accent">Whole pipeline.</span></h2>
+        <p class="lede">Cutting, sound, colour, delivery. Nothing gets lost between departments, because there is only one.</p>
+        <p>I cut remotely for teams in the US and Canada, mostly real-estate media, and I build the AI-assisted workflows that take a shoot from card to finished timeline in a fraction of the usual time.</p>
+        <p>When the tool I need does not exist yet, I write it. That is how three apps happened.</p>
         <div class="chips">
-          <span class="chip">BA Multimedia Arts · Cum Laude</span>
-          <span class="chip">8-Term Dean's Lister</span>
-          <span class="chip">Remote · US · CA · PH</span>
           <span class="chip">AI workflows (Higgsfield)</span>
         </div>
-      </div>
     </div>
   </section>
 
@@ -181,77 +182,72 @@
       <h2 class="section-title">Video first. <span class="accent">Everything else follows.</span></h2>
     </div>
     <div class="work-grid" style="margin-top:2rem">
-      <a href="https://drive.google.com/drive/folders/1-B7w20bdZBiH6UdLjG9bnkEr2qlXZFrq?usp=share_link" target="_blank" rel="noopener" class="work-card wc-video" data-reveal>
+      <article class="work-card wc-video" data-reveal>
         <span class="work-badge">Main Craft</span>
-        <div class="thumb"><img src="/images/video.jpg" alt="Video editing project frame" loading="lazy" width="800" height="420"></div>
+        <div class="thumb"><img src="/images/video.jpg" alt="A finished real-estate walkthrough timeline: graded clips, sound design and music beds" loading="lazy" width="1400" height="823"></div>
         <div class="meta">
           <div>
-            <h3>Video Editing</h3>
-            <p>High-quality video content for brands and creators. My core craft.</p>
+            <h3><a href="https://drive.google.com/drive/folders/1-B7w20bdZBiH6UdLjG9bnkEr2qlXZFrq?usp=share_link" target="_blank" rel="noopener" class="work-main">Video Editing</a></h3>
+            <p>High-quality video for brands and creators. My core craft, and the thing everything else hangs off.</p>
+            <span class="subs"><a href="https://drive.google.com/drive/folders/12vq4To9uycPHeGFO1Gyky6y7-600MZxx?usp=share_link" target="_blank" rel="noopener" class="sub-chip is-video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M7 4v16M17 4v16M2.5 12h19"/></svg><span>Short-Form</span></a><a href="https://drive.google.com/drive/folders/1kTA192Qd_rEp33ofGbFXrlda8Yvkh_LZ?usp=share_link" target="_blank" rel="noopener" class="sub-chip is-both"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg><span>Podcast</span></a></span>
           </div>
           <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </div>
-      </a>
-      <a href="https://drive.google.com/drive/folders/12vq4To9uycPHeGFO1Gyky6y7-600MZxx?usp=share_link" target="_blank" rel="noopener" class="work-card wc-shorts" data-reveal style="--reveal-delay:.08s">
-        <div class="thumb"><img src="/images/shorts.jpg" alt="Short-form vertical video thumbnail" loading="lazy" width="400" height="250"></div>
+      </article>
+
+      <article class="work-card wc-audio" data-reveal style="--reveal-delay:.08s">
+        <div class="icon-strip">
+          <span class="eq" aria-hidden="true"><span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span></span>
+          <span class="tools"><span class="tool" style="--src:url('/images/tools/spotify.svg')" role="img" aria-label="Spotify"></span><span class="tool" style="--src:url('/images/tools/applemusic.svg')" role="img" aria-label="Apple Music"></span></span>
+        </div>
         <div class="meta">
           <div>
-            <h3>Short-Form</h3>
-            <p>Scroll-stopping reels &amp; clips for social platforms.</p>
+            <h3><a href="https://drive.google.com/drive/folders/1noD9AV2oRemMNX8z9yH80DtAyZFEtGE8?usp=share_link" target="_blank" rel="noopener" class="work-main">Audio Production</a></h3>
+            <p>Mixing, cleanup and sound design. Polished podcasts and pro sound.</p>
+            <span class="subs"><a href="https://drive.google.com/drive/folders/1kTA192Qd_rEp33ofGbFXrlda8Yvkh_LZ?usp=share_link" target="_blank" rel="noopener" class="sub-chip is-both"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg><span>Podcast</span></a></span>
           </div>
           <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </div>
-      </a>
-      <a href="https://drive.google.com/drive/folders/1noD9AV2oRemMNX8z9yH80DtAyZFEtGE8?usp=share_link" target="_blank" rel="noopener" class="work-card wc-audio" data-reveal>
-        <div class="thumb"><img src="/images/audio.jpg" alt="Sound wave representing audio production" loading="lazy" width="500" height="313"></div>
+      </article>
+
+      <article class="work-card wc-graphic" data-reveal>
+        <div class="icon-strip">
+          <span class="tools"><span class="tool" style="--src:url('/images/tools/canva.svg')" role="img" aria-label="Canva"></span><span class="tool" style="--src:url('/images/tools/adobephotoshop.svg')" role="img" aria-label="Adobe Photoshop"></span><span class="tool" style="--src:url('/images/tools/adobeillustrator.svg')" role="img" aria-label="Adobe Illustrator"></span></span>
+        </div>
         <div class="meta">
           <div>
-            <h3>Audio Production</h3>
-            <p>Polished podcasts &amp; pro sound experiences.</p>
+            <h3><a href="https://drive.google.com/drive/folders/1J7j1uSKUYyHEmMhkj50uJSaVF9TFu9Be?usp=share_link" target="_blank" rel="noopener" class="work-main">Graphic Design</a></h3>
+            <p>Thumbnails, covers and campaign visuals for digital and print.</p>
           </div>
           <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </div>
-      </a>
-      <a href="https://drive.google.com/drive/folders/1kTA192Qd_rEp33ofGbFXrlda8Yvkh_LZ?usp=share_link" target="_blank" rel="noopener" class="work-card wc-podcast" data-reveal style="--reveal-delay:.08s">
-        <div class="thumb"><img src="/images/podcast.jpg" alt="Podcast microphone setup" loading="lazy" width="500" height="313"></div>
+      </article>
+
+      <article class="work-card wc-uiux" data-reveal style="--reveal-delay:.08s">
+        <div class="icon-strip">
+          <span class="tools"><span class="tool" style="--src:url('/images/tools/claude.svg')" role="img" aria-label="Claude"></span><span class="tool" style="--src:url('/images/tools/visualstudiocode.svg')" role="img" aria-label="Visual Studio Code"></span><span class="tool" style="--src:url('/images/tools/figma.svg')" role="img" aria-label="Figma"></span><span class="tool" style="--src:url('/images/tools/wordpress.svg')" role="img" aria-label="WordPress"></span><span class="tool" style="--src:url('/images/tools/wix.svg')" role="img" aria-label="Wix"></span><span class="tool" style="--src:url('/images/tools/hostinger.svg')" role="img" aria-label="Hostinger"></span></span>
+        </div>
         <div class="meta">
           <div>
-            <h3>Podcast</h3>
-            <p>Audio storytelling for engaging series.</p>
+            <h3><a href="https://drive.google.com/drive/folders/1-vueEsBhWvrtQZ1nFtAVgT16VmeKaV3V?usp=share_link" target="_blank" rel="noopener" class="work-main">UI / UX &amp; Web</a></h3>
+            <p>Interfaces designed, then actually built and shipped.</p>
           </div>
           <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </div>
-      </a>
-      <a href="https://drive.google.com/drive/folders/1J7j1uSKUYyHEmMhkj50uJSaVF9TFu9Be?usp=share_link" target="_blank" rel="noopener" class="work-card wc-graphic" data-reveal>
-        <div class="thumb"><img src="/images/graphic.jpg" alt="Graphic design poster mock-up" loading="lazy" width="500" height="313"></div>
+      </article>
+
+      <article class="work-card wc-all" data-reveal>
+        <div class="icon-strip strip-wide">
+          <span class="tools"><span class="tool" style="--src:url('/images/tools/googledrive.svg')" role="img" aria-label="Google Drive"></span></span>
+        </div>
         <div class="meta">
           <div>
-            <h3>Graphic Design</h3>
-            <p>Eye-catching visuals for digital &amp; print.</p>
+            <h3><a href="https://drive.google.com/drive/folders/1Kb_uMHPQs-pNwaDouh7mAySCKObXsLW3?usp=share_link" target="_blank" rel="noopener" class="work-main">View Everything</a></h3>
+            <p>The complete collection of projects and assets, all in one Drive.</p>
           </div>
           <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </div>
-      </a>
-      <a href="https://drive.google.com/drive/folders/1-vueEsBhWvrtQZ1nFtAVgT16VmeKaV3V?usp=share_link" target="_blank" rel="noopener" class="work-card wc-uiux" data-reveal style="--reveal-delay:.08s">
-        <div class="thumb"><img src="/images/uiux.jpg" alt="Mobile app interface mock-up" loading="lazy" width="500" height="313"></div>
-        <div class="meta">
-          <div>
-            <h3>UI / UX</h3>
-            <p>Intuitive, user-friendly digital experiences.</p>
-          </div>
-          <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-        </div>
-      </a>
-      <a href="https://drive.google.com/drive/folders/1Kb_uMHPQs-pNwaDouh7mAySCKObXsLW3?usp=share_link" target="_blank" rel="noopener" class="work-card wc-all" data-reveal>
-        <div class="thumb"><img src="/images/other.jpg" alt="Collage of various projects" loading="lazy" width="440" height="248"></div>
-        <div class="meta">
-          <div>
-            <h3>View Everything</h3>
-            <p>The complete collection of my projects and assets, all in one place.</p>
-          </div>
-          <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-        </div>
-      </a>
+      </article>
     </div>
   </section>
 
@@ -297,39 +293,6 @@
         <p>Graduated Cum Laude with Latin Honors · 8-term Dean's Lister.</p>
         <div class="tl-tags"><span>Cum Laude</span><span>Dean's Lister ×8</span></div>
       </div>
-    </div>
-  </section>
-
-  <!-- ============ MORE FROM ME ============ -->
-  <section id="more" class="container">
-    <div data-reveal>
-      <span class="section-tag">Beyond the Edit</span>
-      <h2 class="section-title">More from <span class="accent">me.</span></h2>
-    </div>
-    <div class="more-grid" style="margin-top:2rem">
-      <a href="/music/" class="door-card door-music" data-reveal>
-        <div class="door-covers" aria-hidden="true">
-          <img src="/images/music/rightshi.jpg" alt="" width="120" height="120" loading="lazy">
-          <img src="/images/music/lihim.jpg" alt="" width="120" height="120" loading="lazy">
-          <img src="/images/music/fixthishi.jpg" alt="" width="120" height="120" loading="lazy">
-        </div>
-        <div class="eq" aria-hidden="true">
-          <span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span>
-        </div>
-        <h3>I make music too.</h3>
-        <p>16 releases on Spotify, Apple Music &amp; YouTube.</p>
-        <span class="door-go">Listen to my releases <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a href="/apps/" class="door-card door-apps" data-reveal style="--reveal-delay:.1s">
-        <div class="door-icons" aria-hidden="true">
-          <img src="/images/apps/liriko.png" alt="" width="56" height="56" loading="lazy">
-          <img src="/images/apps/caloff.png" alt="" width="56" height="56" loading="lazy">
-          <img src="/images/apps/listingflow.png" alt="" width="56" height="56" loading="lazy">
-        </div>
-        <h3>I ship apps.</h3>
-        <p>Liriko &amp; ListingFlow are out. CalOff is next.</p>
-        <span class="door-go">See what I’ve built <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
     </div>
   </section>
 

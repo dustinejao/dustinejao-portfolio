@@ -23,6 +23,89 @@
     });
   }
 
+  /* ---------- Interface sounds ------------------------------------------
+     Synthesised with the Web Audio API rather than shipped as files: four
+     short blips would be four requests and a few hundred KB for something most
+     visitors will never switch on. Off by default, because a site that makes
+     noise uninvited is a site people close, and browsers block audio before a
+     gesture anyway. Music on the releases page is unaffected; this only covers
+     interface feedback.
+  --------------------------------------------------------------------- */
+  const SOUND_KEY = 'sound';
+  let soundOn = false;
+  try { soundOn = localStorage.getItem(SOUND_KEY) === 'on'; } catch (e) {}
+  root.dataset.sound = soundOn ? 'on' : 'off';
+
+  let actx = null;
+  const audio = () => {
+    if (!actx) {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return null;
+      actx = new Ctx();
+    }
+    if (actx.state === 'suspended') actx.resume();
+    return actx;
+  };
+
+  /* One oscillator, a fast pitch fall and a short decay. That is the whole
+     instrument; the tactility is in keeping it under 90ms and very quiet. */
+  const blip = (from, to, dur, gain, type) => {
+    const c = audio();
+    if (!c) return;
+    const t = c.currentTime;
+    const osc = c.createOscillator();
+    const amp = c.createGain();
+    osc.type = type || 'triangle';
+    osc.frequency.setValueAtTime(from, t);
+    osc.frequency.exponentialRampToValueAtTime(to, t + dur);
+    amp.gain.setValueAtTime(0.0001, t);
+    amp.gain.linearRampToValueAtTime(gain, t + 0.005);
+    amp.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    osc.connect(amp).connect(c.destination);
+    osc.start(t);
+    osc.stop(t + dur + 0.02);
+  };
+
+  const SOUNDS = {
+    hover: () => blip(660, 520, 0.035, 0.016, 'sine'),
+    tap:   () => blip(420, 190, 0.075, 0.05),
+    on:    () => { blip(520, 700, 0.06, 0.05); setTimeout(() => blip(700, 940, 0.07, 0.045), 55); },
+    off:   () => { blip(560, 420, 0.06, 0.045); setTimeout(() => blip(420, 300, 0.08, 0.04), 55); },
+  };
+  const play = (name) => { if (soundOn && SOUNDS[name]) SOUNDS[name](); };
+
+  const INTERACTIVE = '.btn, .nav-link, .icon-btn, .work-card, .work-main, .sub-chip, .bt, .social a, .footer-links a, .crumb, .cf-item, .platform-btn';
+
+  const soundBtn = document.getElementById('sound-toggle');
+  if (soundBtn) {
+    soundBtn.setAttribute('aria-pressed', String(soundOn));
+    soundBtn.addEventListener('click', () => {
+      soundOn = !soundOn;
+      root.dataset.sound = soundOn ? 'on' : 'off';
+      soundBtn.setAttribute('aria-pressed', String(soundOn));
+      try { localStorage.setItem(SOUND_KEY, soundOn ? 'on' : 'off'); } catch (e) {}
+      /* The confirmation has to bypass the flag on the way off, otherwise
+         switching sound off is the one action that gives no feedback. */
+      if (soundOn) SOUNDS.on(); else SOUNDS.off();
+    });
+  }
+
+  /* Hover fires on entering a new target only, so sweeping the cursor across a
+     row of chips does not machine-gun the speaker. */
+  let lastHovered = null;
+  document.addEventListener('pointerover', (e) => {
+    if (!soundOn || e.pointerType !== 'mouse') return;
+    const hit = e.target.closest(INTERACTIVE);
+    if (hit && hit !== lastHovered) { lastHovered = hit; play('hover'); }
+    else if (!hit) lastHovered = null;
+  }, { passive: true });
+
+  document.addEventListener('pointerdown', (e) => {
+    if (!soundOn) return;
+    if (e.target.closest('#sound-toggle')) return;
+    if (e.target.closest(INTERACTIVE)) play('tap');
+  }, { passive: true });
+
   /* ---------- Reveal on scroll ------------------------------------------ */
   const revealEls = document.querySelectorAll('[data-reveal]');
   if (revealEls.length && 'IntersectionObserver' in window && !reduceMotion) {
