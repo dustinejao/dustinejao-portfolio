@@ -221,12 +221,19 @@
 
   /* ---------- Nav capsule ------------------------------------------------
      One element that travels, rather than a background switching between
-     links. It follows the pointer while the cursor is in the pill and returns
-     to whatever section you are actually in when it leaves.
+     links. Three things can move it, in priority order: the cursor while it is
+     inside the pill, keyboard focus, and otherwise the section you have
+     scrolled to. On touch there is no cursor, so only the last two apply and a
+     tap settles straight back to wherever you actually are.
   --------------------------------------------------------------------- */
   const navPill = document.querySelector('.nav-pill');
   const glide = navPill && navPill.querySelector('.nav-glide');
   const navLinks = navPill ? Array.from(navPill.querySelectorAll('.nav-link')) : [];
+
+  /* Tracked explicitly rather than read back off :hover, which goes stale on
+     touch: a tap leaves the element matching :hover with no pointer on it, and
+     the capsule then refuses to follow the page. */
+  let pointerInPill = false;
 
   const glideTo = (el, animate) => {
     if (!glide) return;
@@ -247,17 +254,51 @@
     }
   };
   const currentNav = () => navPill && navPill.querySelector('.nav-link.active');
+  const settle = () => glideTo(currentNav(), true);
+
+  /* On a phone the pill scrolls, so the link the capsule is under can sit off
+     the edge. Bring it back into view rather than animating to somewhere the
+     user cannot see. */
+  const keepInView = (el) => {
+    if (!el || !navPill || navPill.scrollWidth <= navPill.clientWidth) return;
+    const l = el.offsetLeft, r = l + el.offsetWidth;
+    const view = navPill.scrollLeft, edge = view + navPill.clientWidth;
+    if (l < view + 8 || r > edge - 8) {
+      navPill.scrollTo({
+        left: l - (navPill.clientWidth - el.offsetWidth) / 2,
+        behavior: reduceMotion ? 'auto' : 'smooth',
+      });
+    }
+  };
 
   if (glide) {
     glideTo(currentNav(), false);
+    keepInView(currentNav());
+
     navLinks.forEach((l) => {
-      l.addEventListener('pointerenter', () => glideTo(l, true));
-      l.addEventListener('focus', () => glideTo(l, true));
+      l.addEventListener('pointerenter', (e) => {
+        if (e.pointerType !== 'mouse') return;
+        pointerInPill = true;
+        glideTo(l, true);
+      });
+      l.addEventListener('focus', () => { glideTo(l, true); keepInView(l); });
     });
-    navPill.addEventListener('pointerleave', () => glideTo(currentNav(), true));
+
+    navPill.addEventListener('pointerleave', (e) => {
+      if (e.pointerType && e.pointerType !== 'mouse') return;
+      pointerInPill = false;
+      settle();
+    });
+    /* A tap is not a hover. Let the scroll it triggers land, then settle. */
+    navPill.addEventListener('touchend', () => {
+      pointerInPill = false;
+      setTimeout(settle, 80);
+    }, { passive: true });
+
     navPill.addEventListener('focusout', () => {
-      if (!navPill.contains(document.activeElement)) glideTo(currentNav(), true);
+      if (!navPill.contains(document.activeElement)) settle();
     });
+
     /* Fonts landing late change link widths, so re-measure once they are in. */
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(() => glideTo(currentNav(), false));
@@ -265,11 +306,8 @@
     let rt = 0;
     window.addEventListener('resize', () => {
       clearTimeout(rt);
-      rt = setTimeout(() => glideTo(currentNav(), false), 120);
+      rt = setTimeout(() => { glideTo(currentNav(), false); keepInView(currentNav()); }, 120);
     });
-    navPill.addEventListener('scroll', () => {
-      if (!navPill.matches(':hover')) glideTo(currentNav(), false);
-    }, { passive: true });
   }
 
   /* ---------- Active nav link (anchor sections on home) ----------------- */
@@ -288,8 +326,8 @@
           anchorLinks.forEach((l) => l.classList.remove('active'));
           const link = map.get(entry.target);
           if (link) link.classList.add('active');
-          /* Only steer the capsule if the cursor is not driving it. */
-          if (navPill && !navPill.matches(':hover')) glideTo(link || null, true);
+          /* The cursor outranks the page: only steer if it is not driving. */
+          if (!pointerInPill) { glideTo(link || null, true); keepInView(link); }
         }
       });
     }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
