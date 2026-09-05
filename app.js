@@ -141,15 +141,16 @@
     /* The mark gets its own sound: the click, then D5-A5-D6 on sine, an open
        fifth and octave. Longer and softer than anything else on the page,
        because going home is the one navigation worth marking. */
-    home:  () => {
+    home:  (semitones = 0) => {
+      const t = Math.pow(2, (semitones || 0) / 12);
       key(2400, 3.5, 0.014, 2.2, 460, 0.020, 0.13);
       [587.33, 880, 1174.66].forEach((f, i) => {
-        setTimeout(() => blip(f, f * 0.995, 0.2, 0.1, 'sine'), 45 + i * 75);
+        setTimeout(() => blip(f * t, f * t * 0.995, 0.2, 0.1, 'sine'), 45 + i * 75);
       });
     },
   };
 
-  const play = (name) => { if (soundOn && SOUNDS[name]) SOUNDS[name](); };
+  const play = (name, arg) => { if (soundOn && SOUNDS[name]) SOUNDS[name](arg); };
 
   const INTERACTIVE = '.btn, .nav-link, .icon-btn, .work-card, .work-main, .sub-chip, .bt, .social a, .footer-links a, .crumb, .cf-item, .platform-btn';
 
@@ -192,8 +193,27 @@
      navigation back to wait for a sound. */
   const logo = document.querySelector('.logo');
   if (logo) {
+    /* Each press moves the mark one step around the wheel and the chime one
+       step up the scale, so the two land together. Seven steps and it is pink
+       again: the brand is index 0, and nothing here is sticky, so a fresh load
+       always opens on it. */
+    /* Hue-rotate is a fixed matrix, not a hue wheel: it keeps roughly the same
+       luminance, and pink is a dark colour, so the angles that would be yellow
+       come out as brown. These seven were measured and are the vivid ones -
+       pink, red, green, ocean, blue, violet, magenta. */
+    const HUES = [0, 40, 176, 224, 264, 304, 336];
+    const STEPS = [0, 2, 4, 5, 7, 9, 11];
+    let spin = 0;
+
     logo.addEventListener('click', (e) => {
-      play('home');
+      spin = (spin + 1) % HUES.length;
+      logo.style.setProperty('--logo-hue', HUES[spin] + 'deg');
+      if (!reduceMotion) {
+        logo.classList.remove('pop');
+        void logo.offsetWidth;          /* restart the animation on each press */
+        logo.classList.add('pop');
+      }
+      play('home', STEPS[spin]);
       const goesHome = new URL(logo.href, location.href).pathname === location.pathname;
       if (goesHome) {
         e.preventDefault();
@@ -235,8 +255,43 @@
      the capsule then refuses to follow the page. */
   let pointerInPill = false;
 
+  /* Clicking a link starts a smooth scroll that crosses every section in
+     between, and the observer fires for each one it passes. Left alone the
+     capsule hops through all of them before it lands, which is the bouncing:
+     it is chasing the scroll rather than the destination. So a click pins it
+     to the link you pressed and the observer is ignored until the page has
+     actually stopped moving. */
+  let navLocked = false;
+  let lockFallback = 0;
+
+  /* Once a click has committed to another page, nothing may move the capsule
+     again. The browser keeps painting this page while the next one loads, and
+     a capsule that flies off to a hovered link, or back to the section you
+     were in, during that window is the flicker just before the page changes. */
+  let frozen = false;
+
+  /* While the pill is scrolling itself, links slide under a stationary cursor
+     and each one fires pointerenter. Following those is a feedback loop: the
+     capsule chases the links, the links keep moving. That is the vibration. */
+  let pillSettling = 0;
+  const unlockNav = () => { navLocked = false; clearTimeout(lockFallback); };
+  const lockNav = (ms = 1400) => {
+    navLocked = true;
+    clearTimeout(lockFallback);
+    /* A safety net, in case the scroll is interrupted and scrollend never
+       comes (or the browser does not have it). */
+    lockFallback = setTimeout(() => { navLocked = false; }, ms);
+  };
+  if ('onscrollend' in window) window.addEventListener('scrollend', unlockNav);
+
   const glideTo = (el, animate) => {
-    if (!glide) return;
+    if (!glide || frozen) return;
+    /* A link can be hidden at this width: Experience is desktop-only, and its
+       section is still on the page you are scrolling through. Measuring one
+       gives 0x0, which collapsed the capsule to nothing in the far corner and
+       then threw it back across when the next section arrived. Leave it where
+       it is instead. */
+    if (el && !el.offsetWidth) return;
     if (!el) {
       glide.classList.remove('is-on');
       navLinks.forEach((l) => l.classList.remove('is-lit'));
@@ -259,14 +314,19 @@
   /* On a phone the pill scrolls, so the link the capsule is under can sit off
      the edge. Bring it back into view rather than animating to somewhere the
      user cannot see. */
-  const keepInView = (el) => {
+  const keepInView = (el, smooth) => {
     if (!el || !navPill || navPill.scrollWidth <= navPill.clientWidth) return;
     const l = el.offsetLeft, r = l + el.offsetWidth;
     const view = navPill.scrollLeft, edge = view + navPill.clientWidth;
     if (l < view + 8 || r > edge - 8) {
+      /* Animate this only when the nav itself was used. Sliding it while the
+         page is being scrolled means a horizontal animation running against a
+         vertical one, which on a phone reads as the nav shivering. */
+      const glideIt = smooth && !reduceMotion;
+      pillSettling = Date.now() + (glideIt ? 500 : 150);
       navPill.scrollTo({
         left: l - (navPill.clientWidth - el.offsetWidth) / 2,
-        behavior: reduceMotion ? 'auto' : 'smooth',
+        behavior: glideIt ? 'smooth' : 'auto',
       });
     }
   };
@@ -279,9 +339,31 @@
       l.addEventListener('pointerenter', (e) => {
         if (e.pointerType !== 'mouse') return;
         pointerInPill = true;
+        if (Date.now() < pillSettling) return;   /* the link came to the cursor */
         glideTo(l, true);
       });
-      l.addEventListener('focus', () => { glideTo(l, true); keepInView(l); });
+      l.addEventListener('focus', () => { glideTo(l, true); keepInView(l, true); });
+
+      /* Go straight to the destination and mark it active now, rather than
+         waiting for the scroll to arrive. A link to another page holds the
+         lock longer: the browser keeps painting this page while the next one
+         loads, and without it the capsule flies back to the section you were
+         in a moment before the page changes. */
+      l.addEventListener('click', (e) => {
+        const sameDoc = (l.getAttribute('href') || '').startsWith('#');
+        /* A modifier click opens a tab and leaves this page where it is. */
+        const leaving = !sameDoc && e.button === 0 &&
+          !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;
+        navLinks.forEach((o) => o.classList.remove('active'));
+        l.classList.add('active');
+        lockNav(sameDoc ? 1400 : 6000);
+        glideTo(l, true);
+        keepInView(l, true);
+        if (leaving) {
+          frozen = true;                /* this page is on its way out */
+          setTimeout(() => { frozen = false; }, 6000);   /* unless it is not */
+        }
+      });
     });
 
     navPill.addEventListener('pointerleave', (e) => {
@@ -294,6 +376,10 @@
       pointerInPill = false;
       setTimeout(settle, 80);
     }, { passive: true });
+
+    /* A middle-click, a modifier-click or a cancelled navigation leaves the
+       page in place, so thaw when it turns out we are staying. */
+    window.addEventListener('pageshow', () => { frozen = false; navLocked = false; });
 
     navPill.addEventListener('focusout', () => {
       if (!navPill.contains(document.activeElement)) settle();
@@ -311,27 +397,47 @@
   }
 
   /* ---------- Active nav link (anchor sections on home) ----------------- */
-  const anchorLinks = document.querySelectorAll('.nav-pill a[href^="#"]');
+  const anchorLinks = Array.from(document.querySelectorAll('.nav-pill a[href^="#"]'));
   if (anchorLinks.length && 'IntersectionObserver' in window) {
     const map = new Map();
     anchorLinks.forEach((link) => {
       const target = document.querySelector(link.getAttribute('href'));
       if (target) map.set(target, link);
     });
+    /* The hero belongs to the first link rather than to nothing. Mapping it to
+       null used to blank the capsule out, so every trip past the top of the
+       page was a fade out and a fade back in. */
     const hero = document.querySelector('.hero');
-    if (hero) map.set(hero, null);
+    if (hero) map.set(hero, anchorLinks[0]);
+
+    const lastLink = anchorLinks[anchorLinks.length - 1];
+    const atBottom = () =>
+      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+
+    const applyActive = (link) => {
+      if (!link) return;
+      anchorLinks.forEach((l) => l.classList.remove('active'));
+      link.classList.add('active');
+      /* The cursor outranks the page: only steer if it is not driving. */
+      if (!pointerInPill) { glideTo(link, true); keepInView(link); }
+    };
+
     const navIO = new IntersectionObserver((entries) => {
+      if (navLocked) return;            /* the click owns it until it lands */
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          anchorLinks.forEach((l) => l.classList.remove('active'));
-          const link = map.get(entry.target);
-          if (link) link.classList.add('active');
-          /* The cursor outranks the page: only steer if it is not driving. */
-          if (!pointerInPill) { glideTo(link || null, true); keepInView(link); }
-        }
+        if (entry.isIntersecting) applyActive(atBottom() ? lastLink : map.get(entry.target));
       });
     }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
     map.forEach((_, target) => navIO.observe(target));
+
+    /* The last section can start below the furthest the page will ever
+       scroll, so it never crosses the observer's band and the capsule snaps
+       back to whatever is still in it: the bounce. The bottom of the page is
+       the last link, whatever the band thinks. */
+    window.addEventListener('scroll', () => {
+      if (navLocked || pointerInPill) return;
+      if (atBottom() && !lastLink.classList.contains('active')) applyActive(lastLink);
+    }, { passive: true });
   }
 
   /* ---------- Music coverflow -------------------------------------------- */

@@ -4,8 +4,12 @@
    Brand: #FF007F on white / near-black. Inter + Instrument Serif.
    ============================================================ */
 
-/* ---------- View transitions between pages (progressive) ---- */
-@view-transition { navigation: auto; }
+/* Cross-document view transitions used to run here. They cross-fade the whole
+   old page into the whole new one, and because the header is fixed and the
+   nav pill is a different width on every page, the header appeared to shudder
+   on the way across: two snapshots of it, at two widths, dissolving. Chrome
+   also skipped the transition often enough to add a flash of its own. A static
+   site loads instantly; a plain, crisp navigation beats a broken dissolve. */
 
 /* ---------- Tokens ------------------------------------------ */
 :root {
@@ -23,6 +27,7 @@
   --shadow: 0 1px 2px rgba(17,17,20,.04), 0 8px 24px rgba(17,17,20,.06);
   --shadow-lift: 0 2px 4px rgba(17,17,20,.05), 0 18px 40px rgba(17,17,20,.12);
   --nav-glass: rgba(255, 255, 255, 0.65);
+  --nav-solid: rgba(255, 255, 255, 0.96);
 
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Instrument Serif', Georgia, serif;
@@ -45,6 +50,7 @@
   --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
   --shadow-lift: 0 2px 4px rgba(0,0,0,.35), 0 18px 40px rgba(0,0,0,.5);
   --nav-glass: rgba(18, 18, 22, 0.6);
+  --nav-solid: rgba(18, 18, 22, 0.95);
   --pink-soft: rgba(255, 0, 127, 0.12);
 
   color-scheme: dark;
@@ -124,7 +130,28 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
   transition: transform .3s ease;
 }
 .logo:hover { transform: rotate(-8deg) scale(1.06); }
-.logo img { width: 100%; height: 100%; }
+.logo img {
+  width: 100%;
+  height: 100%;
+  /* Pressing the mark walks it around the colour wheel. The file is a flat
+     pink fill, so a hue rotation is the whole trick: no second asset, and it
+     still themes and prints as the brand at 0deg. */
+  filter: hue-rotate(var(--logo-hue, 0deg));
+  transition: filter .45s cubic-bezier(.4, 0, .2, 1);
+}
+.logo.pop { animation: logo-pop .5s cubic-bezier(.34, 1.4, .5, 1); }
+
+@keyframes logo-pop {
+  0%   { transform: scale(1) rotate(0); }
+  35%  { transform: scale(1.16) rotate(-11deg); }
+  70%  { transform: scale(.97) rotate(5deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo img { transition: none; }
+  .logo.pop { animation: none; }
+}
 
 .nav-pill {
   position: relative;
@@ -186,9 +213,11 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
      rather than in it. */
   background:
     linear-gradient(180deg, rgba(255, 255, 255, .38) 0%, rgba(255, 255, 255, .06) 46%, rgba(255, 255, 255, 0) 60%),
-    rgba(255, 0, 127, .82);
-  backdrop-filter: blur(10px) saturate(180%);
-  -webkit-backdrop-filter: blur(10px) saturate(180%);
+    rgba(255, 0, 127, .9);
+  /* No backdrop-filter here. It sat inside a pill that is already blurred, so
+     it was re-blurring an almost-opaque surface for no visible gain, and a
+     moving blurred layer in a sticky header is re-rasterised on every frame
+     the page scrolls. That was the stutter on a phone. */
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, .65),
     inset 0 -1px 0 rgba(0, 0, 0, .1),
@@ -197,8 +226,8 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
   /* Overshoot just past the target and settle. This is the "follows smoothly"
      part: a plain ease arrives dead and a linear one arrives mechanical. */
   transition:
-    transform .52s cubic-bezier(.34, 1.32, .5, 1),
-    width .52s cubic-bezier(.34, 1.32, .5, 1),
+    transform .46s cubic-bezier(.32, 1.12, .42, 1),
+    width .46s cubic-bezier(.32, 1.12, .42, 1),
     opacity .25s ease;
 }
 .nav-glide.is-on { opacity: 1; }
@@ -268,6 +297,17 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
     overscroll-behavior-x: contain;
   }
   .nav-pill::-webkit-scrollbar { display: none; }
+
+  /* A sticky header with four translucent blurred layers over a scrolling page
+     is the most expensive thing on the site, and phones pay for it every
+     frame. They get a near-solid header instead, which reads the same at arm's
+     length and scrolls smoothly. */
+  .nav-pill,
+  .icon-btn {
+    background: var(--nav-solid);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 @media (max-width: 420px) {
   .nav-link { padding: .5rem .6rem; font-size: .9rem; }
