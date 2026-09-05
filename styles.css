@@ -296,16 +296,38 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   text-align: left;
 }
 
+/*
+   Each tile carries one hue, and it is the same hue the rest of the site
+   already spends on that subject: pink for the apps, the violet from the music
+   doorway card, green for a live availability signal, gold for honours. The
+   wash is ~10% so the card still reads as paper; the ink is a darkened version
+   of the same hue so the figure clears contrast on both themes.
+*/
+.bt-status { --tint: #22c55e; --tint-ink: #15803d; }
+.bt-cred   { --tint: #f59e0b; --tint-ink: #a16207; }
+.bt-music  { --tint: #7c3aed; --tint-ink: #6d28d9; }
+.bt-apps,
+.bt-reel   { --tint: var(--pink); --tint-ink: var(--pink); }
+
+[data-theme="dark"] .bt-status { --tint-ink: #4ade80; }
+[data-theme="dark"] .bt-cred   { --tint-ink: #fbbf24; }
+[data-theme="dark"] .bt-music  { --tint-ink: #a78bfa; }
+[data-theme="dark"] .bt-apps   { --tint-ink: #ff4d9e; }
+
 .bt {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: .45rem;
-  min-height: 134px;
+  min-height: 152px;
   padding: 1.15rem 1.25rem;
   border-radius: var(--radius);
   background: var(--card);
+  background:
+    linear-gradient(147deg, color-mix(in srgb, var(--tint) 20%, transparent) 0%, color-mix(in srgb, var(--tint) 5%, transparent) 55%, transparent 78%),
+    var(--card);
   border: 1px solid var(--border);
+  border-color: color-mix(in srgb, var(--tint) 34%, var(--border));
   box-shadow: var(--shadow);
   color: inherit;
   text-decoration: none;
@@ -315,8 +337,23 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
 a.bt:hover {
   transform: translateY(-4px);
   border-color: var(--pink-glow);
+  border-color: color-mix(in srgb, var(--tint) 62%, transparent);
   box-shadow: var(--shadow-lift);
 }
+
+/* the hue as a chip, so the tile is scannable before a word is read */
+.bt-ico {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: .1rem;
+  border-radius: 11px;
+  background: var(--tint);
+  color: #fff;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--tint) 40%, transparent);
+}
+.bt-ico svg { width: 19px; height: 19px; }
 a.bt:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
 
 .bt-figure {
@@ -324,6 +361,7 @@ a.bt:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
   font-weight: 800;
   letter-spacing: -0.045em;
   line-height: 1;
+  color: var(--tint-ink);
 }
 /* "Cum Laude" is words where the others are numerals, so it sets smaller. */
 .bt-cred .bt-figure { font-size: clamp(1.15rem, 2.2vw, 1.55rem); letter-spacing: -0.03em; }
@@ -339,7 +377,8 @@ a.bt:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
   align-items: flex-start;
   gap: .5rem;
   font-size: .95rem;
-  font-weight: 650;
+  font-weight: 700;
+  color: var(--tint-ink);
 }
 .bt-dot {
   flex-shrink: 0;
@@ -347,7 +386,7 @@ a.bt:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #22c55e;
+  background: var(--tint);
   box-shadow: 0 0 0 0 rgba(34, 197, 94, .55);
   animation: live-pulse 2.4s ease-out infinite;
 }
@@ -365,12 +404,14 @@ a.bt:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
   height: 30px;
   border-radius: 50%;
   background: var(--bg-soft);
+  background: color-mix(in srgb, var(--tint) 15%, transparent);
   border: 1px solid var(--border);
-  color: var(--muted);
+  border-color: color-mix(in srgb, var(--tint) 32%, transparent);
+  color: var(--tint-ink);
   transition: background-color .3s ease, color .3s ease, transform .3s ease;
 }
 .bt-arrow svg { width: 15px; height: 15px; }
-a.bt:hover .bt-arrow { background: var(--pink); color: #fff; border-color: transparent; }
+a.bt:hover .bt-arrow { background: var(--tint); color: #fff; border-color: transparent; }
 
 /* the reel */
 .bt-reel {
@@ -396,6 +437,9 @@ a.bt-reel:hover img { transform: scale(1.04); }
   background: linear-gradient(180deg, rgba(17,17,20,.1) 0%, rgba(17,17,20,.12) 42%, rgba(17,17,20,.88) 100%);
 }
 .bt-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .45em;
   position: absolute;
   top: 1rem;
   left: 1rem;
@@ -411,6 +455,7 @@ a.bt-reel:hover img { transform: scale(1.04); }
   border-radius: 999px;
   box-shadow: 0 4px 14px var(--pink-glow);
 }
+.bt-tag svg { width: 9px; height: 9px; }
 .bt-reel-foot {
   position: relative;
   z-index: 1;
@@ -447,6 +492,8 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
   .bt { min-height: 116px; padding: 1rem 1.1rem; gap: .35rem; }
   .bt-link { padding-right: 2.9rem; }
   /* keeps "Available for work" on one line beside its dot */
+  .bt-ico { width: 31px; height: 31px; border-radius: 9px; }
+  .bt-ico svg { width: 17px; height: 17px; }
   .bt-live { font-size: .84rem; }
   .bt-label { font-size: .78rem; }
   .bt-arrow { right: .85rem; bottom: .85rem; width: 27px; height: 27px; }
@@ -1281,7 +1328,7 @@ a.app-card:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; 
   content: "";
   width: 7px; height: 7px;
   border-radius: 50%;
-  background: #22c55e;
+  background: var(--tint);
   box-shadow: 0 0 0 0 rgba(34, 197, 94, .55);
   animation: live-pulse 2.4s ease-out infinite;
 }
