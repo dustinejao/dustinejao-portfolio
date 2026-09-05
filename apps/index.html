@@ -55,67 +55,58 @@
 
 <main>
   <section class="apps-hero container">
-    <a href="/" class="crumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> cd ~/portfolio</a>
+    <a href="/" class="crumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Back to portfolio</a>
     <div>
       <span class="status-badge"><span class="pulse"></span> 2 shipped &middot; 1 in progress</span>
     </div>
-    <h1>&gt; shipping<span class="accent">_apps</span></h1>
-    <p class="hero-sub">Three apps, each with its own site right here. Two are out in the world; one is still compiling. 🚀</p>
-
-    <div class="terminal" data-reveal>
-      <div class="terminal-bar" aria-hidden="true">
-        <span class="r"></span><span class="y"></span><span class="g"></span>
-        <span class="title">dustine@jao:~/apps</span>
-      </div>
-      <div class="terminal-body" id="term-lines" data-lines='[
-        {"t":"$ cd ~/apps && ls", "c":"prompt", "pause":400},
-        {"t":"liriko/   caloff/   listingflow/", "c":"dim", "fast":true, "pause":500},
-        {"t":"$ liriko → status", "c":"prompt", "pause":380},
-        {"t":"live on the App Store · v1.1.0", "c":"ok", "fast":true, "pause":420},
-        {"t":"$ listingflow → status", "c":"prompt", "pause":380},
-        {"t":"live on Gumroad · macOS 14+", "c":"ok", "fast":true, "pause":420},
-        {"t":"$ caloff → flutter build", "c":"prompt", "pause":380},
-        {"t":"on-device vision model... 70%", "c":"warn", "fast":true, "pause":620},
-        {"t":"✓ 3 apps. pick one above.", "c":"ok", "fast":true}
-      ]'><span class="cursor" id="term-cursor"></span></div>
-    </div>
+    <h1>Apps I've <span class="accent">built.</span></h1>
+    <p class="hero-sub">Three of them, each with its own site right here. Two are out in the world; one is still in development.</p>
 
     <div class="app-grid">
       <a href="/liriko/" class="app-card" data-reveal>
         <div class="app-head">
-          <h3>📝 Liriko</h3>
-          <span class="lang">Expo · iOS</span>
+          <img class="app-icon" src="/images/apps/liriko.png" alt="Liriko app icon" width="48" height="48" loading="lazy">
+          <div class="app-name">
+            <h3>Liriko</h3>
+            <span class="lang">Expo &middot; iOS</span>
+          </div>
         </div>
         <p>Rhyme faster. Write anywhere. An offline lyric notepad for songwriters — English and Filipino rhymes, tempo, key and demo takes, all on the phone.</p>
         <div class="app-status">
-          <span class="live">live on the App Store</span>
-          <span class="go">open site &rarr;</span>
+          <span class="live">Live on the App Store</span>
+          <span class="go">Open site &rarr;</span>
         </div>
       </a>
 
       <a href="/caloff/" class="app-card" data-reveal style="--reveal-delay:.1s">
         <div class="app-head">
-          <h3>🍎 CalOff</h3>
-          <span class="lang">Flutter · iOS &amp; Android</span>
+          <img class="app-icon" src="/images/apps/caloff.png" alt="CalOff app icon" width="48" height="48" loading="lazy">
+          <div class="app-name">
+            <h3>CalOff</h3>
+            <span class="lang">Flutter &middot; iOS &amp; Android</span>
+          </div>
         </div>
         <p>Every calorie counted, nothing uploaded. Point the camera at a meal and a vision model on the phone works out the calories and macros — no account, no server.</p>
         <div class="progress"><i style="--w:70%"></i></div>
-        <div class="progress-label"><span>in development</span><span>~70%</span></div>
+        <div class="progress-label"><span>In development</span><span>~70%</span></div>
         <div class="app-status" style="margin-top:.7rem">
           <span></span>
-          <span class="go">open site &rarr;</span>
+          <span class="go">Open site &rarr;</span>
         </div>
       </a>
 
       <a href="/listingflow/" class="app-card" data-reveal style="--reveal-delay:.2s">
         <div class="app-head">
-          <h3>🏠 ListingFlow</h3>
-          <span class="lang">Swift · macOS</span>
+          <img class="app-icon" src="/images/apps/listingflow.png" alt="ListingFlow app icon" width="48" height="48" loading="lazy">
+          <div class="app-name">
+            <h3>ListingFlow</h3>
+            <span class="lang">Swift &middot; macOS</span>
+          </div>
         </div>
         <p>Drop in a property shoot and it sequences the walkthrough, names every clip, and hands Final Cut or Premiere a finished timeline. Runs entirely on your Mac.</p>
         <div class="app-status">
-          <span class="live">live on Gumroad</span>
-          <span class="go">open site &rarr;</span>
+          <span class="live">Live on Gumroad</span>
+          <span class="go">Open site &rarr;</span>
         </div>
       </a>
     </div>
@@ -141,7 +132,7 @@
     <a href="/#contact">Contact</a>
   </div>
   <p class="fine">&copy; <span id="year">2026</span> Dustine Jao. All Rights Reserved.</p>
-  <p class="fine">Designed &amp; coded from scratch by Dustine Jao ✦ Manila, PH</p>
+  <p class="fine">Designed &amp; coded from scratch by Dustine Jao · Manila, PH</p>
 </footer>
 
 <script src="/app.js" defer></script>

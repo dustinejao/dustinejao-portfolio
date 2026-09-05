@@ -156,36 +156,4 @@
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
-  /* ---------- Terminal typewriter (apps page) ---------------------------- */
-  const term = document.getElementById('term-lines');
-  if (term) {
-    const lines = JSON.parse(term.dataset.lines || '[]');
-    const cursor = document.getElementById('term-cursor');
-    if (reduceMotion) {
-      term.innerHTML = lines.map((l) => `<span class="ln ${l.c || ''}">${l.t}</span>`).join('');
-    } else {
-      let li = 0;
-      const typeLine = () => {
-        if (li >= lines.length) return;
-        const line = lines[li];
-        const el = document.createElement('span');
-        el.className = 'ln ' + (line.c || '');
-        term.appendChild(el);
-        if (cursor) term.appendChild(cursor);
-        let ci = 0;
-        const tick = () => {
-          ci += 1 + Math.floor(Math.random() * 2);
-          el.textContent = line.t.slice(0, ci);
-          if (ci < line.t.length) {
-            setTimeout(tick, line.fast ? 8 : 26);
-          } else {
-            li += 1;
-            setTimeout(typeLine, line.pause || 300);
-          }
-        };
-        tick();
-      };
-      setTimeout(typeLine, 500);
-    }
-  }
 })();
