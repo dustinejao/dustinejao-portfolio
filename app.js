@@ -32,8 +32,11 @@
      interface feedback.
   --------------------------------------------------------------------- */
   const SOUND_KEY = 'sound';
-  let soundOn = false;
-  try { soundOn = localStorage.getItem(SOUND_KEY) === 'on'; } catch (e) {}
+  /* On unless switched off. Nothing can actually sound until the first click,
+     because browsers refuse to start an AudioContext before a gesture, so the
+     first thing anyone hears is a sound they caused. */
+  let soundOn = true;
+  try { soundOn = localStorage.getItem(SOUND_KEY) !== 'off'; } catch (e) {}
   root.dataset.sound = soundOn ? 'on' : 'off';
 
   let actx = null;
@@ -47,8 +50,8 @@
     return actx;
   };
 
-  /* One oscillator, a fast pitch fall and a short decay. That is the whole
-     instrument; the tactility is in keeping it under 90ms and very quiet. */
+  /* One oscillator, a fast pitch fall and a short decay. Kept for the toggle's
+     own confirmation, where a pitched note says on/off better than a click. */
   const blip = (from, to, dur, gain, type) => {
     const c = audio();
     if (!c) return;
@@ -66,12 +69,65 @@
     osc.stop(t + dur + 0.02);
   };
 
-  const SOUNDS = {
-    hover: () => blip(660, 520, 0.035, 0.016, 'sine'),
-    tap:   () => blip(420, 190, 0.075, 0.05),
-    on:    () => { blip(520, 700, 0.06, 0.05); setTimeout(() => blip(700, 940, 0.07, 0.045), 55); },
-    off:   () => { blip(560, 420, 0.06, 0.045); setTimeout(() => blip(420, 300, 0.08, 0.04), 55); },
+  /*
+     A keypress, not a beep.
+
+     A pitched blip never sounds like a key, because a key is two things at
+     once: a broadband transient where the stem bottoms out, and a low woody
+     body from the case under it. So this is a bandpassed noise burst decaying
+     in ~18ms sitting on a sine that falls to ~150Hz. "Creamy" is the ratio
+     between them: the bandpass sits low enough to keep the clack off it, and
+     the body carries most of the level.
+  */
+  let noiseBuf = null;
+  const noise = (c) => {
+    if (!noiseBuf) {
+      noiseBuf = c.createBuffer(1, Math.ceil(c.sampleRate * 0.05), c.sampleRate);
+      const d = noiseBuf.getChannelData(0);
+      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    }
+    return noiseBuf;
   };
+
+  const thock = (tone, body, gain, dur) => {
+    const c = audio();
+    if (!c) return;
+    const t = c.currentTime;
+
+    const src = c.createBufferSource();
+    src.buffer = noise(c);
+    const bp = c.createBiquadFilter();
+    bp.type = 'bandpass';
+    bp.frequency.value = tone;
+    bp.Q.value = 0.9;
+    const ng = c.createGain();
+    ng.gain.setValueAtTime(gain, t);
+    ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.018);
+    src.connect(bp).connect(ng).connect(c.destination);
+    src.start(t);
+    src.stop(t + 0.05);
+
+    const osc = c.createOscillator();
+    const amp = c.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(body * 1.7, t);
+    osc.frequency.exponentialRampToValueAtTime(body, t + 0.03);
+    amp.gain.setValueAtTime(0.0001, t);
+    amp.gain.linearRampToValueAtTime(gain * 0.95, t + 0.004);
+    amp.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    osc.connect(amp).connect(c.destination);
+    osc.start(t);
+    osc.stop(t + dur + 0.02);
+  };
+
+  const SOUNDS = {
+    /* A lighter, higher key for passing over something. */
+    hover: () => thock(2600, 320, 0.07, 0.03),
+    tap:   () => thock(1600, 150, 0.5, 0.06),
+    on:    () => { thock(1600, 150, 0.45, 0.06); setTimeout(() => blip(760, 1150, 0.09, 0.14), 70); },
+    off:   () => { thock(1600, 150, 0.45, 0.06); setTimeout(() => blip(760, 420, 0.11, 0.12), 70); },
+  };
+
   const play = (name) => { if (soundOn && SOUNDS[name]) SOUNDS[name](); };
 
   const INTERACTIVE = '.btn, .nav-link, .icon-btn, .work-card, .work-main, .sub-chip, .bt, .social a, .footer-links a, .crumb, .cf-item, .platform-btn';
@@ -176,9 +232,15 @@
     const go = (dir) => { active = (active + dir + n) % n; render(); };
     const setActive = (i) => { active = ((i % n) + n) % n; render(); };
 
+    /* Every cover opens on the first click. It used to take two: the first
+       only centred the sleeve, which reads as a dead link. A cover still
+       centres itself on the way through, and a drag suppresses the click so
+       browsing the shelf never opens anything by accident. */
+    let dragged = false;
     items.forEach((it, i) => {
       it.addEventListener('click', (e) => {
-        if (i !== active) { e.preventDefault(); setActive(i); }
+        if (dragged) { e.preventDefault(); dragged = false; return; }
+        if (i !== active) setActive(i);
       });
     });
     document.getElementById('cf-prev').addEventListener('click', () => go(-1));
@@ -195,6 +257,7 @@
     const onEnd = (x) => {
       if (startX === null) return;
       const dx = x - startX;
+      dragged = Math.abs(dx) > 8;
       if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
       startX = null;
     };

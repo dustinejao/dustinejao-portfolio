@@ -101,6 +101,10 @@ h1, h2, h3 { line-height: 1.1; margin: 0 0 .5em; letter-spacing: -0.03em; font-w
 /* Tighter on desktop: the old rhythm put a screen of nothing between sections. */
 section { padding-block: clamp(3rem, 5vw, 4.25rem); }
 
+/* Went out with the .section-tag rule, which is why every section heading
+   dropped to the browser's default h2 size. Back, and larger than before. */
+.section-title { font-size: clamp(2.4rem, 5.5vw, 3.9rem); line-height: 1.06; }
+
 /* ---------- Header / nav ------------------------------------ */
 .site-header {
   position: sticky;
@@ -140,10 +144,10 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
 .nav-pill::-webkit-scrollbar { display: none; }
 
 .nav-link {
-  padding: .5rem .95rem;
+  padding: .55rem 1.05rem;
   border-radius: 999px;
-  font-size: .9rem;
-  font-weight: 550;
+  font-size: 1rem;
+  font-weight: 600;
   color: var(--text);
   white-space: nowrap;
   transition: color .25s ease, background-color .25s ease;
@@ -196,7 +200,7 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
 }
 
 @media (max-width: 720px) {
-  .nav-link { padding: .5rem .6rem; font-size: .82rem; }
+  .nav-link { padding: .5rem .7rem; font-size: .94rem; }
   .nav-desktop-only { display: none; }
   /*
      Five links do not fit beside a logo and two buttons on a phone. They used
@@ -212,7 +216,7 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
   .nav-pill::-webkit-scrollbar { display: none; }
 }
 @media (max-width: 420px) {
-  .nav-link { padding: .5rem .5rem; font-size: .8rem; }
+  .nav-link { padding: .5rem .6rem; font-size: .9rem; }
   .site-header { gap: .45rem; padding-inline: .7rem; }
   .logo { width: 46px; height: 46px; }
 }
@@ -875,12 +879,16 @@ a.sub-chip:hover { background: var(--pink); border-color: transparent; color: #f
 /* ============================================================
    MUSIC PAGE
    ============================================================ */
-.music-hero { text-align: center; padding-top: clamp(2rem, 5vw, 4rem); }
+/* The shelf is the page. Everything above it is trimmed so a cover is on
+   screen, and clickable, without scrolling. */
+.music-hero { text-align: center; padding-top: clamp(.5rem, 2vw, 1.5rem); }
 .music-hero h1 {
-  font-size: clamp(2.6rem, 8vw, 5.5rem);
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  line-height: 1.05;
   letter-spacing: -0.04em;
+  margin-bottom: .75rem;
 }
-.music-hero .hero-sub { margin-bottom: 2.5rem; }
+.music-hero .hero-sub { margin-bottom: 1.25rem; }
 
 /* ---------- 3D CD coverflow ---------------------------------- */
 .coverflow {
@@ -1239,6 +1247,10 @@ a.app-card {
 }
 a.app-card p { flex: 1; }
 a.app-card:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
+
+/* The block was given a class and never a rule, so it sat flush against the
+   cards. */
+.built-by { margin-top: 3.25rem; }
 
 .app-card .app-status {
   display: flex;
