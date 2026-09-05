@@ -78,10 +78,12 @@
      Measured, that version's zero-crossing rate was 290Hz over a 28ms decay,
      i.e. mostly a low tone with a tick on the front.
 
-     This is the transient and almost nothing else: bandpassed noise at 3kHz
-     gone in 13ms, with a 520Hz tick underneath at a tenth of the level purely
-     so it does not sound brittle. 1161Hz over 9ms, four times brighter and
-     three times shorter than the thump it replaces.
+     This is the transient and almost nothing else: bandpassed noise at 2.4kHz
+     gone in 14ms, with a 460Hz tick underneath at an eighth of the level purely
+     so it does not sound brittle. 827Hz over 11ms, against 213Hz over 33ms for
+     the thump it replaces. The band started at 3kHz and read slightly tinny, so
+     it came down a step: enough to lose the glassiness, not enough to put the
+     thump back.
   */
   let noiseBuf = null;
   const noise = (c) => {
@@ -108,7 +110,7 @@
     bp.Q.value = q;
     const hp = c.createBiquadFilter();
     hp.type = 'highpass';
-    hp.frequency.value = 900;
+    hp.frequency.value = 700;
     const ng = c.createGain();
     ng.gain.setValueAtTime(gain, t);
     ng.gain.exponentialRampToValueAtTime(0.0001, t + snap);
@@ -132,10 +134,19 @@
 
   const SOUNDS = {
     /* Same click, a fifth of the level, nothing underneath. */
-    hover: () => key(3400, 4, 0.006, 0.9, 0, 0, 0),
-    tap:   () => key(3000, 3.5, 0.013, 2.6, 520, 0.018, 0.10),
-    on:    () => { key(3000, 3.5, 0.013, 2.4, 520, 0.018, 0.10); setTimeout(() => blip(760, 1150, 0.09, 0.14), 70); },
-    off:   () => { key(3000, 3.5, 0.013, 2.4, 520, 0.018, 0.10); setTimeout(() => blip(760, 420, 0.11, 0.12), 70); },
+    hover: () => key(2900, 4, 0.006, 0.9, 0, 0, 0),
+    tap:   () => key(2400, 3.5, 0.014, 2.4, 460, 0.020, 0.13),
+    on:    () => { key(2400, 3.5, 0.014, 2.2, 460, 0.020, 0.13); setTimeout(() => blip(760, 1150, 0.09, 0.14), 70); },
+    off:   () => { key(2400, 3.5, 0.014, 2.2, 460, 0.020, 0.13); setTimeout(() => blip(760, 420, 0.11, 0.12), 70); },
+    /* The mark gets its own sound: the click, then D5-A5-D6 on sine, an open
+       fifth and octave. Longer and softer than anything else on the page,
+       because going home is the one navigation worth marking. */
+    home:  () => {
+      key(2400, 3.5, 0.014, 2.2, 460, 0.020, 0.13);
+      [587.33, 880, 1174.66].forEach((f, i) => {
+        setTimeout(() => blip(f, f * 0.995, 0.2, 0.1, 'sine'), 45 + i * 75);
+      });
+    },
   };
 
   const play = (name) => { if (soundOn && SOUNDS[name]) SOUNDS[name](); };
@@ -169,8 +180,28 @@
   document.addEventListener('pointerdown', (e) => {
     if (!soundOn) return;
     if (e.target.closest('#sound-toggle')) return;
+    if (e.target.closest('.logo')) return;      /* has its own, on click */
     if (e.target.closest(INTERACTIVE)) play('tap');
   }, { passive: true });
+
+  /* The logo, and its flourish.
+
+     On the home page it scrolls rather than reloading, which also lets the
+     three notes finish. Off the home page it still navigates, so the chime is
+     cut short by the page change; that is the right trade against holding a
+     navigation back to wait for a sound. */
+  const logo = document.querySelector('.logo');
+  if (logo) {
+    logo.addEventListener('click', (e) => {
+      play('home');
+      const goesHome = new URL(logo.href, location.href).pathname === location.pathname;
+      if (goesHome) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+        if (location.hash) history.replaceState(null, '', location.pathname);
+      }
+    });
+  }
 
   /* ---------- Reveal on scroll ------------------------------------------ */
   const revealEls = document.querySelectorAll('[data-reveal]');
@@ -186,6 +217,59 @@
     revealEls.forEach((el) => io.observe(el));
   } else {
     revealEls.forEach((el) => el.classList.add('in-view'));
+  }
+
+  /* ---------- Nav capsule ------------------------------------------------
+     One element that travels, rather than a background switching between
+     links. It follows the pointer while the cursor is in the pill and returns
+     to whatever section you are actually in when it leaves.
+  --------------------------------------------------------------------- */
+  const navPill = document.querySelector('.nav-pill');
+  const glide = navPill && navPill.querySelector('.nav-glide');
+  const navLinks = navPill ? Array.from(navPill.querySelectorAll('.nav-link')) : [];
+
+  const glideTo = (el, animate) => {
+    if (!glide) return;
+    if (!el) {
+      glide.classList.remove('is-on');
+      navLinks.forEach((l) => l.classList.remove('is-lit'));
+      return;
+    }
+    if (animate === false) glide.classList.add('no-anim');
+    glide.style.setProperty('--x', el.offsetLeft + 'px');
+    glide.style.setProperty('--w', el.offsetWidth + 'px');
+    glide.classList.add('is-on');
+    navLinks.forEach((l) => l.classList.toggle('is-lit', l === el));
+    if (animate === false) {
+      /* Force a reflow so the jump lands before transitions come back on. */
+      void glide.offsetWidth;
+      glide.classList.remove('no-anim');
+    }
+  };
+  const currentNav = () => navPill && navPill.querySelector('.nav-link.active');
+
+  if (glide) {
+    glideTo(currentNav(), false);
+    navLinks.forEach((l) => {
+      l.addEventListener('pointerenter', () => glideTo(l, true));
+      l.addEventListener('focus', () => glideTo(l, true));
+    });
+    navPill.addEventListener('pointerleave', () => glideTo(currentNav(), true));
+    navPill.addEventListener('focusout', () => {
+      if (!navPill.contains(document.activeElement)) glideTo(currentNav(), true);
+    });
+    /* Fonts landing late change link widths, so re-measure once they are in. */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => glideTo(currentNav(), false));
+    }
+    let rt = 0;
+    window.addEventListener('resize', () => {
+      clearTimeout(rt);
+      rt = setTimeout(() => glideTo(currentNav(), false), 120);
+    });
+    navPill.addEventListener('scroll', () => {
+      if (!navPill.matches(':hover')) glideTo(currentNav(), false);
+    }, { passive: true });
   }
 
   /* ---------- Active nav link (anchor sections on home) ----------------- */
@@ -204,6 +288,8 @@
           anchorLinks.forEach((l) => l.classList.remove('active'));
           const link = map.get(entry.target);
           if (link) link.classList.add('active');
+          /* Only steer the capsule if the cursor is not driving it. */
+          if (navPill && !navPill.matches(':hover')) glideTo(link || null, true);
         }
       });
     }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });

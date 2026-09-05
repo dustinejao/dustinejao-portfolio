@@ -127,6 +127,7 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
 .logo img { width: 100%; height: 100%; }
 
 .nav-pill {
+  position: relative;
   display: flex;
   align-items: center;
   gap: .2rem;
@@ -144,16 +145,69 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
 .nav-pill::-webkit-scrollbar { display: none; }
 
 .nav-link {
+  position: relative;
+  z-index: 1;
   padding: .55rem 1.05rem;
   border-radius: 999px;
   font-size: 1rem;
   font-weight: 600;
   color: var(--text);
   white-space: nowrap;
-  transition: color .25s ease, background-color .25s ease;
+  transition: color .32s ease;
 }
 .nav-link:hover { color: var(--pink); }
-.nav-link.active { background: var(--pink); color: #fff; }
+/* Whichever link the capsule is currently sitting under, active or hovered. */
+.nav-link.is-lit, .nav-link.is-lit:hover { color: #fff; }
+
+/*
+   The travelling capsule.
+
+   The active state used to be a background on the link itself, so it cut from
+   one item to the next. This is one element that moves: JS writes the target
+   link's offsetLeft and width into --x and --w, and the easing does the rest.
+   Because it lives inside the pill it scrolls with the links on a phone, and
+   because it is one node the browser animates a single transform rather than
+   repainting two backgrounds.
+*/
+.nav-glide {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 0;
+  width: var(--w, 0px);
+  height: calc(100% - .6rem);
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(var(--x, 0px), -50%) scaleX(var(--s, 1));
+
+  /* Glass: a tinted pane you can see the page through, a bright top edge where
+     the light catches, and a soft coloured shadow so it sits above the pill
+     rather than in it. */
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .38) 0%, rgba(255, 255, 255, .06) 46%, rgba(255, 255, 255, 0) 60%),
+    rgba(255, 0, 127, .82);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .65),
+    inset 0 -1px 0 rgba(0, 0, 0, .1),
+    0 4px 14px var(--pink-glow);
+
+  /* Overshoot just past the target and settle. This is the "follows smoothly"
+     part: a plain ease arrives dead and a linear one arrives mechanical. */
+  transition:
+    transform .52s cubic-bezier(.34, 1.32, .5, 1),
+    width .52s cubic-bezier(.34, 1.32, .5, 1),
+    opacity .25s ease;
+}
+.nav-glide.is-on { opacity: 1; }
+/* First paint, and after a resize: jump into place rather than fly in from 0. */
+.nav-glide.no-anim { transition: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-glide { transition: opacity .2s ease; }
+}
 
 .nav-sep {
   width: 1px;
