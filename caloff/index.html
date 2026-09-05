@@ -10,12 +10,12 @@
 <link rel="apple-touch-icon" href="/images/apps/caloff.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.dustinejao.com/caloff/">
-<meta property="og:title" content="CalOff — every calorie counted, nothing uploaded">
-<meta property="og:description" content="Offline-first AI calorie tracking. Point the camera at food, get calories and macros back — with no network round-trip for the scan.">
-<meta name="description" content="Offline-first AI calorie tracking. Point the camera at food, get calories and macros back — with no network round-trip for the scan.">
+<meta property="og:title" content="CalOff: every calorie counted, nothing uploaded">
+<meta property="og:description" content="Offline-first AI calorie tracking. Point the camera at food, get calories and macros back, with no network round-trip for the scan.">
+<meta name="description" content="Offline-first AI calorie tracking. Point the camera at food, get calories and macros back, with no network round-trip for the scan.">
 <style>
 /* ---------------------------------------------------------------------------
-   CalOff — site tokens.
+   CalOff site tokens.
 
    These are the app's own tokens, lifted from lib/core/theme.dart rather than
    invented for the web. There is no brand accent: ink is pure black on light
@@ -76,7 +76,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  /* No font-family is declared for the app on purpose — it resolves to San
+  /* No font-family is declared for the app on purpose, so it resolves to San
      Francisco on iOS and Roboto on Android rather than to something that looks
      foreign on either. The site keeps that same discipline. */
   font: 400 17px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text",
@@ -262,7 +262,7 @@ h3 {
   .rows li { grid-template-columns: 13rem 1fr; gap: 24px; align-items: baseline; }
 }
 
-/* The one card on the site, and the one place colour appears — because the
+/* The one card on the site, and the one place colour appears, because the
    macro split is a chart. */
 .macros {
   margin-top: 28px; padding: 22px 24px 24px;
@@ -424,8 +424,8 @@ footer {
         <b>Correct</b>
         <p>The model's guess is a starting point, not a verdict. Rename the
         dish and the calories follow the name through a local database of
-        1,065 foods — Filipino home cooking, the chains, and the Western shelf
-        — so the correction sticks and the food is one search away next
+        1,065 foods (Filipino home cooking, the chains, and the Western shelf)
+        so the correction sticks and the food is one search away next
         time.</p>
       </li>
       <li>
@@ -448,7 +448,7 @@ footer {
     </ul>
 
     <div class="macros" aria-label="Example macro split for a logged day">
-      <h4>Today's split — an example</h4>
+      <h4>Today's split, an example</h4>
       <div class="macro p">
         <div class="row"><b>Protein</b><span>118 / 154 g</span></div>
         <div class="bar-track"><div class="bar-fill" style="width:77%"></div></div>
@@ -470,9 +470,9 @@ footer {
     <div class="doc">
       <p>There is no social feed, fasting timer, sleep tracker or workout log.
       There is no account. There are no ads, no data sale, and no free tier
-      funded by either — CalOff is paid for by the people using it, which is
+      funded by either. CalOff is paid for by the people using it, which is
       why it can afford to want nothing else from them. And there is no "just
-      this once" server call when a scan is hard — the moment that exists, the
+      this once" server call when a scan is hard. The moment that exists, the
       one thing that makes CalOff different is gone.</p>
     </div>
   </div>
@@ -497,11 +497,11 @@ footer {
       <li><strong>Meal photos.</strong> A photo you take or pick is analysed by
       a model running on the phone and is not uploaded anywhere. CalOff does not
       copy it into its own storage; it is read, analysed and released.</li>
-      <li><strong>Your food log</strong> — dish names, portions, calories,
-      macros and timestamps — is written to a database inside the app's private
+      <li><strong>Your food log</strong>, meaning dish names, portions, calories,
+      macros and timestamps, is written to a database inside the app's private
       storage on the device.</li>
-      <li><strong>Your profile</strong> — age, sex, height, weight, activity
-      level, goal and unit preference — which is used only to compute your
+      <li><strong>Your profile</strong>, meaning age, sex, height, weight, activity
+      level, goal and unit preference, which is used only to compute your
       calorie and macro targets, on the device.</li>
       <li><strong>Your weight history</strong>, if you record weigh-ins.</li>
       <li><strong>Foods you save</strong> to the local food database.</li>
@@ -510,8 +510,8 @@ footer {
     and we could not produce it if we were asked to.</p>
 
     <h3>The one network request</h3>
-    <p>Before the first scan, CalOff downloads the vision model it runs — a file
-    of roughly 728&nbsp;MB — from
+    <p>Before the first scan, CalOff downloads the vision model it runs, a file
+    of roughly 728&nbsp;MB, from
     <a href="https://huggingface.co" rel="noopener">Hugging Face</a>, a public
     model host. It is a plain file download, started once and resumable.</p>
     <p>That request necessarily reveals to Hugging Face what any file download
@@ -520,7 +520,7 @@ footer {
     to it. Hugging Face's handling of that request is governed by
     <a href="https://huggingface.co/privacy" rel="noopener">their privacy
     policy</a>. After the download completes, the app makes no further network
-    requests — scanning, nutrition lookup and search are entirely local, and
+    requests. Scanning, nutrition lookup and search are entirely local, and
     CalOff works with the device in airplane mode.</p>
 
     <h3>What we do not do</h3>
@@ -528,18 +528,18 @@ footer {
       <li>No analytics or telemetry SDK of any kind.</li>
       <li>No crash or performance reporting service.</li>
       <li>No advertising, no advertising identifiers, no third-party trackers.</li>
-      <li>No sale or sharing of personal information — there is none to sell.</li>
+      <li>No sale or sharing of personal information. There is none to sell.</li>
       <li>No cross-app or cross-site tracking, so CalOff never needs to ask for
       tracking permission.</li>
     </ul>
 
     <h3>Permissions, and why</h3>
     <ul>
-      <li><strong>Camera</strong> — to photograph a meal. The live preview runs
+      <li><strong>Camera</strong>, to photograph a meal. The live preview runs
       inside the app; frames are used for the scan and nothing else.</li>
-      <li><strong>Photo library</strong> — only when you choose to log a meal
+      <li><strong>Photo library</strong>, only when you choose to log a meal
       you already photographed, and only for the image you pick.</li>
-      <li><strong>Internet</strong> (Android) — for the one model download
+      <li><strong>Internet</strong> (Android), for the one model download
       described above.</li>
     </ul>
     <p>You can refuse any of these. Refusing the camera or photo library means
@@ -549,14 +549,14 @@ footer {
     <p>The Apple&nbsp;Watch and Wear&nbsp;OS apps, the home-screen widgets and
     the Lock Screen complication display the same day's totals that the phone
     app already holds. Those figures are passed from the phone to the watch over
-    the platform's own local pairing channel — Apple's Watch Connectivity or
-    Google's Wearable Data Layer — which is a direct link between your own two
+    the platform's own local pairing channel, either Apple's Watch Connectivity or
+    Google's Wearable Data Layer, which is a direct link between your own two
     devices. They travel no further, and no server of ours is involved.</p>
 
     <h3>Children</h3>
     <p>CalOff is not directed at children under 13, and we do not knowingly
     collect information from them. Since the app collects nothing at all, there
-    is nothing for us to delete on request — but see the next section for how to
+    is nothing for us to delete on request, but see the next section for how to
     remove everything from the device.</p>
 
     <h3>Deleting your data</h3>
@@ -623,7 +623,7 @@ footer {
     <h3>3. Accuracy</h3>
     <p>Estimates from a photograph are estimates. The model infers what a dish
     is and how much of it is on the plate, and it will sometimes be wrong about
-    both — a hidden ingredient, an unusual recipe, an oil you cannot see, a bowl
+    both: a hidden ingredient, an unusual recipe, an oil you cannot see, a bowl
     deeper than it looks. The bundled food database is a curated set of common
     foods, not a licensed nutritional authority. Treat every figure as a
     starting point you correct, and never as a measurement. We make no warranty
@@ -642,7 +642,7 @@ footer {
     automatically until you cancel, and you cancel them in your store account
     rather than in the app; the lifetime purchase does not renew. Price,
     payment, tax, refunds and regional availability are handled by those stores
-    under their own terms, not by us — a refund request goes to Apple or Google.
+    under their own terms, not by us. A refund request goes to Apple or Google.
     Your licence is tied to the store account you bought it with and to that
     store's family-sharing and re-download rules, and "Restore purchase" in the
     app is how you bring it back onto a new device.</p>
@@ -681,13 +681,13 @@ footer {
     <h3>10. Changes and termination</h3>
     <p>We may update these terms; the current version always lives on this page
     with its effective date, and continuing to use the app after a change means
-    you accept it. Your licence ends if you stop complying with these terms —
+    you accept it. Your licence ends if you stop complying with these terms,
     in which case, delete the app.</p>
 
     <h3>11. Governing law</h3>
     <p>These terms are governed by the laws of the Republic of the Philippines,
     without regard to conflict-of-law rules, and the courts there have
-    jurisdiction — except where the mandatory consumer-protection law of your
+    jurisdiction, except where the mandatory consumer-protection law of your
     own country of residence gives you a right to bring proceedings locally, in
     which case that right stands.</p>
 
@@ -703,7 +703,7 @@ footer {
     <h2><span class="solid">Support.</span> <span class="light">One person reads these.</span></h2>
 
     <div class="contact">
-      <p>Email — a reply usually within two business days</p>
+      <p>Email, with a reply usually within two business days</p>
       <a class="email" id="contact-email" href="#">support@caloff.app</a>
     </div>
 
@@ -713,7 +713,7 @@ footer {
 
     <h3>The first scan is stuck downloading</h3>
     <p>The model is a single 728&nbsp;MB download. If it stalls, it resumes
-    from where it stopped rather than starting again — reopen
+    from where it stopped rather than starting again. Reopen
     <strong>Settings → Scanner</strong> and start it once more. On a metered connection, wait for
     Wi-Fi: this is the only download CalOff will ever ask you for.</p>
 
@@ -728,7 +728,7 @@ footer {
     <p>Inference is real work being done on your phone rather than in a data
     centre, so it costs battery and takes a few seconds. There is one model and
     every phone runs the same one, so the answer does not change with the
-    hardware — only how long it takes. If it still struggles, log by search:
+    hardware, only how long it takes. If it still struggles, log by search:
     it is instant, and it is the same database.</p>
 
     <h3>My watch shows nothing, or yesterday's numbers</h3>
@@ -739,8 +739,8 @@ footer {
 
     <h3>I switched phones and my log is gone</h3>
     <p>The log lives only on the device, which is what keeps it private and also
-    means there is no cloud copy to restore. A full device backup — iCloud
-    device backup, or Google's backup on Android — carries it across; a fresh
+    means there is no cloud copy to restore. A full device backup (iCloud
+    device backup, or Google's backup on Android) carries it across; a fresh
     install does not. We cannot recover a log that was not backed up.</p>
 
     <h3>How do I delete everything?</h3>
@@ -752,7 +752,7 @@ footer {
     <p>Purchases are handled by the stores, so refunds go through them:
     <a href="https://reportaproblem.apple.com" rel="noopener">reportaproblem.apple.com</a>
     for the App Store, or Google Play's order history on Android. We cannot
-    issue one directly, but tell us what went wrong — that is how it gets
+    issue one directly, but tell us what went wrong. That is how it gets
     fixed for the next person.</p>
   </div>
 </section>
@@ -777,7 +777,7 @@ footer {
    Store links.
 
    Fill these in once the listings exist. Until then each button renders as a
-   plain "coming soon" chip rather than a link to a 404 — a dead store link on
+   plain "coming soon" chip rather than a link to a 404. A dead store link on
    a submission page is worse than an honest one.
 --------------------------------------------------------------------------- */
 const STORE = {
@@ -835,7 +835,7 @@ const CONTACT_EMAIL = 'support@caloff.app';
     const heading = document.querySelector('#' + target + ' h1, #' + target + ' h2');
     document.title = target === 'home' || !heading
       ? 'CalOff'
-      : heading.textContent.trim().replace(/\s+/g, ' ') + ' — CalOff';
+      : heading.textContent.trim().replace(/\s+/g, ' ') + ': CalOff';
 
     if (!replace) window.scrollTo({ top: 0, behavior: 'instant' });
   }

@@ -354,6 +354,33 @@ a.bt:hover {
   box-shadow: 0 4px 12px color-mix(in srgb, var(--tint) 40%, transparent);
 }
 .bt-ico svg { width: 19px; height: 19px; }
+
+/*
+   Where a tile points somewhere, it shows what is actually there: three album
+   covers for the releases, three app icons for the apps. Overlapped so they fit
+   the chip's footprint, and they spread apart on hover.
+*/
+.bt-stack {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  margin-bottom: .1rem;
+  height: 38px;
+}
+.bt-stack img {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: 0 3px 10px rgba(17, 17, 20, .18);
+  transition: transform .3s cubic-bezier(.2, .8, .2, 1);
+}
+/* they lift in sequence, so the row reads as a set rather than three stickers */
+a.bt:hover .bt-stack img { transform: translateY(-3px); }
+a.bt:hover .bt-stack img:nth-child(2) { transition-delay: .05s; }
+a.bt:hover .bt-stack img:nth-child(3) { transition-delay: .1s; }
 a.bt:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
 
 .bt-figure {
@@ -494,6 +521,8 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
   /* keeps "Available for work" on one line beside its dot */
   .bt-ico { width: 31px; height: 31px; border-radius: 9px; }
   .bt-ico svg { width: 17px; height: 17px; }
+  .bt-stack, .bt-stack img { height: 33px; }
+  .bt-stack img { width: 33px; border-radius: 9px; }
   .bt-live { font-size: .84rem; }
   .bt-label { font-size: .78rem; }
   .bt-arrow { right: .85rem; bottom: .85rem; width: 27px; height: 27px; }

@@ -1,5 +1,5 @@
 /* ============================================================
-   Liriko — static port of the Next.js site, hand-written CSS.
+   Liriko: static port of the Next.js site, hand-written CSS.
 
    The palette is the app's own, lifted unchanged from the old
    tailwind.config.ts: literal black so an AMOLED panel can switch the
@@ -299,7 +299,7 @@ h2.section-title {
 .email-card a.address:hover { color: var(--accent-light); }
 .email-card .turnaround { margin: .75rem 0 0; font-size: .875rem; color: var(--text-tertiary); }
 
-/* FAQ — <details>, no script. */
+/* FAQ: <details>, no script. */
 .faq { overflow: hidden; }
 .faq details + details { border-top: 1px solid var(--line-soft); }
 .faq summary {
