@@ -70,14 +70,18 @@
   };
 
   /*
-     A keypress, not a beep.
+     A click, not a thump.
 
-     A pitched blip never sounds like a key, because a key is two things at
-     once: a broadband transient where the stem bottoms out, and a low woody
-     body from the case under it. So this is a bandpassed noise burst decaying
-     in ~18ms sitting on a sine that falls to ~150Hz. "Creamy" is the ratio
-     between them: the bandpass sits low enough to keep the clack off it, and
-     the body carries most of the level.
+     Two earlier passes put a low sine under the transient to give the key a
+     "body", and both times the body was the problem: at 150Hz carrying a third
+     of the level it dominates everything, which is what "thumpy" sounds like.
+     Measured, that version's zero-crossing rate was 290Hz over a 28ms decay,
+     i.e. mostly a low tone with a tick on the front.
+
+     This is the transient and almost nothing else: bandpassed noise at 3kHz
+     gone in 13ms, with a 520Hz tick underneath at a tenth of the level purely
+     so it does not sound brittle. 1161Hz over 9ms, four times brighter and
+     three times shorter than the thump it replaces.
   */
   let noiseBuf = null;
   const noise = (c) => {
@@ -89,7 +93,9 @@
     return noiseBuf;
   };
 
-  const thock = (tone, body, gain, dur) => {
+  /* A narrow bandpass throws away most of the noise's energy, so `gain` here
+     runs well above 1. The rendered peak is what matters, not the number. */
+  const key = (tone, q, snap, gain, body, fall, ratio) => {
     const c = audio();
     if (!c) return;
     const t = c.currentTime;
@@ -99,33 +105,37 @@
     const bp = c.createBiquadFilter();
     bp.type = 'bandpass';
     bp.frequency.value = tone;
-    bp.Q.value = 0.9;
+    bp.Q.value = q;
+    const hp = c.createBiquadFilter();
+    hp.type = 'highpass';
+    hp.frequency.value = 900;
     const ng = c.createGain();
     ng.gain.setValueAtTime(gain, t);
-    ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.018);
-    src.connect(bp).connect(ng).connect(c.destination);
+    ng.gain.exponentialRampToValueAtTime(0.0001, t + snap);
+    src.connect(bp).connect(hp).connect(ng).connect(c.destination);
     src.start(t);
     src.stop(t + 0.05);
 
+    if (!ratio) return;
     const osc = c.createOscillator();
     const amp = c.createGain();
     osc.type = 'sine';
-    osc.frequency.setValueAtTime(body * 1.7, t);
-    osc.frequency.exponentialRampToValueAtTime(body, t + 0.03);
+    osc.frequency.setValueAtTime(body * 1.5, t);
+    osc.frequency.exponentialRampToValueAtTime(body, t + 0.012);
     amp.gain.setValueAtTime(0.0001, t);
-    amp.gain.linearRampToValueAtTime(gain * 0.95, t + 0.004);
-    amp.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    amp.gain.linearRampToValueAtTime(gain * ratio, t + 0.002);
+    amp.gain.exponentialRampToValueAtTime(0.0001, t + fall);
     osc.connect(amp).connect(c.destination);
     osc.start(t);
-    osc.stop(t + dur + 0.02);
+    osc.stop(t + fall + 0.02);
   };
 
   const SOUNDS = {
-    /* A lighter, higher key for passing over something. */
-    hover: () => thock(2600, 320, 0.07, 0.03),
-    tap:   () => thock(1600, 150, 0.5, 0.06),
-    on:    () => { thock(1600, 150, 0.45, 0.06); setTimeout(() => blip(760, 1150, 0.09, 0.14), 70); },
-    off:   () => { thock(1600, 150, 0.45, 0.06); setTimeout(() => blip(760, 420, 0.11, 0.12), 70); },
+    /* Same click, a fifth of the level, nothing underneath. */
+    hover: () => key(3400, 4, 0.006, 0.9, 0, 0, 0),
+    tap:   () => key(3000, 3.5, 0.013, 2.6, 520, 0.018, 0.10),
+    on:    () => { key(3000, 3.5, 0.013, 2.4, 520, 0.018, 0.10); setTimeout(() => blip(760, 1150, 0.09, 0.14), 70); },
+    off:   () => { key(3000, 3.5, 0.013, 2.4, 520, 0.018, 0.10); setTimeout(() => blip(760, 420, 0.11, 0.12), 70); },
   };
 
   const play = (name) => { if (soundOn && SOUNDS[name]) SOUNDS[name](); };
