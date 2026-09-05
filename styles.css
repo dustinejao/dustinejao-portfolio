@@ -101,6 +101,18 @@ h1, h2, h3 { line-height: 1.1; margin: 0 0 .5em; letter-spacing: -0.03em; font-w
 /* Tighter on desktop: the old rhythm put a screen of nothing between sections. */
 section { padding-block: clamp(3rem, 5vw, 4.25rem); }
 
+/* ---------- Header / nav ------------------------------------ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: calc(env(safe-area-inset-top, 0px) + 12px) clamp(1rem, 3vw, 1.75rem) 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
 .logo {
   width: 62px;
   height: 62px;
@@ -202,6 +214,7 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
 @media (max-width: 420px) {
   .nav-link { padding: .5rem .5rem; font-size: .8rem; }
   .site-header { gap: .45rem; padding-inline: .7rem; }
+  .logo { width: 46px; height: 46px; }
 }
 
 /* ---------- Buttons ------------------------------------------ */
