@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <!-- SEO -->
-<meta name="description" content="Apps by Dustine Jao: Liriko (offline iOS lyric notepad) and ListingFlow, currently in development. Shipping soon.">
+<meta name="description" content="Apps by Dustine Jao: Liriko, an offline lyric notepad for iOS; ListingFlow, a real-estate video tool for Mac; and CalOff, offline calorie tracking, in development.">
 <link rel="canonical" href="https://www.dustinejao.com/apps/">
 
 <!-- Icons -->
@@ -25,7 +25,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.dustinejao.com/apps/">
 <meta property="og:title" content="Apps | Dustine Jao">
-<meta property="og:description" content="Liriko & ListingFlow, currently in development. Shipping soon.">
+<meta property="og:description" content="Liriko, ListingFlow and CalOff — built, shipped and still shipping.">
 <meta property="og:image" content="https://dustinejao.com/images/og-image.png">
 
 <!-- Fonts -->
@@ -57,10 +57,10 @@
   <section class="apps-hero container">
     <a href="/" class="crumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> cd ~/portfolio</a>
     <div>
-      <span class="status-badge"><span class="pulse"></span> Work in progress</span>
+      <span class="status-badge"><span class="pulse"></span> 2 shipped &middot; 1 in progress</span>
     </div>
-    <h1>&gt; building<span class="accent">_apps</span></h1>
-    <p class="hero-sub">Nothing shipped yet, but the commits are flowing. Here's what's compiling behind the scenes. 🚧</p>
+    <h1>&gt; shipping<span class="accent">_apps</span></h1>
+    <p class="hero-sub">Three apps, each with its own site right here. Two are out in the world; one is still compiling. 🚀</p>
 
     <div class="terminal" data-reveal>
       <div class="terminal-bar" aria-hidden="true">
@@ -69,45 +69,65 @@
       </div>
       <div class="terminal-body" id="term-lines" data-lines='[
         {"t":"$ cd ~/apps && ls", "c":"prompt", "pause":400},
-        {"t":"liriko/   listingflow/", "c":"dim", "fast":true, "pause":500},
-        {"t":"$ liriko → expo run:ios", "c":"prompt", "pause":420},
-        {"t":"building the UI... 95% done", "c":"dim", "fast":true, "pause":480},
-        {"t":"$ listingflow → swift build", "c":"prompt", "pause":420},
-        {"t":"compiling for macOS... 50%", "c":"dim", "fast":true, "pause":480},
-        {"t":"⠹ almost there, check back soon.", "c":"warn", "fast":true, "pause":650},
-        {"t":"✓ status: in development. no releases yet.", "c":"ok", "fast":true}
+        {"t":"liriko/   caloff/   listingflow/", "c":"dim", "fast":true, "pause":500},
+        {"t":"$ liriko → status", "c":"prompt", "pause":380},
+        {"t":"live on the App Store · v1.1.0", "c":"ok", "fast":true, "pause":420},
+        {"t":"$ listingflow → status", "c":"prompt", "pause":380},
+        {"t":"live on Gumroad · macOS 14+", "c":"ok", "fast":true, "pause":420},
+        {"t":"$ caloff → flutter build", "c":"prompt", "pause":380},
+        {"t":"on-device vision model... 70%", "c":"warn", "fast":true, "pause":620},
+        {"t":"✓ 3 apps. pick one above.", "c":"ok", "fast":true}
       ]'><span class="cursor" id="term-cursor"></span></div>
     </div>
 
     <div class="app-grid">
-      <div class="app-card" data-reveal>
+      <a href="/liriko/" class="app-card" data-reveal>
         <div class="app-head">
           <h3>📝 Liriko</h3>
           <span class="lang">Expo · iOS</span>
         </div>
-        <p>Rhyme faster. Write anywhere. An offline lyric notepad for songwriters, built for the way lyrics actually get written.</p>
-        <div class="progress"><i style="--w:95%"></i></div>
-        <div class="progress-label"><span>in development</span><span>~95%</span></div>
-      </div>
-      <div class="app-card" data-reveal style="--reveal-delay:.1s">
+        <p>Rhyme faster. Write anywhere. An offline lyric notepad for songwriters — English and Filipino rhymes, tempo, key and demo takes, all on the phone.</p>
+        <div class="app-status">
+          <span class="live">live on the App Store</span>
+          <span class="go">open site &rarr;</span>
+        </div>
+      </a>
+
+      <a href="/caloff/" class="app-card" data-reveal style="--reveal-delay:.1s">
+        <div class="app-head">
+          <h3>🍎 CalOff</h3>
+          <span class="lang">Flutter · iOS &amp; Android</span>
+        </div>
+        <p>Every calorie counted, nothing uploaded. Point the camera at a meal and a vision model on the phone works out the calories and macros — no account, no server.</p>
+        <div class="progress"><i style="--w:70%"></i></div>
+        <div class="progress-label"><span>in development</span><span>~70%</span></div>
+        <div class="app-status" style="margin-top:.7rem">
+          <span></span>
+          <span class="go">open site &rarr;</span>
+        </div>
+      </a>
+
+      <a href="/listingflow/" class="app-card" data-reveal style="--reveal-delay:.2s">
         <div class="app-head">
           <h3>🏠 ListingFlow</h3>
           <span class="lang">Swift · macOS</span>
         </div>
-        <p>A Mac app that streamlines real-estate media workflows. Born from editing hundreds of listing videos, now becoming software.</p>
-        <div class="progress"><i style="--w:50%"></i></div>
-        <div class="progress-label"><span>in development</span><span>~50%</span></div>
-      </div>
+        <p>Drop in a property shoot and it sequences the walkthrough, names every clip, and hands Final Cut or Premiere a finished timeline. Runs entirely on your Mac.</p>
+        <div class="app-status">
+          <span class="live">live on Gumroad</span>
+          <span class="go">open site &rarr;</span>
+        </div>
+      </a>
     </div>
 
     <div style="margin-top:3rem" data-reveal>
-      <p class="hero-sub" style="margin-bottom:1.25rem">Want to follow the build or beta test?</p>
+      <p class="hero-sub" style="margin-bottom:1.25rem">Want to follow the build, or test CalOff early?</p>
       <div class="hero-cta" style="margin-bottom:0">
         <a href="https://github.com/dustinejao" target="_blank" rel="noopener" class="btn btn-ghost">
           <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
           github.com/dustinejao
         </a>
-        <a href="mailto:dustinejao@gmail.com?subject=App%20beta%20testing" class="btn btn-pink">Get notified at launch</a>
+        <a href="mailto:dustinejao@gmail.com?subject=CalOff%20beta%20testing" class="btn btn-pink">Get on the CalOff beta</a>
       </div>
     </div>
   </section>

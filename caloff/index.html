@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ARTIFACT:BEGIN -->
+<title>CalOff</title>
+<link rel="canonical" href="https://www.dustinejao.com/caloff/">
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.dustinejao.com/caloff/">
+<meta property="og:title" content="CalOff — every calorie counted, nothing uploaded">
+<meta property="og:description" content="Offline-first AI calorie tracking. Point the camera at food, get calories and macros back — with no network round-trip for the scan.">
+<meta name="description" content="Offline-first AI calorie tracking. Point the camera at food, get calories and macros back — with no network round-trip for the scan.">
+<style>
+/* ---------------------------------------------------------------------------
+   CalOff — site tokens.
+
+   These are the app's own tokens, lifted from lib/core/theme.dart rather than
+   invented for the web. There is no brand accent: ink is pure black on light
+   and pure white on dark. Colour appears in exactly one place, the macro
+   split, because there it is encoding data.
+--------------------------------------------------------------------------- */
+:root {
+  --bg:        #F2F2F7;  /* systemGroupedBackground */
+  --card:      #FFFFFF;  /* secondarySystemGroupedBackground */
+  --fill:      #E5E5EA;  /* tertiarySystemFill */
+  --ink:       #000000;  /* label */
+  --ink-2:     #6C6C70;  /* secondaryLabel */
+  --ink-3:     #A1A1A6;  /* tertiaryLabel */
+  --rule:      #D1D1D6;  /* separator */
+  --ink-inv:   #FFFFFF;
+  --protein:   #FF2D55;  /* systemPink */
+  --carbs:     #FF9500;  /* systemOrange */
+  --fat:       #32ADE6;  /* systemCyan */
+  --shadow:    0 1px 3px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);
+
+  --measure: 34rem;
+  --page:    46rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:      #000000;  /* true black, so OLED pixels switch fully off */
+    --card:    #1C1C1E;
+    --fill:    #2C2C2E;
+    --ink:     #FFFFFF;
+    --ink-2:   #98989D;
+    --ink-3:   #6C6C70;
+    --rule:    #38383A;
+    --ink-inv: #000000;
+    --protein: #FF375F;
+    --carbs:   #FF9F0A;
+    --fat:     #64D2FF;
+    --shadow:  none;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:      #000000;
+  --card:    #1C1C1E;
+  --fill:    #2C2C2E;
+  --ink:     #FFFFFF;
+  --ink-2:   #98989D;
+  --ink-3:   #6C6C70;
+  --rule:    #38383A;
+  --ink-inv: #000000;
+  --protein: #FF375F;
+  --carbs:   #FF9F0A;
+  --fat:     #64D2FF;
+  --shadow:  none;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  /* No font-family is declared for the app on purpose — it resolves to San
+     Francisco on iOS and Roboto on Android rather than to something that looks
+     foreign on either. The site keeps that same discipline. */
+  font: 400 17px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* The logotype's idea, generalised: the load-bearing half of a phrase is set
+   solid, its qualifier light. It is the one typographic move the whole site
+   runs on, which is why no display face is loaded. */
+.solid { font-weight: 700; }
+.light { font-weight: 300; color: var(--ink-2); }
+
+a { color: inherit; }
+a:focus-visible, button:focus-visible, .btn:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --- Chrome ------------------------------------------------------------- */
+
+.bar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+  padding: 14px max(20px, 50% - var(--page) / 2);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid transparent;
+}
+.bar.is-stuck { border-bottom-color: var(--rule); }
+
+.mark {
+  font-size: 25px; letter-spacing: -.9px; line-height: 1;
+  text-decoration: none; white-space: nowrap;
+}
+.mark .light { color: color-mix(in srgb, var(--ink) 75%, transparent); }
+
+.bar nav { display: flex; gap: 4px; }
+.bar nav a {
+  font-size: 15px; font-weight: 500; color: var(--ink-2);
+  text-decoration: none; padding: 6px 10px; border-radius: 8px;
+  white-space: nowrap;
+}
+.bar nav a:hover { color: var(--ink); background: var(--fill); }
+.bar nav a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+
+main { padding: 0 20px 96px; }
+.wrap { max-width: var(--page); margin: 0 auto; }
+
+/* --- Hero --------------------------------------------------------------- */
+
+.hero {
+  display: grid; justify-items: center; text-align: center;
+  gap: 28px;
+  padding: 48px 0 8px;
+}
+
+.ring { width: min(260px, 62vw); height: min(260px, 62vw); display: block; }
+.ring .track  { fill: none; stroke: var(--rule); stroke-width: 9; }
+.ring .arc {
+  fill: none; stroke: var(--ink); stroke-width: 9; stroke-linecap: round;
+  /* r = 45.5 → circumference ≈ 285.9. Resting at 64% consumed. */
+  stroke-dasharray: 285.9;
+  stroke-dashoffset: 102.9;
+  transform: rotate(-90deg); transform-origin: 50% 50%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ring .arc { animation: sweep .9s cubic-bezier(.22,.61,.36,1) both; }
+  @keyframes sweep { from { stroke-dashoffset: 285.9; } }
+}
+.ring .figure {
+  fill: var(--ink); font-size: 22px; font-weight: 700; letter-spacing: -1px;
+  font-variant-numeric: tabular-nums; text-anchor: middle;
+}
+.ring .caption {
+  fill: var(--ink-2); font-size: 7px; font-weight: 500; text-anchor: middle;
+}
+
+h1 {
+  margin: 0; max-width: 15ch;
+  font-size: clamp(38px, 8.5vw, 60px);
+  line-height: 1.03; letter-spacing: -2px; text-wrap: balance;
+}
+.lede {
+  margin: 0; max-width: var(--measure);
+  font-size: 19px; line-height: 1.5; color: var(--ink-2); text-wrap: pretty;
+}
+
+.stores { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.btn {
+  display: inline-flex; flex-direction: column; align-items: flex-start;
+  gap: 1px; min-width: 200px;
+  padding: 11px 22px; border-radius: 12px;
+  background: var(--ink); color: var(--ink-inv);
+  text-decoration: none; line-height: 1.25;
+  transition: transform .12s ease, opacity .12s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); opacity: .85; }
+.btn small { font-size: 11px; font-weight: 400; opacity: .7; letter-spacing: .3px; }
+.btn span  { font-size: 17px; font-weight: 600; letter-spacing: -.3px; }
+.btn[aria-disabled="true"] {
+  background: var(--fill); color: var(--ink-2); cursor: default;
+}
+.btn[aria-disabled="true"]:hover { transform: none; }
+
+/* --- Numbers ------------------------------------------------------------ */
+
+/* Not a card grid: these are four figures with captions, separated by rules,
+   because a figure is all each one is. */
+.figures {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  margin: 64px 0 0; padding: 0; list-style: none;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.figures li {
+  padding: 22px 14px; text-align: center;
+  border-left: 1px solid var(--rule);
+}
+.figures li:first-child { border-left: 0; }
+.figures b {
+  display: block; font-size: clamp(24px, 5vw, 34px); font-weight: 700;
+  letter-spacing: -1.2px; font-variant-numeric: tabular-nums;
+}
+.figures span {
+  display: block; margin-top: 4px;
+  font-size: 12px; font-weight: 500; color: var(--ink-2);
+  letter-spacing: .1px; text-wrap: balance;
+}
+@media (max-width: 560px) {
+  .figures { grid-template-columns: repeat(2, 1fr); }
+  .figures li:nth-child(3) { border-left: 0; }
+  .figures li:nth-child(n+3) { border-top: 1px solid var(--rule); }
+}
+
+/* --- Sections ----------------------------------------------------------- */
+
+section[hidden] { display: none; }
+
+.block { margin-top: 72px; }
+.eyebrow {
+  margin: 0 0 20px;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.1px;
+  text-transform: uppercase; color: var(--ink-3);
+}
+h2 {
+  margin: 0 0 12px; font-size: 28px; line-height: 1.15;
+  letter-spacing: -.9px; font-weight: 700; text-wrap: balance;
+}
+h3 {
+  margin: 32px 0 8px; font-size: 17px; font-weight: 600;
+  letter-spacing: -.2px;
+}
+.doc p, .doc li { max-width: var(--measure); color: var(--ink-2); }
+.doc p { margin: 0 0 14px; }
+.doc ul { margin: 0 0 14px; padding-left: 20px; }
+.doc li { margin-bottom: 7px; }
+.doc strong { color: var(--ink); font-weight: 600; }
+.doc a { color: var(--ink); text-underline-offset: 3px; }
+
+.stamp {
+  display: inline-block; margin: 0 0 28px;
+  padding: 5px 11px; border-radius: 999px; background: var(--fill);
+  font-size: 12px; font-weight: 600; color: var(--ink-2);
+  letter-spacing: .2px; font-variant-numeric: tabular-nums;
+}
+
+/* Feature list: rules, not cards. Fill contrast alone separates a card, and
+   outlining as well is what makes a layout look busy. */
+.rows { margin: 0; padding: 0; list-style: none; }
+.rows li {
+  display: grid; grid-template-columns: 1fr; gap: 4px;
+  padding: 18px 0; border-top: 1px solid var(--rule);
+}
+.rows li:last-child { border-bottom: 1px solid var(--rule); }
+.rows dt, .rows b { font-weight: 600; letter-spacing: -.2px; }
+.rows p { margin: 0; font-size: 15px; color: var(--ink-2); max-width: var(--measure); }
+@media (min-width: 720px) {
+  .rows li { grid-template-columns: 13rem 1fr; gap: 24px; align-items: baseline; }
+}
+
+/* The one card on the site, and the one place colour appears — because the
+   macro split is a chart. */
+.macros {
+  margin-top: 28px; padding: 22px 24px 24px;
+  background: var(--card); border-radius: 16px; box-shadow: var(--shadow);
+}
+.macros h4 {
+  margin: 0 0 18px; font-size: 13px; font-weight: 600; color: var(--ink-2);
+  letter-spacing: .2px;
+}
+.macro { display: grid; gap: 6px; margin-bottom: 16px; }
+.macro:last-child { margin-bottom: 0; }
+.macro .row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 14px; font-variant-numeric: tabular-nums;
+}
+.macro .row b { font-weight: 600; letter-spacing: -.1px; }
+.macro .row span { color: var(--ink-2); font-weight: 500; }
+.macro .bar-track { height: 6px; border-radius: 3px; background: var(--fill); overflow: hidden; }
+.macro .bar-fill  { height: 100%; border-radius: 3px; }
+/* Colour rides the label and the bar, never a whole tile: washing the card in
+   the macro hue turns it into a muddy block against true black. */
+.macro.p .row b { color: var(--protein); }
+.macro.c .row b { color: var(--carbs); }
+.macro.f .row b { color: var(--fat); }
+.macro.p .bar-fill { background: var(--protein); }
+.macro.c .bar-fill { background: var(--carbs); }
+.macro.f .bar-fill { background: var(--fat); }
+
+/* --- Support ------------------------------------------------------------ */
+
+.contact {
+  margin-top: 28px; padding: 22px 24px;
+  background: var(--card); border-radius: 16px; box-shadow: var(--shadow);
+}
+.contact p { margin: 0 0 6px; color: var(--ink-2); font-size: 15px; }
+.contact a.email {
+  font-size: 21px; font-weight: 600; letter-spacing: -.4px;
+  color: var(--ink); text-decoration: none; word-break: break-all;
+}
+.contact a.email:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* --- Footer ------------------------------------------------------------- */
+
+footer {
+  margin-top: 88px; padding: 28px 20px 40px;
+  border-top: 1px solid var(--rule);
+}
+.foot {
+  max-width: var(--page); margin: 0 auto;
+  display: flex; flex-wrap: wrap; gap: 16px 28px;
+  align-items: center; justify-content: space-between;
+}
+.foot nav { display: flex; flex-wrap: wrap; gap: 18px; }
+.foot a { font-size: 14px; color: var(--ink-2); text-decoration: none; }
+.foot a:hover { color: var(--ink); }
+.foot small { font-size: 13px; color: var(--ink-3); }
+
+/* --- Added when the site moved to dustinejao.com/caloff ------------------ */
+.bar nav a.home { color: var(--ink-3); }
+@media (max-width: 30rem) { .bar nav a.home { display: none; } }
+
+.wip {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  margin: 0 0 1.25rem;
+  padding: .35em .85em;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: .8125rem;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+.wip .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--carbs);
+  box-shadow: 0 0 0 0 var(--carbs);
+  animation: wip-pulse 2s ease-out infinite;
+}
+@keyframes wip-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,149,0,.5); }
+  70%  { box-shadow: 0 0 0 7px rgba(255,149,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,149,0,0); }
+}
+@media (prefers-reduced-motion: reduce) { .wip .dot { animation: none; } }
+</style>
+<noscript><style>
+  section[hidden] { display: block !important; }
+  section + section { margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--rule); }
+</style></noscript>
+</head>
+<body>
+
+<header class="bar" id="bar">
+  <a class="mark" href="#home"><span class="solid">Cal</span><span class="light">Off</span><span class="solid">.</span></a>
+  <nav>
+    <a href="#privacy">Privacy</a>
+    <a href="#terms">Terms</a>
+    <a href="#support">Support</a>
+    <a href="/apps/" class="home">&larr; dustinejao.com</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ===================== HOME ===================== -->
+<section id="home" class="wrap">
+
+  <div class="hero">
+    <svg class="ring" viewBox="0 0 100 100" role="img"
+         aria-label="Calorie ring showing 742 kilocalories left of a 2,050 target">
+      <circle class="track" cx="50" cy="50" r="45.5"></circle>
+      <circle class="arc"   cx="50" cy="50" r="45.5"></circle>
+      <text class="figure"  x="50" y="52">742</text>
+      <text class="caption" x="50" y="61">kcal left</text>
+    </svg>
+
+    <p class="wip"><span class="dot"></span>In development &middot; ~70% complete</p>
+
+    <h1><span class="solid">Every calorie counted.</span>
+        <span class="light">Nothing uploaded.</span></h1>
+
+    <p class="lede">CalOff photographs your meal and works out the calories and
+    macros with a vision model that runs on the phone itself. No account, no
+    server, no signal.</p>
+
+    <div class="stores">
+      <a class="btn" id="btn-ios" href="#" data-store="ios">
+        <small>Download on the</small><span>App Store</span>
+      </a>
+      <a class="btn" id="btn-android" href="#" data-store="android">
+        <small>Get it on</small><span>Google Play</span>
+      </a>
+    </div>
+  </div>
+
+  <ul class="figures">
+    <li><b>0</b><span>accounts to create</span></li>
+    <li><b>0</b><span>network calls per scan</span></li>
+    <li><b>728<small style="font-size:.5em;font-weight:500"> MB</small></b><span>one-time model download</span></li>
+    <li><b>1</b><span>payment, then it's yours</span></li>
+  </ul>
+
+  <div class="block">
+    <p class="eyebrow">How it works</p>
+    <h2><span class="solid">Point the camera.</span> <span class="light">That's the whole flow.</span></h2>
+
+    <ul class="rows">
+      <li>
+        <b>Scan</b>
+        <p>A photo of the plate goes straight to a quantised vision model on
+        the device. The picture never leaves the phone, so there is nothing to
+        upload and nothing to wait for on bad signal.</p>
+      </li>
+      <li>
+        <b>Correct</b>
+        <p>The model's guess is a starting point, not a verdict. Rename the
+        dish and the calories follow the name through a local database of
+        1,065 foods — Filipino home cooking, the chains, and the Western shelf
+        — so the correction sticks and the food is one search away next
+        time.</p>
+      </li>
+      <li>
+        <b>A whole tray</b>
+        <p>A wider shot is read as what it is: rice, a viand and a drink come
+        back as three rows with their own portions, not one row named after
+        whichever dish the camera saw first.</p>
+      </li>
+      <li>
+        <b>Re-log</b>
+        <p>Yesterday's lunch goes back in the log at one tap, at the portion
+        you already reviewed. No inference, no second guess.</p>
+      </li>
+      <li>
+        <b>On the wrist</b>
+        <p>An Apple&nbsp;Watch and Wear&nbsp;OS app that shows the numbers and
+        nothing else, plus home-screen widgets, a Lock Screen complication and
+        a Wear tile.</p>
+      </li>
+    </ul>
+
+    <div class="macros" aria-label="Example macro split for a logged day">
+      <h4>Today's split — an example</h4>
+      <div class="macro p">
+        <div class="row"><b>Protein</b><span>118 / 154 g</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:77%"></div></div>
+      </div>
+      <div class="macro c">
+        <div class="row"><b>Carbs</b><span>134 / 179 g</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:75%"></div></div>
+      </div>
+      <div class="macro f">
+        <div class="row"><b>Fat</b><span>41 / 68 g</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <p class="eyebrow">Deliberately absent</p>
+    <h2><span class="solid">No feed, no badges,</span> <span class="light">no cloud fallback.</span></h2>
+    <div class="doc">
+      <p>There is no social feed, fasting timer, sleep tracker or workout log.
+      There is no account. There are no ads, no data sale, and no free tier
+      funded by either — CalOff is paid for by the people using it, which is
+      why it can afford to want nothing else from them. And there is no "just
+      this once" server call when a scan is hard — the moment that exists, the
+      one thing that makes CalOff different is gone.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== PRIVACY ===================== -->
+<section id="privacy" class="wrap doc" hidden>
+  <div class="block" style="margin-top:44px">
+    <p class="eyebrow">Legal</p>
+    <h2>Privacy Policy</h2>
+    <p class="stamp">Effective 3 September 2026</p>
+
+    <p><strong>CalOff does not collect your data, because it has nowhere to send
+    it.</strong> There is no CalOff account, no CalOff server and no CalOff
+    analytics. This policy explains what that means precisely, including the one
+    time the app uses the network.</p>
+
+    <h3>What stays on your device</h3>
+    <p>All of it. Specifically:</p>
+    <ul>
+      <li><strong>Meal photos.</strong> A photo you take or pick is analysed by
+      a model running on the phone and is not uploaded anywhere. CalOff does not
+      copy it into its own storage; it is read, analysed and released.</li>
+      <li><strong>Your food log</strong> — dish names, portions, calories,
+      macros and timestamps — is written to a database inside the app's private
+      storage on the device.</li>
+      <li><strong>Your profile</strong> — age, sex, height, weight, activity
+      level, goal and unit preference — which is used only to compute your
+      calorie and macro targets, on the device.</li>
+      <li><strong>Your weight history</strong>, if you record weigh-ins.</li>
+      <li><strong>Foods you save</strong> to the local food database.</li>
+    </ul>
+    <p>None of this is transmitted to us or to anyone else. We cannot read it,
+    and we could not produce it if we were asked to.</p>
+
+    <h3>The one network request</h3>
+    <p>Before the first scan, CalOff downloads the vision model it runs — a file
+    of roughly 728&nbsp;MB — from
+    <a href="https://huggingface.co" rel="noopener">Hugging Face</a>, a public
+    model host. It is a plain file download, started once and resumable.</p>
+    <p>That request necessarily reveals to Hugging Face what any file download
+    reveals: your IP address, the time of the request and which file you asked
+    for. CalOff attaches no identifier, no account and no information about you
+    to it. Hugging Face's handling of that request is governed by
+    <a href="https://huggingface.co/privacy" rel="noopener">their privacy
+    policy</a>. After the download completes, the app makes no further network
+    requests — scanning, nutrition lookup and search are entirely local, and
+    CalOff works with the device in airplane mode.</p>
+
+    <h3>What we do not do</h3>
+    <ul>
+      <li>No analytics or telemetry SDK of any kind.</li>
+      <li>No crash or performance reporting service.</li>
+      <li>No advertising, no advertising identifiers, no third-party trackers.</li>
+      <li>No sale or sharing of personal information — there is none to sell.</li>
+      <li>No cross-app or cross-site tracking, so CalOff never needs to ask for
+      tracking permission.</li>
+    </ul>
+
+    <h3>Permissions, and why</h3>
+    <ul>
+      <li><strong>Camera</strong> — to photograph a meal. The live preview runs
+      inside the app; frames are used for the scan and nothing else.</li>
+      <li><strong>Photo library</strong> — only when you choose to log a meal
+      you already photographed, and only for the image you pick.</li>
+      <li><strong>Internet</strong> (Android) — for the one model download
+      described above.</li>
+    </ul>
+    <p>You can refuse any of these. Refusing the camera or photo library means
+    you log meals by search or by hand; the rest of the app is unaffected.</p>
+
+    <h3>The watch and widget companions</h3>
+    <p>The Apple&nbsp;Watch and Wear&nbsp;OS apps, the home-screen widgets and
+    the Lock Screen complication display the same day's totals that the phone
+    app already holds. Those figures are passed from the phone to the watch over
+    the platform's own local pairing channel — Apple's Watch Connectivity or
+    Google's Wearable Data Layer — which is a direct link between your own two
+    devices. They travel no further, and no server of ours is involved.</p>
+
+    <h3>Children</h3>
+    <p>CalOff is not directed at children under 13, and we do not knowingly
+    collect information from them. Since the app collects nothing at all, there
+    is nothing for us to delete on request — but see the next section for how to
+    remove everything from the device.</p>
+
+    <h3>Deleting your data</h3>
+    <p>Two ways, both immediate and both complete:</p>
+    <ul>
+      <li><strong>Settings → Reset</strong> inside the app clears the food log,
+      profile and weight history.</li>
+      <li><strong>Delete the app.</strong> iOS and Android remove the app's
+      private storage with it. Nothing survives elsewhere, because nothing was
+      ever elsewhere.</li>
+    </ul>
+
+    <h3>Your rights</h3>
+    <p>Laws such as the GDPR, the UK GDPR, the CCPA/CPRA and the Philippine Data
+    Privacy Act give you rights of access, correction, deletion, portability and
+    objection over personal data a company holds about you. We hold none: CalOff
+    processes your information only on your own device, under your control. You
+    exercise every one of those rights directly, by opening, editing or deleting
+    the data in the app. If you would like this confirmed in writing for a
+    compliance review, write to us and we will confirm it.</p>
+
+    <h3>Changes</h3>
+    <p>If this policy changes, the revised version is posted on this page with a
+    new effective date. A change that would materially reduce the protection
+    described here would be announced in the app's release notes as well.</p>
+
+    <h3>Contact</h3>
+    <p>Questions about this policy: <a href="#support">get in touch</a>.</p>
+  </div>
+</section>
+
+<!-- ===================== TERMS ===================== -->
+<section id="terms" class="wrap doc" hidden>
+  <div class="block" style="margin-top:44px">
+    <p class="eyebrow">Legal</p>
+    <h2>Terms of Use</h2>
+    <p class="stamp">Effective 3 September 2026</p>
+
+    <p>These terms are the agreement between you and the developer of CalOff
+    ("we", "us") covering your use of the CalOff app and its watch and widget
+    companions. Installing or using the app means you accept them.</p>
+
+    <h3>1. Your licence</h3>
+    <p>We grant you a personal, non-exclusive, non-transferable licence to use
+    CalOff on devices you own or control, as permitted by the rules of the App
+    Store or Google Play. You may not resell, rent, sub-licence or redistribute
+    the app, or reverse-engineer, decompile or disassemble it except to the
+    extent that law expressly permits despite this restriction.</p>
+
+    <h3>2. CalOff is not medical advice</h3>
+    <p><strong>This is the important one.</strong> CalOff is a food diary and an
+    estimator. It is not a medical device, and nothing it shows is medical,
+    nutritional or clinical advice, diagnosis or treatment. Calorie and macro
+    targets are computed from a standard published formula (Mifflin&#8209;St
+    Jeor) applied to figures you enter; they are a general estimate and take no
+    account of your medical history, medication, pregnancy, an eating disorder
+    or any condition affecting your metabolism.</p>
+    <p>Talk to a qualified health professional before changing your diet, and do
+    not disregard professional advice because of something this app displayed.
+    If you are being treated for, or are at risk of, a disordered relationship
+    with food, please consult your clinician before using a calorie tracker at
+    all.</p>
+
+    <h3>3. Accuracy</h3>
+    <p>Estimates from a photograph are estimates. The model infers what a dish
+    is and how much of it is on the plate, and it will sometimes be wrong about
+    both — a hidden ingredient, an unusual recipe, an oil you cannot see, a bowl
+    deeper than it looks. The bundled food database is a curated set of common
+    foods, not a licensed nutritional authority. Treat every figure as a
+    starting point you correct, and never as a measurement. We make no warranty
+    that any number the app produces is accurate.</p>
+
+    <h3>4. Your data is yours, and it is your responsibility</h3>
+    <p>CalOff stores your log on your device and nowhere else, which is the
+    point of it. The consequence is that <strong>there is no backup</strong>: if
+    you delete the app, reset it, or lose or wipe the device, the log is gone and
+    we cannot restore it. Use your platform's device backup if you want that
+    history to survive.</p>
+
+    <h3>5. Purchase, and the store's rules</h3>
+    <p>CalOff is sold through the App Store and Google Play, as a monthly or
+    yearly subscription or as a one-time lifetime purchase. Subscriptions renew
+    automatically until you cancel, and you cancel them in your store account
+    rather than in the app; the lifetime purchase does not renew. Price,
+    payment, tax, refunds and regional availability are handled by those stores
+    under their own terms, not by us — a refund request goes to Apple or Google.
+    Your licence is tied to the store account you bought it with and to that
+    store's family-sharing and re-download rules, and "Restore purchase" in the
+    app is how you bring it back onto a new device.</p>
+
+    <h3>6. Acceptable use</h3>
+    <p>Do not use CalOff unlawfully, do not attempt to defeat its licensing, and
+    do not use it to build a competing product from its outputs. That is the
+    whole list.</p>
+
+    <h3>7. Third-party components</h3>
+    <p>CalOff runs an open-source vision model through an open-source inference
+    runtime, and downloads model weights from Hugging Face. Those components
+    carry their own licences, which continue to apply to them. We do not control
+    Hugging Face's service and are not responsible for its availability.</p>
+
+    <h3>8. Warranty and liability</h3>
+    <p>To the fullest extent the law allows, CalOff is provided "as is" and "as
+    available", without warranties of any kind, express or implied, including
+    merchantability, fitness for a particular purpose and non-infringement. To
+    the fullest extent the law allows, we are not liable for indirect,
+    incidental, special or consequential loss, or for lost data, arising from
+    your use of the app; and our total liability is limited to the amount you
+    paid for it.</p>
+    <p>Some jurisdictions do not allow the exclusion of certain warranties or
+    the limitation of certain liabilities. Where that is so, these exclusions
+    apply only as far as that jurisdiction permits, and your statutory consumer
+    rights are unaffected.</p>
+
+    <h3>9. Apple</h3>
+    <p>Where you obtained CalOff from the App Store: this agreement is between
+    you and us, not Apple, and Apple is not responsible for the app or its
+    content. Apple has no obligation to provide support for it. Apple and its
+    subsidiaries are third-party beneficiaries of this agreement and may enforce
+    it against you.</p>
+
+    <h3>10. Changes and termination</h3>
+    <p>We may update these terms; the current version always lives on this page
+    with its effective date, and continuing to use the app after a change means
+    you accept it. Your licence ends if you stop complying with these terms —
+    in which case, delete the app.</p>
+
+    <h3>11. Governing law</h3>
+    <p>These terms are governed by the laws of the Republic of the Philippines,
+    without regard to conflict-of-law rules, and the courts there have
+    jurisdiction — except where the mandatory consumer-protection law of your
+    own country of residence gives you a right to bring proceedings locally, in
+    which case that right stands.</p>
+
+    <h3>12. Contact</h3>
+    <p>Questions about these terms: <a href="#support">get in touch</a>.</p>
+  </div>
+</section>
+
+<!-- ===================== SUPPORT ===================== -->
+<section id="support" class="wrap doc" hidden>
+  <div class="block" style="margin-top:44px">
+    <p class="eyebrow">Help</p>
+    <h2><span class="solid">Support.</span> <span class="light">One person reads these.</span></h2>
+
+    <div class="contact">
+      <p>Email — a reply usually within two business days</p>
+      <a class="email" id="contact-email" href="#">support@caloff.app</a>
+    </div>
+
+    <p style="margin-top:14px">When something has gone wrong, the three things
+    that make it fixable are: your device model, the OS version, and what you
+    were doing at the moment it happened. A screenshot beats a description.</p>
+
+    <h3>The first scan is stuck downloading</h3>
+    <p>The model is a single 728&nbsp;MB download. If it stalls, it resumes
+    from where it stopped rather than starting again — reopen
+    <strong>Settings → Scanner</strong> and start it once more. On a metered connection, wait for
+    Wi-Fi: this is the only download CalOff will ever ask you for.</p>
+
+    <h3>The calories look wrong</h3>
+    <p>They probably are, and correcting them is part of the flow rather than a
+    workaround. Tap the dish name on the result screen and type what it actually
+    was; the nutrition follows the corrected name through the local food
+    database. Adjust the portion in grams if the size was misjudged. What you
+    save is what gets logged, and the food is searchable afterwards.</p>
+
+    <h3>Scanning is slow, or the app is warm</h3>
+    <p>Inference is real work being done on your phone rather than in a data
+    centre, so it costs battery and takes a few seconds. There is one model and
+    every phone runs the same one, so the answer does not change with the
+    hardware — only how long it takes. If it still struggles, log by search:
+    it is instant, and it is the same database.</p>
+
+    <h3>My watch shows nothing, or yesterday's numbers</h3>
+    <p>The watch app mirrors the phone; it never talks to a server. Open CalOff
+    on the phone once with both devices nearby and unlocked, and the watch and
+    tile catch up. Check that CalOff is installed on the watch, and on Android
+    that the phone and watch are paired in the Wear&nbsp;OS app.</p>
+
+    <h3>I switched phones and my log is gone</h3>
+    <p>The log lives only on the device, which is what keeps it private and also
+    means there is no cloud copy to restore. A full device backup — iCloud
+    device backup, or Google's backup on Android — carries it across; a fresh
+    install does not. We cannot recover a log that was not backed up.</p>
+
+    <h3>How do I delete everything?</h3>
+    <p><strong>Settings → Reset</strong> clears the log, profile and weight
+    history immediately. Deleting the app removes everything else with it. See
+    the <a href="#privacy">Privacy Policy</a> for what "everything" covers.</p>
+
+    <h3>Refunds</h3>
+    <p>Purchases are handled by the stores, so refunds go through them:
+    <a href="https://reportaproblem.apple.com" rel="noopener">reportaproblem.apple.com</a>
+    for the App Store, or Google Play's order history on Android. We cannot
+    issue one directly, but tell us what went wrong — that is how it gets
+    fixed for the next person.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="foot">
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#terms">Terms of Use</a>
+      <a href="#support">Support</a>
+      <a href="/apps/">&larr; dustinejao.com</a>
+    </nav>
+    <small>© 2026 CalOff. Made offline.</small>
+  </div>
+</footer>
+
+<script>
+/* ---------------------------------------------------------------------------
+   Store links.
+
+   Fill these in once the listings exist. Until then each button renders as a
+   plain "coming soon" chip rather than a link to a 404 — a dead store link on
+   a submission page is worse than an honest one.
+--------------------------------------------------------------------------- */
+const STORE = {
+  ios:     '',  // e.g. 'https://apps.apple.com/app/caloff/id0000000000'
+  android: '',  // e.g. 'https://play.google.com/store/apps/details?id=com.caloff.caloff'
+};
+
+/* The address printed on the support page and used for the mailto link. */
+const CONTACT_EMAIL = 'support@caloff.app';
+
+(function () {
+  'use strict';
+
+  // --- Store buttons ------------------------------------------------------
+  document.querySelectorAll('.btn[data-store]').forEach(function (btn) {
+    const href = STORE[btn.dataset.store];
+    if (href) {
+      btn.href = href;
+      btn.rel = 'noopener';
+    } else {
+      btn.removeAttribute('href');
+      btn.setAttribute('aria-disabled', 'true');
+      btn.querySelector('small').textContent = 'Coming soon to the';
+    }
+  });
+
+  // --- Contact ------------------------------------------------------------
+  const email = document.getElementById('contact-email');
+  email.textContent = CONTACT_EMAIL;
+  email.href = 'mailto:' + CONTACT_EMAIL + '?subject=' +
+    encodeURIComponent('CalOff support');
+
+  // --- Routing ------------------------------------------------------------
+  // Every section is in the document at all times, so a store reviewer or a
+  // crawler fetching /#privacy gets the policy text in the response body
+  // whether or not it runs this script.
+  const sections = Array.prototype.slice.call(
+    document.querySelectorAll('main > section'));
+  const navLinks = Array.prototype.slice.call(
+    document.querySelectorAll('.bar nav a, .foot nav a'));
+
+  function route(replace) {
+    const id = (location.hash || '#home').slice(1);
+    const target = document.getElementById(id) ? id : 'home';
+
+    sections.forEach(function (s) { s.hidden = s.id !== target; });
+    navLinks.forEach(function (a) {
+      if (a.getAttribute('href') === '#' + target) {
+        a.setAttribute('aria-current', 'page');
+      } else {
+        a.removeAttribute('aria-current');
+      }
+    });
+
+    const heading = document.querySelector('#' + target + ' h1, #' + target + ' h2');
+    document.title = target === 'home' || !heading
+      ? 'CalOff'
+      : heading.textContent.trim().replace(/\s+/g, ' ') + ' — CalOff';
+
+    if (!replace) window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  window.addEventListener('hashchange', function () { route(false); });
+  route(true);
+
+  // --- Bar hairline -------------------------------------------------------
+  // The rule under the bar appears only once content has scrolled beneath it,
+  // so the page opens without a line drawn across the top of nothing.
+  const bar = document.getElementById('bar');
+  const onScroll = function () {
+    bar.classList.toggle('is-stuck', window.scrollY > 4);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+<!-- ARTIFACT:END -->
+</body>
+</html>

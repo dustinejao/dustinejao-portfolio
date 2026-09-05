@@ -1257,3 +1257,56 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   [data-reveal] { opacity: 1; transform: none; }
   .folder .f-card { transform: translateZ(24px) translateY(var(--lift)) rotate(var(--tilt)); }
 }
+
+/* ---------- Apps index : cards are now doors ------------------
+   Each app has its own site under dustinejao.com now (/liriko/,
+   /caloff/, /listingflow/), so the card is a link rather than a
+   panel of text. Three of them, so the two-column grid becomes
+   auto-fit and the "in development" bar is only drawn for the one
+   app that is actually still in development.
+--------------------------------------------------------------- */
+.app-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+
+a.app-card {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+}
+a.app-card p { flex: 1; }
+a.app-card:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
+
+.app-card .app-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  color: var(--muted);
+}
+.app-card .app-status .live {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.app-card .app-status .live::before {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, .55);
+  animation: live-pulse 2.4s ease-out infinite;
+}
+@keyframes live-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, .55); }
+  70%  { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+.app-card .app-status .go {
+  color: var(--pink);
+  transition: transform .25s ease;
+}
+a.app-card:hover .app-status .go { transform: translateX(3px); }

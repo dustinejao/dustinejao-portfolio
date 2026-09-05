@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.google.com/search?q=https://www.dustinejao.com/sitemap.xml
+Sitemap: https://www.dustinejao.com/sitemap.xml
