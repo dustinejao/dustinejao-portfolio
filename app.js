@@ -39,35 +39,6 @@
     revealEls.forEach((el) => el.classList.add('in-view'));
   }
 
-  /* ---------- Hero folder: open + pointer parallax ---------------------- */
-  const folder = document.querySelector('.folder');
-  if (folder) {
-    requestAnimationFrame(() => {
-      setTimeout(() => folder.classList.add('loaded'), 250);
-    });
-
-    const scene = document.querySelector('.hero-scene');
-    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (scene && canHover && !reduceMotion) {
-      let raf = 0;
-      scene.addEventListener('pointermove', (e) => {
-        if (raf) return;
-        raf = requestAnimationFrame(() => {
-          raf = 0;
-          const r = scene.getBoundingClientRect();
-          const x = (e.clientX - r.left) / r.width - 0.5;
-          const y = (e.clientY - r.top) / r.height - 0.5;
-          folder.style.setProperty('--ry', (x * 10).toFixed(2) + 'deg');
-          folder.style.setProperty('--rx', (-y * 8).toFixed(2) + 'deg');
-        });
-      });
-      scene.addEventListener('pointerleave', () => {
-        folder.style.setProperty('--ry', '0deg');
-        folder.style.setProperty('--rx', '0deg');
-      });
-    }
-  }
-
   /* ---------- Active nav link (anchor sections on home) ----------------- */
   const anchorLinks = document.querySelectorAll('.nav-pill a[href^="#"]');
   if (anchorLinks.length && 'IntersectionObserver' in window) {
