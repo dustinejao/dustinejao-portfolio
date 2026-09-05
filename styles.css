@@ -98,42 +98,12 @@ h1, h2, h3 { line-height: 1.1; margin: 0 0 .5em; letter-spacing: -0.03em; font-w
 .container { width: min(1120px, 100% - 3rem); margin-inline: auto; }
 @media (max-width: 640px) { .container { width: min(1120px, 100% - 2.5rem); } }
 
-section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
-
-.section-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  font-family: var(--font-mono);
-  font-size: .75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  color: var(--pink);
-  background: var(--pink-soft);
-  border: 1px solid var(--pink-glow);
-  padding: .35rem .85rem;
-  border-radius: 999px;
-  margin-bottom: 1rem;
-}
-
-.section-title { font-size: clamp(1.9rem, 4.5vw, 3rem); }
-
-/* ---------- Header / nav ------------------------------------ */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  padding: calc(env(safe-area-inset-top, 0px) + 12px) clamp(1rem, 3vw, 1.75rem) 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: .75rem;
-}
+/* Tighter on desktop: the old rhythm put a screen of nothing between sections. */
+section { padding-block: clamp(3rem, 5vw, 4.25rem); }
 
 .logo {
-  width: 46px;
-  height: 46px;
+  width: 62px;
+  height: 62px;
   flex-shrink: 0;
   transition: transform .3s ease;
 }
@@ -334,16 +304,6 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
    wash is ~10% so the card still reads as paper; the ink is a darkened version
    of the same hue so the figure clears contrast on both themes.
 */
-.bt-status { --tint: #22c55e; --tint-ink: #15803d; }
-.bt-cred   { --tint: #f59e0b; --tint-ink: #a16207; }
-.bt-music  { --tint: #7c3aed; --tint-ink: #6d28d9; }
-.bt-apps,
-.bt-reel   { --tint: var(--pink); --tint-ink: var(--pink); }
-
-[data-theme="dark"] .bt-status { --tint-ink: #4ade80; }
-[data-theme="dark"] .bt-cred   { --tint-ink: #fbbf24; }
-[data-theme="dark"] .bt-music  { --tint-ink: #a78bfa; }
-[data-theme="dark"] .bt-apps   { --tint-ink: #ff4d9e; }
 
 .bt {
   position: relative;
@@ -354,11 +314,7 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   padding: 1.15rem 1.25rem;
   border-radius: var(--radius);
   background: var(--card);
-  background:
-    linear-gradient(147deg, color-mix(in srgb, var(--tint) 20%, transparent) 0%, color-mix(in srgb, var(--tint) 5%, transparent) 55%, transparent 78%),
-    var(--card);
   border: 1px solid var(--border);
-  border-color: color-mix(in srgb, var(--tint) 34%, var(--border));
   box-shadow: var(--shadow);
   color: inherit;
   text-decoration: none;
@@ -368,23 +324,32 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
 a.bt:hover {
   transform: translateY(-4px);
   border-color: var(--pink-glow);
-  border-color: color-mix(in srgb, var(--tint) 62%, transparent);
   box-shadow: var(--shadow-lift);
 }
 
-/* the hue as a chip, so the tile is scannable before a word is read */
-.bt-ico {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  margin-bottom: .1rem;
-  border-radius: 11px;
-  background: var(--tint);
-  color: #fff;
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--tint) 40%, transparent);
+/* Passport-style: where the work actually happens, as flags. */
+.bt-flags { display: flex; align-items: center; gap: .4rem; height: 38px; }
+.bt-flags img {
+  width: 26px;
+  height: 20px;
+  border-radius: 3px;
+  object-fit: cover;
+  box-shadow: 0 1px 4px rgba(17, 17, 20, .25);
 }
-.bt-ico svg { width: 19px; height: 19px; }
+.bt-plus { font-size: .85rem; font-weight: 700; color: var(--muted); margin-left: .1rem; }
+
+/* The school's own logotype, masked so it inverts with the theme. */
+.bt-wordmark {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  height: 15px;
+  margin-top: .7rem;
+  background-color: var(--muted);
+  opacity: .85;
+  -webkit-mask: url('/images/edu/csb-wordmark.png') left center / contain no-repeat;
+  mask: url('/images/edu/csb-wordmark.png') left center / contain no-repeat;
+}
 
 /*
    Where a tile points somewhere, it shows what is actually there: three album
@@ -419,7 +384,6 @@ a.bt:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
   font-weight: 800;
   letter-spacing: -0.045em;
   line-height: 1;
-  color: var(--tint-ink);
 }
 /* "Cum Laude" is words where the others are numerals, so it sets smaller. */
 .bt-cred .bt-figure { font-size: clamp(1.15rem, 2.2vw, 1.55rem); letter-spacing: -0.03em; }
@@ -436,7 +400,6 @@ a.bt:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
   gap: .5rem;
   font-size: .95rem;
   font-weight: 700;
-  color: var(--tint-ink);
 }
 .bt-dot {
   flex-shrink: 0;
@@ -444,7 +407,7 @@ a.bt:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--tint);
+  background: #22c55e;
   box-shadow: 0 0 0 0 rgba(34, 197, 94, .55);
   animation: live-pulse 2.4s ease-out infinite;
 }
@@ -462,14 +425,12 @@ a.bt:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
   height: 30px;
   border-radius: 50%;
   background: var(--bg-soft);
-  background: color-mix(in srgb, var(--tint) 15%, transparent);
   border: 1px solid var(--border);
-  border-color: color-mix(in srgb, var(--tint) 32%, transparent);
-  color: var(--tint-ink);
+  color: var(--muted);
   transition: background-color .3s ease, color .3s ease, transform .3s ease;
 }
 .bt-arrow svg { width: 15px; height: 15px; }
-a.bt:hover .bt-arrow { background: var(--tint); color: #fff; border-color: transparent; }
+a.bt:hover .bt-arrow { background: var(--pink); color: #fff; border-color: transparent; }
 
 /* the reel */
 .bt-reel {
@@ -494,26 +455,6 @@ a.bt-reel:hover img { transform: scale(1.04); }
   inset: 0;
   background: linear-gradient(180deg, rgba(17,17,20,.1) 0%, rgba(17,17,20,.12) 42%, rgba(17,17,20,.88) 100%);
 }
-.bt-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: .45em;
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  z-index: 2;
-  font-family: var(--font-mono);
-  font-size: .64rem;
-  font-weight: 650;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--pink);
-  padding: .35em 1em;
-  border-radius: 999px;
-  box-shadow: 0 4px 14px var(--pink-glow);
-}
-.bt-tag svg { width: 9px; height: 9px; }
 .bt-reel-foot {
   position: relative;
   z-index: 1;
@@ -550,8 +491,6 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
   .bt { min-height: 116px; padding: 1rem 1.1rem; gap: .35rem; }
   .bt-link { padding-right: 2.9rem; }
   /* keeps "Available for work" on one line beside its dot */
-  .bt-ico { width: 31px; height: 31px; border-radius: 9px; }
-  .bt-ico svg { width: 17px; height: 17px; }
   .bt-stack, .bt-stack img { height: 33px; }
   .bt-stack img { width: 33px; border-radius: 9px; }
   .bt-live { font-size: .84rem; }
@@ -638,20 +577,6 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
   font-weight: 600;
 }
 
-.chips { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: .45rem;
-  font-size: .82rem;
-  font-weight: 550;
-  padding: .45rem 1rem;
-  border-radius: 999px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-}
-
 /* ============================================================
    WORK : bento grid, video first
    ============================================================ */
@@ -712,30 +637,20 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
 .work-card:hover .work-arrow { background: var(--pink); color: #fff; transform: rotate(45deg); }
 .work-arrow svg { width: 16px; height: 16px; }
 
-.work-badge {
-  position: absolute;
-  top: .9rem;
-  left: .9rem;
-  z-index: 2;
-  font-family: var(--font-mono);
-  font-size: .66rem;
-  font-weight: 650;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--pink);
-  padding: .35em 1em;
-  border-radius: 999px;
-  box-shadow: 0 4px 14px var(--pink-glow);
-}
-
 /* bento spans: video is the star */
 .wc-video   { grid-column: span 6; }
 .wc-audio, .wc-graphic { grid-column: span 3; }
 .wc-uiux    { grid-column: span 4; }
 .wc-all     { grid-column: span 2; }
 
-.wc-video .thumb { aspect-ratio: 16 / 7.4; }
+/*
+   The timeline is the point, so it is not cropped: the frame takes the image's
+   own ratio and the whole edit reads start to end. A cover-crop cut the first
+   and last clips off, which is the opposite of what a showreel still is for.
+*/
+.wc-video .thumb { aspect-ratio: auto; }
+.wc-video .thumb img { height: auto; object-fit: fill; }
+.wc-video:hover .thumb img { transform: none; }
 
 /*
    Tool marks instead of a stock photo.
@@ -773,21 +688,6 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
 .tools .tool:nth-child(6) { transition-delay: .2s; }
 .strip-wide .tool { width: 34px; height: 34px; }
 
-/* the equalizer, kept from the old music doorway card */
-.eq { display: flex; align-items: flex-end; gap: 4px; height: 30px; }
-.eq span {
-  width: 5px;
-  border-radius: 3px;
-  background: linear-gradient(180deg, #ff58ab, var(--pink));
-  animation: eq 1.1s ease-in-out infinite alternate;
-  animation-delay: calc(var(--i) * 0.13s);
-  height: 30%;
-}
-@keyframes eq {
-  from { height: 20%; }
-  to   { height: 100%; }
-}
-
 /*
    Sub-categories.
 
@@ -823,19 +723,11 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
   transition: background-color .25s ease, border-color .25s ease, color .25s ease;
 }
 .sub-chip svg { width: 13px; height: 13px; }
-.sub-chip.is-video { border-color: var(--pink-glow); }
-.sub-chip.is-video:hover { background: var(--pink); border-color: transparent; color: #fff; }
-.sub-chip.is-both {
-  border-color: transparent;
-  background:
-    linear-gradient(var(--card), var(--card)) padding-box,
-    linear-gradient(100deg, var(--pink), #29abe2) border-box;
-  border: 1px solid transparent;
-}
-.sub-chip.is-both:hover {
-  background: linear-gradient(100deg, var(--pink), #29abe2);
-  color: #fff;
-}
+a.sub-chip:hover { background: var(--pink); border-color: transparent; color: #fff; }
+/* Podcast belongs to video and audio both. Appearing on both cards, in the
+   same plain chip as everything else, is enough to say so. */
+/* A tool, not a folder, so it is not a link. */
+.sub-chip.is-tool { color: var(--muted); cursor: default; }
 
 @media (max-width: 900px) {
   .wc-video { grid-column: span 6; }
@@ -852,36 +744,30 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
    EXPERIENCE : timeline
    ============================================================ */
 .timeline {
-  position: relative;
-  max-width: 760px;
-  margin-top: 2.5rem;
-  padding-left: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 3rem;
+  margin-top: 2rem;
 }
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 6px;
-  top: 6px;
-  bottom: 6px;
-  width: 2px;
-  border-radius: 2px;
-  background: linear-gradient(180deg, var(--pink), var(--border));
-}
+@media (max-width: 760px) { .timeline { grid-template-columns: 1fr; gap: 1.25rem; } }
 
-.tl-item { position: relative; padding-bottom: 2.25rem; }
-.tl-item:last-child { padding-bottom: 0; }
+.tl-item {
+  position: relative;
+  padding: 0 0 0 1.25rem;
+  border-left: 2px solid var(--border);
+}
 .tl-item::before {
   content: "";
   position: absolute;
-  left: -2rem;
-  top: .45rem;
-  width: 14px;
-  height: 14px;
+  left: -6px;
+  top: .3rem;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: var(--bg);
-  border: 3px solid var(--pink);
-  box-shadow: 0 0 0 4px var(--pink-soft);
+  background: var(--pink);
 }
+/* The current role is the only one that needs to stand out. */
+.tl-item:first-child { border-left-color: var(--pink-glow); }
 
 .tl-date {
   font-family: var(--font-mono);
@@ -891,10 +777,10 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
   text-transform: uppercase;
   color: var(--pink);
 }
-.tl-item h3 { font-size: 1.12rem; margin: .3rem 0 .1rem; letter-spacing: -0.01em; }
-.tl-org { font-weight: 550; font-size: .92rem; }
+.tl-item h3 { font-size: 1.02rem; margin: .25rem 0 .1rem; letter-spacing: -0.01em; }
+.tl-org { font-weight: 550; font-size: .88rem; }
 .tl-org .dot { color: var(--muted); font-weight: 400; }
-.tl-item p { margin: .4rem 0 0; font-size: .9rem; color: var(--muted); }
+.tl-item p { margin: .35rem 0 0; font-size: .86rem; color: var(--muted); }
 
 .tl-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .65rem; }
 .tl-tags span {
@@ -915,7 +801,7 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
-  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
   position: relative;
   overflow: hidden;
 }
@@ -926,15 +812,15 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
   background: radial-gradient(480px 240px at 50% -20%, var(--pink-soft), transparent 70%);
   pointer-events: none;
 }
-.contact-card h2 { font-size: clamp(2rem, 5vw, 3.2rem); }
-.contact-card > p { color: var(--muted); max-width: 32em; margin: 0 auto 2rem; }
+.contact-card h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: .6rem; }
+.contact-card > p { color: var(--muted); max-width: 30em; margin: 0 auto 1.5rem; font-size: .95rem; }
 
 .socials {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: .8rem;
-  margin-top: 2rem;
+  gap: .6rem;
+  margin-top: 1.5rem;
 }
 .social-btn {
   width: 48px;
@@ -1361,7 +1247,7 @@ a.app-card:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; 
   content: "";
   width: 7px; height: 7px;
   border-radius: 50%;
-  background: var(--tint);
+  background: #22c55e;
   box-shadow: 0 0 0 0 rgba(34, 197, 94, .55);
   animation: live-pulse 2.4s ease-out infinite;
 }
