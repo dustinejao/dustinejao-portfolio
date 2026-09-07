@@ -216,7 +216,9 @@ h2.section-title {
   margin-top: 2rem; display: flex; flex-wrap: wrap;
   align-items: center; gap: .75rem;
 }
-.hero .fineprint { margin-top: 2rem; font-size: .875rem; color: var(--text-tertiary); }
+.hero .fineprint { margin-top: 2rem; font-size: .875rem; line-height: 1.7; color: var(--text-tertiary); }
+/* The Android line, said quietly: it is a promise, not a download. */
+.hero .fineprint .soon { color: var(--accent-light); }
 
 /* The rhyme washes, straight out of the app's own theme/colors.ts. */
 .rhyme-1 { background: rgba(41, 171, 226, .32); }
