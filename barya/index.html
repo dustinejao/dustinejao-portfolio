@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Barya: two taps and it is logged.</title>
+<meta name="description" content="An offline expense tracker. Type the amount on the app's own keypad, tap what it was for, and it is on disk. Scan a receipt or a bank statement. No account, no server, nothing leaves the phone.">
+<meta name="theme-color" content="#000000">
+<meta name="keywords" content="expense tracker, offline budgeting app, Philippines budget app, receipt scanner, statement import, no account expense app, peso budget tracker, Barya">
+<meta name="author" content="Dustine Jao">
+<link rel="canonical" href="https://www.dustinejao.com/barya/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barya">
+<meta property="og:url" content="https://www.dustinejao.com/barya/">
+<meta property="og:title" content="Barya: two taps and it is logged.">
+<meta property="og:description" content="An offline expense tracker. Amount, then category, and it is on disk. Scan a receipt or a statement. Nothing leaves the phone.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/images/apps/barya.png">
+<link rel="apple-touch-icon" href="/images/apps/barya.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+/* ---------------------------------------------------------------------------
+   Barya site tokens.
+
+   Lifted from src/constants/theme.ts rather than invented for the web, so the
+   page and the app are the same object. Two grounds, pure black and pure
+   white. Structure is 1px hairlines and nothing else: no fills, no shadows,
+   no accent colour, no radii. An editorial serif carries every number a
+   person reads as money; the platform grotesque carries every label.
+--------------------------------------------------------------------------- */
+:root {
+  --bg:       #FFFFFF;
+  --ink:      #000000;
+  --muted:    #666666;
+  --faint:    #949494;
+  --hairline: #E5E5E5;
+  --track:    #DCDCDC;
+
+  --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --sans:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --page: 62rem;
+  --rule: 1px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:       #000000;
+    --ink:      #FFFFFF;
+    --muted:    #9C9C9C;
+    --faint:    #6B6B6B;
+    --hairline: #1A1A1A;
+    --track:    #262626;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { width: 100%; max-width: var(--page); margin: 0 auto; padding: 0 1.25rem; }
+
+a { color: inherit; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip:focus {
+  position: fixed; top: .75rem; left: .75rem; width: auto; height: auto;
+  clip: auto; padding: .6rem .9rem; background: var(--ink); color: var(--bg); z-index: 10;
+}
+
+/* Micro-labels. Letter-spaced so they read as rules, not as words. */
+.label {
+  font-size: .625rem;
+  letter-spacing: .14em;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------------------------------- head --------------------------------- */
+
+.site-header { border-bottom: var(--rule) solid var(--hairline); }
+.site-header .inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  width: 100%; max-width: var(--page); margin: 0 auto; padding: .9rem 1.25rem;
+}
+.brand { display: flex; align-items: center; gap: .5rem; text-decoration: none; }
+.brand .wordmark { font-family: var(--serif); font-weight: 500; font-size: 1.35rem; }
+.mark { display: block; }
+.nav { display: flex; align-items: center; gap: 1.25rem; }
+.text-link {
+  font-size: .625rem; letter-spacing: .14em; font-weight: 500; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+}
+.text-link:hover { color: var(--ink); }
+
+/* ---------------------------------- hero --------------------------------- */
+
+.hero { padding: 4rem 1.25rem 3rem; }
+.hero h1 {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(2.75rem, 9vw, 5rem); line-height: 1.02;
+  margin: .75rem 0 0; letter-spacing: -.015em;
+}
+.lede {
+  max-width: 34rem; margin: 1.25rem 0 0;
+  font-size: 1.0625rem; color: var(--muted);
+}
+
+/* The amount, set the way the app sets it: small grotesque symbol, big serif
+   numerals, aligned on the baseline. */
+.amount { display: flex; align-items: baseline; gap: .2rem; }
+.amount .sym { font-size: .42em; color: var(--muted); }
+.amount .num {
+  font-family: var(--serif); font-weight: 600;
+  font-variant-numeric: tabular-nums; letter-spacing: -.01em;
+}
+
+/* Budget dots, the app's own indicator. */
+.dots { display: flex; align-items: center; gap: .75rem; margin-top: .55rem; }
+.dots .label { width: 3.2rem; flex: none; }
+.dots .strip { display: flex; gap: .3rem; flex-wrap: nowrap; }
+.dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--track); }
+.dots i.on { background: var(--ink); }
+
+.status {
+  display: inline-flex; align-items: center; gap: .5rem;
+  margin-top: 2rem; padding-bottom: .2rem;
+  border-bottom: var(--rule) solid var(--ink);
+}
+.status .pip { width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
+
+/* --------------------------------- device -------------------------------- */
+
+.showcase {
+  display: grid; grid-template-columns: 1fr; gap: 2.5rem;
+  padding: 3rem 1.25rem; border-top: var(--rule) solid var(--hairline);
+}
+@media (min-width: 56rem) {
+  .showcase { grid-template-columns: 1fr auto; align-items: center; gap: 4rem; }
+}
+
+/* A miniature of the entry screen, built from the same rules as the app: a
+   hairline grid, inverted press states, and no fills anywhere. */
+.phone {
+  width: 100%; max-width: 20rem; margin: 0 auto;
+  border: var(--rule) solid var(--hairline);
+}
+.phone .top { padding: 1.1rem 1rem 1.35rem; }
+.phone .total { margin-top: .3rem; }
+.phone .total .num { font-size: 2.9rem; }
+.phone .caption { font-size: .75rem; color: var(--muted); margin-top: .5rem; }
+.phone .cats, .phone .keys { display: grid; border-top: var(--rule) solid var(--hairline); }
+.phone .cats { grid-template-columns: repeat(3, 1fr); }
+.phone .keys { grid-template-columns: repeat(4, 1fr); }
+.phone .cats span, .phone .keys span {
+  display: flex; align-items: center; justify-content: center;
+  padding: .8rem .2rem;
+}
+.phone .cats span + span, .phone .keys span:not(:nth-child(4n + 1)) {
+  border-left: var(--rule) solid var(--hairline);
+}
+.phone .keys span:nth-child(n + 5) { border-top: var(--rule) solid var(--hairline); }
+.phone .cats span {
+  font-size: .625rem; letter-spacing: .14em; font-weight: 500; color: var(--ink);
+}
+.phone .cats span u { text-decoration: none; border-bottom: var(--rule) solid var(--ink); padding-bottom: 2px; }
+.phone .keys span { font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+/* One key inverted, the way the app shows a press. */
+.phone .keys span.press { background: var(--ink); color: var(--bg); }
+
+/* --------------------------------- points -------------------------------- */
+
+.points { border-top: var(--rule) solid var(--hairline); }
+.points .grid { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 44rem) { .points .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 68rem) { .points .grid { grid-template-columns: repeat(4, 1fr); } }
+
+.point { padding: 2rem 1.25rem; border-top: var(--rule) solid var(--hairline); }
+.point:first-child { border-top: 0; }
+@media (min-width: 44rem) {
+  .point { border-top: 0; border-left: var(--rule) solid var(--hairline); }
+  .point:nth-child(odd) { border-left: 0; }
+  .point:nth-child(n + 3) { border-top: var(--rule) solid var(--hairline); }
+}
+@media (min-width: 68rem) {
+  .point { border-left: var(--rule) solid var(--hairline); border-top: 0; }
+  .point:first-child { border-left: 0; }
+  .point:nth-child(odd) { border-left: var(--rule) solid var(--hairline); }
+  .point:nth-child(n + 3) { border-top: 0; }
+}
+.point h2 { font-family: var(--serif); font-weight: 600; font-size: 1.3rem; margin: .55rem 0 .5rem; }
+.point p { margin: 0; color: var(--muted); font-size: .9375rem; }
+
+/* --------------------------------- detail -------------------------------- */
+
+.detail { border-top: var(--rule) solid var(--hairline); padding: 3rem 1.25rem; }
+.detail h2 {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem); margin: .5rem 0 1.5rem; letter-spacing: -.01em;
+}
+.rows { border-top: var(--rule) solid var(--hairline); }
+.row {
+  display: grid; grid-template-columns: 1fr; gap: .35rem;
+  padding: 1.1rem 0; border-bottom: var(--rule) solid var(--hairline);
+}
+@media (min-width: 44rem) {
+  .row { grid-template-columns: 12rem 1fr; gap: 2rem; align-items: baseline; }
+}
+.row p { margin: 0; color: var(--muted); font-size: .9375rem; }
+
+.note { margin: 2rem 0 0; color: var(--faint); font-size: .8125rem; max-width: 34rem; }
+
+/* --------------------------------- footer -------------------------------- */
+
+.site-footer {
+  border-top: var(--rule) solid var(--hairline);
+  padding: 2rem 1.25rem 3rem; text-align: center;
+}
+.footer-links { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+.fine { color: var(--faint); font-size: .8125rem; margin: 1.25rem 0 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  a, .text-link { transition: color .18s ease; }
+}
+</style>
+</head>
+<body>
+<a href="#main" class="sr-only skip">Skip to content</a>
+
+<header class="site-header">
+  <div class="inner">
+    <a href="/barya/" class="brand" aria-label="Barya, home">
+      <svg class="mark" width="22" height="22" viewBox="0 0 100 100" role="img" aria-hidden="true">
+        <circle cx="62" cy="38" r="26" fill="currentColor"/>
+        <circle cx="38" cy="62" r="32" fill="var(--bg)"/>
+        <circle cx="38" cy="62" r="26" fill="currentColor"/>
+      </svg>
+      <span class="wordmark">barya</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/apps/" class="text-link">&larr; dustinejao.com</a>
+      <a href="mailto:dustinejao@gmail.com?subject=Barya%20early%20testing" class="text-link">Test it early</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero container">
+    <span class="label">Expo &middot; iOS, iPad &amp; Android</span>
+    <h1>Two taps<br>and it is logged.</h1>
+    <p class="lede">
+      Barya is loose change. Type the amount on the app's own keypad, tap what it
+      was for, and the expense is on disk. No save button, no form, no keyboard
+      sliding up, and nothing that ever leaves the phone.
+    </p>
+    <div class="status">
+      <span class="pip" aria-hidden="true"></span>
+      <span class="label" style="color:var(--ink)">In development</span>
+    </div>
+  </section>
+
+  <section class="showcase container">
+    <div>
+      <span class="label">What you see when you open it</span>
+      <h2 style="font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,4vw,2.2rem);margin:.6rem 0 1rem;letter-spacing:-.01em">
+        The whole app is one screen.
+      </h2>
+      <p style="margin:0;color:var(--muted);max-width:30rem">
+        What has gone today, how much of the budget that is, the number being
+        typed, and the things it could have been. Everything else in Barya is
+        somewhere you go on purpose.
+      </p>
+      <p style="margin:1rem 0 0;color:var(--muted);max-width:30rem">
+        The dots are the budget: filled is spent, empty is what is left. Top row
+        today, bottom row this month, readable without a single numeral.
+      </p>
+    </div>
+
+    <!-- A miniature of the entry screen, not an illustration of it. -->
+    <div class="phone" role="img" aria-label="The Barya entry screen: 257 pesos spent today, budget dots, category row and keypad.">
+      <div class="top">
+        <span class="label">Spent today</span>
+        <div class="amount total"><span class="sym">&#8369;</span><span class="num">257.00</span></div>
+        <p class="caption">&#8369;1,243 left today &middot; &#8369;29,743 this month</p>
+        <div class="dots">
+          <span class="label">Today</span>
+          <span class="strip"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+        </div>
+        <div class="dots">
+          <span class="label">Month</span>
+          <span class="strip"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+        </div>
+      </div>
+      <div class="cats">
+        <span><u>MEALS</u></span><span><u>TRANSIT</u></span><span><u>COFFEE</u></span>
+      </div>
+      <div class="keys">
+        <span>7</span><span>8</span><span>9</span><span>&divide;</span>
+        <span>4</span><span class="press">5</span><span>6</span><span>&times;</span>
+        <span>1</span><span>2</span><span>3</span><span>&minus;</span>
+        <span>.</span><span>0</span><span>C</span><span>+</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="points">
+    <div class="container" style="padding:0">
+      <div class="grid">
+        <article class="point">
+          <span class="label">Entry</span>
+          <h2>A keypad, not a form.</h2>
+          <p>
+            The keys are always on screen, so there is no box to tap first and
+            nothing reflows mid-entry. It does the sum too: split a bill as
+            1200 &divide; 4 and settle the answer.
+          </p>
+        </article>
+        <article class="point">
+          <span class="label">Receipts</span>
+          <h2>Point it at the total.</h2>
+          <p>
+            The camera reads the amount using the recogniser already on your
+            phone. It knows to ignore the cash you handed over and the change
+            you got back, which are usually the biggest numbers on the slip.
+          </p>
+        </article>
+        <article class="point">
+          <span class="label">Statements</span>
+          <h2>A month in one go.</h2>
+          <p>
+            Import a bank or card statement as a PDF, typed or scanned. Every
+            transaction it finds is listed for you to check, and only the ones
+            you keep ticked are written.
+          </p>
+        </article>
+        <article class="point">
+          <span class="label">Privacy</span>
+          <h2>There is no server.</h2>
+          <p>
+            No account, no sign-in, no analytics, no network calls anywhere in
+            the code. The ledger is encrypted on the phone with a key held in
+            the Keychain or the Android Keystore.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail container">
+    <span class="label">Under it</span>
+    <h2>Built to be boring in the right places.</h2>
+
+    <div class="rows">
+      <div class="row">
+        <span class="label" style="color:var(--ink)">Offline first</span>
+        <p>Every read and write is synchronous and local, so an expense is saved before your finger leaves the glass. It works in airplane mode because there is nothing for it to reach.</p>
+      </div>
+      <div class="row">
+        <span class="label" style="color:var(--ink)">Your categories</span>
+        <p>Start with five, rename the list to whatever you actually spend on, and put your favourites first. Make a new one from the entry screen and it logs to it in the same tap.</p>
+      </div>
+      <div class="row">
+        <span class="label" style="color:var(--ink)">Budgets that remember</span>
+        <p>Change this month's budget and last month keeps its own. Budgets are a history, not a number, so the ledger never rewrites whether a past month was over or under.</p>
+      </div>
+      <div class="row">
+        <span class="label" style="color:var(--ink)">Yours to take</span>
+        <p>Export to CSV or JSON whenever you like. A backup rides along with your iCloud or Google account, so a new phone picks up where the old one left off.</p>
+      </div>
+      <div class="row">
+        <span class="label" style="color:var(--ink)">Readable</span>
+        <p>Four text sizes, three faces for the numbers, true black on OLED, and bold that follows your phone's own accessibility setting instead of adding another switch.</p>
+      </div>
+    </div>
+
+    <p class="note">
+      Barya is still being built. It runs on iPhone, iPad and Android today; the
+      store listings are not up yet. If you want it on your phone before then,
+      say so and I will send it over.
+    </p>
+
+    <p style="margin:1.5rem 0 0">
+      <a href="mailto:dustinejao@gmail.com?subject=Barya%20early%20testing" class="label" style="color:var(--ink);border-bottom:var(--rule) solid var(--ink);padding-bottom:3px;text-decoration:none">
+        Get on the Barya beta
+      </a>
+    </p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="/" class="text-link">Home</a>
+    <a href="/music/" class="text-link">Music</a>
+    <a href="/apps/" class="text-link">Apps</a>
+    <a href="/#contact" class="text-link">Contact</a>
+  </div>
+  <p class="fine">&copy; <span id="year">2026</span> Dustine Jao. All Rights Reserved.</p>
+  <p class="fine">Designed &amp; coded from scratch by Dustine Jao &middot; Manila, PH</p>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

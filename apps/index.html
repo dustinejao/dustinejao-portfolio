@@ -25,13 +25,13 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.dustinejao.com/apps/">
 <meta property="og:title" content="Built by DJ | Apps by Dustine Jao">
-<meta property="og:description" content="Liriko, ListingFlow and CalOff: built, shipped and still shipping.">
+<meta property="og:description" content="Liriko, ListingFlow, CalOff and Barya: built, shipped and still shipping.">
 <meta property="og:image" content="https://dustinejao.com/images/og-image.png">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/styles.css">
 </head>
@@ -40,7 +40,7 @@
 
 <header class="site-header">
   <a href="/" class="logo" aria-label="Dustine Jao, home">
-    <img src="/images/logo.svg" alt="Dustine Jao logo" width="46" height="46">
+    <img src="/images/logo.svg" alt="Dustine Jao logo" width="46" height="46" decoding="async">
   </a>
   <nav class="nav-pill" aria-label="Main navigation">
     <span class="nav-glide" aria-hidden="true"></span>
@@ -62,17 +62,13 @@
 
 <main>
   <section class="apps-hero container">
-    <a href="/" class="crumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Back to portfolio</a>
-    <div>
-      <span class="status-badge"><span class="pulse"></span> 2 shipped &middot; 1 in progress</span>
-    </div>
     <h1>Built by <span class="accent">DJ.</span></h1>
-    <p class="hero-sub">Three apps, each with its own site right here. Two are out in the world; one is still in development.</p>
+    <p class="hero-sub">Four apps, each with its own site right here. Two are out in the world; two are still being built.</p>
 
     <div class="app-grid">
       <a href="/liriko/" class="app-card" data-reveal>
         <div class="app-head">
-          <img class="app-icon" src="/images/apps/liriko.png" alt="Liriko app icon" width="48" height="48" loading="lazy">
+          <img class="app-icon" src="/images/apps/liriko.webp" alt="Liriko app icon" width="48" height="48" loading="lazy" decoding="async">
           <div class="app-name">
             <h3>Liriko</h3>
             <span class="lang">Expo &middot; iOS &amp; Android</span>
@@ -87,7 +83,7 @@
 
       <a href="/caloff/" class="app-card" data-reveal style="--reveal-delay:.1s">
         <div class="app-head">
-          <img class="app-icon" src="/images/apps/caloff.png" alt="CalOff app icon" width="48" height="48" loading="lazy">
+          <img class="app-icon" src="/images/apps/caloff.webp" alt="CalOff app icon" width="48" height="48" loading="lazy" decoding="async">
           <div class="app-name">
             <h3>CalOff</h3>
             <span class="lang">Flutter &middot; iOS &amp; Android</span>
@@ -102,9 +98,26 @@
         </div>
       </a>
 
-      <a href="/listingflow/" class="app-card" data-reveal style="--reveal-delay:.2s">
+      <a href="/barya/" class="app-card" data-reveal style="--reveal-delay:.2s">
         <div class="app-head">
-          <img class="app-icon" src="/images/apps/listingflow.png" alt="ListingFlow app icon" width="48" height="48" loading="lazy">
+          <img class="app-icon" src="/images/apps/barya.webp" alt="Barya app icon" width="48" height="48" loading="lazy" decoding="async">
+          <div class="app-name">
+            <h3>Barya</h3>
+            <span class="lang">Expo &middot; iOS &amp; Android</span>
+          </div>
+        </div>
+        <p>Two taps and the expense is logged. Type the amount on the app's own keypad, tap what it was for, and it is on disk. Scan a receipt or a bank statement to fill it in. No account, no server, nothing leaves the phone.</p>
+        <div class="progress"><i style="--w:85%"></i></div>
+        <div class="progress-label"><span>In development</span><span>~85%</span></div>
+        <div class="app-status" style="margin-top:.7rem">
+          <span></span>
+          <span class="go">Open site &rarr;</span>
+        </div>
+      </a>
+
+      <a href="/listingflow/" class="app-card" data-reveal style="--reveal-delay:.3s">
+        <div class="app-head">
+          <img class="app-icon" src="/images/apps/listingflow.webp" alt="ListingFlow app icon" width="48" height="48" loading="lazy" decoding="async">
           <div class="app-name">
             <h3>ListingFlow</h3>
             <span class="lang">Swift &middot; macOS</span>

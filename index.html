@@ -33,7 +33,8 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="/images/video.webp" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/styles.css">
 
@@ -61,7 +62,7 @@
 
 <header class="site-header">
   <a href="/" class="logo" aria-label="Dustine Jao, home">
-    <img src="/images/logo.svg" alt="Dustine Jao logo" width="62" height="62">
+    <img src="/images/logo.svg" alt="Dustine Jao logo" width="62" height="62" decoding="async">
   </a>
   <nav class="nav-pill" aria-label="Main navigation">
     <span class="nav-glide" aria-hidden="true"></span>
@@ -106,7 +107,7 @@
     -->
     <div class="bento">
       <a href="https://drive.google.com/drive/folders/1-B7w20bdZBiH6UdLjG9bnkEr2qlXZFrq?usp=share_link" target="_blank" rel="noopener" class="bt bt-reel">
-        <img src="/images/video.jpg" alt="Frame from a recent video edit" width="800" height="420" fetchpriority="high">
+        <img src="/images/video.webp" alt="Frame from a recent video edit" width="800" height="420" fetchpriority="high" decoding="async">
         <span class="bt-reel-foot">
           <span class="bt-reel-title">Video editing</span>
           <span class="bt-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
@@ -115,9 +116,9 @@
 
       <div class="bt bt-status">
         <span class="bt-flags" aria-hidden="true">
-          <img src="/images/flags/ph.svg" alt="" width="26" height="20" loading="lazy">
-          <img src="/images/flags/ca.svg" alt="" width="26" height="20" loading="lazy">
-          <img src="/images/flags/us.svg" alt="" width="26" height="20" loading="lazy">
+          <img src="/images/flags/ph.svg" alt="" width="26" height="20" loading="lazy" decoding="async">
+          <img src="/images/flags/ca.svg" alt="" width="26" height="20" loading="lazy" decoding="async">
+          <img src="/images/flags/us.svg" alt="" width="26" height="20" loading="lazy" decoding="async">
           <span class="bt-plus">+</span>
         </span>
         <span class="bt-live"><span class="bt-dot"></span> Available for work</span>
@@ -132,9 +133,9 @@
 
       <a href="/music/" class="bt bt-link bt-music">
         <span class="bt-stack" aria-hidden="true">
-          <img src="/images/music/lihim.jpg" alt="" width="40" height="40" loading="lazy">
-          <img src="/images/music/ctrls.jpg" alt="" width="40" height="40" loading="lazy">
-          <img src="/images/music/naakit.jpg" alt="" width="40" height="40" loading="lazy">
+          <img src="/images/music/lihim.webp" alt="" width="40" height="40" loading="lazy" decoding="async">
+          <img src="/images/music/ctrls.webp" alt="" width="40" height="40" loading="lazy" decoding="async">
+          <img src="/images/music/naakit.webp" alt="" width="40" height="40" loading="lazy" decoding="async">
         </span>
         <span class="bt-figure">16</span>
         <span class="bt-label">releases on Spotify &amp; Apple Music</span>
@@ -143,11 +144,12 @@
 
       <a href="/apps/" class="bt bt-link bt-apps">
         <span class="bt-stack" aria-hidden="true">
-          <img src="/images/apps/liriko.png" alt="" width="40" height="40" loading="lazy">
-          <img src="/images/apps/caloff.png" alt="" width="40" height="40" loading="lazy">
-          <img src="/images/apps/listingflow.png" alt="" width="40" height="40" loading="lazy">
+          <img src="/images/apps/liriko.webp" alt="" width="40" height="40" loading="lazy" decoding="async">
+          <img src="/images/apps/caloff.webp" alt="" width="40" height="40" loading="lazy" decoding="async">
+          <img src="/images/apps/listingflow.webp" alt="" width="40" height="40" loading="lazy" decoding="async">
+          <img src="/images/apps/barya.webp" alt="" width="40" height="40" loading="lazy" decoding="async">
         </span>
-        <span class="bt-figure">3</span>
+        <span class="bt-figure">4</span>
         <span class="bt-label">apps built, two shipped</span>
         <span class="bt-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
@@ -166,7 +168,7 @@
   <section id="about" class="container">
     <div class="about-grid">
       <div class="about-photo" data-reveal>
-        <img src="/images/dj.jpg" alt="Headshot of Dustine Jao, multimedia artist" loading="lazy" width="600" height="600">
+        <img src="/images/dj.webp" alt="Headshot of Dustine Jao, multimedia artist" loading="lazy" width="600" height="600" decoding="async">
       </div>
       <div class="about-text" data-reveal style="--reveal-delay:.1s">
         <h2 class="section-title">One person. <span class="accent">Whole pipeline.</span></h2>
@@ -183,7 +185,7 @@
     </div>
     <div class="work-grid" style="margin-top:2rem">
       <article class="work-card wc-video" data-reveal>
-        <div class="thumb"><img src="/images/video.jpg" alt="A finished real-estate walkthrough timeline: graded clips, sound design and music beds" loading="lazy" width="1400" height="823"></div>
+        <div class="thumb"><img src="/images/video.webp" alt="A finished real-estate walkthrough timeline: graded clips, sound design and music beds" loading="lazy" width="1400" height="823" decoding="async"></div>
         <div class="meta">
           <div>
             <h3><a href="https://drive.google.com/drive/folders/1-B7w20bdZBiH6UdLjG9bnkEr2qlXZFrq?usp=share_link" target="_blank" rel="noopener" class="work-main">Video Editing</a></h3>

@@ -39,15 +39,73 @@
   try { soundOn = localStorage.getItem(SOUND_KEY) !== 'off'; } catch (e) {}
   root.dataset.sound = soundOn ? 'on' : 'off';
 
-  let actx = null;
-  const audio = () => {
-    if (!actx) {
-      const Ctx = window.AudioContext || window.webkitAudioContext;
-      if (!Ctx) return null;
-      actx = new Ctx();
+  /* Built once and reused. Filling it is cheap but not free, and it is filled
+     during warm-up rather than during the first click. */
+  let noiseBuf = null;
+  const noise = (c) => {
+    if (!noiseBuf) {
+      noiseBuf = c.createBuffer(1, Math.ceil(c.sampleRate * 0.05), c.sampleRate);
+      const d = noiseBuf.getChannelData(0);
+      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
     }
-    if (actx.state === 'suspended') actx.resume();
+    return noiseBuf;
+  };
+
+  let actx = null;
+
+  const makeContext = () => {
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) return null;
+    /* 'interactive' asks the platform for the smallest buffer it will give.
+       Left to its own devices Safari in particular picks a comfortable one,
+       which is audible as lateness on a click. */
+    try { actx = new Ctx({ latencyHint: 'interactive' }); } catch (e) { actx = new Ctx(); }
     return actx;
+  };
+
+  /*
+     Everything expensive happens on the first gesture, not on the first sound.
+
+     Constructing an AudioContext, resuming it and filling the noise buffer all
+     cost real milliseconds, and doing them inside the handler that is supposed
+     to click means the click arrives after them. Worse, `resume()` is async: a
+     sound scheduled while the context is still suspended does not play late,
+     it plays whenever the context finally starts, so a handful of early taps
+     arrive in a bunch. That is the lag.
+
+     So the first pointerdown anywhere on the page builds the context, resumes
+     it, fills the buffer and pushes one silent sample through to open the
+     output path. From then on a click is a few oscillator nodes and nothing
+     else, which is inaudible in scheduling terms.
+  */
+  const warmUp = () => {
+    const c = actx || makeContext();
+    if (!c) return;
+    noise(c);
+    try {
+      const silent = c.createBufferSource();
+      silent.buffer = c.createBuffer(1, 1, c.sampleRate);
+      silent.connect(c.destination);
+      silent.start(0);
+    } catch (e) {}
+    if (c.state !== 'running') c.resume();
+  };
+
+  ['pointerdown', 'touchstart', 'keydown'].forEach((ev) => {
+    window.addEventListener(ev, warmUp, { once: true, capture: true, passive: true });
+  });
+
+  const audio = () => {
+    const c = actx || makeContext();
+    if (!c) return null;
+    /* Not running yet: ask, and drop this one. A skipped first click reads as
+       nothing happening, which is fine; a queued one arrives seconds later
+       against an unrelated action, which reads as broken. */
+    if (c.state !== 'running') {
+      c.resume();
+      return null;
+    }
+    return c;
   };
 
   /* One oscillator, a fast pitch fall and a short decay. Kept for the toggle's
@@ -85,15 +143,7 @@
      it came down a step: enough to lose the glassiness, not enough to put the
      thump back.
   */
-  let noiseBuf = null;
-  const noise = (c) => {
-    if (!noiseBuf) {
-      noiseBuf = c.createBuffer(1, Math.ceil(c.sampleRate * 0.05), c.sampleRate);
-      const d = noiseBuf.getChannelData(0);
-      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-    }
-    return noiseBuf;
-  };
+
 
   /* A narrow bandpass throws away most of the noise's energy, so `gain` here
      runs well above 1. The rendered peak is what matters, not the number. */
