@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tunog: beats for the Filipino people.</title>
+<meta name="description" content="A Philippine beat marketplace. Producers upload instrumentals, artists license them, and the money moves in pesos through GCash, Maya, GrabPay, ShopeePay or card. Live at tunog.net.">
+<meta name="theme-color" content="#29ABE2">
+<meta name="keywords" content="beat marketplace Philippines, Filipino producers, buy beats GCash, instrumentals Philippines, beat licensing, type beat, Tunog, tunog.net">
+<meta name="author" content="Dustine Jao">
+<link rel="canonical" href="https://www.dustinejao.com/tunog/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tunog">
+<meta property="og:url" content="https://www.dustinejao.com/tunog/">
+<meta property="og:title" content="Tunog: beats for the Filipino people.">
+<meta property="og:description" content="A Philippine beat marketplace. Producers upload, artists license, and the money moves in pesos. Live at tunog.net.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/images/apps/tunog.png">
+<link rel="apple-touch-icon" href="/images/apps/tunog.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+/* ---------------------------------------------------------------------------
+   Tunog site tokens.
+
+   Lifted from the app itself rather than invented for the web, so the page and
+   the product are the same object: the two blues out of app/globals.css and the
+   components, Tunog white, and Source Serif 4 on every heading exactly as the
+   app loads it. Soft: generous radii, no hairlines, one shadow. Colour is the
+   brand and it only ever lands on something you can act on.
+--------------------------------------------------------------------------- */
+:root {
+  --blue:      #29ABE2;
+  --blue-dark: #1E8FC7;
+  --deep:      #125D70;
+  --deep-2:    #115C6D;
+
+  --bg:        #F5F7F9;
+  --card:      #FFFFFF;
+  --tint:      #F8FBFD;
+  --ink:       #17242A;
+  --muted:     #5C6B72;
+  --faint:     #8B979D;
+  --line:      #E4EAEE;
+
+  --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --sans:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --page: 64rem;
+  --r:    1.5rem;
+  --shadow: 0 1px 2px rgba(18, 93, 112, .04), 0 12px 32px rgba(18, 93, 112, .07);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:    #0C1418;
+    --card:  #131E23;
+    --tint:  #16242A;
+    --ink:   #ECF3F6;
+    --muted: #9DAFB7;
+    --faint: #6E8189;
+    --line:  #1E2E35;
+    --deep:  #7FCDE8;
+    --deep-2:#7FCDE8;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 32px rgba(0, 0, 0, .35);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { width: 100%; max-width: var(--page); margin: 0 auto; padding: 0 1.25rem; }
+
+a { color: inherit; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip:focus {
+  position: fixed; top: .75rem; left: .75rem; width: auto; height: auto;
+  clip: auto; padding: .6rem .9rem; background: var(--deep); color: #fff;
+  border-radius: .6rem; z-index: 10;
+}
+
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: .4rem; }
+
+.label {
+  font-size: .6875rem;
+  letter-spacing: .12em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+/* ---------------------------------- head --------------------------------- */
+
+.site-header {
+  position: sticky; top: 0; z-index: 5;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: saturate(1.4) blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  width: 100%; max-width: var(--page); margin: 0 auto; padding: .8rem 1.25rem;
+}
+.brand { display: flex; align-items: center; gap: .55rem; text-decoration: none; }
+.brand img { display: block; border-radius: .5rem; }
+.brand .wordmark {
+  font-family: var(--serif); font-weight: 700; font-size: 1.3rem;
+  letter-spacing: -.01em; color: var(--deep);
+}
+.nav { display: flex; align-items: center; gap: 1rem; }
+.text-link {
+  font-size: .8125rem; font-weight: 600; color: var(--muted); text-decoration: none;
+}
+.text-link:hover { color: var(--deep); }
+.pill {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .5rem .95rem; border-radius: 999px;
+  background: var(--blue); color: #fff;
+  font-size: .8125rem; font-weight: 700; text-decoration: none;
+  box-shadow: 0 6px 18px rgba(41, 171, 226, .28);
+}
+.pill:hover { background: var(--blue-dark); }
+.pill.ghost {
+  background: transparent; color: var(--deep);
+  box-shadow: inset 0 0 0 1.5px var(--line);
+}
+.pill.ghost:hover { background: var(--card); }
+
+.text-link, .pill { white-space: nowrap; }
+
+/* On a phone the header cannot hold the button as well as the way back, and
+   the hero repeats the same call to action one scroll below it. */
+@media (max-width: 30rem) {
+  .site-header .pill { display: none; }
+}
+
+/* ---------------------------------- hero --------------------------------- */
+
+.hero { padding: 4rem 1.25rem 2.5rem; }
+.hero h1 {
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(2.6rem, 8.5vw, 4.75rem); line-height: 1.03;
+  margin: .75rem 0 0; letter-spacing: -.02em;
+}
+.hero h1 em { font-style: normal; color: var(--blue); }
+.lede { max-width: 36rem; margin: 1.25rem 0 0; font-size: 1.0625rem; color: var(--muted); }
+.cta-row { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.75rem; }
+
+.status {
+  display: inline-flex; align-items: center; gap: .5rem;
+  margin-top: 1.75rem; padding: .35rem .75rem .35rem .6rem;
+  border-radius: 999px; background: var(--card);
+  box-shadow: inset 0 0 0 1px var(--line);
+  font-size: .75rem; font-weight: 600; color: var(--muted);
+}
+.status .pip {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+  box-shadow: 0 0 0 4px rgba(41, 171, 226, .18);
+}
+
+/* -------------------------------- showcase ------------------------------- */
+
+.showcase { display: grid; grid-template-columns: 1fr; gap: 2.5rem; padding: 2rem 1.25rem 3rem; }
+@media (min-width: 58rem) {
+  .showcase { grid-template-columns: 1fr 22rem; align-items: center; gap: 4rem; }
+}
+.showcase h2 {
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.2rem); margin: .6rem 0 1rem; letter-spacing: -.015em;
+}
+.showcase p { margin: 0 0 1rem; color: var(--muted); max-width: 32rem; }
+
+/* A miniature of a beat row and the player bar that sits under every page of
+   the app, built from the same parts rather than drawn as a picture. */
+.player {
+  background: var(--card); border-radius: var(--r); box-shadow: var(--shadow);
+  padding: 1rem; width: 100%; max-width: 22rem; margin: 0 auto;
+}
+.beat { display: flex; align-items: center; gap: .75rem; }
+.beat .art {
+  width: 56px; height: 56px; flex: none; border-radius: .85rem;
+  background: linear-gradient(135deg, var(--blue), var(--deep));
+  display: grid; place-items: center; color: #fff;
+}
+.beat .meta { min-width: 0; display: flex; flex-direction: column; }
+.beat .t {
+  font-family: var(--serif); font-weight: 600; font-size: 1.0625rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.beat .p { font-size: .8125rem; color: var(--muted); }
+.beat .price {
+  margin-left: auto; flex: none; font-size: .8125rem; font-weight: 700; color: var(--deep);
+  background: var(--tint); border-radius: 999px; padding: .3rem .65rem;
+}
+
+/* Waveform: 44 bars, heights from a repeating set so it reads as audio and not
+   as a random scribble. Played-through bars take the brand blue. */
+.wave { display: flex; align-items: flex-end; gap: 2px; height: 40px; margin: .9rem 0 .5rem; }
+.wave i { flex: 1; border-radius: 1px; background: var(--line); }
+.wave i.on { background: var(--blue); }
+
+.times { display: flex; justify-content: space-between; font-size: .6875rem; color: var(--faint); font-variant-numeric: tabular-nums; }
+
+.transport { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin-top: .75rem; color: var(--muted); }
+.transport .play {
+  width: 40px; height: 40px; border-radius: 50%; background: var(--blue); color: #fff;
+  display: grid; place-items: center;
+  box-shadow: 0 6px 16px rgba(41, 171, 226, .3);
+}
+
+/* --------------------------------- points -------------------------------- */
+
+.points { padding: 0 1.25rem 1rem; }
+.points .grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 44rem) { .points .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 66rem) { .points .grid { grid-template-columns: repeat(4, 1fr); } }
+
+.point {
+  background: var(--card); border-radius: var(--r); box-shadow: var(--shadow);
+  padding: 1.5rem 1.35rem;
+}
+.point h2 { font-family: var(--serif); font-weight: 700; font-size: 1.25rem; margin: .5rem 0 .5rem; }
+.point p { margin: 0; color: var(--muted); font-size: .9375rem; }
+
+/* -------------------------------- licences ------------------------------- */
+
+.tiers { padding: 3rem 1.25rem 1rem; }
+.tiers h2 {
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem); margin: .5rem 0 .35rem; letter-spacing: -.015em;
+}
+.tiers .sub { margin: 0 0 1.75rem; color: var(--muted); }
+
+.cards { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 52rem) { .cards { grid-template-columns: repeat(3, 1fr); } }
+
+.tier {
+  background: var(--card); border-radius: var(--r); box-shadow: var(--shadow);
+  padding: 1.75rem 1.5rem; display: flex; flex-direction: column;
+}
+.tier.pick { box-shadow: var(--shadow), inset 0 0 0 2px var(--blue); }
+.tier h3 { font-family: var(--serif); font-weight: 700; font-size: 1.35rem; margin: 0; }
+.tier .amt {
+  font-family: var(--serif); font-weight: 700; font-size: 2rem;
+  color: var(--blue); margin: .35rem 0 1.1rem; letter-spacing: -.02em;
+}
+.tier .amt small { font-size: .8125rem; font-weight: 600; color: var(--faint); display: block; letter-spacing: 0; }
+.tier ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .65rem; }
+.tier li { display: flex; gap: .6rem; font-size: .9375rem; color: var(--muted); }
+.tier li svg { flex: none; margin-top: .3rem; color: var(--blue); }
+.flag {
+  align-self: flex-start; margin-bottom: .5rem;
+  font-size: .625rem; letter-spacing: .12em; font-weight: 700; text-transform: uppercase;
+  color: #fff; background: var(--blue); border-radius: 999px; padding: .25rem .6rem;
+}
+
+/* --------------------------------- detail -------------------------------- */
+
+.detail { padding: 3rem 1.25rem 1rem; }
+.detail h2 {
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem); margin: .5rem 0 1.5rem; letter-spacing: -.015em;
+}
+.rows { background: var(--card); border-radius: var(--r); box-shadow: var(--shadow); padding: .35rem 1.5rem; }
+.row {
+  display: grid; grid-template-columns: 1fr; gap: .35rem;
+  padding: 1.2rem 0; border-bottom: 1px solid var(--line);
+}
+.row:last-child { border-bottom: 0; }
+@media (min-width: 44rem) {
+  .row { grid-template-columns: 11rem 1fr; gap: 2rem; align-items: baseline; }
+}
+.row .k { font-size: .6875rem; letter-spacing: .12em; font-weight: 700; text-transform: uppercase; color: var(--deep); }
+.row p { margin: 0; color: var(--muted); font-size: .9375rem; }
+
+/* --------------------------------- credit -------------------------------- */
+
+.credit { padding: 3rem 1.25rem 3.5rem; }
+.credit .box {
+  background: var(--card); border-radius: var(--r); box-shadow: var(--shadow);
+  padding: 2rem 1.75rem;
+}
+.credit h2 { font-family: var(--serif); font-weight: 700; font-size: 1.5rem; margin: .5rem 0 .85rem; }
+.credit p { margin: 0 0 1rem; color: var(--muted); max-width: 40rem; }
+.credit p:last-of-type { margin-bottom: 0; }
+.stack { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.25rem; }
+.stack span {
+  font-size: .75rem; font-weight: 600; color: var(--deep);
+  background: var(--tint); border-radius: 999px; padding: .3rem .7rem;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+/* --------------------------------- footer -------------------------------- */
+
+.site-footer { border-top: 1px solid var(--line); padding: 2rem 1.25rem 3rem; text-align: center; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+.fine { color: var(--faint); font-size: .8125rem; margin: 1.25rem 0 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  a, .text-link, .pill { transition: color .18s ease, background .18s ease; }
+}
+</style>
+</head>
+<body>
+<a href="#main" class="sr-only skip">Skip to content</a>
+
+<header class="site-header">
+  <div class="inner">
+    <a href="/tunog/" class="brand" aria-label="Tunog, home">
+      <img src="/images/apps/tunog.png" alt="" width="26" height="26" decoding="async">
+      <span class="wordmark">tunog</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/apps/" class="text-link">&larr; dustinejao.com</a>
+      <a href="https://tunog.net" target="_blank" rel="noopener" class="pill">Open tunog.net</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero container">
+    <span class="label">Next.js &middot; Web &middot; tunog.net</span>
+    <h1>Beats for the<br><em>Filipino people.</em></h1>
+    <p class="lede">
+      Tunog is a marketplace for Philippine instrumentals. Producers upload a
+      beat and set what a licence costs; artists listen through the whole
+      catalogue, buy the one they want, and pay in pesos with the wallet already
+      on their phone. No foreign card, no dollar conversion, no waiting.
+    </p>
+    <div class="cta-row">
+      <a href="https://tunog.net" target="_blank" rel="noopener" class="pill">Open tunog.net</a>
+      <a href="https://tunog.net/pricing" target="_blank" rel="noopener" class="pill ghost">See the licences</a>
+    </div>
+    <div class="status">
+      <span class="pip" aria-hidden="true"></span>
+      <span>Live and taking uploads</span>
+    </div>
+  </section>
+
+  <section class="showcase container">
+    <div>
+      <span class="label">The thing you actually use</span>
+      <h2>The player never stops.</h2>
+      <p>
+        A beat keeps playing while you search, open a producer's profile, read a
+        licence or fill the cart. The bar at the bottom of every page is one
+        audio element that outlives the route, so nothing restarts underneath
+        you and no tab ends up fighting another for the speakers.
+      </p>
+      <p>
+        Plays only count once a listener has stayed past a minimum, is rate
+        limited per session, and never count when the producer is the one
+        listening &mdash; so the number on a beat is worth something.
+      </p>
+    </div>
+
+    <!-- A miniature of the beat row and player bar, built from the same parts. -->
+    <div class="player" role="img" aria-label="A Tunog beat row: Gabi sa Cubao by prodbyDJ, 899 pesos, playing at 1 minute 12 of 3 minutes 04.">
+      <div class="beat">
+        <span class="art" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6Z"/></svg>
+        </span>
+        <span class="meta">
+          <span class="t">Gabi sa Cubao</span>
+          <span class="p">prodbyDJ &middot; 88 BPM &middot; F min</span>
+        </span>
+        <span class="price">&#8369;899</span>
+      </div>
+      <div class="wave" aria-hidden="true">
+        <i class="on" style="height:22%"></i><i class="on" style="height:48%"></i><i class="on" style="height:34%"></i><i class="on" style="height:76%"></i>
+        <i class="on" style="height:58%"></i><i class="on" style="height:92%"></i><i class="on" style="height:44%"></i><i class="on" style="height:66%"></i>
+        <i class="on" style="height:30%"></i><i class="on" style="height:82%"></i><i class="on" style="height:52%"></i><i class="on" style="height:38%"></i>
+        <i class="on" style="height:70%"></i><i class="on" style="height:26%"></i><i class="on" style="height:60%"></i><i class="on" style="height:88%"></i>
+        <i style="height:42%"></i><i style="height:64%"></i><i style="height:28%"></i><i style="height:78%"></i>
+        <i style="height:50%"></i><i style="height:36%"></i><i style="height:68%"></i><i style="height:24%"></i>
+        <i style="height:84%"></i><i style="height:46%"></i><i style="height:32%"></i><i style="height:72%"></i>
+        <i style="height:56%"></i><i style="height:90%"></i><i style="height:40%"></i><i style="height:62%"></i>
+        <i style="height:28%"></i><i style="height:74%"></i><i style="height:48%"></i><i style="height:34%"></i>
+        <i style="height:66%"></i><i style="height:22%"></i><i style="height:54%"></i><i style="height:80%"></i>
+        <i style="height:38%"></i><i style="height:58%"></i><i style="height:26%"></i><i style="height:44%"></i>
+      </div>
+      <div class="times"><span>1:12</span><span>3:04</span></div>
+      <div class="transport" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 5v14l-11-7 11-7ZM6 5h2v14H6V5Z"/></svg>
+        <span class="play"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4h4v16H7V4Zm6 0h4v16h-4V4Z"/></svg></span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5v14l11-7L6 5Zm12 0h-2v14h2V5Z"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="points container">
+    <div class="grid">
+      <article class="point">
+        <span class="label">Payments</span>
+        <h2>Pay with what you have.</h2>
+        <p>
+          GCash, Maya, GrabPay, ShopeePay or a card, settled in pesos through
+          PayMongo. The thing that stops most Filipino artists buying a beat is
+          the checkout, so that is the part that got built first.
+        </p>
+      </article>
+      <article class="point">
+        <span class="label">Uploading</span>
+        <h2>A beat, not a form.</h2>
+        <p>
+          Drop the audio, add cover art, set BPM, key, genre and your prices.
+          The file goes straight to object storage from the browser, so a
+          full-length WAV does not have to squeeze through a server first.
+        </p>
+      </article>
+      <article class="point">
+        <span class="label">Discovery</span>
+        <h2>Search that hears you out.</h2>
+        <p>
+          Look by title, producer, genre, key or tempo, and keep the results
+          playing as you go. Favourite a beat, follow a producer, and the
+          homepage starts to look like what you actually make.
+        </p>
+      </article>
+      <article class="point">
+        <span class="label">Producers</span>
+        <h2>You set the price.</h2>
+        <p>
+          Every licence tier is yours to name, per beat. Your profile is a real
+          page at tunog.net with your own handle, your catalogue, and plays,
+          likes and downloads you can read without guessing.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="tiers container">
+    <span class="label">Licensing, per beat</span>
+    <h2>Three ways to take a beat home.</h2>
+    <p class="sub">These are the defaults. A producer can change any of them on any beat.</p>
+
+    <div class="cards">
+      <div class="tier">
+        <h3>Free-for-Profit</h3>
+        <div class="amt">&#8369;0</div>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span>One music video, capped at 1,000 streams</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span>MP3 only</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span>For trying a beat out before you commit</span></li>
+        </ul>
+      </div>
+
+      <div class="tier pick">
+        <span class="flag">Most taken</span>
+        <h3>Premium</h3>
+        <div class="amt">&#8369;299<small>and up, set by the producer</small></div>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span>Commercial use allowed</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span>Unlimited distribution &mdash; Spotify, YouTube, anywhere</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span>MP3 and WAV</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span>The beat stays up; others can buy it too</span></li>
+        </ul>
+      </div>
+
+      <div class="tier">
+        <h3>Exclusive</h3>
+        <div class="amt">&#8369;999<small>and up, set by the producer</small></div>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span>Full commercial rights</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span>Unlimited distribution and performances</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span>MP3, WAV and stems</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span>One buyer &mdash; the beat comes off the site after</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail container">
+    <span class="label">For producers</span>
+    <h2>Free to start, and it stays free.</h2>
+
+    <div class="rows">
+      <div class="row">
+        <span class="k">Free</span>
+        <p>Three uploads a month, plays, likes and downloads on a dashboard, and a 15% cut on a sale. Enough to find out whether anyone wants what you make.</p>
+      </div>
+      <div class="row">
+        <span class="k">Pro &mdash; &#8369;499/mo</span>
+        <p>Unlimited uploads, buyer insights and traffic sources, a shot at the homepage feature, discount codes and promos, and the cut drops to 5%.</p>
+      </div>
+      <div class="row">
+        <span class="k">Your page</span>
+        <p>tunog.net/yourhandle, with your avatar, header, bio and catalogue. It is a link you can put in a bio, not a profile buried inside someone else's app.</p>
+      </div>
+      <div class="row">
+        <span class="k">Your files</span>
+        <p>Audio, stems and cover art live in object storage and are served straight from the edge, so a listener half a country away gets the same first second you do.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="credit container">
+    <div class="box">
+      <span class="label">How it got built</span>
+      <h2>Built with Jerick Nucasa.</h2>
+      <p>
+        Tunog is a two-person build. Jerick set the thing up and carries the
+        backend; my end of it has been most of what a listener touches &mdash;
+        search and discovery, favourites and following, the cart and checkout
+        screens, the mobile layout, the file handling that puts uploads in
+        object storage, and the deploys.
+      </p>
+      <p>
+        It runs on Next.js with the App Router, Convex for the data and its live
+        queries, Clerk for accounts, Cloudflare R2 for the audio and artwork,
+        PayMongo for the peso payments, and Vercel underneath the lot.
+      </p>
+      <div class="stack">
+        <span>Next.js 15</span><span>TypeScript</span><span>Convex</span><span>Clerk</span>
+        <span>Cloudflare R2</span><span>PayMongo</span><span>Tailwind</span><span>Vercel</span>
+      </div>
+      <p style="margin-top:1.5rem">
+        <a href="https://tunog.net" target="_blank" rel="noopener" class="pill">Open tunog.net</a>
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="/" class="text-link">Home</a>
+    <a href="/music/" class="text-link">Music</a>
+    <a href="/apps/" class="text-link">Apps</a>
+    <a href="/#contact" class="text-link">Contact</a>
+  </div>
+  <p class="fine">&copy; <span id="year">2026</span> Dustine Jao. All Rights Reserved.</p>
+  <p class="fine">Designed &amp; coded from scratch by Dustine Jao &middot; Manila, PH</p>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

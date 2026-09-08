@@ -384,15 +384,6 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
   text-align: center;
 }
 
-.hero-hello {
-  font-family: var(--font-mono);
-  font-size: .85rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 1.25rem;
-}
-
 .hero h1 {
   font-size: clamp(2.6rem, 7.5vw, 5.25rem);
   letter-spacing: -0.04em;
@@ -507,10 +498,17 @@ a.bt:hover {
   box-shadow: 0 3px 10px rgba(17, 17, 20, .18);
   transition: transform .3s cubic-bezier(.2, .8, .2, 1);
 }
-/* they lift in sequence, so the row reads as a set rather than three stickers */
+/* Five app icons no longer fit that tile side by side, so there they overlap
+   the way a row of avatars does. The three covers on the releases tile still
+   sit apart, because there is room for them to. */
+.bt-apps .bt-stack { gap: 0; }
+.bt-apps .bt-stack img + img { margin-left: -10px; }
+/* they lift in sequence, so the row reads as a set rather than five stickers */
 a.bt:hover .bt-stack img { transform: translateY(-3px); }
 a.bt:hover .bt-stack img:nth-child(2) { transition-delay: .05s; }
 a.bt:hover .bt-stack img:nth-child(3) { transition-delay: .1s; }
+a.bt:hover .bt-stack img:nth-child(4) { transition-delay: .15s; }
+a.bt:hover .bt-stack img:nth-child(5) { transition-delay: .2s; }
 a.bt:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
 
 .bt-figure {
@@ -1348,13 +1346,18 @@ a.sub-chip:hover { background: var(--pink); border-color: transparent; color: #f
 }
 
 /* ---------- Apps index : cards are now doors ------------------
-   Each app has its own site under dustinejao.com now (/liriko/,
-   /caloff/, /listingflow/), so the card is a link rather than a
-   panel of text. Three of them, so the two-column grid becomes
-   auto-fit and the "in development" bar is only drawn for the one
-   app that is actually still in development.
+   Each app has its own site under dustinejao.com now (/tunog/,
+   /liriko/, /caloff/, /barya/, /listingflow/), so the card is a link
+   rather than a panel of text. Five of them, so the two-column grid
+   becomes auto-fit and the "in development" bar is only drawn for the
+   apps that are actually still in development.
+
+   The track is wide enough for three, not four: five cards across four
+   columns leaves a lone card stranded on the second row, where three
+   and two read as a set. The min() keeps the track from outgrowing a
+   narrow phone.
 --------------------------------------------------------------- */
-.app-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.app-grid { grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr)); }
 
 a.app-card {
   display: flex;
