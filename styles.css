@@ -103,11 +103,23 @@ h1, h2, h3 { line-height: 1.1; margin: 0 0 .5em; letter-spacing: -0.03em; font-w
    already set in. Inter carries 100 to 900, so 800 against 300 is a wider
    jump than serif-against-sans ever was, and it stays in one voice.
 
-   The pink does the rest. Weight and colour together are enough; the third
-   variable is what made it look tried-too-hard.
+   The weights run the way the sentence does. "I make people" is the setup and
+   runs light; "stop scrolling." is the point and carries the mass. Putting the
+   bold on the first half had the heading shouting its throat-clear and
+   whispering its punchline.
+
+   `:has()` keeps this to the headings that actually have an accent, so a plain
+   heading elsewhere stays at its usual weight. Where it is unsupported both
+   halves land on 800, which is a normal bold heading rather than a broken one.
 */
-.accent {
+h1:has(.accent),
+h2:has(.accent),
+h3:has(.accent) {
   font-weight: 300;
+}
+
+.accent {
+  font-weight: 800;
   letter-spacing: -0.035em;
   color: var(--pink);
 }
