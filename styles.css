@@ -738,7 +738,9 @@ a.bt:hover .bt-arrow { background: var(--pink); color: #fff; border-color: trans
 
 /* Video Editing takes the pink, because it is the service the others hang
    off. It was the last card still opening with a photograph. */
-.wc-video .icon-strip { background: var(--pink-soft); }
+/* The band needs the same air under the marks as over them, or it reads as
+   a block that has been cut off. */
+.wc-video .icon-strip { background: var(--pink-soft); padding-bottom: 1.35rem; }
 .tools { display: flex; align-items: center; gap: .85rem; flex-wrap: wrap; }
 /*
    Every mark is the same object: a 28px tile with a hairline.
@@ -755,18 +757,23 @@ a.bt:hover .bt-arrow { background: var(--pink); color: #fff; border-color: trans
   display: block;
   width: 28px;
   height: 28px;
+  padding: 5px;
   border-radius: 7px;
   background-color: #fff;
   background-image: var(--src);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 68%;
+  /* The art is fitted inside the padding rather than scaled to the tile's
+     width. Figma's mark is 2:3, so sizing it by width pushed it taller than
+     the tile and clipped it; contain fits any aspect ratio. */
+  background-origin: content-box;
+  background-size: contain;
   box-shadow: inset 0 0 0 1px rgba(17, 17, 20, .12);
   transition: transform .3s ease;
 }
 /* Marks that are drawn as a tile already: the six app icons, and the Adobe
    glyphs, which are a filled square with the letters knocked out of them. */
-.tool.is-app { background-size: cover; }
+.tool.is-app { padding: 0; background-size: cover; }
 .work-card:hover .tool, a.bt:hover .tool { transform: translateY(-2px); }
 .tools .tool:nth-child(2) { transition-delay: .04s; }
 .tools .tool:nth-child(3) { transition-delay: .08s; }
@@ -830,7 +837,7 @@ a.sub-chip.is-lead:hover { background: var(--pink-hover); }
 @media (max-width: 620px) {
   .work-grid > * { grid-column: span 6 !important; }
   .icon-strip { padding: 1.25rem 1.25rem .25rem; min-height: 66px; gap: .9rem; }
-  .tool { width: 25px; height: 25px; border-radius: 6px; }
+  .tool { width: 25px; height: 25px; border-radius: 6px; padding: 4px; }
   .tools { gap: .7rem; }
 }
 
