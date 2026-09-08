@@ -739,23 +739,32 @@ a.bt:hover .bt-arrow { background: var(--pink); color: #fff; border-color: trans
 }
 .tools { display: flex; align-items: center; gap: .85rem; flex-wrap: wrap; }
 /*
-   The marks are the real thing now, in their own colours: the six media apps
-   are the icons off the machine the work is actually done on, and the rest are
-   brand marks stamped with that brand's hex. They were masked to one ink for
-   years to stop the row clashing; the row stopped being decoration once it
-   started naming a toolchain, and a logo a client recognises is worth more
-   than a tidy monochrome stripe.
+   Every mark is the same object: a 28px tile with a hairline.
+
+   Half of these are the real app icons off the machine the work is done on,
+   which are squircles, and half are brand marks, which are bare glyphs. Left
+   alone the row was a mix of filled tiles and floating shapes at a dozen
+   different weights. The tile is what makes them one row: art that is already
+   a tile fills it edge to edge, a bare glyph sits inset on white. The hairline
+   is what keeps a white-on-white icon like CapCut from dissolving into the
+   card behind it.
 */
 .tool {
   display: block;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background-color: #fff;
   background-image: var(--src);
-  background-size: contain;
-  background-position: center;
   background-repeat: no-repeat;
-  transition: opacity .3s ease, transform .3s ease;
+  background-position: center;
+  background-size: 68%;
+  box-shadow: inset 0 0 0 1px rgba(17, 17, 20, .12);
+  transition: transform .3s ease;
 }
+/* Marks that are drawn as a tile already: the six app icons, and the Adobe
+   glyphs, which are a filled square with the letters knocked out of them. */
+.tool.is-app { background-size: cover; }
 .work-card:hover .tool, a.bt:hover .tool { transform: translateY(-2px); }
 .tools .tool:nth-child(2) { transition-delay: .04s; }
 .tools .tool:nth-child(3) { transition-delay: .08s; }
@@ -819,7 +828,7 @@ a.sub-chip.is-lead:hover { background: var(--pink-hover); }
 @media (max-width: 620px) {
   .work-grid > * { grid-column: span 6 !important; }
   .icon-strip { padding: 1.25rem 1.25rem .25rem; min-height: 66px; gap: .9rem; }
-  .tool { width: 23px; height: 23px; }
+  .tool { width: 25px; height: 25px; border-radius: 6px; }
   .tools { gap: .7rem; }
 }
 
