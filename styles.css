@@ -567,87 +567,36 @@ a.bt:hover .bt-arrow { background: var(--pink); color: #fff; border-color: trans
 /*
    The lead tile.
 
-   It used to be a still from an edit, which was a photograph of the work
-   rather than the work, and it dated the moment the edit did. It is a drawn
-   mark now, on the brand pink, so it sits in the same family as the icon
-   stacks beside it and says what the service is instead of showing one frame
-   of one job.
+   It has been a photograph and then a large drawn mark, and both were the
+   tile talking about itself. It shows the six things the work is actually
+   made in now, using the same .tool component as the cards further down the
+   page, so an icon is the same size here as it is there at every width. Pink,
+   because it is the service the rest hang off.
 */
 .bt-reel {
   grid-column: span 2;
-  grid-row: span 2;
-  min-height: 0;
-  padding: 0;
-  justify-content: flex-end;
-  background: linear-gradient(145deg, var(--pink) 0%, #ff58ab 55%, #ff7ac0 100%);
-  border-color: transparent;
-  color: #fff;
+  grid-row: span 1;
+  justify-content: center;
 }
-.bt-reel-mark {
-  position: absolute;
-  top: clamp(1.1rem, 2.6vw, 1.9rem);
-  left: clamp(1.1rem, 2.6vw, 1.9rem);
-  display: block;
-  color: rgba(255, 255, 255, .96);
-  transition: transform .45s cubic-bezier(.2, .8, .2, 1);
-}
-.bt-reel-mark svg { width: clamp(46px, 8vw, 68px); height: auto; display: block; }
-a.bt-reel:hover .bt-reel-mark { transform: translateY(-3px) scale(1.04); }
-/* A second, much larger copy of the same mark bleeds off the bottom-right as
-   the tile's texture, so the panel is not a flat field of pink. */
-.bt-reel::after {
-  content: "";
-  position: absolute;
-  right: -14%;
-  bottom: -30%;
-  width: 78%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.22), rgba(255,255,255,0) 68%);
-  pointer-events: none;
-}
-.bt-reel-foot {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1.25rem;
-}
+.bt-reel .tools { margin-bottom: .55rem; }
+
+/* The two wide tiles on the second row, so the grid has no orphan column. */
+.bt-music, .bt-apps { grid-column: span 2; }
+
 .bt-reel-title {
   display: block;
-  font-size: clamp(1.35rem, 2.8vw, 2rem);
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
   font-weight: 750;
   letter-spacing: -0.035em;
   line-height: 1.1;
-  color: #fff;
 }
-.bt-reel-sub {
-  display: block;
-  margin-top: .3rem;
-  font-size: .82rem;
-  line-height: 1.45;
-  color: rgba(255, 255, 255, .82);
-}
-.bt-reel .bt-arrow {
-  position: static;
-  flex-shrink: 0;
-  background: rgba(255, 255, 255, .16);
-  border-color: rgba(255, 255, 255, .34);
-  color: #fff;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-a.bt-reel:hover .bt-arrow { background: #fff; border-color: transparent; color: var(--pink); transform: translateX(3px); }
 
 @media (max-width: 900px) {
   .bento { grid-template-columns: repeat(2, 1fr); }
-  /* full width now, so it flattens out rather than eating the fold. Shorter
-     than it was as a photograph: a mark and two lines do not need the height
-     a cropped still did, and the pink reads as a band rather than a slab. */
-  .bt-reel { grid-row: span 1; aspect-ratio: 5 / 2; }
-  .bt-reel-mark svg { width: 56px; }
+  /* Two columns: the lead tile takes the full width, and the two link tiles
+     drop back to one column each so they pair off rather than stacking. */
+  .bt-reel { grid-column: span 2; }
+  .bt-music, .bt-apps { grid-column: span 1; }
 }
 @media (max-width: 480px) {
   .bt { min-height: 116px; padding: 1rem 1.1rem; gap: .35rem; }
@@ -658,8 +607,7 @@ a.bt-reel:hover .bt-arrow { background: #fff; border-color: transparent; color: 
   .bt-live { font-size: .84rem; }
   .bt-label { font-size: .78rem; }
   .bt-arrow { right: .85rem; bottom: .85rem; width: 27px; height: 27px; }
-  .bt-reel { aspect-ratio: 16 / 10; }
-  .bt-reel-mark svg { width: 42px; }
+
 }
 
 /* ---------- Badge pill (about photo) ------------------------- */
@@ -678,35 +626,6 @@ a.bt-reel:hover .bt-arrow { background: #fff; border-color: transparent; color: 
   box-shadow: var(--shadow);
 }
 .hero-pill.pink { background: linear-gradient(120deg, var(--pink), #ff58ab); color: #fff; border: 0; }
-
-/* ---------- Marquee ------------------------------------------ */
-.marquee {
-  overflow: hidden;
-  padding-block: 1.1rem;
-  border-block: 1px solid var(--border);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-}
-.marquee-track {
-  display: flex;
-  gap: 2.5rem;
-  width: max-content;
-  animation: marquee 32s linear infinite;
-}
-.marquee-track span {
-  font-family: var(--font-mono);
-  font-size: .8rem;
-  font-weight: 600;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  white-space: nowrap;
-}
-.marquee-track span::after { content: "·"; margin-left: 2.5rem; color: var(--pink); }
-
-@keyframes marquee {
-  to { transform: translateX(-50%); }
-}
 
 /* ============================================================
    ABOUT
@@ -812,25 +731,6 @@ a.bt-reel:hover .bt-arrow { background: #fff; border-color: transparent; color: 
    the other five hang off.
 */
 .wc-video .icon-strip {
-  background: var(--pink-soft);
-  padding-block: 1.6rem .9rem;
-  margin-bottom: .1rem;
-}
-.wc-video .tool { background-color: var(--pink); opacity: .92; }
-.wc-video:hover .tool { opacity: 1; }
-.wc-video .icon-strip .tool { width: 30px; height: 30px; }
-
-/*
-   Tool marks instead of a stock photo.
-
-   Six of the seven cards used to open with a photograph that was not of the
-   work, only near it. What a visitor actually wants to know is what the thing
-   is made in, so the cards now show the tools: Simple Icons marks, masked to
-   currentColor so they theme with the page and read as one family rather than
-   a row of clashing brand colours. Every card opens this way now, Video
-   Editing included.
-*/
-.icon-strip {
   display: flex;
   align-items: center;
   gap: 1.1rem;
@@ -838,23 +738,30 @@ a.bt-reel:hover .bt-arrow { background: #fff; border-color: transparent; color: 
   min-height: 76px;
 }
 .tools { display: flex; align-items: center; gap: .85rem; flex-wrap: wrap; }
+/*
+   The marks are the real thing now, in their own colours: the six media apps
+   are the icons off the machine the work is actually done on, and the rest are
+   brand marks stamped with that brand's hex. They were masked to one ink for
+   years to stop the row clashing; the row stopped being decoration once it
+   started naming a toolchain, and a logo a client recognises is worth more
+   than a tidy monochrome stripe.
+*/
 .tool {
   display: block;
   width: 26px;
   height: 26px;
-  background-color: var(--text);
-  opacity: .78;
-  -webkit-mask: var(--src) center / contain no-repeat;
-  mask: var(--src) center / contain no-repeat;
+  background-image: var(--src);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   transition: opacity .3s ease, transform .3s ease;
 }
-.work-card:hover .tool { opacity: 1; transform: translateY(-2px); }
+.work-card:hover .tool, a.bt:hover .tool { transform: translateY(-2px); }
 .tools .tool:nth-child(2) { transition-delay: .04s; }
 .tools .tool:nth-child(3) { transition-delay: .08s; }
 .tools .tool:nth-child(4) { transition-delay: .12s; }
 .tools .tool:nth-child(5) { transition-delay: .16s; }
 .tools .tool:nth-child(6) { transition-delay: .2s; }
-.strip-wide .tool { width: 34px; height: 34px; }
 
 /*
    Sub-categories.

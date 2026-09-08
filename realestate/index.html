@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <!-- SEO -->
-<meta name="description" content="Listing films, walkthroughs and short-form for real estate agents and brokerages. Shot, cut, graded and delivered by Dustine Jao — remote from Manila for teams in the US and Canada.">
+<meta name="description" content="Listing films, walkthroughs and short-form for real estate agents and brokerages in the US and Canada. Vertical native, 1 to 4 day turnaround, cut remotely from Manila by Dustine Jao.">
 <meta name="keywords" content="real estate videography, listing video editor, real estate video editing, property walkthrough video, real estate reels, listing film, remote video editor real estate">
 <link rel="canonical" href="https://www.dustinejao.com/realestate/">
 
@@ -26,7 +26,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.dustinejao.com/realestate/">
 <meta property="og:title" content="Real Estate Media | Dustine Jao">
-<meta property="og:description" content="Listing films, walkthroughs and short-form that get a property watched to the end.">
+<meta property="og:description" content="Vertical native listing films, cut in 1 to 4 days.">
 <meta property="og:image" content="https://dustinejao.com/images/og-image.png">
 
 <!-- Fonts -->
@@ -39,23 +39,15 @@
 /* ---------------------------------------------------------------------------
    Real Estate Media.
 
-   The site's own tokens throughout — this is a service page, not an app site,
+   The site's own tokens throughout. This is a service page, not an app site,
    so it wears the portfolio's pink rather than a palette of its own. Only the
-   parts that do not exist anywhere else on the site are defined here: the
-   proof band and the reel wall.
+   parts that exist nowhere else on the site are defined here: the proof band
+   and the reel wall.
 --------------------------------------------------------------------------- */
 
 .re-hero { padding-top: clamp(2rem, 5vw, 3.5rem); text-align: center; }
 .re-hero h1 { font-size: clamp(2.4rem, 7vw, 4.5rem); letter-spacing: -0.04em; margin-bottom: 1rem; }
 .re-hero .hero-sub { max-width: 42rem; margin-inline: auto; }
-
-.re-crumb {
-  display: inline-flex; align-items: center; gap: .4rem;
-  font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em;
-  text-transform: uppercase; color: var(--muted); text-decoration: none;
-  margin-bottom: 1.5rem;
-}
-.re-crumb:hover { color: var(--pink); }
 
 /* --------------------------------- proof ---------------------------------
    Four things an agent is actually buying, said plainly. Each one is a claim
@@ -109,8 +101,6 @@
 }
 .re-slot { min-height: 480px; }
 
-.re-note { margin-top: 1.5rem; font-size: .82rem; color: var(--muted); text-align: center; }
-
 /* --------------------------------- close --------------------------------- */
 .re-close { text-align: center; }
 .re-close .hero-cta { justify-content: center; }
@@ -126,8 +116,9 @@
   <nav class="nav-pill" aria-label="Main navigation">
     <span class="nav-glide" aria-hidden="true"></span>
     <a href="/" class="nav-link">Home</a>
-    <a href="/music/" class="nav-link">Music</a>
+    <a href="/realestate/" class="nav-link active">Real Estate</a>
     <a href="/apps/" class="nav-link">Apps</a>
+    <a href="/music/" class="nav-link">Music</a>
   </nav>
   <div class="header-tools">
     <button id="theme-toggle" class="icon-btn theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
@@ -143,57 +134,41 @@
 
 <main>
   <section class="re-hero container">
-    <a href="/#work" class="re-crumb">&larr; Back to the work</a>
     <h1>Listings people<br><span class="accent">watch to the end.</span></h1>
-    <p class="hero-sub">
-      Real estate media is the bulk of what I do: walkthroughs, listing films
-      and the short-form cutdowns that carry them. I cut remotely from Manila
-      for agents and brokerages in the US and Canada, and I built the tool that
-      does the sequencing so the turnaround is hours rather than days.
-    </p>
+    <p class="hero-sub">Walkthroughs, listing films and cutdowns for agents and brokerages in the US and Canada. Cut remotely from Manila.</p>
     <div class="hero-cta">
       <a href="#reels" class="btn btn-pink">Watch the work</a>
-      <a href="/#contact" class="btn btn-ghost">Book a listing</a>
     </div>
 
-    <!--
-      NUMBERS GO HERE.
-
-      A stat band (views, listings cut, turnaround, agents served) belongs
-      between the hero and the proof cards. It is deliberately not written yet:
-      every figure on it has to be one Dustine can stand behind, and inventing
-      them would be worse than leaving them out. Send the real ones and they
-      drop straight in.
-    -->
+    <!-- A stat band goes here once there are real figures to put on it. -->
 
     <div class="re-proof">
       <article data-reveal>
         <span class="k">Turnaround</span>
-        <h3>Back before the listing goes live.</h3>
-        <p>A shoot comes in and the sequencing, clip naming and first assembly are automated, so the time I spend is spent on the cut itself rather than on paperwork.</p>
+        <h3>1 to 4 days.</h3>
+        <p>Depending on the difficulty.</p>
       </article>
       <article data-reveal style="--reveal-delay:.08s">
         <span class="k">Format</span>
-        <h3>One shoot, every aspect.</h3>
-        <p>The full walkthrough for the listing page, a vertical cutdown for Reels and TikTok, and a teaser for the feed. Cut from the same footage, framed for where each one lands.</p>
+        <h3>Vertical native.</h3>
+        <p>Slow paced horizontals too.</p>
       </article>
       <article data-reveal style="--reveal-delay:.16s">
         <span class="k">Finish</span>
-        <h3>Graded, mixed, delivered.</h3>
-        <p>Colour, sound design and music beds are part of the job, not an upsell. Windows hold their exposure, rooms sound like rooms, and nothing clips.</p>
+        <h3>Ramped, graded, mixed, delivered.</h3>
       </article>
       <article data-reveal style="--reveal-delay:.24s">
         <span class="k">Working with me</span>
         <h3>One person, whole pipeline.</h3>
-        <p>Nothing gets lost between an editor, a colourist and a sound department, because there is only one of me. You send footage, you get a finished listing back.</p>
+        <p>Send footage, get a listing back.</p>
       </article>
     </div>
   </section>
 
   <section id="reels" class="container">
     <div data-reveal>
-      <h2 class="section-title">Recent <span class="accent">listings.</span></h2>
-      <p class="hero-sub" style="max-width:40rem;margin-top:.75rem">Nine recent cuts, embedded from the accounts they were posted on &mdash; the agents' and brokerages' own feeds, not mine. That is the part that matters: the work goes out under their name, on their listing, the week it was shot. The last one is a teaser cut, which is usually what goes up first.</p>
+      <h2 class="section-title">Nine of my <span class="accent">favourite cuts.</span></h2>
+      <p class="hero-sub" style="max-width:34rem;margin-top:.75rem">Posted on the agents' own accounts, not mine.</p>
     </div>
 
     <div class="re-wall" id="re-wall">
@@ -207,17 +182,14 @@
       <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DcCGEhMvmzW/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DcCGEhMvmzW/">View this listing on Instagram</a></blockquote></div>
       <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Dc2fBeeOpgU/" data-instgrm-version="14"><a href="https://www.instagram.com/p/Dc2fBeeOpgU/">View this listing on Instagram</a></blockquote></div>
     </div>
-
-    <p class="re-note">More on Instagram at <a href="https://www.instagram.com/builtbydjp/" target="_blank" rel="noopener">@builtbydjp</a>, or ask me for the full reel.</p>
   </section>
 
   <section class="re-close container">
     <div data-reveal>
       <h2 class="section-title">Got a listing <span class="accent">to cut?</span></h2>
-      <p class="hero-sub" style="max-width:34rem;margin-inline:auto">Send the footage and the deadline. If it is a fit I will tell you the same day, and if it is not I will tell you that too.</p>
+      <p class="hero-sub" style="max-width:30rem;margin-inline:auto">Send the footage and the deadline.</p>
       <div class="hero-cta" style="margin-top:1.5rem">
-        <a href="mailto:dustinejao@gmail.com?subject=Real%20estate%20listing" class="btn btn-pink">Email me</a>
-        <a href="https://drive.google.com/drive/folders/1-B7w20bdZBiH6UdLjG9bnkEr2qlXZFrq?usp=share_link" target="_blank" rel="noopener" class="btn btn-ghost">Full reel on Drive</a>
+        <a href="mailto:dustinejao@gmail.com?subject=Real%20estate%20listing" class="btn btn-pink">dustinejao@gmail.com</a>
       </div>
     </div>
   </section>
