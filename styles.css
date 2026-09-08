@@ -1315,9 +1315,10 @@ a.sub-chip.is-lead:hover { background: var(--pink-hover); }
 }
 
 /* ---------- Apps index : cards are now doors ------------------
-   Each app has its own site under dustinejao.com now (/liriko/,
-   /caloff/, /barya/, /listingflow/; Tunog links straight out to
-   tunog.net, which is the product itself), so the card is a link
+   Most apps have their own site under dustinejao.com (/liriko/,
+   /caloff/, /barya/); Tunog and ListingFlow link straight out to
+   tunog.net and listingflowapp.vercel.app, which are the products
+   themselves. Either way the card is a link
    rather than a panel of text. Five of them, so the two-column grid
    becomes auto-fit and the "in development" bar is only drawn for the
    apps that are actually still in development.

@@ -2,6 +2,16 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/listingflow",
+      "destination": "https://listingflowapp.vercel.app/",
+      "permanent": true
+    },
+    {
+      "source": "/listingflow/",
+      "destination": "https://listingflowapp.vercel.app/",
+      "permanent": true
+    },
+    {
       "source": "/RealEstateMedia",
       "destination": "/realestate/",
       "permanent": true
