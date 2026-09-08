@@ -564,28 +564,47 @@ a.bt:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
 .bt-arrow svg { width: 15px; height: 15px; }
 a.bt:hover .bt-arrow { background: var(--pink); color: #fff; border-color: transparent; }
 
-/* the reel */
+/*
+   The lead tile.
+
+   It used to be a still from an edit, which was a photograph of the work
+   rather than the work, and it dated the moment the edit did. It is a drawn
+   mark now, on the brand pink, so it sits in the same family as the icon
+   stacks beside it and says what the service is instead of showing one frame
+   of one job.
+*/
 .bt-reel {
   grid-column: span 2;
   grid-row: span 2;
   min-height: 0;
   padding: 0;
   justify-content: flex-end;
+  background: linear-gradient(145deg, var(--pink) 0%, #ff58ab 55%, #ff7ac0 100%);
+  border-color: transparent;
+  color: #fff;
 }
-.bt-reel img {
+.bt-reel-mark {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .5s cubic-bezier(.2, .8, .2, 1);
+  top: clamp(1.1rem, 2.6vw, 1.9rem);
+  left: clamp(1.1rem, 2.6vw, 1.9rem);
+  display: block;
+  color: rgba(255, 255, 255, .96);
+  transition: transform .45s cubic-bezier(.2, .8, .2, 1);
 }
-a.bt-reel:hover img { transform: scale(1.04); }
+.bt-reel-mark svg { width: clamp(46px, 8vw, 68px); height: auto; display: block; }
+a.bt-reel:hover .bt-reel-mark { transform: translateY(-3px) scale(1.04); }
+/* A second, much larger copy of the same mark bleeds off the bottom-right as
+   the tile's texture, so the panel is not a flat field of pink. */
 .bt-reel::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(17,17,20,.1) 0%, rgba(17,17,20,.12) 42%, rgba(17,17,20,.88) 100%);
+  right: -14%;
+  bottom: -30%;
+  width: 78%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.22), rgba(255,255,255,0) 68%);
+  pointer-events: none;
 }
 .bt-reel-foot {
   position: relative;
@@ -597,11 +616,19 @@ a.bt-reel:hover img { transform: scale(1.04); }
   padding: 1.25rem;
 }
 .bt-reel-title {
+  display: block;
   font-size: clamp(1.35rem, 2.8vw, 2rem);
   font-weight: 750;
   letter-spacing: -0.035em;
   line-height: 1.1;
   color: #fff;
+}
+.bt-reel-sub {
+  display: block;
+  margin-top: .3rem;
+  font-size: .82rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, .82);
 }
 .bt-reel .bt-arrow {
   position: static;
@@ -612,12 +639,15 @@ a.bt-reel:hover img { transform: scale(1.04); }
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
-a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; transform: rotate(45deg); }
+a.bt-reel:hover .bt-arrow { background: #fff; border-color: transparent; color: var(--pink); transform: translateX(3px); }
 
 @media (max-width: 900px) {
   .bento { grid-template-columns: repeat(2, 1fr); }
-  /* full width now, so it flattens out rather than eating the fold */
-  .bt-reel { grid-row: span 1; aspect-ratio: 2 / 1; }
+  /* full width now, so it flattens out rather than eating the fold. Shorter
+     than it was as a photograph: a mark and two lines do not need the height
+     a cropped still did, and the pink reads as a band rather than a slab. */
+  .bt-reel { grid-row: span 1; aspect-ratio: 5 / 2; }
+  .bt-reel-mark svg { width: 56px; }
 }
 @media (max-width: 480px) {
   .bt { min-height: 116px; padding: 1rem 1.1rem; gap: .35rem; }
@@ -628,7 +658,8 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
   .bt-live { font-size: .84rem; }
   .bt-label { font-size: .78rem; }
   .bt-arrow { right: .85rem; bottom: .85rem; width: 27px; height: 27px; }
-  .bt-reel { aspect-ratio: 4 / 3; }
+  .bt-reel { aspect-ratio: 16 / 10; }
+  .bt-reel-mark svg { width: 42px; }
 }
 
 /* ---------- Badge pill (about photo) ------------------------- */
@@ -776,13 +807,18 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
 .wc-all     { grid-column: span 2; }
 
 /*
-   The timeline is the point, so it is not cropped: the frame takes the image's
-   own ratio and the whole edit reads start to end. A cover-crop cut the first
-   and last clips off, which is the opposite of what a showreel still is for.
+   Video Editing was the last card still opening with a photograph. It shows
+   its tools now like the rest, and takes the pink, because it is the service
+   the other five hang off.
 */
-.wc-video .thumb { aspect-ratio: auto; }
-.wc-video .thumb img { height: auto; object-fit: fill; }
-.wc-video:hover .thumb img { transform: none; }
+.wc-video .icon-strip {
+  background: var(--pink-soft);
+  padding-block: 1.6rem .9rem;
+  margin-bottom: .1rem;
+}
+.wc-video .tool { background-color: var(--pink); opacity: .92; }
+.wc-video:hover .tool { opacity: 1; }
+.wc-video .icon-strip .tool { width: 30px; height: 30px; }
 
 /*
    Tool marks instead of a stock photo.
@@ -791,8 +827,8 @@ a.bt-reel:hover .bt-arrow { background: var(--pink); border-color: transparent; 
    work, only near it. What a visitor actually wants to know is what the thing
    is made in, so the cards now show the tools: Simple Icons marks, masked to
    currentColor so they theme with the page and read as one family rather than
-   a row of clashing brand colours. Only Video Editing keeps a frame, because
-   there the picture is the work.
+   a row of clashing brand colours. Every card opens this way now, Video
+   Editing included.
 */
 .icon-strip {
   display: flex;
@@ -860,6 +896,14 @@ a.sub-chip:hover { background: var(--pink); border-color: transparent; color: #f
    same plain chip as everything else, is enough to say so. */
 /* A tool, not a folder, so it is not a link. */
 .sub-chip.is-tool { color: var(--muted); cursor: default; }
+/* The one chip that points at a page of its own rather than a Drive folder. */
+a.sub-chip.is-lead {
+  background: var(--pink);
+  border-color: transparent;
+  color: #fff;
+  font-weight: 650;
+}
+a.sub-chip.is-lead:hover { background: var(--pink-hover); }
 
 @media (max-width: 900px) {
   .wc-video { grid-column: span 6; }
@@ -1346,8 +1390,9 @@ a.sub-chip:hover { background: var(--pink); border-color: transparent; color: #f
 }
 
 /* ---------- Apps index : cards are now doors ------------------
-   Each app has its own site under dustinejao.com now (/tunog/,
-   /liriko/, /caloff/, /barya/, /listingflow/), so the card is a link
+   Each app has its own site under dustinejao.com now (/liriko/,
+   /caloff/, /barya/, /listingflow/; Tunog links straight out to
+   tunog.net, which is the product itself), so the card is a link
    rather than a panel of text. Five of them, so the two-column grid
    becomes auto-fit and the "in development" bar is only drawn for the
    apps that are actually still in development.
@@ -1357,7 +1402,12 @@ a.sub-chip:hover { background: var(--pink); border-color: transparent; color: #f
    and two read as a set. The min() keeps the track from outgrowing a
    narrow phone.
 --------------------------------------------------------------- */
-.app-grid { grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr)); }
+.app-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+  /* Every row the same height, so a card carrying a progress bar does not make
+     its whole row taller than the one below it. */
+  grid-auto-rows: 1fr;
+}
 
 a.app-card {
   display: flex;
@@ -1366,6 +1416,9 @@ a.app-card {
   text-decoration: none;
 }
 a.app-card p { flex: 1; }
+a.app-card .app-status { margin-top: auto; }
+a.app-card .progress { margin-top: auto; }
+a.app-card .progress ~ .app-status { margin-top: .7rem; }
 a.app-card:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
 
 /* The block was given a class and never a rule, so it sat flush against the

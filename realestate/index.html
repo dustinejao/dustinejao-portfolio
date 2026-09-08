@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Real Estate Media | Dustine Jao</title>
+
+<!-- Set theme before first paint (no flash) -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;var s=localStorage.getItem('sound');document.documentElement.dataset.sound=s==='off'?'off':'on'}catch(e){}})();</script>
+
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- SEO -->
+<meta name="description" content="Listing films, walkthroughs and short-form for real estate agents and brokerages. Shot, cut, graded and delivered by Dustine Jao — remote from Manila for teams in the US and Canada.">
+<meta name="keywords" content="real estate videography, listing video editor, real estate video editing, property walkthrough video, real estate reels, listing film, remote video editor real estate">
+<link rel="canonical" href="https://www.dustinejao.com/realestate/">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+<link rel="apple-touch-icon" href="/images/icon-512.png">
+<link rel="manifest" href="/manifest.json">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.dustinejao.com/realestate/">
+<meta property="og:title" content="Real Estate Media | Dustine Jao">
+<meta property="og:description" content="Listing films, walkthroughs and short-form that get a property watched to the end.">
+<meta property="og:image" content="https://dustinejao.com/images/og-image.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/styles.css">
+<style>
+/* ---------------------------------------------------------------------------
+   Real Estate Media.
+
+   The site's own tokens throughout — this is a service page, not an app site,
+   so it wears the portfolio's pink rather than a palette of its own. Only the
+   parts that do not exist anywhere else on the site are defined here: the
+   proof band and the reel wall.
+--------------------------------------------------------------------------- */
+
+.re-hero { padding-top: clamp(2rem, 5vw, 3.5rem); text-align: center; }
+.re-hero h1 { font-size: clamp(2.4rem, 7vw, 4.5rem); letter-spacing: -0.04em; margin-bottom: 1rem; }
+.re-hero .hero-sub { max-width: 42rem; margin-inline: auto; }
+
+.re-crumb {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted); text-decoration: none;
+  margin-bottom: 1.5rem;
+}
+.re-crumb:hover { color: var(--pink); }
+
+/* --------------------------------- proof ---------------------------------
+   Four things an agent is actually buying, said plainly. Each one is a claim
+   about the work rather than a number, because a number here has to be one I
+   can stand behind.
+-------------------------------------------------------------------------- */
+.re-proof {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+  gap: 1.1rem;
+  margin-top: 3rem;
+  text-align: left;
+}
+.re-proof article {
+  padding: 1.5rem 1.4rem;
+  border-radius: var(--radius);
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.re-proof .k {
+  display: block;
+  font-family: var(--font-mono); font-size: .68rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--pink); margin-bottom: .6rem;
+}
+.re-proof h3 { font-size: 1.05rem; margin: 0 0 .4rem; letter-spacing: -0.01em; }
+.re-proof p { margin: 0; font-size: .875rem; color: var(--muted); line-height: 1.55; }
+
+/* --------------------------------- reels ---------------------------------
+   Instagram's own embed, three across. The blockquotes ship in the HTML but
+   embed.js is not fetched until the wall is close to the viewport, so nine
+   iframes are not the first thing this page does.
+-------------------------------------------------------------------------- */
+.re-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(326px, 100%), 1fr));
+  gap: 1.1rem;
+  margin-top: 2.5rem;
+  align-items: start;
+}
+/* Instagram writes its own inline styles onto the blockquote, so these have to
+   out-specify them; the min-height holds the grid's shape while the iframe is
+   still on its way. */
+.re-wall .instagram-media {
+  margin: 0 !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow) !important;
+}
+.re-slot { min-height: 480px; }
+
+.re-note { margin-top: 1.5rem; font-size: .82rem; color: var(--muted); text-align: center; }
+
+/* --------------------------------- close --------------------------------- */
+.re-close { text-align: center; }
+.re-close .hero-cta { justify-content: center; }
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a href="/" class="logo" aria-label="Dustine Jao, home">
+    <img src="/images/logo.svg" alt="Dustine Jao logo" width="46" height="46" decoding="async">
+  </a>
+  <nav class="nav-pill" aria-label="Main navigation">
+    <span class="nav-glide" aria-hidden="true"></span>
+    <a href="/" class="nav-link">Home</a>
+    <a href="/music/" class="nav-link">Music</a>
+    <a href="/apps/" class="nav-link">Apps</a>
+  </nav>
+  <div class="header-tools">
+    <button id="theme-toggle" class="icon-btn theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+  </button>
+    <button id="sound-toggle" class="icon-btn sound-toggle" aria-label="Toggle interface sounds" aria-pressed="false">
+    <svg class="icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+    <svg class="icon-sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="m16 9.5 5 5M21 9.5l-5 5"/></svg>
+  </button>
+  </div>
+</header>
+
+<main>
+  <section class="re-hero container">
+    <a href="/#work" class="re-crumb">&larr; Back to the work</a>
+    <h1>Listings people<br><span class="accent">watch to the end.</span></h1>
+    <p class="hero-sub">
+      Real estate media is the bulk of what I do: walkthroughs, listing films
+      and the short-form cutdowns that carry them. I cut remotely from Manila
+      for agents and brokerages in the US and Canada, and I built the tool that
+      does the sequencing so the turnaround is hours rather than days.
+    </p>
+    <div class="hero-cta">
+      <a href="#reels" class="btn btn-pink">Watch the work</a>
+      <a href="/#contact" class="btn btn-ghost">Book a listing</a>
+    </div>
+
+    <!--
+      NUMBERS GO HERE.
+
+      A stat band (views, listings cut, turnaround, agents served) belongs
+      between the hero and the proof cards. It is deliberately not written yet:
+      every figure on it has to be one Dustine can stand behind, and inventing
+      them would be worse than leaving them out. Send the real ones and they
+      drop straight in.
+    -->
+
+    <div class="re-proof">
+      <article data-reveal>
+        <span class="k">Turnaround</span>
+        <h3>Back before the listing goes live.</h3>
+        <p>A shoot comes in and the sequencing, clip naming and first assembly are automated, so the time I spend is spent on the cut itself rather than on paperwork.</p>
+      </article>
+      <article data-reveal style="--reveal-delay:.08s">
+        <span class="k">Format</span>
+        <h3>One shoot, every aspect.</h3>
+        <p>The full walkthrough for the listing page, a vertical cutdown for Reels and TikTok, and a teaser for the feed. Cut from the same footage, framed for where each one lands.</p>
+      </article>
+      <article data-reveal style="--reveal-delay:.16s">
+        <span class="k">Finish</span>
+        <h3>Graded, mixed, delivered.</h3>
+        <p>Colour, sound design and music beds are part of the job, not an upsell. Windows hold their exposure, rooms sound like rooms, and nothing clips.</p>
+      </article>
+      <article data-reveal style="--reveal-delay:.24s">
+        <span class="k">Working with me</span>
+        <h3>One person, whole pipeline.</h3>
+        <p>Nothing gets lost between an editor, a colourist and a sound department, because there is only one of me. You send footage, you get a finished listing back.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="reels" class="container">
+    <div data-reveal>
+      <h2 class="section-title">Recent <span class="accent">listings.</span></h2>
+      <p class="hero-sub" style="max-width:40rem;margin-top:.75rem">Nine recent cuts, embedded from the accounts they were posted on &mdash; the agents' and brokerages' own feeds, not mine. That is the part that matters: the work goes out under their name, on their listing, the week it was shot. The last one is a teaser cut, which is usually what goes up first.</p>
+    </div>
+
+    <div class="re-wall" id="re-wall">
+      <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DYkQusFhh09/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DYkQusFhh09/">View this listing on Instagram</a></blockquote></div>
+      <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXN_I4NjbO1/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DXN_I4NjbO1/">View this listing on Instagram</a></blockquote></div>
+      <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DV_cTgHgNnS/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DV_cTgHgNnS/">View this listing on Instagram</a></blockquote></div>
+      <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXt9xewgPuB/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DXt9xewgPuB/">View this listing on Instagram</a></blockquote></div>
+      <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DY7uNH7gISQ/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DY7uNH7gISQ/">View this listing on Instagram</a></blockquote></div>
+      <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DcpdbaIEsOC/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DcpdbaIEsOC/">View this listing on Instagram</a></blockquote></div>
+      <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DcUj4q0vgjm/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DcUj4q0vgjm/">View this listing on Instagram</a></blockquote></div>
+      <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DcCGEhMvmzW/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DcCGEhMvmzW/">View this listing on Instagram</a></blockquote></div>
+      <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Dc2fBeeOpgU/" data-instgrm-version="14"><a href="https://www.instagram.com/p/Dc2fBeeOpgU/">View this listing on Instagram</a></blockquote></div>
+    </div>
+
+    <p class="re-note">More on Instagram at <a href="https://www.instagram.com/builtbydjp/" target="_blank" rel="noopener">@builtbydjp</a>, or ask me for the full reel.</p>
+  </section>
+
+  <section class="re-close container">
+    <div data-reveal>
+      <h2 class="section-title">Got a listing <span class="accent">to cut?</span></h2>
+      <p class="hero-sub" style="max-width:34rem;margin-inline:auto">Send the footage and the deadline. If it is a fit I will tell you the same day, and if it is not I will tell you that too.</p>
+      <div class="hero-cta" style="margin-top:1.5rem">
+        <a href="mailto:dustinejao@gmail.com?subject=Real%20estate%20listing" class="btn btn-pink">Email me</a>
+        <a href="https://drive.google.com/drive/folders/1-B7w20bdZBiH6UdLjG9bnkEr2qlXZFrq?usp=share_link" target="_blank" rel="noopener" class="btn btn-ghost">Full reel on Drive</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/music/">Music</a>
+    <a href="/apps/">Apps</a>
+    <a href="/#contact">Contact</a>
+  </div>
+  <p class="fine">&copy; <span id="year">2026</span> Dustine Jao. All Rights Reserved.</p>
+  <p class="fine">Designed &amp; coded from scratch by Dustine Jao &middot; Manila, PH</p>
+</footer>
+
+<script src="/app.js" defer></script>
+<script>
+/*
+  Nine Instagram iframes is a lot to ask of a page on load, and every one of
+  them is below the fold. embed.js is fetched the first time the wall comes
+  within a screen of the viewport, and Instagram takes it from there.
+*/
+(function () {
+  var wall = document.getElementById('re-wall');
+  if (!wall) return;
+
+  function load() {
+    if (window.__igLoaded) return;
+    window.__igLoaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.instagram.com/embed.js';
+    s.onload = function () { if (window.instgrm) window.instgrm.Embeds.process(); };
+    document.body.appendChild(s);
+  }
+
+  if (!('IntersectionObserver' in window)) { load(); return; }
+  var io = new IntersectionObserver(function (entries) {
+    if (entries.some(function (e) { return e.isIntersecting; })) { load(); io.disconnect(); }
+  }, { rootMargin: '600px 0px' });
+  io.observe(wall);
+})();
+</script>
+<!-- Vercel Analytics -->
+<script>window.va = window.va || function () { (window.va.q = window.va.q || []).push(arguments); };</script>
+<script src="/_vercel/insights/script.js" defer></script>
+</body>
+</html>
