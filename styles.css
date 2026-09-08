@@ -722,21 +722,23 @@ a.bt:hover .bt-arrow { background: var(--pink); color: #fff; border-color: trans
 /* bento spans: video is the star */
 .wc-video   { grid-column: span 6; }
 .wc-audio, .wc-graphic { grid-column: span 3; }
-.wc-uiux    { grid-column: span 4; }
-.wc-all     { grid-column: span 2; }
+.wc-uiux, .wc-all { grid-column: span 3; }
 
 /*
-   Video Editing was the last card still opening with a photograph. It shows
-   its tools now like the rest, and takes the pink, because it is the service
-   the other five hang off.
+   The strip is inset exactly as far as the heading under it, so the first
+   mark starts on the same vertical as the first letter of the title.
 */
-.wc-video .icon-strip {
+.icon-strip {
   display: flex;
   align-items: center;
-  gap: 1.1rem;
-  padding: 1.5rem 1.5rem .35rem;
-  min-height: 76px;
+  gap: .8rem;
+  padding: 1.35rem 1.25rem .35rem;
+  min-height: 72px;
 }
+
+/* Video Editing takes the pink, because it is the service the others hang
+   off. It was the last card still opening with a photograph. */
+.wc-video .icon-strip { background: var(--pink-soft); }
 .tools { display: flex; align-items: center; gap: .85rem; flex-wrap: wrap; }
 /*
    Every mark is the same object: a 28px tile with a hairline.
