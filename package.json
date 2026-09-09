@@ -1,0 +1,19 @@
+{
+  "name": "dustinejao-portfolio",
+  "version": "1.0.0",
+  "description": "Dustine Jao - Multimedia Artist & Video Editor Portfolio",
+  "private": true,
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": [
+    "portfolio",
+    "multimedia",
+    "video-editing"
+  ],
+  "author": "Dustine Jao",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
