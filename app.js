@@ -1,9 +1,4 @@
 /* Dustine Jao : Portfolio 2026. Vanilla JS, no dependencies. */
-
-/* ---------- Vercel Speed Insights ------------------------------------ */
-import { injectSpeedInsights } from '/vendor/speed-insights.js';
-injectSpeedInsights();
-
 (() => {
   'use strict';
 
