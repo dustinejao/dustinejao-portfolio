@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy: Barya</title>
+<meta name="description" content="Barya's privacy policy. The app collects nothing and makes no network calls. Your ledger is encrypted on your phone and never leaves it.">
+<meta name="theme-color" content="#000000">
+<link rel="canonical" href="https://www.dustinejao.com/barya/privacy/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barya">
+<meta property="og:url" content="https://www.dustinejao.com/barya/privacy/">
+<meta property="og:title" content="Privacy: Barya">
+<meta property="og:description" content="Barya collects nothing and makes no network calls. Your ledger is encrypted on your phone and never leaves it.">
+<link rel="icon" href="/images/apps/barya.png">
+<link rel="apple-touch-icon" href="/images/apps/barya.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/barya/barya.css">
+</head>
+<body>
+<a href="#main" class="sr-only skip">Skip to content</a>
+
+<header class="site-header">
+  <div class="inner">
+    <a href="/barya/" class="brand" aria-label="Barya, home">
+      <svg class="mark" width="22" height="22" viewBox="0 0 100 100" role="img" aria-hidden="true">
+        <circle cx="62" cy="38" r="26" fill="currentColor"/>
+        <circle cx="38" cy="62" r="32" fill="var(--bg)"/>
+        <circle cx="38" cy="62" r="26" fill="currentColor"/>
+      </svg>
+      <span class="wordmark">barya</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/apps/" class="text-link">&larr; dustinejao.com</a>
+      <a href="/barya/support/" class="text-link">Support</a>
+      <a href="/barya/privacy/" class="text-link" aria-current="page">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="doc container">
+    <span class="label">Barya</span>
+    <h1>Privacy</h1>
+    <p class="intro">
+      Barya collects nothing, because there is nowhere for it to send anything.
+      The app makes no network requests at all.
+    </p>
+    <p class="meta">
+      Effective 14 September 2026 &middot; applies to Barya 1.0.0 on iPhone
+    </p>
+  </section>
+
+  <section class="section container">
+    <span class="label">In one line</span>
+    <h2>Your spending stays on your phone.</h2>
+    <div class="prose">
+      <p>
+        There is no account to make, no sign-in, no server, no analytics, no
+        advertising, no tracking and no third-party software development kit
+        inside the app. Nothing you type, photograph or import is transmitted
+        anywhere, and I have no way of seeing any of it.
+      </p>
+      <p>
+        That is not a promise about how the data is handled once collected. It is
+        that the data is never collected: the app has no code that opens a
+        network connection.
+      </p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <span class="label">What Barya stores</span>
+    <h2>On your device, and only there.</h2>
+    <div class="prose">
+      <p>
+        <strong>Your ledger.</strong> Every expense you record, with its amount,
+        the category you filed it under, and the date and time. It is kept in a
+        database in the app's private storage on your phone, encrypted with
+        AES-256. The encryption key is held in the iOS Keychain, not in the app
+        and not written down anywhere else.
+      </p>
+      <p>
+        <strong>Your settings.</strong> Budgets, categories, currency,
+        appearance, text size and whether the app lock is on. The same private
+        storage, the same encryption.
+      </p>
+      <p>
+        <strong>A backup copy.</strong> Unless you switch it off, Barya keeps a
+        plain-text JSON copy of your ledger in its own documents folder, so a
+        reinstall or a new phone can pick up where the old one left off. That
+        folder is included in your own iCloud device backup if you have iCloud
+        backup turned on, which means the copy travels through your Apple
+        account and not through mine. The copy is not encrypted, which the app
+        says in those words in Settings rather than implying more. Turn it off
+        in <strong>Settings &rarr; Backup</strong>, and erasing the ledger
+        deletes it.
+      </p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <span class="label">Camera and photos</span>
+    <h2>The receipt never leaves the phone.</h2>
+    <div class="prose">
+      <p>
+        When you scan a receipt, Barya asks iOS for camera access and takes one
+        photograph. That image is written to the app's temporary cache, read by
+        Apple's own on-device text recognition, and deleted immediately after.
+      </p>
+      <p>
+        The image is never uploaded, never added to your photo library, and never
+        sent to any recognition service. The whole scan works with the phone in
+        airplane mode, which is the simplest proof of it.
+      </p>
+      <p>
+        Camera access is asked for only when you open the scanner, and declining
+        it leaves the rest of the app working exactly as before.
+      </p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <span class="label">Statements</span>
+    <h2>The PDF is read where it sits.</h2>
+    <div class="prose">
+      <p>
+        When you import a bank or card statement, you pick the file yourself
+        through the system file picker; Barya cannot see your files otherwise.
+        The PDF's text is extracted on the phone. If the statement is a scan
+        rather than typed text, the page images are written to the app's
+        temporary cache, read by the same on-device text recognition, and
+        deleted.
+      </p>
+      <p>
+        Barya never connects to your bank, asks for banking credentials, or
+        sends the statement anywhere. It reads the file you handed it, shows you
+        the rows it found, and writes only the ones you keep ticked.
+      </p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <span class="label">Face ID and the app lock</span>
+    <h2>Barya asks, iOS answers.</h2>
+    <div class="prose">
+      <p>
+        Turning on the app lock makes Barya ask the operating system to confirm
+        it is you, using Face ID, Touch ID or your device passcode. Barya
+        receives a yes or a no. Your face, your fingerprint and your passcode
+        are handled entirely by iOS and are never available to the app.
+      </p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <span class="label">When you export</span>
+    <h2>You choose where it goes.</h2>
+    <div class="prose">
+      <p>
+        Exporting a CSV or a JSON backup writes the file to the app's temporary
+        folder and hands it to the iOS share sheet. Where it goes next is
+        whatever you pick: Files, Mail, a message, a cloud drive. Once it leaves
+        through the share sheet it is covered by whatever you sent it to, not by
+        this policy. The exported files are plain text so a spreadsheet can open
+        them, which means they are readable by anything that can read the file.
+      </p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <span class="label">What Apple sees</span>
+    <h2>The purchase, not the ledger.</h2>
+    <div class="prose">
+      <p>
+        Buying Barya is a transaction between you and Apple. Apple handles the
+        payment and gives me sales figures in aggregate: how many copies sold, in
+        which countries. I never receive your name, your email, your card
+        details or any way to identify you. Apple's handling of that purchase is
+        covered by <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple's privacy policy</a>.
+      </p>
+      <p>
+        Apple may also report a crash to me if you have crash sharing enabled in
+        your iOS settings. Those reports come from Apple, are anonymous, and
+        contain no part of your ledger. That is a setting on your phone, not
+        something Barya turns on.
+      </p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <span class="label">Your rights</span>
+    <h2>You already hold everything.</h2>
+    <div class="prose">
+      <p>
+        Because there is no server, there is no request to file. Your data is on
+        your phone, in your hands:
+      </p>
+      <ul>
+        <li><strong>To read it</strong>, open the app, or export a CSV.</li>
+        <li><strong>To take it elsewhere</strong>, export a CSV or a JSON backup.</li>
+        <li><strong>To correct it</strong>, tap any row in the Ledger.</li>
+        <li><strong>To delete it</strong>, use <strong>Settings &rarr; Backup &rarr; Erase all</strong>, which clears the ledger and the backup copy, or delete the app, which removes everything.</li>
+      </ul>
+      <p>
+        I cannot delete your data for you, recover it for you, or look at it,
+        because I never have it. That cuts both ways, and it is the trade the app
+        is built around.
+      </p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <span class="label">Children</span>
+    <h2>Rated for everyone.</h2>
+    <div class="prose">
+      <p>
+        Barya is a calculator and a list. It collects no personal information
+        from anybody, of any age, and it has no content, no messaging, no links
+        out and no advertising. It is not directed at children specifically, but
+        nothing in it puts a child at risk.
+      </p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <span class="label">Changes</span>
+    <h2>If this ever changes, it changes here.</h2>
+    <div class="prose">
+      <p>
+        If a future version of Barya ever needed to send something somewhere, it
+        would be asked for in the app, described on this page, and declared in
+        the App Store's privacy card before that version shipped. The date at the
+        top of this page says when it was last revised.
+      </p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <span class="label">Contact</span>
+    <h2>Ask me directly.</h2>
+    <div class="prose">
+      <p>
+        Barya is made by Dustine Jao in Manila, Philippines. Questions about this
+        policy, or about anything the app does, go to the person who wrote it.
+      </p>
+    </div>
+    <div class="contact" style="margin-top:1.5rem">
+      <span class="label">Email</span>
+      <br>
+      <a class="address" href="mailto:dustinejao@gmail.com?subject=Barya%20privacy">dustinejao@gmail.com</a>
+      <p class="turnaround">Usually answered within two or three days.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="/" class="text-link">Home</a>
+    <a href="/apps/" class="text-link">Apps</a>
+    <a href="/barya/" class="text-link">Barya</a>
+    <a href="/barya/support/" class="text-link">Support</a>
+    <a href="/#contact" class="text-link">Contact</a>
+  </div>
+  <p class="fine">&copy; <span id="year">2026</span> Dustine Jao. All Rights Reserved.</p>
+  <p class="fine">Designed &amp; coded from scratch by Dustine Jao &middot; Manila, PH</p>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Support: Barya</title>
+<meta name="description" content="Help with Barya: logging an expense, undo, editing an entry, budgets, receipts, statement imports, backups, the app lock, and how to reach a human.">
+<meta name="theme-color" content="#000000">
+<link rel="canonical" href="https://www.dustinejao.com/barya/support/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barya">
+<meta property="og:url" content="https://www.dustinejao.com/barya/support/">
+<meta property="og:title" content="Support: Barya">
+<meta property="og:description" content="Help with Barya: logging, undo, budgets, receipts, statements, backups and the app lock.">
+<link rel="icon" href="/images/apps/barya.png">
+<link rel="apple-touch-icon" href="/images/apps/barya.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/barya/barya.css">
+</head>
+<body>
+<a href="#main" class="sr-only skip">Skip to content</a>
+
+<header class="site-header">
+  <div class="inner">
+    <a href="/barya/" class="brand" aria-label="Barya, home">
+      <svg class="mark" width="22" height="22" viewBox="0 0 100 100" role="img" aria-hidden="true">
+        <circle cx="62" cy="38" r="26" fill="currentColor"/>
+        <circle cx="38" cy="62" r="32" fill="var(--bg)"/>
+        <circle cx="38" cy="62" r="26" fill="currentColor"/>
+      </svg>
+      <span class="wordmark">barya</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/apps/" class="text-link">&larr; dustinejao.com</a>
+      <a href="/barya/support/" class="text-link" aria-current="page">Support</a>
+      <a href="/barya/privacy/" class="text-link">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="doc container">
+    <span class="label">Barya</span>
+    <h1>Support</h1>
+    <p class="intro">
+      One person builds Barya, and that person reads the mail.
+    </p>
+
+    <div class="contact" style="margin-top:2rem">
+      <span class="label">Email</span>
+      <br>
+      <a class="address" href="mailto:dustinejao@gmail.com?subject=Barya%20support">dustinejao@gmail.com</a>
+      <p class="turnaround">
+        Usually answered within two or three days. Say what phone you are on and
+        what you were doing when it went wrong, and it gets fixed faster.
+      </p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <span class="label">Questions</span>
+    <h2>The usual ones.</h2>
+
+    <div class="faq">
+      <details>
+        <summary><span>How do I log an expense?</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Type the amount on the keypad, then tap what it was for. That is the whole thing. There is no save button and no second screen, and the entry is on disk before your finger leaves the glass.</p>
+          <p>The keypad does arithmetic too. Split a bill as <strong>1200 &divide; 4</strong>, or add a jeepney ride as <strong>13 + 13</strong>, and the answer is what gets filed.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>I tapped the wrong category.</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>The line just above the category row names what was filed and carries an <strong>UNDO</strong> for a few seconds. Tapping it removes the entry and puts the amount back on the keypad, ready to file again.</p>
+          <p>Past that, open the <strong>Ledger</strong> and tap the row. That opens it for editing.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>Can I change an entry after the fact?</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Yes. Tap any row in the Ledger. You get the same keypad to fix the amount, the same category row to re-file it, and a date stepper for the day it happened on. Tapping a category saves the change, the same gesture that recorded it in the first place.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>I deleted something by accident.</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>A deleted entry can be taken back for a few seconds: a line appears at the top of the Ledger with <strong>UNDO</strong> on it. That works for a single swipe-delete and for a batch deleted from the selection header.</p>
+          <p>After that window it is gone. If you erased the whole ledger and want it back, restore the JSON backup from <strong>Settings &rarr; Backup &rarr; Restore</strong>.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>How do I set a budget?</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p><strong>Settings</strong>, top row. Tap the plus and minus to step the daily and monthly figures, or hold either one for bigger jumps.</p>
+          <p>Monthly budgets are kept as a history. Raising this month's figure does not go back and change whether last month was over or under, which is why the tile says the month it applies from.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>The dots under the total, what are they?</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Your budget. Filled dots are money spent, empty dots are what is left. The top strip is today and the bottom strip is this month, so you can read both without reading a number.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>Where did my money go this month?</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Open the <strong>Ledger</strong>. Above the day-by-day list there is a chart over 14 days, 90 days or 12 months, and under it a breakdown of this month by category, largest first. Tap a category to filter the list to it.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>The receipt scan read the wrong number.</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Fill the frame with the receipt, get some light on it, and keep the total in shot. When Barya is confident it puts the amount straight on the keypad, where you can check it before tapping a category. When it is not confident it stops and shows you the line it read, so you can accept it or retake.</p>
+          <p>On a receipt paid in cash, the amount tendered and the change are usually larger than the total. Barya knows to ignore those, so a wrong read is usually a blurry one.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>My bank statement will not import.</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Barya needs a <strong>PDF</strong>, and each transaction row needs a date and an amount on the same line. Most bank and card statements are already like this.</p>
+          <p>If your statement is a scan rather than typed text, Barya reads the pages as pictures, which works on a colour or grey scan and not on a black-and-white fax-compressed one. If it refuses, ask your bank for the statement again, or use the receipt scanner for the rows you care about.</p>
+          <p>Nothing is written until you have looked at the list and untick what you do not want.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>Is my data backed up? What about a new phone?</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Barya keeps a copy of the ledger in its own storage on the phone, which your iCloud device backup carries to a new phone by itself. That is the <strong>Backup</strong> tile in Settings, on by default.</p>
+          <p>For a copy you hold yourself, tap <strong>Export</strong> for a JSON file, or <strong>CSV</strong> in the Ledger for something a spreadsheet opens. <strong>Restore</strong> reads a JSON backup and asks whether to merge it into what is there or replace it.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>Can I lock the app?</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Yes. <strong>Settings &rarr; Lock &rarr; On</strong>. After that Barya asks for Face ID, Touch ID or your device passcode every time it opens, and the lock goes up the moment you leave the app, so your spending is not sitting in the app switcher.</p>
+          <p>Turning the lock off asks for you as well. Barya never sees your face or your fingerprint; it asks the operating system and gets back a yes or a no.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>Does it work without internet?</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Always. Barya makes no network calls at all, so there is no offline mode to switch on and nothing to sync. It works on a plane, with the SIM out, and with no load on your prepaid.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>Which currencies?</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Twenty-six, peso first, including the ASEAN set and the currencies remittances tend to arrive in. Pick yours in <strong>Settings &rarr; Currency</strong>. Barya does not convert between them: it is a ledger for the money you actually spend, in the place you are spending it.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>Is it a subscription?</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>No. Barya is one purchase on the App Store and then it is yours. There is nothing to unlock later, no tier above it, and no account attached to it.</p>
+          <p>Refunds are handled by Apple, not by me. Use <a href="https://reportaproblem.apple.com" rel="noopener">reportaproblem.apple.com</a>.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>The text is too small, or too light.</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p><strong>Settings &rarr; Type</strong> has four sizes and three faces for the numbers. Bold follows your phone's own accessibility setting rather than adding a second switch, so turning on Bold Text in iOS thickens Barya too, including the serif the amounts are set in.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>How do I delete everything?</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p><strong>Settings &rarr; Backup &rarr; Erase all</strong>. It asks first, then it clears the ledger and the copy Barya was keeping on the phone, so the next launch does not helpfully restore what you just deleted. Deleting the app removes everything too.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span>Something else is wrong.</span><span class="sign" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Mail me. There is no support ticket system and no bot: it goes to the person who wrote the app.</p>
+          <p><a href="mailto:dustinejao@gmail.com?subject=Barya%20support">dustinejao@gmail.com</a></p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section container">
+    <span class="label">Also</span>
+    <h2>Nothing here collects anything.</h2>
+    <div class="prose">
+      <p>
+        Barya has no analytics, so nothing tells me an app crashed unless you do.
+        If something breaks, the details in your mail are the only evidence there
+        is. What you were doing, what you expected, and what happened instead is
+        plenty.
+      </p>
+      <p>
+        <a href="/barya/privacy/">Read the privacy policy</a> for exactly what
+        stays on your phone and what never leaves it.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="/" class="text-link">Home</a>
+    <a href="/apps/" class="text-link">Apps</a>
+    <a href="/barya/" class="text-link">Barya</a>
+    <a href="/barya/privacy/" class="text-link">Privacy</a>
+    <a href="/#contact" class="text-link">Contact</a>
+  </div>
+  <p class="fine">&copy; <span id="year">2026</span> Dustine Jao. All Rights Reserved.</p>
+  <p class="fine">Designed &amp; coded from scratch by Dustine Jao &middot; Manila, PH</p>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
