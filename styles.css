@@ -1385,3 +1385,14 @@ a.app-card:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; 
   transition: transform .25s ease;
 }
 a.app-card:hover .app-status .go { transform: translateX(3px); }
+
+/* Apps without a site yet: same card, no link. */
+.app-card-static { display: flex; flex-direction: column; }
+.app-card-static p { flex: 1; }
+.app-card-static .app-status { margin-top: auto; }
+.app-card-static:hover { transform: none; }
+.app-card .app-status .wip,
+.app-card .app-status .paused { display: inline-flex; align-items: center; gap: .45rem; font-weight: 600; color: var(--text); }
+.app-card .app-status .wip::before,
+.app-card .app-status .paused::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #f59e0b; }
+.app-card .app-status .paused::before { background: var(--muted); }
