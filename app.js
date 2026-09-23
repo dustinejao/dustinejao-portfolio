@@ -361,7 +361,10 @@
       glide.classList.remove('no-anim');
     }
   };
-  const currentNav = () => navPill && navPill.querySelector('.nav-link.active');
+  /* The first active link that is actually showing: the home page carries a
+     Home link for phones and section links for desktop, and only one set is
+     on screen at a time. */
+  const currentNav = () => navLinks.find((l) => l.classList.contains('active') && l.offsetWidth) || null;
   const settle = () => glideTo(currentNav(), true);
 
   /* On a phone the pill scrolls, so the link the capsule is under can sit off
@@ -403,7 +406,16 @@
          loads, and without it the capsule flies back to the section you were
          in a moment before the page changes. */
       l.addEventListener('click', (e) => {
-        const sameDoc = (l.getAttribute('href') || '').startsWith('#');
+        /* Home, pressed on the home page, goes to the top rather than
+           reloading the page it is already on. */
+        const url = new URL(l.href, location.href);
+        const samePage = !url.hash && url.pathname === location.pathname;
+        if (samePage && e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+          if (location.hash) history.replaceState(null, '', location.pathname);
+        }
+        const sameDoc = samePage || (l.getAttribute('href') || '').startsWith('#');
         /* A modifier click opens a tab and leaves this page where it is. */
         const leaving = !sameDoc && e.button === 0 &&
           !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;

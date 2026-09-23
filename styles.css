@@ -59,7 +59,12 @@
 /* ---------- Base -------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
 
+/* The page colour lives on the root as well as the body: iOS Safari tints the
+   strip behind the status bar from the root, and left transparent it painted
+   that strip white over a dark page. */
 html {
+  background-color: var(--bg);
+  transition: background-color .4s ease;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
   -webkit-text-size-adjust: 100%;
@@ -261,6 +266,7 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
   .nav-glide { transition: opacity .2s ease; }
 }
 
+.nav-phone-only { display: none; }
 .nav-sep {
   width: 1px;
   height: 1.1rem;
@@ -322,6 +328,9 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
   }
   .nav-link { padding: .5rem .7rem; font-size: .94rem; }
   .nav-desktop-only { display: none; }
+  /* On a phone the home page carries the same four links as every other page,
+     Home lit, so moving between pages never swaps the whole bar out. */
+  .nav-phone-only { display: block; }
   /*
      Five links do not fit beside a logo and two buttons on a phone. They used
      to simply be cut off, with Music and Apps unreachable; the pill scrolls

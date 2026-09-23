@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Dustine Jao | Multimedia Artist &amp; Video Editor</title>
 
-<!-- Set theme before first paint (no flash) -->
-<script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;var s=localStorage.getItem('sound');document.documentElement.dataset.sound=s==='off'?'off':'on'}catch(e){}})();</script>
-
 <meta name="theme-color" content="#ffffff">
+
+<!-- Set theme before first paint (no flash) -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#0b0b0e':'#ffffff';var s=localStorage.getItem('sound');document.documentElement.dataset.sound=s==='off'?'off':'on'}catch(e){}})();</script>
+
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -66,11 +67,12 @@
   </a>
   <nav class="nav-pill" aria-label="Main navigation">
     <span class="nav-glide" aria-hidden="true"></span>
+    <a href="/" class="nav-link nav-phone-only active">Home</a>
     <a href="#about" class="nav-link nav-desktop-only">About</a>
-    <a href="#work" class="nav-link">Work</a>
+    <a href="#work" class="nav-link nav-desktop-only">Work</a>
     <a href="#experience" class="nav-link nav-desktop-only">Experience</a>
-    <a href="#contact" class="nav-link">Contact</a>
-    <span class="nav-sep" aria-hidden="true"></span>
+    <a href="#contact" class="nav-link nav-desktop-only">Contact</a>
+    <span class="nav-sep nav-desktop-only" aria-hidden="true"></span>
     <a href="/realestate/" class="nav-link">Real Estate</a>
     <a href="/apps/" class="nav-link">Apps</a>
     <a href="/music/" class="nav-link">Music</a>

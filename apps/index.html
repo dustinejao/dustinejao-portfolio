@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Built by DJ | Apps by Dustine Jao</title>
 
-<!-- Set theme before first paint (no flash) -->
-<script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;var s=localStorage.getItem('sound');document.documentElement.dataset.sound=s==='off'?'off':'on'}catch(e){}})();</script>
-
 <meta name="theme-color" content="#ffffff">
+
+<!-- Set theme before first paint (no flash) -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#0b0b0e':'#ffffff';var s=localStorage.getItem('sound');document.documentElement.dataset.sound=s==='off'?'off':'on'}catch(e){}})();</script>
+
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
