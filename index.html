@@ -44,7 +44,8 @@
   "@type": "Person",
   "name": "Dustine Jao",
   "url": "https://www.dustinejao.com/",
-  "jobTitle": "Multimedia Artist, Video Production",
+  "jobTitle": "Founder of CastCut; Multimedia Artist, Video Production",
+  "worksFor": { "@type": "Organization", "name": "CastCut", "url": "https://getcastcut.com" },
   "alumniOf": "De La Salle-College of Saint Benilde",
   "email": "mailto:dustinejao@gmail.com",
   "sameAs": [
@@ -86,215 +87,274 @@
   </div>
 </header>
 
-<main>
-  <!-- ============ HERO ============ -->
-  <section class="hero container" id="top">
-    <h1>I make people<br><span class="accent">stop scrolling.</span></h1>
-    <p class="hero-sub">Video, audio post and design for brands and creators. Manila &rarr; worldwide.</p>
-    <div class="hero-cta">
-      <a href="#work" class="btn btn-pink">View My Work</a>
-      <a href="#contact" class="btn btn-ghost">Let's Talk</a>
+<main class="home">
+  <!-- ============ HERO ============
+       A keynote slide: the line, two buttons, and the product. The product is
+       a phone whose feed flicks past four reels and stops on a listing, which
+       is the headline happening rather than being claimed. -->
+  <section class="hero" id="top" data-loop>
+    <div class="container hx-copy">
+      <h1 class="hx-title"><span class="hx-l1">I make people</span> <span class="hx-l2 grad">stop scrolling.</span></h1>
+      <p class="hx-sub">Video, audio post and design for brands and creators.</p>
+      <div class="ap-ctas hx-ctas">
+        <a href="#work" class="ap-btn">See the work</a>
+        <a href="#contact" class="ap-link">Let&rsquo;s talk</a>
+      </div>
     </div>
 
-    <!--
-      Bento: five tiles, no more.
+    <div class="hx-stage" aria-hidden="true">
+      <div class="hx-glow"></div>
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="feed">
+            <div class="reel r-cc">
+              <img src="/images/home/castcut-short.webp" alt="" width="720" height="1280" decoding="async">
+              <span class="cc-badge"><img src="/images/apps/castcut.webp" alt="" width="20" height="20" decoding="async">Cut by CastCut</span>
+              <p class="cc-cap">That&rsquo;s when it <em>clicked</em> for us</p>
+              <div class="reel-cap"><b>CastCut</b><span>Sync, cuts and shorts in about a minute.</span></div>
+            </div>
+            <div class="reel r-lk">
+              <p class="lk-mark">Liriko</p>
+              <img class="lk-shot" src="/images/home/liriko-partner.webp" alt="" width="900" height="736" decoding="async">
+              <img class="lk-shot" src="/images/home/liriko-rhymes.webp" alt="" width="900" height="400" decoding="async">
+              <div class="reel-cap"><b>Liriko</b><span>Rhyme faster. Write anywhere.</span></div>
+            </div>
+            <div class="reel r-song">
+              <img class="r-song-bg" src="/images/music/naakit.webp" alt="" width="600" height="600" decoding="async">
+              <img class="r-song-cover" src="/images/music/naakit.webp" alt="" width="600" height="600" decoding="async">
+              <p class="song-meta"><b>Naakit</b><span>Dustine Jao</span></p>
+              <div class="reel-cap"><b>@dustinejao</b><span>New single, out now.</span></div>
+            </div>
+            <div class="reel r-home v-dusk">
+              <svg class="house" viewBox="0 0 180 320" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><path class="h-hill" d="M0 214C30 196 58 204 90 206S150 192 180 198V320H0Z"/><g class="h-tree"><ellipse cx="8" cy="234" rx="20" ry="36"/><ellipse cx="173" cy="230" rx="18" ry="40"/></g><rect class="h-wall2" x="52" y="178" width="96" height="34"/><rect class="h-roof" x="46" y="171" width="108" height="7" rx="1"/><rect class="h-wall" x="22" y="211" width="136" height="57"/><rect class="h-roof" x="14" y="204" width="152" height="7" rx="1"/><g class="h-win"><rect x="30" y="220" width="52" height="40"/><rect x="88" y="220" width="28" height="40"/><rect x="122" y="220" width="28" height="40"/><rect x="60" y="184" width="54" height="22"/><rect x="120" y="184" width="22" height="22"/></g><path class="h-mull" d="M56 220v40M30 240h52M102 220v40M136 220v40M87 184v22"/><rect class="h-ground" x="0" y="268" width="180" height="52"/><rect class="h-pool" x="28" y="279" width="124" height="18" rx="3"/><g class="h-refl"><rect x="34" y="282" width="44" height="3" rx="1.5"/><rect x="90" y="282" width="24" height="3" rx="1.5"/><rect x="124" y="282" width="22" height="3" rx="1.5"/></g></svg>
+              <p class="reel-kicker">Just<br>listed</p>
+              <p class="reel-swipe">Swipe for the full tour</p>
+              <div class="reel-cap"><b>@yourlisting</b><span>Golden hour. One take. 38 seconds.</span></div>
+            </div>
+          </div>
 
-      Everything a visitor wants in the first five seconds (is he any good, is
-      he available, is he qualified, what else does he do) answered at a glance
-      without scrolling. The reel is twice the size of anything else because the
-      work is the argument; the rest are one fact each.
-    -->
-    <div class="bento">
-      <a href="/realestate/" class="bt bt-link bt-reel">
-        <span class="tools"><span class="tool is-app" style="--src:url('/images/tools/v3/finalcutpro.png')" role="img" aria-label="Final Cut Pro"></span><span class="tool is-app" style="--src:url('/images/tools/v3/capcut.png')" role="img" aria-label="CapCut"></span><span class="tool is-app" style="--src:url('/images/tools/v3/premierepro.png')" role="img" aria-label="Adobe Premiere Pro"></span><span class="tool is-app" style="--src:url('/images/tools/v3/aftereffects.png')" role="img" aria-label="Adobe After Effects"></span><span class="tool" style="--src:url('/images/tools/v3/davinciresolve.svg')" role="img" aria-label="DaVinci Resolve"></span><span class="tool" style="--src:url('/images/tools/v3/blender.svg')" role="img" aria-label="Blender"></span></span>
-        <span class="bt-reel-title">Real estate media</span>
-        <span class="bt-label">Vertical native, 1 to 4 day turnaround</span>
-        <span class="bt-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-
-      <div class="bt bt-status">
-        <span class="bt-flags" aria-hidden="true">
-          <img src="/images/flags/ph.svg" alt="" width="26" height="20" loading="lazy" decoding="async">
-          <img src="/images/flags/ca.svg" alt="" width="26" height="20" loading="lazy" decoding="async">
-          <img src="/images/flags/us.svg" alt="" width="26" height="20" loading="lazy" decoding="async">
-          <span class="bt-plus">+</span>
-        </span>
-        <span class="bt-live"><span class="bt-dot"></span> Available for work</span>
-        <span class="bt-label">Manila, PH &middot; Remote-ready</span>
+          <div class="phone-ui">
+            <div class="ui-status"><span>9:41</span><i class="ui-island"></i><span class="ui-bars"><svg viewBox="0 0 34 12"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><rect x="22" y="1" width="10" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="23.8" y="2.8" width="6.4" height="6.4" rx="1.2"/></svg></span></div>
+            <div class="ui-top"><b>Reels</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h2.5L9 4h6l1.5 2H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3.5"/></svg></div>
+            <div class="ui-rail">
+              <span class="ui-act ui-like"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2Z"/></svg><small><span class="c1">2,431</span><span class="c2">2,432</span></small></span>
+              <span class="ui-act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.3-4.2A8 8 0 1 1 20 11.5Z"/></svg><small>188</small></span>
+              <span class="ui-act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4Z"/></svg></span>
+            </div>
+            <div class="ui-prog"><i></i></div>
+          </div>
+        </div>
       </div>
-
-      <div class="bt bt-cred">
-        <span class="bt-figure">Cum Laude</span>
-        <span class="bt-label">BA Multimedia Arts &middot; 8&times; Dean's Lister</span>
-        <span class="bt-wordmark" role="img" aria-label="De La Salle-College of Saint Benilde"></span>
-      </div>
-
-      <a href="/apps/" class="bt bt-link bt-apps">
-        <span class="bt-stack" aria-hidden="true">
-          <img src="/images/apps/castcut.webp" alt="" width="40" height="40" loading="lazy" decoding="async">
-          <img src="/images/apps/liriko.webp" alt="" width="40" height="40" loading="lazy" decoding="async">
-          <img src="/images/apps/tunog.webp" alt="" width="40" height="40" loading="lazy" decoding="async">
-          <img src="/images/apps/caloff.webp" alt="" width="40" height="40" loading="lazy" decoding="async">
-          <img src="/images/apps/barya.webp" alt="" width="40" height="40" loading="lazy" decoding="async">
-        </span>
-        <span class="bt-figure">8</span>
-        <span class="bt-label">apps built, four shipped</span>
-        <span class="bt-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a href="/music/" class="bt bt-link bt-music">
-        <span class="bt-stack" aria-hidden="true">
-          <img src="/images/music/lihim.webp" alt="" width="40" height="40" loading="lazy" decoding="async">
-          <img src="/images/music/ctrls.webp" alt="" width="40" height="40" loading="lazy" decoding="async">
-          <img src="/images/music/naakit.webp" alt="" width="40" height="40" loading="lazy" decoding="async">
-        </span>
-        <span class="bt-figure">16</span>
-        <span class="bt-label">releases on Spotify &amp; Apple Music</span>
-        <span class="bt-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-
     </div>
   </section>
 
-
-  <!-- ============ ABOUT ============ -->
-  <section id="about" class="container">
-    <div class="about-grid">
-      <div class="about-photo" data-reveal>
-        <img src="/images/dj.webp" alt="Headshot of Dustine Jao, multimedia artist" loading="lazy" width="600" height="600" decoding="async">
-      </div>
-      <div class="about-text" data-reveal style="--reveal-delay:.1s">
-        <h2 class="section-title">One person. <span class="accent">Whole pipeline.</span></h2>
-        <p class="lede">Cutting, sound, colour, delivery. Nothing gets lost between departments, because there is only one.</p>
-        <p>I cut remotely for teams in the US and Canada, mostly real-estate media, and I build the AI-assisted workflows that take a shoot from card to finished timeline in a fraction of the usual time.</p>
-        <p>When the tool I need does not exist yet, I write it. That is how eight apps happened, CastCut among them.</p>
+  <!-- ============ ABOUT ============
+       The copy lights up word by word as it scrolls through, the way Apple
+       reads a paragraph to you. -->
+  <section class="lit" id="about">
+    <div class="container">
+      <p class="lit-hi"><img src="/images/dj.webp" alt="Dustine Jao" width="48" height="48" loading="lazy" decoding="async">Hi, I&rsquo;m DJ.</p>
+      <p class="lit-text" data-lit><span class="hl">One person. Whole pipeline.</span> Cutting, sound, colour and delivery by the same pair of hands, so nothing gets lost between departments. I cut remotely for teams in the US and Canada, build the AI workflows that take a shoot from card to timeline, and when the tool I need does not exist, I write it.</p>
     </div>
   </section>
 
-  <!-- ============ WORK ============ -->
-  <section id="work" class="container">
-    <div data-reveal>
-      <h2 class="section-title">Video first. <span class="accent">Everything else follows.</span></h2>
+  <!-- ============ WORK ============
+       The apple.com homepage: one product per tile, a name, a line, two
+       buttons and the thing itself. -->
+  <section class="tiles" id="work">
+    <div class="tile tile-full tile-dark tile-re" data-reveal>
+      <p class="tile-eyebrow">Video first</p>
+      <h2>Real Estate Media</h2>
+      <p class="tile-tag">Listings people watch to the end.</p>
+      <div class="ap-ctas">
+        <a href="/realestate/" class="ap-btn">Watch the reels</a>
+        <a href="mailto:dustinejao@gmail.com?subject=Real%20estate%20listing" class="ap-link">Book a cut</a>
+      </div>
+      <div class="tile-art re-art" aria-hidden="true">
+        <div class="rf rf-l v-day"><svg class="house" viewBox="0 0 180 320" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><path class="h-hill" d="M0 214C30 196 58 204 90 206S150 192 180 198V320H0Z"/><g class="h-tree"><ellipse cx="8" cy="234" rx="20" ry="36"/><ellipse cx="173" cy="230" rx="18" ry="40"/></g><rect class="h-wall2" x="52" y="178" width="96" height="34"/><rect class="h-roof" x="46" y="171" width="108" height="7" rx="1"/><rect class="h-wall" x="22" y="211" width="136" height="57"/><rect class="h-roof" x="14" y="204" width="152" height="7" rx="1"/><g class="h-win"><rect x="30" y="220" width="52" height="40"/><rect x="88" y="220" width="28" height="40"/><rect x="122" y="220" width="28" height="40"/><rect x="60" y="184" width="54" height="22"/><rect x="120" y="184" width="22" height="22"/></g><path class="h-mull" d="M56 220v40M30 240h52M102 220v40M136 220v40M87 184v22"/><rect class="h-ground" x="0" y="268" width="180" height="52"/><rect class="h-pool" x="28" y="279" width="124" height="18" rx="3"/><g class="h-refl"><rect x="34" y="282" width="44" height="3" rx="1.5"/><rect x="90" y="282" width="24" height="3" rx="1.5"/><rect x="124" y="282" width="22" height="3" rx="1.5"/></g></svg><p class="rf-text">Open<br>house<small>Sat &middot; 1&ndash;4 PM</small></p></div>
+        <div class="rf rf-c v-dusk"><svg class="house" viewBox="0 0 180 320" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><path class="h-hill" d="M0 214C30 196 58 204 90 206S150 192 180 198V320H0Z"/><g class="h-tree"><ellipse cx="8" cy="234" rx="20" ry="36"/><ellipse cx="173" cy="230" rx="18" ry="40"/></g><rect class="h-wall2" x="52" y="178" width="96" height="34"/><rect class="h-roof" x="46" y="171" width="108" height="7" rx="1"/><rect class="h-wall" x="22" y="211" width="136" height="57"/><rect class="h-roof" x="14" y="204" width="152" height="7" rx="1"/><g class="h-win"><rect x="30" y="220" width="52" height="40"/><rect x="88" y="220" width="28" height="40"/><rect x="122" y="220" width="28" height="40"/><rect x="60" y="184" width="54" height="22"/><rect x="120" y="184" width="22" height="22"/></g><path class="h-mull" d="M56 220v40M30 240h52M102 220v40M136 220v40M87 184v22"/><rect class="h-ground" x="0" y="268" width="180" height="52"/><rect class="h-pool" x="28" y="279" width="124" height="18" rx="3"/><g class="h-refl"><rect x="34" y="282" width="44" height="3" rx="1.5"/><rect x="90" y="282" width="24" height="3" rx="1.5"/><rect x="124" y="282" width="22" height="3" rx="1.5"/></g></svg><p class="rf-text">Just<br>listed<small>Swipe for the tour</small></p></div>
+        <div class="rf rf-r v-night"><svg class="house" viewBox="0 0 180 320" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><path class="h-hill" d="M0 214C30 196 58 204 90 206S150 192 180 198V320H0Z"/><g class="h-tree"><ellipse cx="8" cy="234" rx="20" ry="36"/><ellipse cx="173" cy="230" rx="18" ry="40"/></g><rect class="h-wall2" x="52" y="178" width="96" height="34"/><rect class="h-roof" x="46" y="171" width="108" height="7" rx="1"/><rect class="h-wall" x="22" y="211" width="136" height="57"/><rect class="h-roof" x="14" y="204" width="152" height="7" rx="1"/><g class="h-win"><rect x="30" y="220" width="52" height="40"/><rect x="88" y="220" width="28" height="40"/><rect x="122" y="220" width="28" height="40"/><rect x="60" y="184" width="54" height="22"/><rect x="120" y="184" width="22" height="22"/></g><path class="h-mull" d="M56 220v40M30 240h52M102 220v40M136 220v40M87 184v22"/><rect class="h-ground" x="0" y="268" width="180" height="52"/><rect class="h-pool" x="28" y="279" width="124" height="18" rx="3"/><g class="h-refl"><rect x="34" y="282" width="44" height="3" rx="1.5"/><rect x="90" y="282" width="24" height="3" rx="1.5"/><rect x="124" y="282" width="22" height="3" rx="1.5"/></g></svg><p class="rf-text rf-sold">Sold</p></div>
+      </div>
     </div>
-    <div class="work-grid" style="margin-top:2rem">
-      <article class="work-card wc-video" data-reveal>
-        <div class="icon-strip">
-          <span class="tools"><span class="tool is-app" style="--src:url('/images/tools/v3/finalcutpro.png')" role="img" aria-label="Final Cut Pro"></span><span class="tool is-app" style="--src:url('/images/tools/v3/capcut.png')" role="img" aria-label="CapCut"></span><span class="tool is-app" style="--src:url('/images/tools/v3/premierepro.png')" role="img" aria-label="Adobe Premiere Pro"></span><span class="tool is-app" style="--src:url('/images/tools/v3/aftereffects.png')" role="img" aria-label="Adobe After Effects"></span><span class="tool" style="--src:url('/images/tools/v3/davinciresolve.svg')" role="img" aria-label="DaVinci Resolve"></span><span class="tool" style="--src:url('/images/tools/v3/blender.svg')" role="img" aria-label="Blender"></span></span>
-        </div>
-        <div class="meta">
-          <div>
-            <h3><a href="https://drive.google.com/drive/folders/1-B7w20bdZBiH6UdLjG9bnkEr2qlXZFrq?usp=share_link" target="_blank" rel="noopener" class="work-main">Video Editing</a></h3>
-            <p>High-quality video for brands and creators. My core craft, and the thing everything else hangs off.</p>
-            <span class="subs"><a href="/realestate/" class="sub-chip is-lead"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5M5.5 9.5V20h13V9.5"/><path d="m10.5 12.5 4 2.5-4 2.5Z"/></svg><span>Real Estate Media</span></a><span class="sub-chip is-tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3.2"/></svg><span>AI workflows &middot; Higgsfield</span></span><a href="https://drive.google.com/drive/folders/12vq4To9uycPHeGFO1Gyky6y7-600MZxx?usp=share_link" target="_blank" rel="noopener" class="sub-chip is-video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M7 4v16M17 4v16M2.5 12h19"/></svg><span>Short-Form</span></a><a href="https://drive.google.com/drive/folders/1kTA192Qd_rEp33ofGbFXrlda8Yvkh_LZ?usp=share_link" target="_blank" rel="noopener" class="sub-chip is-both"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg><span>Podcast</span></a></span>
-          </div>
-          <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-        </div>
-      </article>
 
-      <article class="work-card wc-audio" data-reveal style="--reveal-delay:.08s">
-        <div class="icon-strip">
-          <span class="tools"><span class="tool is-app" style="--src:url('/images/tools/v3/logicpro.png')" role="img" aria-label="Logic Pro"></span><span class="tool is-app" style="--src:url('/images/tools/v3/flstudio.png')" role="img" aria-label="FL Studio"></span><span class="tool is-app" style="--src:url('/images/tools/v3/adobeaudition.svg')" role="img" aria-label="Adobe Audition"></span></span>
-        </div>
-        <div class="meta">
-          <div>
-            <h3><a href="https://drive.google.com/drive/folders/1noD9AV2oRemMNX8z9yH80DtAyZFEtGE8?usp=share_link" target="_blank" rel="noopener" class="work-main">Audio Production</a></h3>
-            <p>Mixing, cleanup and sound design. Polished podcasts and pro sound.</p>
-            <span class="subs"><a href="https://drive.google.com/drive/folders/1kTA192Qd_rEp33ofGbFXrlda8Yvkh_LZ?usp=share_link" target="_blank" rel="noopener" class="sub-chip is-both"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg><span>Podcast</span></a></span>
+    <div class="tile tile-dark tile-cc" data-reveal data-loop>
+      <img class="tile-icon" src="/images/apps/castcut.webp" alt="" width="64" height="64" loading="lazy" decoding="async">
+      <h2>CastCut</h2>
+      <p class="tile-tag">Your podcast, already cut.</p>
+      <div class="ap-ctas">
+        <a href="https://getcastcut.com" target="_blank" rel="noopener" class="ap-btn">Learn more</a>
+        <a href="/apps/" class="ap-link">All apps</a>
+      </div>
+      <div class="tile-art cc-art" aria-hidden="true">
+        <div class="tt-art">
+          <div class="tt-tl">
+            <div class="tt-trk tt-a"><i style="--x:0;--w:5"></i><i style="--x:9;--w:3"></i><i style="--x:19;--w:5"></i><i style="--x:24;--w:5"></i><i style="--x:33;--w:3"></i><i style="--x:43;--w:5"></i></div>
+            <div class="tt-trk tt-b"><i style="--x:5;--w:4"></i><i style="--x:12;--w:4"></i><i style="--x:29;--w:4"></i><i style="--x:36;--w:4"></i></div>
+            <div class="tt-trk tt-c"><i style="--x:16;--w:3"></i><i style="--x:40;--w:3"></i></div>
+            <div class="tt-trk tt-au"><i style="--x:0;--w:9"></i><i style="--x:9;--w:6"></i><i style="--x:15;--w:9"></i><i style="--x:24;--w:9"></i><i style="--x:33;--w:6"></i><i style="--x:39;--w:9"></i></div>
           </div>
-          <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+          <span class="tt-head"></span>
         </div>
-      </article>
+      </div>
+    </div>
 
-      <article class="work-card wc-graphic" data-reveal>
-        <div class="icon-strip">
-          <span class="tools"><span class="tool" style="--src:url('/images/tools/v3/canva.svg')" role="img" aria-label="Canva"></span><span class="tool is-app" style="--src:url('/images/tools/v3/adobephotoshop.svg')" role="img" aria-label="Adobe Photoshop"></span><span class="tool is-app" style="--src:url('/images/tools/v3/adobeillustrator.svg')" role="img" aria-label="Adobe Illustrator"></span></span>
-        </div>
-        <div class="meta">
-          <div>
-            <h3><a href="https://drive.google.com/drive/folders/1J7j1uSKUYyHEmMhkj50uJSaVF9TFu9Be?usp=share_link" target="_blank" rel="noopener" class="work-main">Graphic Design</a></h3>
-            <p>Thumbnails, covers and campaign visuals for digital and print.</p>
+    <div class="tile tile-light tile-apps" data-reveal style="--reveal-delay:.08s">
+      <h2>Apps</h2>
+      <p class="tile-tag">Eight built. Four shipped.</p>
+      <div class="ap-ctas">
+        <a href="/apps/" class="ap-btn">Browse the shelf</a>
+      </div>
+      <div class="tile-art hs" aria-hidden="true">
+        <div class="hs-screen">
+          <div class="hs-status"><span>9:41</span></div>
+          <div class="hs-grid">
+            <span class="hs-app"><img src="/images/apps/castcut.webp" alt="" width="60" height="60" loading="lazy" decoding="async"><small>CastCut</small></span>
+            <span class="hs-app"><img src="/images/apps/liriko.webp" alt="" width="60" height="60" loading="lazy" decoding="async"><small>Liriko</small></span>
+            <span class="hs-app"><img src="/images/apps/tunog.webp" alt="" width="60" height="60" loading="lazy" decoding="async"><small>tunog</small></span>
+            <span class="hs-app"><img src="/images/apps/listingflow.webp" alt="" width="60" height="60" loading="lazy" decoding="async"><small>ListingFlow</small></span>
+            <span class="hs-app"><img src="/images/apps/caloff.webp" alt="" width="60" height="60" loading="lazy" decoding="async"><small>CalOff</small></span>
+            <span class="hs-app"><img src="/images/apps/barya.webp" alt="" width="60" height="60" loading="lazy" decoding="async"><small>Barya</small></span>
+            <span class="hs-app"><img src="/images/apps/singil-3.webp" alt="" width="60" height="60" loading="lazy" decoding="async"><small>Singil</small></span>
+            <span class="hs-app"><img src="/images/apps/paprgo.webp" alt="" width="60" height="60" loading="lazy" decoding="async"><small>PaprGo</small></span>
           </div>
-          <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </div>
-      </article>
+      </div>
+    </div>
 
-      <article class="work-card wc-uiux" data-reveal style="--reveal-delay:.08s">
-        <div class="icon-strip">
-          <span class="tools"><span class="tool" style="--src:url('/images/tools/v3/claude.svg')" role="img" aria-label="Claude"></span><span class="tool" style="--src:url('/images/tools/v3/openai.svg')" role="img" aria-label="Codex"></span><span class="tool" style="--src:url('/images/tools/v3/visualstudiocode.svg')" role="img" aria-label="Visual Studio Code"></span><span class="tool" style="--src:url('/images/tools/v3/figma.svg')" role="img" aria-label="Figma"></span><span class="tool" style="--src:url('/images/tools/v3/wordpress.svg')" role="img" aria-label="WordPress"></span><span class="tool" style="--src:url('/images/tools/v3/wix.svg')" role="img" aria-label="Wix"></span><span class="tool" style="--src:url('/images/tools/v3/hostinger.svg')" role="img" aria-label="Hostinger"></span></span>
-        </div>
-        <div class="meta">
-          <div>
-            <h3><a href="https://drive.google.com/drive/folders/1-vueEsBhWvrtQZ1nFtAVgT16VmeKaV3V?usp=share_link" target="_blank" rel="noopener" class="work-main">UI / UX &amp; Web</a></h3>
-            <p>Interfaces designed, then actually built and shipped.</p>
+    <div class="tile tile-light tile-archive" data-reveal>
+      <h2>The Archive</h2>
+      <p class="tile-tag">Every cut, mix and design. One Drive.</p>
+      <div class="ap-ctas">
+        <a href="https://drive.google.com/drive/folders/1Kb_uMHPQs-pNwaDouh7mAySCKObXsLW3?usp=share_link" target="_blank" rel="noopener" class="ap-btn">Open the Drive</a>
+      </div>
+      <div class="tile-art fd-art">
+        <div class="fd-win">
+          <div class="fd-bar" aria-hidden="true"><i></i><i></i><i></i><span>Portfolio</span></div>
+          <div class="fd-grid">
+            <a class="fd" href="https://drive.google.com/drive/folders/1-B7w20bdZBiH6UdLjG9bnkEr2qlXZFrq?usp=share_link" target="_blank" rel="noopener"><span class="fd-ico" aria-hidden="true"></span><small>Video Editing</small></a>
+            <a class="fd" href="https://drive.google.com/drive/folders/12vq4To9uycPHeGFO1Gyky6y7-600MZxx?usp=share_link" target="_blank" rel="noopener"><span class="fd-ico" aria-hidden="true"></span><small>Short-Form</small></a>
+            <a class="fd" href="https://drive.google.com/drive/folders/1kTA192Qd_rEp33ofGbFXrlda8Yvkh_LZ?usp=share_link" target="_blank" rel="noopener"><span class="fd-ico" aria-hidden="true"></span><small>Podcast</small></a>
+            <a class="fd" href="https://drive.google.com/drive/folders/1noD9AV2oRemMNX8z9yH80DtAyZFEtGE8?usp=share_link" target="_blank" rel="noopener"><span class="fd-ico" aria-hidden="true"></span><small>Audio</small></a>
+            <a class="fd" href="https://drive.google.com/drive/folders/1J7j1uSKUYyHEmMhkj50uJSaVF9TFu9Be?usp=share_link" target="_blank" rel="noopener"><span class="fd-ico" aria-hidden="true"></span><small>Graphic Design</small></a>
+            <a class="fd" href="https://drive.google.com/drive/folders/1-vueEsBhWvrtQZ1nFtAVgT16VmeKaV3V?usp=share_link" target="_blank" rel="noopener"><span class="fd-ico" aria-hidden="true"></span><small>UI/UX &amp; Web</small></a>
           </div>
-          <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </div>
-      </article>
+      </div>
+    </div>
 
-      <article class="work-card wc-all" data-reveal>
-        <div class="icon-strip">
-          <span class="tools"><span class="tool" style="--src:url('/images/tools/v3/googledrive.svg')" role="img" aria-label="Google Drive"></span></span>
-        </div>
-        <div class="meta">
-          <div>
-            <h3><a href="https://drive.google.com/drive/folders/1Kb_uMHPQs-pNwaDouh7mAySCKObXsLW3?usp=share_link" target="_blank" rel="noopener" class="work-main">View Everything</a></h3>
-            <p>The complete collection of projects and assets, all in one Drive.</p>
-          </div>
-          <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-        </div>
-      </article>
+    <div class="tile tile-dark tile-music" data-reveal style="--reveal-delay:.08s">
+      <h2>Music</h2>
+      <p class="tile-tag">Bars first. Beat after.</p>
+      <div class="ap-ctas">
+        <a href="/music/" class="ap-btn">Listen now</a>
+      </div>
+      <div class="tile-art flow" aria-hidden="true">
+        <img class="cv cv-l2" src="/images/music/ctrls.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+        <img class="cv cv-l1" src="/images/music/lihim.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+        <img class="cv cv-c" src="/images/music/naakit.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+        <img class="cv cv-r1" src="/images/music/dakoyan.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+        <img class="cv cv-r2" src="/images/music/rightshi.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NUMBERS ============ -->
+  <section class="nums container">
+    <h2 class="ap-h2" data-reveal>By the numbers.</h2>
+    <div class="nums-grid">
+      <div class="num" data-reveal>
+        <span class="num-k">Turnaround of</span>
+        <span class="num-n grad">1&ndash;4 days</span>
+        <p>from raw footage to a finished listing.</p>
+      </div>
+      <div class="num" data-reveal style="--reveal-delay:.08s">
+        <span class="num-k">Graduated</span>
+        <span class="num-n grad">Cum Laude</span>
+        <p>BA Multimedia Arts, De La Salle-College of Saint Benilde. 8&times; Dean&rsquo;s Lister.</p>
+      </div>
+      <div class="num" data-reveal style="--reveal-delay:.16s">
+        <span class="num-k">Released</span>
+        <span class="num-n grad" data-count="16">16</span>
+        <p>songs on Spotify and Apple Music.</p>
+      </div>
+      <div class="num" data-reveal style="--reveal-delay:.24s">
+        <span class="num-k">Built</span>
+        <span class="num-n grad" data-count="8">8</span>
+        <p>apps, four of them already shipped.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TOOLS ============ -->
+  <section class="tools-sec">
+    <h2 class="ap-h2 container" data-reveal>Fluent in the tools<br>you already use.</h2>
+    <div class="mq" data-reveal data-loop>
+      <div class="mq-row"><div class="mq-track"><div class="mq-set"><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/finalcutpro.webp')"></i>Final Cut Pro</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/premierepro.svg')"></i>Premiere Pro</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/aftereffects.svg')"></i>After Effects</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/davinciresolve.webp')"></i>DaVinci Resolve</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/capcut.webp')"></i>CapCut</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/blender.svg')"></i>Blender</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/logicpro.webp')"></i>Logic Pro</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/flstudio.webp')"></i>FL Studio</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/audition.svg')"></i>Audition</span></div><div class="mq-set" aria-hidden="true"><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/finalcutpro.webp')"></i>Final Cut Pro</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/premierepro.svg')"></i>Premiere Pro</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/aftereffects.svg')"></i>After Effects</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/davinciresolve.webp')"></i>DaVinci Resolve</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/capcut.webp')"></i>CapCut</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/blender.svg')"></i>Blender</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/logicpro.webp')"></i>Logic Pro</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/flstudio.webp')"></i>FL Studio</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/audition.svg')"></i>Audition</span></div></div></div>
+      <div class="mq-row mq-rev"><div class="mq-track"><div class="mq-set"><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/photoshop.svg')"></i>Photoshop</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/illustrator.svg')"></i>Illustrator</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/canva.webp')"></i>Canva</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/figma.webp')"></i>Figma</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/vscode.webp')"></i>VS Code</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/claude.webp')"></i>Claude</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/codex.webp')"></i>Codex</span></div><div class="mq-set" aria-hidden="true"><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/photoshop.svg')"></i>Photoshop</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/illustrator.svg')"></i>Illustrator</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/canva.webp')"></i>Canva</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/figma.webp')"></i>Figma</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/vscode.webp')"></i>VS Code</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/claude.webp')"></i>Claude</span><span class="mq-chip"><i class="mq-ico" style="--src:url('/images/tools/v4/codex.webp')"></i>Codex</span></div></div></div>
     </div>
   </section>
 
   <!-- ============ EXPERIENCE ============ -->
-  <section id="experience" class="container">
-    <div data-reveal>
-      <h2 class="section-title">Where I've <span class="accent">been.</span></h2>
-    </div>
-    <div class="timeline">
-      <div class="tl-item" data-reveal>
-        <span class="tl-date">Apr 2026 → Jun 2026</span>
-        <h3>Video Editor</h3>
-        <div class="tl-org">Charlotte Real Estate Media <span class="dot">· Part-time · Remote (Charlotte, NC, US)</span></div>
-        <p>Video editing with a specialization in AI-assisted workflows using Higgsfield.</p>
-        <div class="tl-tags"><span>Video Editing</span><span>Real Estate</span><span>AI · Higgsfield</span></div>
-      </div>
-      <div class="tl-item" data-reveal>
-        <span class="tl-date">Sep 2025 → Jan 2026</span>
-        <h3>Video Production Specialist</h3>
-        <div class="tl-org">Essential Media <span class="dot">· Full-time · Remote (Kamloops, BC, Canada)</span></div>
-        <p>Video editing for real-estate photography, media and marketing services.</p>
-        <div class="tl-tags"><span>Video Editing</span><span>Internet Video Production</span></div>
-      </div>
-      <div class="tl-item" data-reveal>
-        <span class="tl-date">Jun 2025 → Jul 2025</span>
-        <h3>Production</h3>
-        <div class="tl-org">Podcast Network Asia <span class="dot">· Internship · Hybrid (Metro Manila, PH)</span></div>
-        <p>Video editing and audio post production for podcast shows.</p>
-        <div class="tl-tags"><span>Video Editing</span><span>Audio Post</span></div>
-      </div>
-      <div class="tl-item" data-reveal>
-        <span class="tl-date">Mar 2024 → Jun 2025</span>
-        <h3>Video Editor</h3>
-        <div class="tl-org">The EdTech Lab <span class="dot">· Internship · Remote (New York, US)</span></div>
-        <p>Video editing and audio post production for educational content.</p>
-        <div class="tl-tags"><span>Video Editing</span><span>Audio Post</span></div>
-      </div>
-      <div class="tl-item" data-reveal>
-        <span class="tl-date">Aug 2022 → Oct 2025</span>
-        <h3>BA Multimedia Arts, Intermedia / Multimedia</h3>
-        <div class="tl-org">De La Salle-College of Saint Benilde <span class="dot">· Manila, PH</span></div>
-        <p>Graduated Cum Laude with Latin Honors · 8-term Dean's Lister.</p>
-        <div class="tl-tags"><span>Cum Laude</span><span>Dean's Lister ×8</span></div>
-      </div>
-    </div>
+  <section id="experience" class="xp container">
+    <h2 class="ap-h2" data-reveal>Where I&rsquo;ve been.</h2>
+    <ol class="xp-list">
+      <li class="xp-now" data-reveal>
+        <span class="xp-date">Sep 2026 &ndash; <b>Present</b></span>
+        <div>
+          <h3><img src="/images/apps/castcut.webp" alt="" width="28" height="28" loading="lazy" decoding="async">Founder</h3>
+          <p class="xp-org"><a href="https://getcastcut.com" target="_blank" rel="noopener">CastCut</a> &middot; Automatic multicam podcast editing for Final Cut Pro</p>
+          <p class="xp-note">Syncs the cameras and audio, cuts to whoever is talking, clears the dead air and hands Final Cut a finished timeline. Runs on the Mac, nothing uploaded.</p>
+        </div>
+      </li>
+      <li data-reveal>
+        <span class="xp-date">Apr &ndash; Jun 2026</span>
+        <div>
+          <h3>Video Editor</h3>
+          <p class="xp-org">Charlotte Real Estate Media &middot; Part-time, remote from Charlotte, NC</p>
+          <p class="xp-note">AI-assisted editing workflows with Higgsfield.</p>
+        </div>
+      </li>
+      <li data-reveal>
+        <span class="xp-date">Sep 2025 &ndash; Jan 2026</span>
+        <div>
+          <h3>Video Production Specialist</h3>
+          <p class="xp-org">Essential Media &middot; Full-time, remote from Kamloops, BC</p>
+          <p class="xp-note">Video for real-estate photography, media and marketing.</p>
+        </div>
+      </li>
+      <li data-reveal>
+        <span class="xp-date">Jun &ndash; Jul 2025</span>
+        <div>
+          <h3>Production</h3>
+          <p class="xp-org">Podcast Network Asia &middot; Internship, Metro Manila</p>
+          <p class="xp-note">Video editing and audio post for podcast shows.</p>
+        </div>
+      </li>
+      <li data-reveal>
+        <span class="xp-date">Mar 2024 &ndash; Jun 2025</span>
+        <div>
+          <h3>Video Editor</h3>
+          <p class="xp-org">The EdTech Lab &middot; Internship, remote from New York</p>
+          <p class="xp-note">Video editing and audio post for educational content.</p>
+        </div>
+      </li>
+      <li data-reveal>
+        <span class="xp-date">2022 &ndash; 2025</span>
+        <div>
+          <h3>BA Multimedia Arts</h3>
+          <p class="xp-org">De La Salle-College of Saint Benilde &middot; Manila</p>
+          <p class="xp-note">Cum Laude. Dean&rsquo;s Lister for eight terms.</p>
+        </div>
+      </li>
+    </ol>
   </section>
 
   <!-- ============ CONTACT ============ -->
-  <section id="contact" class="container">
-    <div class="contact-card" data-reveal>
-      <h2>Let's make something <span class="accent">great.</span></h2>
-      <p>I'm excited to collaborate and bring your next project to life. One email away.</p>
-      <a href="mailto:dustinejao@gmail.com" class="btn btn-pink">dustinejao@gmail.com</a>
+  <section id="contact" class="end">
+    <div class="container" data-reveal>
+      <h2 class="end-title">Let&rsquo;s make something <span class="grad">great.</span></h2>
+      <p class="end-sub">One email away.</p>
+      <a href="mailto:dustinejao@gmail.com" class="ap-btn ap-btn-lg">dustinejao@gmail.com</a>
       <div class="socials">
         <a href="https://www.youtube.com/@DustineJao" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2C0 8.08 0 12 0 12s0 3.92.5 5.8a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14C24 15.92 24 12 24 12s0-3.92-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/></svg>

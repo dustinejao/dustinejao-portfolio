@@ -202,7 +202,7 @@
 
   const play = (name, arg) => { if (soundOn && SOUNDS[name]) SOUNDS[name](arg); };
 
-  const INTERACTIVE = '.btn, .nav-link, .icon-btn, .work-card, .work-main, .sub-chip, .bt, .social a, .footer-links a, .crumb, .cf-item, .platform-btn, a.st-row, .st-today, .st-avatar';
+  const INTERACTIVE = '.btn, .nav-link, .icon-btn, .work-card, .work-main, .sub-chip, .bt, .social a, .footer-links a, .crumb, .cf-item, .platform-btn, a.st-row, .st-today, .st-avatar, .ap-btn, .ap-link, .fd';
 
   const soundBtn = document.getElementById('sound-toggle');
   if (soundBtn) {
@@ -557,6 +557,95 @@
     window.addEventListener('mouseup', (e) => { if (startX !== null) onEnd(e.clientX); });
 
     render();
+  }
+
+  /* ---------- Home: copy that lights up as it is read -------------------
+     Each word is wrapped in a span and lit in order as the paragraph moves
+     up the screen: dark at the bottom of the viewport, fully lit by the time
+     its last line passes the middle. Without motion it is simply lit. */
+  const lit = document.querySelector('[data-lit]');
+  if (lit && !reduceMotion) {
+    const words = [];
+    const split = (node) => {
+      Array.from(node.childNodes).forEach((child) => {
+        if (child.nodeType === 1) { split(child); return; }
+        if (child.nodeType !== 3) return;
+        const frag = document.createDocumentFragment();
+        child.textContent.split(/(\s+)/).forEach((part) => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+          const w = document.createElement('span');
+          w.className = 'w';
+          w.textContent = part;
+          words.push(w);
+          frag.appendChild(w);
+        });
+        node.replaceChild(frag, child);
+      });
+    };
+    split(lit);
+    lit.classList.add('is-split');
+
+    let shown = -1;
+    let queued = false;
+    const paint = () => {
+      queued = false;
+      const r = lit.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.3)));
+      const n = Math.round(p * words.length);
+      if (n === shown) return;
+      const lo = Math.min(n, shown < 0 ? 0 : shown);
+      const hi = Math.max(n, shown < 0 ? words.length : shown);
+      for (let i = lo; i < hi; i++) words[i].classList.toggle('on', i < n);
+      shown = n;
+    };
+    const queue = () => { if (!queued) { queued = true; requestAnimationFrame(paint); } };
+    /* Only listen while the paragraph is near the screen; the rest of the
+       page scrolls without it measuring anything. */
+    const listen = (on) => {
+      const fn = on ? 'addEventListener' : 'removeEventListener';
+      window[fn]('scroll', queue, { passive: true });
+      window[fn]('resize', queue);
+    };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach((entry) => { listen(entry.isIntersecting); if (entry.isIntersecting) queue(); });
+      }, { rootMargin: '200px 0px' }).observe(lit);
+    } else {
+      listen(true);
+    }
+    paint();
+  }
+
+  /* ---------- Home: numbers count up the first time they are seen -------- */
+  const counters = document.querySelectorAll('[data-count]');
+  if (counters.length && 'IntersectionObserver' in window && !reduceMotion) {
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        cio.unobserve(entry.target);
+        const el = entry.target;
+        const to = Number(el.dataset.count);
+        const t0 = performance.now();
+        const step = (t) => {
+          const k = Math.min(1, (t - t0) / 1200);
+          el.textContent = String(Math.round(to * (1 - Math.pow(1 - k, 3))));
+          if (k < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.6 });
+    counters.forEach((c) => { c.textContent = '0'; cio.observe(c); });
+  }
+
+  /* ---------- Loops rest while they are off screen ---------------------- */
+  const loopers = document.querySelectorAll('[data-loop]');
+  if (loopers.length && 'IntersectionObserver' in window) {
+    const lio = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => entry.target.classList.toggle('is-paused', !entry.isIntersecting));
+    }, { rootMargin: '120px 0px' });
+    loopers.forEach((el) => lio.observe(el));
   }
 
   /* ---------- Apps: the Today tab's date over the large title ------------ */
