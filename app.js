@@ -202,7 +202,7 @@
 
   const play = (name, arg) => { if (soundOn && SOUNDS[name]) SOUNDS[name](arg); };
 
-  const INTERACTIVE = '.btn, .nav-link, .icon-btn, .work-card, .work-main, .sub-chip, .bt, .social a, .footer-links a, .crumb, .cf-item, .platform-btn';
+  const INTERACTIVE = '.btn, .nav-link, .icon-btn, .work-card, .work-main, .sub-chip, .bt, .social a, .footer-links a, .crumb, .cf-item, .platform-btn, a.st-row, .st-today, .st-avatar';
 
   const soundBtn = document.getElementById('sound-toggle');
   if (soundBtn) {
@@ -557,6 +557,12 @@
     window.addEventListener('mouseup', (e) => { if (startX !== null) onEnd(e.clientX); });
 
     render();
+  }
+
+  /* ---------- Apps: the Today tab's date over the large title ------------ */
+  const stDate = document.getElementById('st-date');
+  if (stDate) {
+    stDate.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
   }
 
   /* ---------- Footer year ------------------------------------------------ */
