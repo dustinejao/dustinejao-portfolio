@@ -283,7 +283,10 @@
           io.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    /* Start the moment any of it enters, not once it is well inside: a tall
+       tile waiting for 5% of itself to clear the fold left a blank gap on a
+       phone and then snapped in. */
+    }, { rootMargin: '0px 0px 40px 0px', threshold: 0 });
     revealEls.forEach((el) => io.observe(el));
   } else {
     revealEls.forEach((el) => el.classList.add('in-view'));
@@ -461,8 +464,15 @@
     if (hero) map.set(hero, anchorLinks[0]);
 
     const lastLink = anchorLinks[anchorLinks.length - 1];
-    const atBottom = () =>
-      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+    /* The page height is read once and refreshed only when the page actually
+       changes size. Reading scrollHeight inside a scroll handler forces a
+       layout on every event, which on a phone is a dropped frame each time. */
+    let docH = document.documentElement.scrollHeight;
+    let viewH = window.innerHeight;
+    const measure = () => { docH = document.documentElement.scrollHeight; viewH = window.innerHeight; };
+    if ('ResizeObserver' in window) new ResizeObserver(measure).observe(document.body);
+    window.addEventListener('resize', measure);
+    const atBottom = () => viewH + window.scrollY >= docH - 4;
 
     const applyActive = (link) => {
       if (!link) return;

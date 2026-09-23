@@ -306,6 +306,20 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
 }
 
 @media (max-width: 720px) {
+  /* The header gets a layer of its own, so iOS moves it as one piece instead
+     of repainting it under a momentum scroll, which is what read as jitter.
+     Safe here only because the phone header has no backdrop blur: a layer
+     like this would stop a blur from seeing the page behind it. */
+  .site-header { will-change: transform; }
+  /* On a phone the capsule changes as the page scrolls, not as a finger
+     points, so it settles without the springy overshoot: a bounce while you
+     are scrolling reads as the bar jumping. */
+  .nav-glide {
+    transition:
+      transform .3s cubic-bezier(.25, .8, .25, 1),
+      width .3s cubic-bezier(.25, .8, .25, 1),
+      opacity .2s ease;
+  }
   .nav-link { padding: .5rem .7rem; font-size: .94rem; }
   .nav-desktop-only { display: none; }
   /*
@@ -1069,8 +1083,16 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
   0%, 100% { transform: rotate(-2.2deg); }
   50%      { transform: rotate(2.2deg); }
 }
-.tile-apps:hover .hs-app img { animation: jiggle .26s ease-in-out infinite; }
-.tile-apps:hover .hs-app:nth-child(even) img { animation-delay: -.13s; animation-duration: .3s; }
+@media (hover: hover) {
+  .tile-apps:hover .hs-app img { animation: jiggle .26s ease-in-out infinite; }
+  .tile-apps:hover .hs-app:nth-child(even) img { animation-delay: -.13s; animation-duration: .3s; }
+}
+/* Every icon opens its app, with the press iOS gives a tapped icon. */
+a.hs-app { color: inherit; -webkit-tap-highlight-color: transparent; }
+a.hs-app img { transition: transform .15s ease, filter .15s ease; }
+a.hs-app:active img { transform: scale(.88); filter: brightness(.8); }
+a.hs-app:focus-visible { outline: none; }
+a.hs-app:focus-visible img { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--pink); }
 
 /* The Archive: a Finder window, and every folder in it is a real link. */
 .fd-art { display: flex; justify-content: center; padding-top: 2.25rem; }
@@ -1288,6 +1310,28 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
   .ui-like .c2 { opacity: 1; }
   .mq-track { animation: none; }
 }
+/* Reveals ride the scroll itself where the browser can: a tile rises and
+   fades in as it comes up the screen, never sitting as an empty gap and then
+   appearing at once, which on a phone read as a hard cut. It runs on the
+   compositor, and scrolling back plays it in reverse. Browsers without
+   scroll-driven animation keep the observer-and-fade below. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .home [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 28%;
+    }
+  }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(56px) scale(.96); }
+  to   { opacity: 1; transform: none; }
+}
+
 /* Offscreen, everything that loops stops paying for frames. */
 .is-paused, .is-paused * { animation-play-state: paused !important; }
 
