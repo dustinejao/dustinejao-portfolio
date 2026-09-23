@@ -45,47 +45,44 @@
    and the reel wall.
 --------------------------------------------------------------------------- */
 
-.re-hero { padding-top: clamp(2rem, 5vw, 3.5rem); text-align: center; }
-.re-hero h1 { font-size: clamp(2.4rem, 7vw, 4.5rem); letter-spacing: -0.04em; margin-bottom: 1rem; }
-.re-hero .hero-sub { max-width: 42rem; margin-inline: auto; }
+.re-hero { padding-top: clamp(1.5rem, 4vw, 2.75rem); text-align: center; }
+.re-hero h1 { font-size: clamp(2.2rem, 6vw, 3.75rem); letter-spacing: -0.04em; margin-bottom: .75rem; }
+.re-hero .hero-sub { max-width: 34rem; margin: 0 auto 1.25rem; }
 
-/* --------------------------------- proof ---------------------------------
-   Four things an agent is actually buying, said plainly. Each one is a claim
-   about the work rather than a number, because a number here has to be one I
-   can stand behind.
+/* --------------------------------- facts ---------------------------------
+   What an agent is buying, as three chips rather than four cards: read in one
+   glance, then straight into the reels.
 -------------------------------------------------------------------------- */
-.re-proof {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
-  gap: 1.1rem;
-  margin-top: 3rem;
-  text-align: left;
+.re-facts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .5rem;
+  margin: 0;
+  padding: 0;
 }
-.re-proof article {
-  padding: 1.5rem 1.4rem;
-  border-radius: var(--radius);
+.re-facts li {
+  padding: .45rem .95rem;
+  border-radius: 999px;
   background: var(--card);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
+  font-size: .85rem;
+  color: var(--muted);
 }
-.re-proof .k {
-  display: block;
-  font-family: var(--font-mono); font-size: .68rem; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--pink); margin-bottom: .6rem;
-}
-.re-proof h3 { font-size: 1.05rem; margin: 0 0 .4rem; letter-spacing: -0.01em; }
-.re-proof p { margin: 0; font-size: .875rem; color: var(--muted); line-height: 1.55; }
+.re-facts b { color: var(--text); font-weight: 700; }
 
 /* --------------------------------- reels ---------------------------------
-   Instagram's own embed, three across. The blockquotes ship in the HTML but
-   embed.js is not fetched until the wall is close to the viewport, so nine
-   iframes are not the first thing this page does.
+   Instagram's own embed, three across, right under the headline. The
+   blockquotes ship in the HTML and embed.js is fetched once the wall is near
+   the viewport.
 -------------------------------------------------------------------------- */
 .re-wall {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(326px, 100%), 1fr));
   gap: 1.1rem;
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   align-items: start;
 }
 /* Instagram writes its own inline styles onto the blockquote, so these have to
@@ -135,43 +132,14 @@
 <main>
   <section class="re-hero container">
     <h1>Listings people<br><span class="accent">watch to the end.</span></h1>
-    <p class="hero-sub">Walkthroughs, listing films and cutdowns for agents and brokerages in the US and Canada. Cut remotely from Manila.</p>
-    <div class="hero-cta">
-      <a href="#reels" class="btn btn-pink">Watch the work</a>
-    </div>
+    <p class="hero-sub">Reels and listing films for agents in the US and Canada. Cut remotely from Manila.</p>
+    <ul class="re-facts">
+      <li><b>1&ndash;4 day</b> turnaround</li>
+      <li><b>Vertical</b> native</li>
+      <li><b>Ramped, graded</b> &amp; mixed</li>
+    </ul>
 
-    <!-- A stat band goes here once there are real figures to put on it. -->
-
-    <div class="re-proof">
-      <article data-reveal>
-        <span class="k">Turnaround</span>
-        <h3>1 to 4 days.</h3>
-        <p>Depending on the difficulty.</p>
-      </article>
-      <article data-reveal style="--reveal-delay:.08s">
-        <span class="k">Format</span>
-        <h3>Vertical native.</h3>
-        <p>Slow paced horizontals too.</p>
-      </article>
-      <article data-reveal style="--reveal-delay:.16s">
-        <span class="k">Finish</span>
-        <h3>Ramped, graded, mixed, delivered.</h3>
-      </article>
-      <article data-reveal style="--reveal-delay:.24s">
-        <span class="k">Working with me</span>
-        <h3>One person, whole pipeline.</h3>
-        <p>Send footage, get a listing back.</p>
-      </article>
-    </div>
-  </section>
-
-  <section id="reels" class="container">
-    <div data-reveal>
-      <h2 class="section-title">Nine of my <span class="accent">favourite cuts.</span></h2>
-      <p class="hero-sub" style="max-width:34rem;margin-top:.75rem">Posted on the agents' own accounts, not mine.</p>
-    </div>
-
-    <div class="re-wall" id="re-wall">
+    <div class="re-wall" id="reels">
       <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DYkQusFhh09/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DYkQusFhh09/">View this listing on Instagram</a></blockquote></div>
       <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXN_I4NjbO1/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DXN_I4NjbO1/">View this listing on Instagram</a></blockquote></div>
       <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DV_cTgHgNnS/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DV_cTgHgNnS/">View this listing on Instagram</a></blockquote></div>
@@ -187,7 +155,6 @@
   <section class="re-close container">
     <div data-reveal>
       <h2 class="section-title">Got a listing <span class="accent">to cut?</span></h2>
-      <p class="hero-sub" style="max-width:30rem;margin-inline:auto">Send the footage and the deadline.</p>
       <div class="hero-cta" style="margin-top:1.5rem">
         <a href="mailto:dustinejao@gmail.com?subject=Real%20estate%20listing" class="btn btn-pink">dustinejao@gmail.com</a>
       </div>
@@ -209,12 +176,13 @@
 <script src="/app.js" defer></script>
 <script>
 /*
-  Nine Instagram iframes is a lot to ask of a page on load, and every one of
-  them is below the fold. embed.js is fetched the first time the wall comes
-  within a screen of the viewport, and Instagram takes it from there.
+  Nine Instagram iframes is a lot to ask of a page on load. embed.js is fetched
+  the first time the wall comes within a screen of the viewport, which with the
+  reels right under the headline is almost always straight away, and Instagram
+  takes it from there.
 */
 (function () {
-  var wall = document.getElementById('re-wall');
+  var wall = document.getElementById('reels');
   if (!wall) return;
 
   function load() {
