@@ -337,6 +337,12 @@
   };
   if ('onscrollend' in window) window.addEventListener('scrollend', unlockNav);
 
+  /* Runs once the next frame has been drawn, when layout is already settled
+     and measuring it costs nothing. Measured any earlier, the browser has to
+     lay the page out on the spot just to answer. */
+  const afterFrame = (fn) => requestAnimationFrame(() => setTimeout(fn, 0));
+
+  let jumpId = 0;
   const glideTo = (el, animate) => {
     if (!glide || frozen) return;
     /* A link can be hidden at this width: Experience is desktop-only, and its
@@ -350,15 +356,21 @@
       navLinks.forEach((l) => l.classList.remove('is-lit'));
       return;
     }
+    /* Both measurements before any write, so neither forces a layout. */
+    const x = el.offsetLeft, w = el.offsetWidth;
     if (animate === false) glide.classList.add('no-anim');
-    glide.style.setProperty('--x', el.offsetLeft + 'px');
-    glide.style.setProperty('--w', el.offsetWidth + 'px');
+    glide.style.setProperty('--x', x + 'px');
+    glide.style.setProperty('--w', w + 'px');
     glide.classList.add('is-on');
     navLinks.forEach((l) => l.classList.toggle('is-lit', l === el));
     if (animate === false) {
-      /* Force a reflow so the jump lands before transitions come back on. */
-      void glide.offsetWidth;
-      glide.classList.remove('no-anim');
+      /* Transitions come back two frames on, once the jump has been drawn,
+         rather than by forcing a reflow to land it now. Only the latest jump
+         may switch them back on. */
+      const id = ++jumpId;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (id === jumpId) glide.classList.remove('no-anim');
+      }));
     }
   };
   /* The first active link that is actually showing: the home page carries a
@@ -388,8 +400,10 @@
   };
 
   if (glide) {
-    glideTo(currentNav(), false);
-    keepInView(currentNav());
+    /* Placed once the first frame is up. keepInView goes first throughout:
+       it only reads and scrolls, so glideTo's measurements after it are still
+       free, where the other way round glideTo's writes would force a layout. */
+    afterFrame(() => { const cur = currentNav(); keepInView(cur); glideTo(cur, false); });
 
     navLinks.forEach((l) => {
       l.addEventListener('pointerenter', (e) => {
@@ -398,7 +412,7 @@
         if (Date.now() < pillSettling) return;   /* the link came to the cursor */
         glideTo(l, true);
       });
-      l.addEventListener('focus', () => { glideTo(l, true); keepInView(l, true); });
+      l.addEventListener('focus', () => { keepInView(l, true); glideTo(l, true); });
 
       /* Go straight to the destination and mark it active now, rather than
          waiting for the scroll to arrive. A link to another page holds the
@@ -422,8 +436,8 @@
         navLinks.forEach((o) => o.classList.remove('active'));
         l.classList.add('active');
         lockNav(sameDoc ? 1400 : 6000);
-        glideTo(l, true);
         keepInView(l, true);
+        glideTo(l, true);
         if (leaving) {
           frozen = true;                /* this page is on its way out */
           setTimeout(() => { frozen = false; }, 6000);   /* unless it is not */
@@ -452,12 +466,12 @@
 
     /* Fonts landing late change link widths, so re-measure once they are in. */
     if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(() => glideTo(currentNav(), false));
+      document.fonts.ready.then(() => afterFrame(() => glideTo(currentNav(), false)));
     }
     let rt = 0;
     window.addEventListener('resize', () => {
       clearTimeout(rt);
-      rt = setTimeout(() => { glideTo(currentNav(), false); keepInView(currentNav()); }, 120);
+      rt = setTimeout(() => { const cur = currentNav(); keepInView(cur); glideTo(cur, false); }, 120);
     });
   }
 
@@ -478,11 +492,14 @@
     const lastLink = anchorLinks[anchorLinks.length - 1];
     /* The page height is read once and refreshed only when the page actually
        changes size. Reading scrollHeight inside a scroll handler forces a
-       layout on every event, which on a phone is a dropped frame each time. */
-    let docH = document.documentElement.scrollHeight;
+       layout on every event, which on a phone is a dropped frame each time.
+       Not even at start-up: the observer's first callback fills it in once
+       layout has run anyway, and until then nothing counts as the bottom. */
+    let docH = Infinity;
     let viewH = window.innerHeight;
     const measure = () => { docH = document.documentElement.scrollHeight; viewH = window.innerHeight; };
     if ('ResizeObserver' in window) new ResizeObserver(measure).observe(document.body);
+    else afterFrame(measure);
     window.addEventListener('resize', measure);
     const atBottom = () => viewH + window.scrollY >= docH - 4;
 
@@ -491,7 +508,7 @@
       anchorLinks.forEach((l) => l.classList.remove('active'));
       link.classList.add('active');
       /* The cursor outranks the page: only steer if it is not driving. */
-      if (!pointerInPill) { glideTo(link, true); keepInView(link); }
+      if (!pointerInPill) { keepInView(link); glideTo(link, true); }
     };
 
     const navIO = new IntersectionObserver((entries) => {
@@ -630,14 +647,17 @@
       window[fn]('scroll', queue, { passive: true });
       window[fn]('resize', queue);
     };
+    /* No paint at start-up: every word already starts dim, and measuring the
+       paragraph straight after splitting it forced a layout of the page. The
+       observer's first callback paints it if it is already on screen. */
     if ('IntersectionObserver' in window) {
       new IntersectionObserver((entries) => {
         entries.forEach((entry) => { listen(entry.isIntersecting); if (entry.isIntersecting) queue(); });
       }, { rootMargin: '200px 0px' }).observe(lit);
     } else {
       listen(true);
+      queue();
     }
-    paint();
   }
 
   /* ---------- Home: numbers count up the first time they are seen -------- */

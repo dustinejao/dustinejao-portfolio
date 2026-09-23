@@ -31,10 +31,12 @@
 <meta property="og:description" content="I make people stop scrolling. Video, audio post and design for brands and creators. Manila, worldwide.">
 <meta property="og:image" content="https://dustinejao.com/images/og-image.png">
 
-<!-- Fonts -->
+<!-- Fonts: loaded without holding up first paint. The page sets in the system
+     face until Inter lands, which display=swap already allowed for. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
 <link rel="stylesheet" href="/styles.css">
 
@@ -110,20 +112,20 @@
         <div class="phone-screen">
           <div class="feed">
             <div class="reel r-cc">
-              <img src="/images/home/castcut-short.webp" alt="" width="720" height="1280" decoding="async">
+              <img src="/images/home/castcut-short.webp" srcset="/images/home/castcut-short-480.webp 480w, /images/home/castcut-short.webp 720w" sizes="(min-width: 1217px) 273px, (min-width: 983px) 22.5vw, 221px" alt="" width="720" height="1280" fetchpriority="high" decoding="async">
               <span class="cc-badge"><img src="/images/apps/castcut.webp" alt="" width="20" height="20" decoding="async">Cut by CastCut</span>
               <p class="cc-cap">That&rsquo;s when it <em>clicked</em> for us</p>
               <div class="reel-cap"><b>CastCut</b><span>Sync, cuts and shorts in about a minute.</span></div>
             </div>
             <div class="reel r-lk">
               <p class="lk-mark">Liriko</p>
-              <img class="lk-shot" src="/images/home/liriko-partner.webp" alt="" width="900" height="736" decoding="async">
-              <img class="lk-shot" src="/images/home/liriko-rhymes.webp" alt="" width="900" height="400" decoding="async">
+              <img class="lk-shot" src="/images/home/liriko-partner.webp" srcset="/images/home/liriko-partner-450.webp 450w, /images/home/liriko-partner.webp 900w" sizes="(min-width: 1217px) 240px, (min-width: 983px) 20vw, 195px" alt="" width="900" height="736" decoding="async">
+              <img class="lk-shot" src="/images/home/liriko-rhymes.webp" srcset="/images/home/liriko-rhymes-450.webp 450w, /images/home/liriko-rhymes.webp 900w" sizes="(min-width: 1217px) 240px, (min-width: 983px) 20vw, 195px" alt="" width="900" height="400" decoding="async">
               <div class="reel-cap"><b>Liriko</b><span>Rhyme faster. Write anywhere.</span></div>
             </div>
             <div class="reel r-song">
-              <img class="r-song-bg" src="/images/music/naakit.webp" alt="" width="600" height="600" decoding="async">
-              <img class="r-song-cover" src="/images/music/naakit.webp" alt="" width="600" height="600" decoding="async">
+              <img class="r-song-bg" src="/images/music/naakit-300.webp" alt="" width="300" height="300" decoding="async">
+              <img class="r-song-cover" src="/images/music/naakit.webp" srcset="/images/music/naakit-300.webp 300w, /images/music/naakit.webp 600w" sizes="(min-width: 1217px) 191px, (min-width: 983px) 16vw, 155px" alt="" width="600" height="600" decoding="async">
               <p class="song-meta"><b>Naakit</b><span>Dustine Jao</span></p>
               <div class="reel-cap"><b>@dustinejao</b><span>New single, out now.</span></div>
             </div>
@@ -155,7 +157,7 @@
        reads a paragraph to you. -->
   <section class="lit" id="about">
     <div class="container">
-      <p class="lit-hi"><img src="/images/dj.webp" alt="Dustine Jao" width="48" height="48" loading="lazy" decoding="async">Hi, I&rsquo;m DJ.</p>
+      <p class="lit-hi"><img src="/images/dj.webp" srcset="/images/dj-144.webp 144w, /images/dj.webp 400w" sizes="48px" alt="Dustine Jao" width="48" height="48" loading="lazy" decoding="async">Hi, I&rsquo;m DJ.</p>
       <p class="lit-text" data-lit><span class="hl">One person. Whole pipeline.</span> Cutting, sound, colour and delivery by the same pair of hands, so nothing gets lost between departments. I cut remotely for teams in the US and Canada, build the AI workflows that take a shoot from card to timeline, and when the tool I need does not exist, I write it.</p>
     </div>
   </section>
@@ -184,7 +186,7 @@
       <h2>CastCut</h2>
       <p class="tile-tag">Your podcast, already cut.</p>
       <div class="ap-ctas">
-        <a href="https://getcastcut.com" target="_blank" rel="noopener" class="ap-btn">Learn more</a>
+        <a href="https://getcastcut.com" target="_blank" rel="noopener" class="ap-btn">Learn more<span class="sr-only"> about CastCut</span></a>
         <a href="/apps/" class="ap-link">All apps</a>
       </div>
       <div class="tile-art cc-art" aria-hidden="true">
@@ -251,11 +253,11 @@
         <a href="/music/" class="ap-btn">Listen now</a>
       </div>
       <div class="tile-art flow" aria-hidden="true">
-        <img class="cv cv-l2" src="/images/music/ctrls.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
-        <img class="cv cv-l1" src="/images/music/lihim.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
-        <img class="cv cv-c" src="/images/music/naakit.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
-        <img class="cv cv-r1" src="/images/music/dakoyan.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
-        <img class="cv cv-r2" src="/images/music/rightshi.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+        <img class="cv cv-l2" src="/images/music/ctrls.webp" srcset="/images/music/ctrls-300.webp 300w, /images/music/ctrls.webp 600w" sizes="(max-width: 560px) 96px, (min-width: 1286px) 180px, (min-width: 858px) 14vw, 120px" alt="" width="600" height="600" loading="lazy" decoding="async">
+        <img class="cv cv-l1" src="/images/music/lihim.webp" srcset="/images/music/lihim-300.webp 300w, /images/music/lihim.webp 600w" sizes="(max-width: 560px) 96px, (min-width: 1286px) 180px, (min-width: 858px) 14vw, 120px" alt="" width="600" height="600" loading="lazy" decoding="async">
+        <img class="cv cv-c" src="/images/music/naakit.webp" srcset="/images/music/naakit-300.webp 300w, /images/music/naakit.webp 600w" sizes="(max-width: 560px) 96px, (min-width: 1286px) 180px, (min-width: 858px) 14vw, 120px" alt="" width="600" height="600" loading="lazy" decoding="async">
+        <img class="cv cv-r1" src="/images/music/dakoyan.webp" srcset="/images/music/dakoyan-300.webp 300w, /images/music/dakoyan.webp 600w" sizes="(max-width: 560px) 96px, (min-width: 1286px) 180px, (min-width: 858px) 14vw, 120px" alt="" width="600" height="600" loading="lazy" decoding="async">
+        <img class="cv cv-r2" src="/images/music/rightshi.webp" srcset="/images/music/rightshi-300.webp 300w, /images/music/rightshi.webp 600w" sizes="(max-width: 560px) 96px, (min-width: 1286px) 180px, (min-width: 858px) 14vw, 120px" alt="" width="600" height="600" loading="lazy" decoding="async">
       </div>
     </div>
   </section>

@@ -96,6 +96,20 @@ img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; cursor: pointer; }
 
+/* Read aloud, never drawn: finishes a short label like "Learn more" for
+   screen readers and crawlers without changing what the button says. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 h1, h2, h3 { line-height: 1.1; margin: 0 0 .5em; letter-spacing: -0.03em; font-weight: 800; }
 
 /*
@@ -941,7 +955,9 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
   line-height: 1.12;
   letter-spacing: -0.03em;
 }
-.lit-text .w { color: #3a3a3c; transition: color .35s ease; }
+/* Unlit is dimmed, not hidden: #6e6e73 on black is 4.1:1, over the 3:1 large
+   text needs, so the paragraph reads before the scroll has lit it. */
+.lit-text .w { color: #6e6e73; transition: color .35s ease; }
 .lit-text .w.on { color: #f5f5f7; }
 .lit-text .hl .w.on {
   background: var(--ap-grad);
