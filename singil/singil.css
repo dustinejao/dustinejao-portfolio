@@ -112,6 +112,7 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; }
   --card: #1c1c1e; --fill: #2c2c2e; --text: #f5f5f7;
   --secondary: #98989f; --tertiary: #5a5a5f;
   --separator: rgba(84, 84, 88, 0.5); --accent: #ff6a3d;
+  color: var(--text);
   justify-self: center; width: 320px; max-width: 100%;
   background: #000; border-radius: 48px; padding: 14px;
   box-shadow: 0 0 0 1px #2a2a2c, 0 0 0 7px #0f0f10, 0 40px 80px rgba(0, 0, 0, 0.6);
