@@ -143,13 +143,18 @@
       <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DYkQusFhh09/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DYkQusFhh09/">View this listing on Instagram</a></blockquote></div>
       <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXN_I4NjbO1/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DXN_I4NjbO1/">View this listing on Instagram</a></blockquote></div>
       <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DV_cTgHgNnS/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DV_cTgHgNnS/">View this listing on Instagram</a></blockquote></div>
+    </div>
+    <!-- The other six join the wall three at a time as it scrolls up, so the page
+         opens with three Instagram frames rather than nine. -->
+    <template id="reels-more">
       <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXt9xewgPuB/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DXt9xewgPuB/">View this listing on Instagram</a></blockquote></div>
       <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DY7uNH7gISQ/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DY7uNH7gISQ/">View this listing on Instagram</a></blockquote></div>
       <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DcpdbaIEsOC/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DcpdbaIEsOC/">View this listing on Instagram</a></blockquote></div>
       <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DcUj4q0vgjm/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DcUj4q0vgjm/">View this listing on Instagram</a></blockquote></div>
       <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DcCGEhMvmzW/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DcCGEhMvmzW/">View this listing on Instagram</a></blockquote></div>
       <div class="re-slot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Dc2fBeeOpgU/" data-instgrm-version="14"><a href="https://www.instagram.com/p/Dc2fBeeOpgU/">View this listing on Instagram</a></blockquote></div>
-    </div>
+    </template>
+    <div id="reels-tail" aria-hidden="true"></div>
   </section>
 
   <section class="re-close container">
@@ -176,14 +181,19 @@
 <script src="/app.js" defer></script>
 <script>
 /*
-  Nine Instagram iframes is a lot to ask of a page on load. embed.js is fetched
-  the first time the wall comes within a screen of the viewport, which with the
-  reels right under the headline is almost always straight away, and Instagram
-  takes it from there.
+  Nine Instagram iframes is a lot to ask of a page on load. The wall opens
+  with three; embed.js is fetched once the wall is near the viewport, and the
+  other six are added three at a time as the end of the wall comes up, each
+  batch handed to Instagram as it lands.
 */
 (function () {
   var wall = document.getElementById('reels');
   if (!wall) return;
+  var more = document.getElementById('reels-more');
+  var tail = document.getElementById('reels-tail');
+  var pending = more ? Array.prototype.slice.call(more.content.children) : [];
+
+  function process() { if (window.instgrm) window.instgrm.Embeds.process(); }
 
   function load() {
     if (window.__igLoaded) return;
@@ -191,15 +201,35 @@
     var s = document.createElement('script');
     s.async = true;
     s.src = 'https://www.instagram.com/embed.js';
-    s.onload = function () { if (window.instgrm) window.instgrm.Embeds.process(); };
+    s.onload = process;
     document.body.appendChild(s);
   }
 
-  if (!('IntersectionObserver' in window)) { load(); return; }
+  function near() { return tail.getBoundingClientRect().top < window.innerHeight + 200; }
+  function grow() {
+    while (pending.length && near()) {
+      pending.splice(0, 3).forEach(function (el) { wall.appendChild(el); });
+      process();
+    }
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    load();
+    while (pending.length) wall.appendChild(pending.shift());
+    return;
+  }
   var io = new IntersectionObserver(function (entries) {
     if (entries.some(function (e) { return e.isIntersecting; })) { load(); io.disconnect(); }
   }, { rootMargin: '600px 0px' });
   io.observe(wall);
+
+  if (tail && pending.length) {
+    var tio = new IntersectionObserver(function (entries) {
+      if (entries.some(function (e) { return e.isIntersecting; })) grow();
+      if (!pending.length) tio.disconnect();
+    }, { rootMargin: '200px 0px' });
+    tio.observe(tail);
+  }
 })();
 </script>
 <!-- Vercel Analytics -->
