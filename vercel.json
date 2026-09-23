@@ -30,6 +30,16 @@
       "source": "/realestatemedia",
       "destination": "/realestate/",
       "permanent": true
+    },
+    {
+      "source": "/Singil",
+      "destination": "/singil/",
+      "permanent": true
+    },
+    {
+      "source": "/Singil/",
+      "destination": "/singil/",
+      "permanent": true
     }
   ],
   "headers": [
