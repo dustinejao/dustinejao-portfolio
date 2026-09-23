@@ -13,10 +13,30 @@
   --accent: #ff6a3d;
   --accent-soft: rgba(255, 106, 61, 0.16);
   --green: #30d158;
+  --bar: rgba(0, 0, 0, 0.72);
+  --prose: #d1d1d6;
   --radius: 22px;
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter",
     "Segoe UI", Roboto, sans-serif;
   color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f5f5f7;
+    --card: #fff;
+    --fill: #e9e9ee;
+    --segment: #777780;
+    --text: #111113;
+    --secondary: #606068;
+    --tertiary: #74747c;
+    --separator: rgba(17, 17, 19, 0.12);
+    --accent: #c74625;
+    --accent-soft: rgba(199, 70, 37, 0.1);
+    --bar: rgba(245, 245, 247, 0.78);
+    --prose: #3b3b42;
+    color-scheme: light;
+  }
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -44,7 +64,7 @@ img { display: block; max-width: 100%; }
 /* Header: a frosted bar, like a navigation bar on iOS. */
 .bar {
   position: sticky; top: 0; z-index: 5;
-  background: rgba(0, 0, 0, 0.72);
+  background: var(--bar);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 0.5px solid var(--separator);
@@ -84,20 +104,25 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; }
 .hero .icon { width: 96px; height: 96px; border-radius: 22px; margin-bottom: 28px;
   box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.14); }
 .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 32px; }
-@media (max-width: 860px) { .hero { grid-template-columns: 1fr; padding-block-start: 48px; } }
+@media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); padding-block-start: 48px; } }
+@media (max-width: 400px) { .hero h1 { font-size: clamp(32px, 9vw, 40px); } }
 
 /* Phone: a faithful miniature of the New Invoice screen. */
 .phone {
+  --card: #1c1c1e; --fill: #2c2c2e; --text: #f5f5f7;
+  --secondary: #98989f; --tertiary: #5a5a5f;
+  --separator: rgba(84, 84, 88, 0.5); --accent: #ff6a3d;
   justify-self: center; width: 320px; max-width: 100%;
   background: #000; border-radius: 48px; padding: 14px;
   box-shadow: 0 0 0 1px #2a2a2c, 0 0 0 7px #0f0f10, 0 40px 80px rgba(0, 0, 0, 0.6);
 }
 .screen { border-radius: 36px; background: #000; padding: 18px 14px 16px; overflow: hidden; }
-.screen .nav-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+.screen .nav-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; position: relative; }
+.screen .nav-space { width: 66px; }
 .screen .glass { padding: 6px 12px; border-radius: 99px; background: rgba(120, 120, 128, 0.2);
   color: var(--accent); font-weight: 500; }
 .screen .glass.strong { font-weight: 600; }
-.screen .title { font-weight: 600; font-size: 14px; }
+.screen .title { font-weight: 600; font-size: 14px; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 .screen .total { text-align: center; font-size: 38px; font-weight: 700; letter-spacing: -0.05em;
   margin-top: 18px; font-variant-numeric: tabular-nums; }
 .screen .period { display: flex; justify-content: center; align-items: center; gap: 14px;
@@ -143,7 +168,7 @@ section { padding-block: 40px; }
 .block h2 { font-size: 24px; margin-bottom: 12px; }
 .prose { background: var(--card); border-radius: var(--radius); padding: 20px 22px; }
 .prose p + p, .prose ul + p, .prose p + ul { margin-top: 12px; }
-.prose p, .prose li { color: #d1d1d6; font-size: 16px; }
+.prose p, .prose li { color: var(--prose); font-size: 16px; }
 .prose strong { color: var(--text); }
 .prose ul { padding-left: 20px; }
 .prose li + li { margin-top: 6px; }
