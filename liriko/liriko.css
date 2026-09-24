@@ -168,7 +168,11 @@ a { color: inherit; text-decoration: none; }
   border-radius: 999px;
   transition: border-color 120ms ease;
 }
+.btn-appstore { white-space: nowrap; }
 .btn-appstore:hover { border-color: var(--accent-light); }
+/* Two store pills do not fit a phone's header beside the wordmark, and the
+   hero puts both stores in full-size buttons one scroll below anyway. */
+@media (max-width: 480px) { .site-header .btn-appstore { display: none; } }
 
 /* ---------- Type -------------------------------------------- */
 .serif { font-family: var(--font-serif); }
@@ -200,7 +204,9 @@ h2.section-title {
 @media (min-width: 640px) { h2.section-title { font-size: 34px; } }
 
 /* ---------- Home -------------------------------------------- */
-.hero { padding: 3.5rem 0 4rem; }
+/* padding-block, not the shorthand: `0` sides erased .container's gutter
+   and put the headline flush against the edge of a phone. */
+.hero { padding-block: 3.5rem 4rem; }
 @media (min-width: 640px) { .hero { padding: 5rem 0 4rem; } }
 .hero .grid {
   display: grid; gap: 3rem; align-items: center;
@@ -217,8 +223,6 @@ h2.section-title {
   align-items: center; gap: .75rem;
 }
 .hero .fineprint { margin-top: 2rem; font-size: .875rem; line-height: 1.7; color: var(--text-tertiary); }
-/* The Android line, said quietly: it is a promise, not a download. */
-.hero .fineprint .soon { color: var(--accent-light); }
 
 /* The rhyme washes, straight out of the app's own theme/colors.ts. */
 .rhyme-1 { background: rgba(41, 171, 226, .32); }
@@ -261,6 +265,8 @@ h2.section-title {
 .pro .card { padding: 2rem 1.5rem; }
 @media (min-width: 640px) { .pro .card { padding: 2.5rem; } }
 .pro .row { display: flex; flex-direction: column; gap: 1.5rem; }
+/* Both stores, side by side, as equals. */
+.pro .get { display: flex; flex-wrap: wrap; gap: .75rem; flex-shrink: 0; }
 @media (min-width: 640px) {
   .pro .row { flex-direction: row; align-items: center; justify-content: space-between; }
 }
