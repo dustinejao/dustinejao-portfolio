@@ -3,12 +3,17 @@
   "redirects": [
     {
       "source": "/listingflow",
-      "destination": "https://listingcut.dustinejao.com/",
+      "destination": "https://housecut.dustinejao.com/",
       "permanent": true
     },
     {
       "source": "/listingcut",
-      "destination": "https://listingcut.dustinejao.com/",
+      "destination": "https://housecut.dustinejao.com/",
+      "permanent": true
+    },
+    {
+      "source": "/housecut",
+      "destination": "https://housecut.dustinejao.com/",
       "permanent": true
     },
     {
