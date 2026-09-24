@@ -3,12 +3,12 @@
   "redirects": [
     {
       "source": "/listingflow",
-      "destination": "https://listingflowapp.vercel.app/",
+      "destination": "https://listingcut.dustinejao.com/",
       "permanent": true
     },
     {
-      "source": "/listingflow/",
-      "destination": "https://listingflowapp.vercel.app/",
+      "source": "/listingcut",
+      "destination": "https://listingcut.dustinejao.com/",
       "permanent": true
     },
     {
