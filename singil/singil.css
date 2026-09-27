@@ -190,3 +190,15 @@ details .answer p + p { margin-top: 10px; }
   font-size: 14px; color: var(--tertiary); }
 .foot .links { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 12px; }
 .foot .links a { color: var(--secondary); }
+
+/* Launch gallery: dark editorial frames with real app captures. */
+.hero-shot { width: min(100%, 360px); justify-self: center; filter: drop-shadow(0 28px 42px rgba(0, 0, 0, .38)); }
+.hero-shot img { width: 100%; height: auto; border-radius: 28px; }
+.gallery-section { overflow: hidden; padding-block: 48px 60px; }
+.gallery-intro { color: var(--secondary); margin-top: 10px; }
+.gallery { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 26px max(20px, calc((100vw - 1000px) / 2)) 18px; scrollbar-color: var(--accent) var(--card); }
+.gallery figure { flex: 0 0 min(238px, 68vw); scroll-snap-align: center; }
+.gallery img { width: 100%; height: auto; border-radius: 17px; }
+.gallery figcaption { display: flex; gap: 12px; align-items: baseline; padding: 12px 2px; font-size: 15px; font-weight: 600; }
+.gallery figcaption b { color: var(--accent); font-size: 13px; font-variant-numeric: tabular-nums; }
+@media (max-width: 860px) { .hero-shot { width: min(78vw, 320px); margin-top: 8px; } }
