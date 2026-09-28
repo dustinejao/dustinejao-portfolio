@@ -383,7 +383,7 @@ footer {
       <text class="caption" x="50" y="61">kcal left</text>
     </svg>
 
-    <p class="wip"><span class="dot"></span>In development &middot; ~70% complete</p>
+    <p class="wip"><span class="dot"></span>In beta &middot; testing on iPhone now</p>
 
     <h1><span class="solid">Every calorie counted.</span>
         <span class="light">Nothing uploaded.</span></h1>
@@ -405,7 +405,7 @@ footer {
   <ul class="figures">
     <li><b>0</b><span>accounts to create</span></li>
     <li><b>0</b><span>network calls per scan</span></li>
-    <li><b>728<small style="font-size:.5em;font-weight:500"> MB</small></b><span>one-time model download</span></li>
+    <li><b>0.7&ndash;2<small style="font-size:.5em;font-weight:500"> GB</small></b><span>one-time model download</span></li>
     <li><b>1</b><span>payment, then it's yours</span></li>
   </ul>
 
@@ -424,7 +424,7 @@ footer {
         <b>Correct</b>
         <p>The model's guess is a starting point, not a verdict. Rename the
         dish and the calories follow the name through a local database of
-        1,065 foods (Filipino home cooking, the chains, and the Western shelf)
+        1,172 foods (Filipino home cooking, the chains, and the Western shelf)
         so the correction sticks and the food is one search away next
         time.</p>
       </li>
@@ -484,12 +484,13 @@ footer {
   <div class="block" style="margin-top:44px">
     <p class="eyebrow">Legal</p>
     <h2>Privacy Policy</h2>
-    <p class="stamp">Effective 3 September 2026</p>
+    <p class="stamp">Effective 28 September 2026</p>
 
     <p><strong>CalOff does not collect your data, because it has nowhere to send
     it.</strong> There is no CalOff account, no CalOff server and no CalOff
-    analytics. This policy explains what that means precisely, including the one
-    time the app uses the network.</p>
+    analytics. This policy explains what that means precisely, including the two
+    times the app uses the network: downloading the scanner, and checking your
+    purchase.</p>
 
     <h3>What stays on your device</h3>
     <p>All of it. Specifically:</p>
@@ -509,9 +510,9 @@ footer {
     <p>None of this is transmitted to us or to anyone else. We cannot read it,
     and we could not produce it if we were asked to.</p>
 
-    <h3>The one network request</h3>
+    <h3>The model download</h3>
     <p>Before the first scan, CalOff downloads the vision model it runs, a file
-    of roughly 728&nbsp;MB, from
+    of roughly 0.7 to 2&nbsp;GB depending on your phone, from
     <a href="https://huggingface.co" rel="noopener">Hugging Face</a>, a public
     model host. It is a plain file download, started once and resumable.</p>
     <p>That request necessarily reveals to Hugging Face what any file download
@@ -519,9 +520,23 @@ footer {
     for. CalOff attaches no identifier, no account and no information about you
     to it. Hugging Face's handling of that request is governed by
     <a href="https://huggingface.co/privacy" rel="noopener">their privacy
-    policy</a>. After the download completes, the app makes no further network
-    requests. Scanning, nutrition lookup and search are entirely local, and
+    policy</a>. Scanning, nutrition lookup and search are entirely local, and
     CalOff works with the device in airplane mode.</p>
+
+    <h3>Purchases</h3>
+    <p>Payment is taken by Apple or Google, never by CalOff; we never see your
+    card or your store account. To know whether your subscription is active,
+    CalOff checks with
+    <a href="https://www.revenuecat.com" rel="noopener">RevenueCat</a>, the
+    service that validates store receipts for us. That check sends RevenueCat a
+    random identifier the app makes up on your device (not your name, email or
+    store account), the receipt the store issued for your purchase, and basic
+    device details such as the OS version and region. RevenueCat uses this only
+    to confirm your purchase and never receives anything you log: no food, no
+    photos, no profile. Its handling is governed by
+    <a href="https://www.revenuecat.com/privacy" rel="noopener">its privacy
+    policy</a>. The result is cached on your device, so an app that is offline
+    keeps working as long as your subscription is current.</p>
 
     <h3>What we do not do</h3>
     <ul>
@@ -539,8 +554,8 @@ footer {
       inside the app; frames are used for the scan and nothing else.</li>
       <li><strong>Photo library</strong>, only when you choose to log a meal
       you already photographed, and only for the image you pick.</li>
-      <li><strong>Internet</strong> (Android), for the one model download
-      described above.</li>
+      <li><strong>Internet</strong> (Android), for the model download and the
+      purchase check described above.</li>
     </ul>
     <p>You can refuse any of these. Refusing the camera or photo library means
     you log meals by search or by hand; the rest of the app is unaffected.</p>
@@ -712,7 +727,7 @@ footer {
     were doing at the moment it happened. A screenshot beats a description.</p>
 
     <h3>The first scan is stuck downloading</h3>
-    <p>The model is a single 728&nbsp;MB download. If it stalls, it resumes
+    <p>The model is a single download of 0.7 to 2&nbsp;GB, depending on your phone. If it stalls, it resumes
     from where it stopped rather than starting again. Reopen
     <strong>Settings → Scanner</strong> and start it once more. On a metered connection, wait for
     Wi-Fi: this is the only download CalOff will ever ask you for.</p>
@@ -786,7 +801,7 @@ const STORE = {
 };
 
 /* The address printed on the support page and used for the mailto link. */
-const CONTACT_EMAIL = 'support@caloff.app';
+const CONTACT_EMAIL = 'dustinejao@gmail.com';
 
 (function () {
   'use strict';
