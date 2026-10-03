@@ -120,6 +120,15 @@
           "value": "SAMEORIGIN"
         }
       ]
+    },
+    {
+      "source": "/(music|realestate)(/.*)?",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
     }
   ]
 }
