@@ -123,12 +123,28 @@ a { color: inherit; }
 .dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--track); }
 .dots i.on { background: var(--ink); }
 
-.status {
-  display: inline-flex; align-items: center; gap: .5rem;
-  margin-top: 2rem; padding-bottom: .2rem;
-  border-bottom: var(--rule) solid var(--ink);
+/* The App Store button is a key held down: the app's press state, ink ground
+   and paper type, which is the one place the page inverts. 48px tall so a
+   thumb finds it. */
+.get {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 3rem; padding: 0 1.5rem;
+  background: var(--ink); color: var(--bg);
+  font-size: .75rem; letter-spacing: .14em; font-weight: 600; text-transform: uppercase;
+  text-decoration: none; border: var(--rule) solid var(--ink);
 }
-.status .pip { width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
+.get:hover { background: var(--bg); color: var(--ink); }
+.get:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.buy { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 2rem; }
+.price { display: flex; align-items: center; gap: .75rem; margin: 0; }
+.price .amount { font-size: 2.6rem; line-height: 1; }
+.price > span:last-child { font-size: .8125rem; line-height: 1.35; color: var(--muted); }
+
+.tagline {
+  margin: 1.5rem 0 0; font-family: var(--serif); font-style: italic; font-weight: 500;
+  font-size: 1.15rem; color: var(--ink);
+}
 
 /* --------------------------------- device -------------------------------- */
 
@@ -236,6 +252,33 @@ a { color: inherit; }
   border-bottom: var(--rule) solid var(--ink); padding-bottom: 3px;
 }
 .action:hover { color: var(--muted); border-bottom-color: var(--muted); }
+
+/* ---------------------------------- close -------------------------------- */
+
+.close { border-top: var(--rule) solid var(--hairline); padding: 3.5rem 1.25rem 4rem; }
+.close h2 {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(2.25rem, 7vw, 3.5rem); line-height: 1.05;
+  margin: .6rem 0 1rem; letter-spacing: -.015em;
+}
+.close > p:not(.note) { margin: 0 0 1.75rem; color: var(--muted); max-width: 34rem; }
+.close .note a { color: var(--muted); }
+
+/* On a phone, a buy bar holds the button while the page is being read. It
+   hides whenever an App Store button is already on screen. */
+.buybar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+  display: flex; align-items: center; gap: .75rem;
+  padding: .6rem 1.25rem calc(.6rem + env(safe-area-inset-bottom));
+  background: var(--bg); border-top: var(--rule) solid var(--hairline);
+}
+.buybar[hidden] { display: none; }
+.buybar .what { display: flex; flex-direction: column; line-height: 1.2; flex: 1; min-width: 0; }
+.buybar b { font-family: var(--serif); font-weight: 600; font-size: 1.1rem; }
+.buybar small { font-size: .75rem; color: var(--muted); }
+.buybar .get { min-height: 2.75rem; padding: 0 1.4rem; }
+@media (min-width: 44rem) { .buybar { display: none; } }
+@media (max-width: 43.99rem) { body.has-buybar { padding-bottom: calc(4.25rem + env(safe-area-inset-bottom)); } }
 
 /* ------------------------------ document pages --------------------------- */
 

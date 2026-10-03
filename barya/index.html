@@ -3,17 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Barya: two taps and it is logged.</title>
+<title>Barya: offline expense tracker for iPhone, ₱49 once</title>
 <meta name="description" content="An offline expense tracker for iPhone. Type the amount on the app's own keypad, tap what it was for, and it is on disk. Scan a receipt, import a bank statement, lock it with Face ID. No account, no server, nothing leaves the phone.">
 <meta name="theme-color" content="#000000">
+<meta name="apple-itunes-app" content="app-id=6811890999">
 <meta name="keywords" content="expense tracker, offline budgeting app, Philippines budget app, receipt scanner, statement import, no account expense app, peso budget tracker, Barya">
 <meta name="author" content="Dustine Jao">
 <link rel="canonical" href="https://www.dustinejao.com/barya/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Barya">
 <meta property="og:url" content="https://www.dustinejao.com/barya/">
-<meta property="og:title" content="Barya: two taps and it is logged.">
-<meta property="og:description" content="An offline expense tracker. Amount, then category, and it is on disk. Scan a receipt or a statement. Nothing leaves the phone.">
+<meta property="og:title" content="Barya: two taps and it is logged. ₱49 once.">
+<meta property="og:description" content="Barya lang, meron ka nang expense tracker. Amount, then category, and it is saved. No account, no subscription. On the App Store.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/images/apps/barya.png">
 <link rel="apple-touch-icon" href="/images/apps/barya.png">
@@ -46,17 +47,21 @@
 <main id="main">
 
   <section class="hero container">
-    <span class="label">Expo &middot; iPhone</span>
+    <span class="label">iPhone &middot; Offline expense tracker</span>
     <h1>Two taps<br>and it is logged.</h1>
     <p class="lede">
       Barya is loose change. Type the amount on the app's own keypad, tap what it
       was for, and the expense is on disk. No save button, no form, no keyboard
       sliding up, and nothing that ever leaves the phone.
     </p>
-    <div class="status">
-      <span class="pip" aria-hidden="true"></span>
-      <span class="label strong">Coming to the App Store</span>
+    <div class="buy" id="buy">
+      <a class="get" href="https://apps.apple.com/us/app/barya-offline-expense-tracker/id6811890999" target="_blank" rel="noopener" data-get="hero">Get it on the App Store</a>
+      <p class="price">
+        <span class="amount"><span class="sym">&#8369;</span><span class="num">49</span></span>
+        <span>Pay once. No account,<br>no subscription.</span>
+      </p>
     </div>
+    <p class="tagline">Barya lang, meron ka nang expense tracker.</p>
   </section>
 
   <section class="showcase container">
@@ -187,13 +192,20 @@
       </div>
     </div>
 
-    <p class="note">
-      Barya is built and on its way to the App Store. One price, paid once, no
-      subscription, and nothing to sign up for.
-    </p>
+  </section>
 
-    <p style="margin:1.5rem 0 0">
-      <a href="mailto:dustinejao@gmail.com?subject=Barya" class="action">Ask about Barya</a>
+  <section class="close container">
+    <span class="label">Out now on iPhone</span>
+    <h2>&#8369;49. Yours to keep.</h2>
+    <p>
+      Less than a coffee, paid once. No account, no subscription, no tier above
+      this one, and nothing to unlock later. Barya lang, meron ka nang expense
+      tracker.
+    </p>
+    <a class="get" href="https://apps.apple.com/us/app/barya-offline-expense-tracker/id6811890999" target="_blank" rel="noopener" data-get="close">Get Barya on the App Store</a>
+    <p class="note">
+      Questions first? Read the <a href="/barya/support/">support page</a> or
+      <a href="mailto:dustinejao@gmail.com?subject=Barya">email me</a>.
     </p>
   </section>
 </main>
@@ -210,6 +222,42 @@
   <p class="fine">Designed &amp; coded from scratch by Dustine Jao &middot; Manila, PH</p>
 </footer>
 
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<div class="buybar" id="buybar" hidden>
+  <svg class="mark" width="22" height="22" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="62" cy="38" r="26" fill="currentColor"/>
+    <circle cx="38" cy="62" r="32" fill="var(--bg)"/>
+    <circle cx="38" cy="62" r="26" fill="currentColor"/>
+  </svg>
+  <span class="what"><b>Barya</b><small>&#8369;49 once &middot; no subscription</small></span>
+  <a class="get" href="https://apps.apple.com/us/app/barya-offline-expense-tracker/id6811890999" target="_blank" rel="noopener" data-get="bar">Get</a>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// The bar appears only while neither App Store button is on screen, so there
+// is never a second copy of a button already in view.
+(function () {
+  var bar = document.getElementById('buybar');
+  var seen = new Set();
+  var targets = document.querySelectorAll('#buy, .close');
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { e.isIntersecting ? seen.add(e.target) : seen.delete(e.target); });
+    bar.hidden = seen.size > 0;
+    document.body.classList.toggle('has-buybar', !bar.hidden);
+  });
+  targets.forEach(function (t) { io.observe(t); });
+})();
+
+// Count App Store taps by where they came from, for the reels.
+document.querySelectorAll('[data-get]').forEach(function (a) {
+  a.addEventListener('click', function () {
+    if (window.va) window.va('event', { name: 'App Store', data: { from: a.dataset.get } });
+  });
+});
+</script>
+<script>window.va = window.va || function () { (window.va.q = window.va.q || []).push(arguments); };</script>
+<script src="/_vercel/insights/script.js" defer></script>
 </body>
 </html>
