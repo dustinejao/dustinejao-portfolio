@@ -347,6 +347,14 @@ a { color: inherit; }
 }
 .footer-links { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
 .fine { color: var(--faint); font-size: .8125rem; margin: 1.25rem 0 0; }
+/* The BIR Registration Seal Badge, shown as issued: only ever scaled, on a
+   white card so it reads on the black page too. /bir.js opens it full size. */
+.bir {
+  display: inline-block; margin-top: 1.25rem; padding: 5px 7px; line-height: 0;
+  background: #fff; border: var(--rule) solid var(--hairline); border-radius: 8px; cursor: zoom-in;
+}
+.bir img { display: block; width: auto; height: 44px; }
+.bir:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
 @media (prefers-reduced-motion: no-preference) {
   a, .text-link { transition: color .18s ease; }

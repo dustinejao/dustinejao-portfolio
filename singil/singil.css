@@ -190,6 +190,16 @@ details .answer p + p { margin-top: 10px; }
   font-size: 14px; color: var(--tertiary); }
 .foot .links { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 12px; }
 .foot .links a { color: var(--secondary); }
+/* The BIR Registration Seal Badge, shown as issued: only ever scaled, on a
+   white card so it reads in dark mode, and never faded on hover the way other
+   links are. /bir.js opens it full size. */
+.foot .bir {
+  display: inline-block; margin-top: 14px; padding: 5px 7px; line-height: 0;
+  background: #fff; border: 1px solid var(--separator); border-radius: 8px; cursor: zoom-in;
+}
+.foot .bir:hover { opacity: 1; }
+.foot .bir img { width: auto; height: 44px; }
+.foot .bir:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 /* Launch gallery: dark editorial frames with real app captures. */
 .hero-shot { width: min(100%, 360px); justify-self: center; filter: drop-shadow(0 28px 42px rgba(0, 0, 0, .38)); }
