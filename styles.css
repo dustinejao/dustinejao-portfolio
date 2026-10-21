@@ -1453,6 +1453,55 @@ a.hs-app:focus-visible img { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--pink); 
 .footer-links a:hover { color: var(--pink); }
 .site-footer .fine { margin: .2rem 0; }
 
+/* The BIR Registration Seal Badge. It has to be shown as issued, so it is
+   only ever scaled: a white card keeps it legible in dark mode rather than
+   any tint or fade on the badge itself. Clicking opens it full size (see the
+   dialog below) so the QR code can be scanned. */
+.bir {
+  display: inline-block;
+  margin-top: .9rem;
+  padding: 5px 7px;
+  line-height: 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: zoom-in;
+}
+.bir img { width: auto; height: 44px; }
+.bir:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
+
+.birbox {
+  width: min(720px, calc(100vw - 32px));
+  max-width: none;
+  padding: 40px 20px 16px;
+  border: 0;
+  border-radius: 14px;
+  background: #fff;
+  color: #333;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .45);
+}
+.birbox::backdrop {
+  background: rgba(0, 0, 0, .6);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.birbox img { width: 100%; height: auto; }
+.birbox p { margin: 10px 0 0; text-align: center; font-size: 13px; color: #555; }
+/* Above the badge, never over it, so it cannot cover the QR code. */
+.birbox-x {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  padding: 4px 8px;
+  border: 0;
+  background: none;
+  color: #777;
+  font-size: 24px;
+  line-height: 1;
+}
+.birbox-x:hover { color: #111; }
+.birbox-x:focus:not(:focus-visible) { outline: none; }
+
 /* ============================================================
    MUSIC PAGE
    ============================================================ */

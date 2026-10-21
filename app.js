@@ -696,6 +696,38 @@
     stDate.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
   }
 
+  /* ---------- BIR badge: opens large so the QR code can be scanned -------
+     The full image (about 270 KB) loads on the first open, never with the
+     page. Without JavaScript or <dialog>, the link opens it in a new tab, and
+     a modifier click still does. Esc, the close button and a click outside
+     the card all close it. */
+  const bir = document.querySelector('a.bir');
+  if (bir && window.HTMLDialogElement) {
+    const box = document.createElement('dialog');
+    box.className = 'birbox';
+    box.setAttribute('aria-label', 'BIR Registration Seal Badge');
+    box.innerHTML = '<button type="button" class="birbox-x" aria-label="Close">&times;</button>' +
+      '<img alt="BIR Registration Seal Badge, RSN 53ARC20260000004907" width="1640" height="535">' +
+      '<p>Scan the QR code to verify our registration with the BIR.</p>';
+    document.body.appendChild(box);
+    const big = box.querySelector('img');
+
+    bir.addEventListener('click', (e) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      if (!big.getAttribute('src')) big.src = bir.getAttribute('href');
+      box.showModal();
+    });
+    box.addEventListener('click', (e) => {
+      if (e.target.closest('.birbox-x')) { box.close(); return; }
+      if (e.target !== box) return;
+      /* A click on the backdrop lands on the dialog itself, and so does one
+         on the card's own padding; only the first is outside its box. */
+      const r = box.getBoundingClientRect();
+      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) box.close();
+    });
+  }
+
   /* ---------- Footer year ------------------------------------------------ */
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
