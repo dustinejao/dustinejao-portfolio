@@ -62,6 +62,21 @@
       "permanent": true
     },
     {
+      "source": "/paprgo/privacy",
+      "destination": "/paprgo/#privacy",
+      "permanent": false
+    },
+    {
+      "source": "/paprgo/support",
+      "destination": "/paprgo/#support",
+      "permanent": false
+    },
+    {
+      "source": "/PaprGo",
+      "destination": "/paprgo/",
+      "permanent": true
+    },
+    {
       "source": "/CalOff",
       "destination": "/caloff/",
       "permanent": true

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PaprGo: print from your Android phone, no laptop</title>
+<meta name="description" content="Print PDFs and photos from your Android phone to a USB or Wi-Fi printer. Rendered on your phone, nothing uploaded. Coming soon to Google Play.">
+<!-- Unlisted until launch: not on /apps/ and not in the sitemap. Drop this when PaprGo ships. -->
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F2F0EC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#050607" media="(prefers-color-scheme: dark)">
+<meta name="author" content="Dustine Jao">
+<link rel="canonical" href="https://www.dustinejao.com/paprgo/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PaprGo">
+<meta property="og:url" content="https://www.dustinejao.com/paprgo/">
+<meta property="og:title" content="PaprGo: phone to printer, no laptop">
+<meta property="og:description" content="Print PDFs and photos from Android over USB OTG or Wi-Fi. Two prints free, then pay once.">
+<link rel="icon" href="/images/apps/paprgo.webp">
+<style>
+/* ---------------------------------------------------------------------------
+   PaprGo site tokens, lifted from core/designsystem/theme/Color.kt in the app
+   repo: Paper and Ink for the page, Signal green as the one accent.
+   One file, no web fonts, no images beyond the inline mark.
+--------------------------------------------------------------------------- */
+:root {
+  --bg:    #F2F0EC;  /* Desk */
+  --card:  #FFFEFC;  /* Card */
+  --ink:   #0E1013;  /* Ink900 */
+  --ink-2: #4A515B;  /* Ink500 */
+  --rule:  #E4E0D9;  /* Separator */
+  --go:    #00754A;  /* Signal600 */
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:    #050607;  /* DeskNight */
+    --card:  #15171B;  /* CardNight */
+    --ink:   #FFFFFF;
+    --ink-2: #C9CED6;
+    --rule:  #2B313A;
+    --go:    #3FC28C;  /* Signal300 */
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 17px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+h1, h2, h3, p, ol, ul { margin: 0; }
+.wrap {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0 max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left));
+}
+.mark { display: block; flex: none; }
+
+.bar { display: flex; align-items: center; justify-content: space-between; height: 64px; font-size: 15px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; }
+.bar nav a { color: var(--ink-2); text-decoration: none; }
+.bar nav a:hover { color: var(--ink); }
+
+.hero { padding-top: 48px; padding-bottom: 56px; }
+h1 {
+  margin: 28px 0 16px;
+  font-size: clamp(2.5rem, 10vw, 4.25rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.04em;
+}
+h1 span { color: var(--go); }
+.lede { max-width: 31rem; font-size: 1.15rem; color: var(--ink-2); }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 28px; }
+.soon {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 20px; border-radius: 999px;
+  background: var(--ink); color: var(--bg);
+  font-size: 15px; font-weight: 600;
+}
+.note { font-size: 14px; color: var(--ink-2); }
+
+/* The mark prints: the sheet slides down through the output slot, once. */
+.hero .sheet { animation: feed .9s cubic-bezier(.2, .7, .2, 1) .15s both; }
+@keyframes feed { from { transform: translateY(-14px); } }
+@media (prefers-reduced-motion: reduce) { .hero .sheet { animation: none; } }
+
+.steps { list-style: none; padding: 0; display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 20px; overflow: hidden; }
+.steps li { display: flex; gap: 16px; align-items: baseline; padding: 20px 22px; background: var(--card); }
+.steps b { font-size: 1.25rem; letter-spacing: -.02em; min-width: 7.5rem; }
+.steps span { color: var(--ink-2); }
+
+.facts { display: grid; gap: 12px; margin-top: 12px; }
+.facts article { padding: 22px; background: var(--card); border: 1px solid var(--rule); border-radius: 20px; }
+.facts h2 { font-size: 1.25rem; letter-spacing: -.02em; margin-bottom: 6px; }
+.facts p { color: var(--ink-2); }
+@media (min-width: 720px) { .facts { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 520px) { .steps li { flex-direction: column; gap: 2px; } }
+
+.doc { padding-top: 72px; }
+.doc h2 { font-size: 1.75rem; letter-spacing: -.03em; }
+.doc .meta { margin-top: 4px; font-size: 14px; color: var(--ink-2); }
+.doc ul { margin-top: 20px; padding-left: 1.1em; display: grid; gap: 12px; }
+.doc li::marker { color: var(--go); }
+.doc p { margin-top: 16px; }
+.doc a { color: var(--go); font-weight: 600; }
+
+.foot { padding-top: 72px; padding-bottom: max(40px, env(safe-area-inset-bottom)); font-size: 14px; color: var(--ink-2); }
+.foot .links { display: flex; flex-wrap: wrap; gap: 8px 20px; padding-top: 24px; border-top: 1px solid var(--rule); margin-bottom: 12px; }
+.foot .links a { color: var(--ink); text-decoration: none; }
+.foot .bir { display: inline-block; margin-top: 16px; }
+.foot .bir img { display: block; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- The launcher icon, from app/src/main/res/drawable/ic_launcher_foreground.xml,
+       cropped to the 72dp the launcher shows, so it stays sharp at any size. -->
+  <symbol id="paprgo" viewBox="18 18 72 72">
+    <rect x="18" y="18" width="72" height="72" rx="16" fill="#16191E"/>
+    <path fill="#FFFDFA" d="M37 27h34a3 3 0 0 1 3 3v48a3 3 0 0 1-3 3H37a3 3 0 0 1-3-3V30a3 3 0 0 1 3-3z"/>
+    <path fill="#D3CEC4" d="M42 36h24v4H42zM42 45h17v4H42z"/>
+    <path fill="#00C27A" d="M29 59h50a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H29a3 3 0 0 1-3-3v-7a3 3 0 0 1 3-3z"/>
+  </symbol>
+</svg>
+
+<header class="wrap bar">
+  <a href="/paprgo/" class="brand" aria-label="PaprGo, home"><svg class="mark" width="28" height="28"><use href="#paprgo"/></svg>PaprGo</a>
+  <nav aria-label="Primary"><a href="/apps/">&larr; dustinejao.com</a></nav>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <!-- Drawn inline, not through <use>, so the sheet can animate. -->
+    <svg class="mark" width="88" height="88" viewBox="18 18 72 72" role="img" aria-label="PaprGo app icon">
+      <rect x="18" y="18" width="72" height="72" rx="16" fill="#16191E"/>
+      <g class="sheet">
+        <path fill="#FFFDFA" d="M37 27h34a3 3 0 0 1 3 3v48a3 3 0 0 1-3 3H37a3 3 0 0 1-3-3V30a3 3 0 0 1 3-3z"/>
+        <path fill="#D3CEC4" d="M42 36h24v4H42zM42 45h17v4H42z"/>
+      </g>
+      <path fill="#00C27A" d="M29 59h50a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H29a3 3 0 0 1-3-3v-7a3 3 0 0 1 3-3z"/>
+    </svg>
+    <h1>Phone to printer.<br><span>No laptop.</span></h1>
+    <p class="lede">Print the PDF, photo or form on your Android phone. Plug in a USB printer, or pick one on your Wi-Fi.</p>
+    <div class="cta">
+      <span class="soon">Coming soon to Google Play</span>
+      <span class="note">Android 8 and up</span>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <ol class="steps" aria-label="How it works">
+      <li><b>Connect.</b><span>A USB OTG cable, or a printer on the same Wi-Fi.</span></li>
+      <li><b>Pick a file.</b><span>PDF or photo. Preview it, pick pages, set copies.</span></li>
+      <li><b>Print.</b><span>From your phone, straight to the printer.</span></li>
+    </ol>
+
+    <div class="facts">
+      <article>
+        <h2>Nothing uploaded.</h2>
+        <p>Files render on your phone. Direct jobs go to the printer, never a server.</p>
+      </article>
+      <article>
+        <h2>Two prints free.</h2>
+        <p>Test your own printer first. Failed jobs don't count. Then pay once.</p>
+      </article>
+      <article>
+        <h2>No ads. No account.</h2>
+        <p>No subscription either. Printers it can't reach directly go through Print with Android.</p>
+      </article>
+    </div>
+  </div>
+
+  <section class="wrap doc" id="privacy" aria-labelledby="privacy-title">
+    <h2 id="privacy-title">Privacy</h2>
+    <p class="meta">Effective 27 October 2026</p>
+    <ul>
+      <li><b>No account, ads or analytics.</b> There is nothing to sign into. The app has no advertising, analytics or crash-reporting SDK.</li>
+      <li><b>Your documents stay on your phone.</b> PaprGo renders PDFs and photos on the device. USB and Wi-Fi jobs go straight to your printer. PaprGo runs no server and uploads nothing.</li>
+      <li><b>Print with Android.</b> If you use it, PaprGo gives a temporary PDF to the Android print service you select, then deletes its copy. That service has its own privacy policy.</li>
+      <li><b>Permissions.</b> Network access only, to reach printers and Google Play. No storage or location permission: you pick each file in Android's file picker, and Android asks for USB access per printer.</li>
+      <li><b>Purchases.</b> Google Play handles payment. Your free print count and purchase receipt stay on your phone and are left out of cloud backup.</li>
+      <li><b>Diagnostics, only if you send them.</b> A report holds the printer model, USB IDs, printer capabilities, error codes, and app and Android versions. Never file names or document content.</li>
+    </ul>
+    <p>Questions: <a href="mailto:dustinejao@gmail.com?subject=PaprGo%20privacy">dustinejao@gmail.com</a></p>
+  </section>
+
+  <section class="wrap doc" id="support" aria-labelledby="support-title">
+    <h2 id="support-title">Support</h2>
+    <ul>
+      <li><b>Printer not printing?</b> Tap Send diagnostics in the app, or email the printer model and what happened.</li>
+      <li><b>New phone?</b> Open Settings, then Printing access, then Restore purchase. Don't buy again.</li>
+    </ul>
+    <p><a href="mailto:dustinejao@gmail.com?subject=PaprGo%20support">dustinejao@gmail.com</a></p>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <div class="links">
+    <a href="/">Home</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#support">Support</a>
+    <a href="mailto:dustinejao@gmail.com?subject=PaprGo">Contact</a>
+  </div>
+  <p>&copy; <span id="year">2026</span> Dustine Jao. Designed and built by Dustine Jao &middot; Manila, PH</p>
+  <a class="bir" href="/images/bir-badge.png" target="_blank" rel="noopener" title="BIR registration. Click to view and verify."><img src="/images/bir-badge-420.png" alt="BIR Registration Seal Badge, RSN 53ARC20260000004907" width="135" height="44" loading="lazy" decoding="async"></a>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="/bir.js" defer></script>
+</body>
+</html>
