@@ -292,24 +292,289 @@
     revealEls.forEach((el) => el.classList.add('in-view'));
   }
 
-  /* ---------- Navigation -------------------------------------------------
-     The current page owns the active pill. Hover, focus and scroll never move
-     it; section links keep their native anchor navigation.
+  /* ---------- Nav capsule ------------------------------------------------
+     One element that travels, rather than a background switching between
+     links. Three things can move it, in priority order: the cursor while it is
+     inside the pill, keyboard focus, and otherwise the section you have
+     scrolled to. On touch there is no cursor, so only the last two apply and a
+     tap settles straight back to wherever you actually are.
   --------------------------------------------------------------------- */
-  document.querySelectorAll('.nav-pill .nav-link').forEach((link) => {
-    if (link.classList.contains('active')) link.setAttribute('aria-current', 'page');
-    else link.removeAttribute('aria-current');
+  const navPill = document.querySelector('.nav-pill');
+  const glide = navPill && navPill.querySelector('.nav-glide');
+  const navLinks = navPill ? Array.from(navPill.querySelectorAll('.nav-link')) : [];
+  const pageNav = navLinks.find((link) => link.classList.contains('active')) || null;
 
-    link.addEventListener('click', (event) => {
-      if (event.defaultPrevented || event.button !== 0 || event.metaKey ||
-          event.ctrlKey || event.shiftKey || event.altKey) return;
-      const url = new URL(link.href, location.href);
-      if (url.origin !== location.origin || url.pathname !== location.pathname || url.hash) return;
-      event.preventDefault();
-      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
-      if (location.hash) history.replaceState(null, '', location.pathname);
+  /* Tracked explicitly rather than read back off :hover, which goes stale on
+     touch: a tap leaves the element matching :hover with no pointer on it, and
+     the capsule then refuses to follow the page. */
+  let pointerInPill = false;
+  let hoveredNav = null;
+
+  /* Clicking a link starts a smooth scroll that crosses every section in
+     between, and the observer fires for each one it passes. Left alone the
+     capsule hops through all of them before it lands, which is the bouncing:
+     it is chasing the scroll rather than the destination. So a click pins it
+     to the link you pressed and the observer is ignored until the page has
+     actually stopped moving. */
+  let navLocked = false;
+  let lockFallback = 0;
+
+  /* Once a click has committed to another page, nothing may move the capsule
+     again. The browser keeps painting this page while the next one loads, and
+     a capsule that flies off to a hovered link, or back to the section you
+     were in, during that window is the flicker just before the page changes. */
+  let frozen = false;
+
+  /* While the pill is scrolling itself, links slide under a stationary cursor
+     and each one fires pointerenter. Following those is a feedback loop: the
+     capsule chases the links, the links keep moving. That is the vibration. */
+  let pillSettling = 0;
+  const unlockNav = () => {
+    if (frozen) return;
+    navLocked = false;
+    clearTimeout(lockFallback);
+  };
+  const lockNav = (ms = 1400) => {
+    navLocked = true;
+    clearTimeout(lockFallback);
+    /* A safety net, in case the scroll is interrupted and scrollend never
+       comes (or the browser does not have it). */
+    lockFallback = setTimeout(() => { navLocked = false; }, ms);
+  };
+  if ('onscrollend' in window) window.addEventListener('scrollend', unlockNav);
+
+  /* Runs once the next frame has been drawn, when layout is already settled
+     and measuring it costs nothing. Measured any earlier, the browser has to
+     lay the page out on the spot just to answer. */
+  const afterFrame = (fn) => requestAnimationFrame(() => setTimeout(fn, 0));
+
+  let jumpId = 0;
+  const glideTo = (el, animate) => {
+    if (!glide || frozen) return;
+    /* A link can be hidden at this width: Experience is desktop-only, and its
+       section is still on the page you are scrolling through. Measuring one
+       gives 0x0, which collapsed the capsule to nothing in the far corner and
+       then threw it back across when the next section arrived. Leave it where
+       it is instead. */
+    if (el && !el.offsetWidth) return;
+    if (!el) {
+      glide.classList.remove('is-on');
+      navLinks.forEach((l) => l.classList.remove('is-lit'));
+      return;
+    }
+    /* Both measurements before any write, so neither forces a layout. */
+    const x = el.offsetLeft, w = el.offsetWidth;
+    if (animate === false) glide.classList.add('no-anim');
+    glide.style.setProperty('--x', x + 'px');
+    glide.style.setProperty('--w', w + 'px');
+    glide.classList.add('is-on');
+    navLinks.forEach((l) => l.classList.toggle('is-lit', l === el));
+    if (animate === false) {
+      /* Transitions come back two frames on, once the jump has been drawn,
+         rather than by forcing a reflow to land it now. Only the latest jump
+         may switch them back on. */
+      const id = ++jumpId;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (id === jumpId) glide.classList.remove('no-anim');
+      }));
+    }
+  };
+  /* Hidden section shortcuts must not displace the visible page link. */
+  const currentNav = () => navLinks.find((l) => l.classList.contains('active') && l.offsetWidth) ||
+    navLinks.find((l) => l.getAttribute('href') === '/' && l.offsetWidth) || null;
+  /* Re-measuring must preserve the same hover/focus priority as interaction. */
+  const targetNav = () => (pointerInPill && hoveredNav && hoveredNav.offsetWidth ? hoveredNav : null) ||
+    navLinks.find((l) => l === document.activeElement && l.offsetWidth && l.matches(':focus-visible')) || currentNav();
+  const settle = () => glideTo(targetNav(), true);
+
+  /* On a phone the pill scrolls, so the link the capsule is under can sit off
+     the edge. Bring it back into view rather than animating to somewhere the
+     user cannot see. */
+  const keepInView = (el, smooth) => {
+    if (!el || !navPill || navPill.scrollWidth <= navPill.clientWidth) return;
+    const l = el.offsetLeft, r = l + el.offsetWidth;
+    const view = navPill.scrollLeft, edge = view + navPill.clientWidth;
+    if (l < view + 8 || r > edge - 8) {
+      /* Animate this only when the nav itself was used. Sliding it while the
+         page is being scrolled means a horizontal animation running against a
+         vertical one, which on a phone reads as the nav shivering. */
+      const glideIt = smooth && !reduceMotion;
+      pillSettling = Date.now() + (glideIt ? 500 : 150);
+      navPill.scrollTo({
+        left: l - (navPill.clientWidth - el.offsetWidth) / 2,
+        behavior: glideIt ? 'smooth' : 'auto',
+      });
+    }
+  };
+
+  if (glide) {
+    /* Placed once the first frame is up. keepInView goes first throughout:
+       it only reads and scrolls, so glideTo's measurements after it are still
+       free, where the other way round glideTo's writes would force a layout. */
+    afterFrame(() => { const cur = targetNav(); keepInView(cur); glideTo(cur, false); });
+
+    navLinks.forEach((l) => {
+      const followPointer = (e) => {
+        if (e.pointerType !== 'mouse' || frozen || Date.now() < pillSettling) return;
+        if (pointerInPill && hoveredNav === l) return;
+        pointerInPill = true;
+        hoveredNav = l;
+        glideTo(l, true);
+      };
+      l.addEventListener('pointerenter', followPointer);
+      l.addEventListener('pointermove', followPointer);
+      l.addEventListener('focus', () => {
+        /* Mouse focus must not scroll the pill under the pointer before click. */
+        if (!l.matches(':focus-visible')) return;
+        pointerInPill = false;
+        hoveredNav = null;
+        keepInView(l, true);
+        glideTo(l, true);
+      });
+
+      /* Go straight to the destination and mark it active now, rather than
+         waiting for the scroll to arrive. A link to another page holds the
+         lock longer: the browser keeps painting this page while the next one
+         loads, and without it the capsule flies back to the section you were
+         in a moment before the page changes. */
+      l.addEventListener('click', (e) => {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        /* Home, pressed on the home page, goes to the top rather than
+           reloading the page it is already on. */
+        const url = new URL(l.href, location.href);
+        const samePage = url.origin === location.origin && !url.hash && url.pathname === location.pathname;
+        if (samePage && e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+          if (location.hash) history.replaceState(null, '', location.pathname);
+        }
+        const sameDoc = url.origin === location.origin && url.pathname === location.pathname;
+        /* A modifier click opens a tab and leaves this page where it is. */
+        const leaving = !sameDoc && e.button === 0 &&
+          !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;
+        navLinks.forEach((o) => o.classList.remove('active'));
+        l.classList.add('active');
+        lockNav(sameDoc ? 1400 : 6000);
+        if (sameDoc) keepInView(l, true);
+        glideTo(l, true);
+        if (leaving) {
+          frozen = true;                /* this page is on its way out */
+          setTimeout(() => { frozen = false; }, 6000);   /* unless it is not */
+        }
+      });
     });
-  });
+
+    navPill.addEventListener('pointerleave', (e) => {
+      if (e.pointerType && e.pointerType !== 'mouse') return;
+      pointerInPill = false;
+      hoveredNav = null;
+      settle();
+    });
+    /* A tap is not a hover. Let the scroll it triggers land, then settle. */
+    navPill.addEventListener('touchend', () => {
+      pointerInPill = false;
+      hoveredNav = null;
+      setTimeout(settle, 80);
+    }, { passive: true });
+
+    /* A middle-click, a modifier-click or a cancelled navigation leaves the
+       page in place, so thaw when it turns out we are staying. */
+    window.addEventListener('pageshow', (e) => {
+      frozen = false;
+      unlockNav();
+      if (e.persisted && pageNav) {
+        pointerInPill = false;
+        hoveredNav = null;
+        navLinks.forEach((l) => l.classList.toggle('active', l === pageNav));
+        glideTo(targetNav(), false);
+      }
+    });
+
+    navPill.addEventListener('focusout', () => {
+      afterFrame(() => { if (!navPill.contains(document.activeElement)) settle(); });
+    });
+
+    /* Fonts landing late change link widths, so re-measure once they are in. */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => afterFrame(() => glideTo(targetNav(), false)));
+    }
+    let rt = 0;
+    let navViewportWidth = window.innerWidth;
+    const resizeNav = () => {
+      const active = currentNav();
+      if (active) navLinks.forEach((l) => l.classList.toggle('active', l === active));
+      const cur = targetNav();
+      keepInView(cur);
+      glideTo(cur, false);
+    };
+    window.addEventListener('resize', () => {
+      if (window.innerWidth === navViewportWidth) return;
+      const breakpointChanged = (window.innerWidth <= 720) !== (navViewportWidth <= 720);
+      navViewportWidth = window.innerWidth;
+      clearTimeout(rt);
+      if (breakpointChanged) resizeNav();
+      else rt = setTimeout(resizeNav, 120);
+    });
+  }
+
+  /* ---------- Active nav link (anchor sections on home) ----------------- */
+  const anchorLinks = Array.from(document.querySelectorAll('.nav-pill a[href^="#"]'));
+  if (anchorLinks.length && 'IntersectionObserver' in window) {
+    const map = new Map();
+    anchorLinks.forEach((link) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) map.set(target, link);
+    });
+    const homeLink = navLinks.find((link) => link.getAttribute('href') === '/');
+    /* The hero belongs to Home; section shortcuts light up further down. */
+    const hero = document.querySelector('.hero');
+    if (hero) map.set(hero, homeLink || anchorLinks[0]);
+
+    const lastLink = anchorLinks[anchorLinks.length - 1];
+    /* The page height is read once and refreshed only when the page actually
+       changes size. Reading scrollHeight inside a scroll handler forces a
+       layout on every event, which on a phone is a dropped frame each time.
+       Not even at start-up: the observer's first callback fills it in once
+       layout has run anyway, and until then nothing counts as the bottom. */
+    let docH = Infinity;
+    let viewH = window.innerHeight;
+    const measure = () => { docH = document.documentElement.scrollHeight; viewH = window.innerHeight; };
+    if ('ResizeObserver' in window) new ResizeObserver(measure).observe(document.body);
+    else afterFrame(measure);
+    window.addEventListener('resize', measure);
+    const atBottom = () => viewH + window.scrollY >= docH - 4;
+
+    const applyActive = (link) => {
+      if (!link) return;
+      /* Section shortcuts are hidden on phones, where Home stays active. */
+      const target = link.offsetWidth ? link : homeLink;
+      if (!target || target.classList.contains('active')) return;
+      navLinks.forEach((l) => l.classList.toggle('active', l === target));
+      /* The cursor outranks the page: only steer if it is not driving. */
+      if (!pointerInPill) {
+        const cur = targetNav();
+        if (cur === target) keepInView(target);
+        glideTo(cur, true);
+      }
+    };
+
+    const navIO = new IntersectionObserver((entries) => {
+      if (navLocked) return;            /* the click owns it until it lands */
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) applyActive(atBottom() ? lastLink : map.get(entry.target));
+      });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+    map.forEach((_, target) => navIO.observe(target));
+
+    /* The last section can start below the furthest the page will ever
+       scroll, so it never crosses the observer's band and the capsule snaps
+       back to whatever is still in it: the bounce. The bottom of the page is
+       the last link, whatever the band thinks. */
+    window.addEventListener('scroll', () => {
+      if (navLocked || pointerInPill) return;
+      if (atBottom() && !lastLink.classList.contains('active')) applyActive(lastLink);
+    }, { passive: true });
+  }
 
   /* ---------- Music coverflow -------------------------------------------- */
   const stage = document.getElementById('cf-stage');

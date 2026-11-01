@@ -224,22 +224,62 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
   font-weight: 600;
   color: var(--text);
   white-space: nowrap;
-  transition: color .15s ease, background-color .15s ease;
+  transition: color .32s ease;
 }
-@media (hover: hover) {
-  .nav-link:hover { color: var(--pink); background-color: var(--pink-soft); }
+.nav-link:hover { color: var(--pink); }
+/* Whichever link the capsule is currently sitting under, active or hovered. */
+.nav-link.is-lit, .nav-link.is-lit:hover { color: #fff; }
+
+/*
+   The travelling capsule.
+
+   The active state used to be a background on the link itself, so it cut from
+   one item to the next. This is one element that moves: JS writes the target
+   link's offsetLeft and width into --x and --w, and the easing does the rest.
+   Because it lives inside the pill it scrolls with the links on a phone, and
+   because it is one node the browser animates a single transform rather than
+   repainting two backgrounds.
+*/
+.nav-glide {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 0;
+  width: var(--w, 0px);
+  height: calc(100% - .6rem);
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(var(--x, 0px), -50%) scaleX(var(--s, 1));
+
+  /* Glass: a tinted pane you can see the page through, a bright top edge where
+     the light catches, and a soft coloured shadow so it sits above the pill
+     rather than in it. */
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .38) 0%, rgba(255, 255, 255, .06) 46%, rgba(255, 255, 255, 0) 60%),
+    rgba(255, 0, 127, .9);
+  /* No backdrop-filter here. It sat inside a pill that is already blurred, so
+     it was re-blurring an almost-opaque surface for no visible gain, and a
+     moving blurred layer in a sticky header is re-rasterised on every frame
+     the page scrolls. That was the stutter on a phone. */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .65),
+    inset 0 -1px 0 rgba(0, 0, 0, .1),
+    0 4px 14px var(--pink-glow);
+
+  /* Overshoot just past the target and settle. This is the "follows smoothly"
+     part: a plain ease arrives dead and a linear one arrives mechanical. */
+  transition:
+    transform .46s cubic-bezier(.32, 1.12, .42, 1),
+    width .46s cubic-bezier(.32, 1.12, .42, 1),
+    opacity .25s ease;
 }
-.nav-link.active,
-.nav-link.active:hover {
-  color: #fff;
-  background-color: var(--pink);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25);
-}
-.nav-link:focus-visible { outline: 2px solid var(--pink); outline-offset: 2px; }
-/* Keep the decorative node inert for pages cached with the previous markup. */
-.nav-glide { display: none; }
+.nav-glide.is-on { opacity: 1; }
+/* First paint, and after a resize: jump into place rather than fly in from 0. */
+.nav-glide.no-anim { transition: none; }
+
 @media (prefers-reduced-motion: reduce) {
-  .nav-link { transition: none; }
+  .nav-glide { transition: opacity .2s ease; }
 }
 
 .nav-sep {
@@ -292,6 +332,15 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
      Safe here only because the phone header has no backdrop blur: a layer
      like this would stop a blur from seeing the page behind it. */
   .site-header { will-change: transform; }
+  /* On a phone the capsule changes as the page scrolls, not as a finger
+     points, so it settles without the springy overshoot: a bounce while you
+     are scrolling reads as the bar jumping. */
+  .nav-glide {
+    transition:
+      transform .3s cubic-bezier(.25, .8, .25, 1),
+      width .3s cubic-bezier(.25, .8, .25, 1),
+      opacity .2s ease;
+  }
   .nav-link { padding: .5rem .7rem; font-size: .94rem; }
   .nav-desktop-only { display: none; }
   /* Every page keeps the same four main links on a phone. */
