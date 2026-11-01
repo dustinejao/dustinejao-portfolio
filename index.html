@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <!-- SEO -->
-<meta name="description" content="Dustine Jao is a multimedia artist specializing in video production: video editing, audio post, short-form, and design. Cum laude, BA Multimedia Arts. Available for remote work worldwide.">
+<meta name="description" content="Dustine Jao is a multimedia artist, video editor and app developer in Manila. Creator of CastCut, Liriko, Barya and Singil. Available for remote work worldwide.">
 <meta name="keywords" content="Dustine Jao, video editor, video production, multimedia artist, audio post production, short-form video, podcast editing, Manila, remote video editor">
 <link rel="canonical" href="https://www.dustinejao.com/">
 
@@ -28,8 +28,10 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.dustinejao.com/">
 <meta property="og:title" content="Dustine Jao | Multimedia Artist, Video Production">
-<meta property="og:description" content="I make people stop scrolling. Video, audio post and design for brands and creators. Manila, worldwide.">
-<meta property="og:image" content="https://dustinejao.com/images/og-image.png">
+<meta property="og:description" content="Video, audio post, design and apps by Dustine Jao. Creator of CastCut, Liriko, Barya and Singil. Manila, worldwide.">
+<meta property="og:site_name" content="Dustine Jao">
+<meta property="og:image" content="https://www.dustinejao.com/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
 
 <!-- Fonts: loaded without holding up first paint. The page sets in the system
      face until Inter lands, which display=swap already allowed for. -->
@@ -44,18 +46,42 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Dustine Jao",
-  "url": "https://www.dustinejao.com/",
-  "jobTitle": "Founder of CastCut; Multimedia Artist, Video Production",
-  "worksFor": { "@type": "Organization", "name": "CastCut", "url": "https://getcastcut.com" },
-  "alumniOf": "De La Salle-College of Saint Benilde",
-  "email": "mailto:dustinejao@gmail.com",
-  "sameAs": [
-    "https://www.linkedin.com/in/dustinejao/",
-    "https://github.com/dustinejao",
-    "https://www.instagram.com/dustinejao_/",
-    "https://open.spotify.com/artist/68DwCkSU60eR5Nze2xjgZF"
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://www.dustinejao.com/#person",
+      "name": "Dustine Jao",
+      "url": "https://www.dustinejao.com/",
+      "jobTitle": "Founder of CastCut; Multimedia Artist, Video Production",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "CastCut",
+        "url": "https://www.getcastcut.com/"
+      },
+      "knowsAbout": [
+        "Podcast editing",
+        "Video production",
+        "App development"
+      ],
+      "alumniOf": "De La Salle-College of Saint Benilde",
+      "email": "mailto:dustinejao@gmail.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/dustinejao/",
+        "https://github.com/dustinejao",
+        "https://www.instagram.com/dustinejao_/",
+        "https://open.spotify.com/artist/68DwCkSU60eR5Nze2xjgZF"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.dustinejao.com/#website",
+      "url": "https://www.dustinejao.com/",
+      "name": "Dustine Jao",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://www.dustinejao.com/#person"
+      }
+    }
   ]
 }
 </script>
@@ -94,11 +120,11 @@
 <main class="home">
   <!-- Product heroes: CastCut, Barya, then the portfolio. -->
   <section class="hero product-hero product-castcut" id="top" aria-labelledby="castcut-title" data-loop>
-    <a class="product-hero-link" href="https://getcastcut.com" target="_blank" rel="noopener">
+    <a class="product-hero-link" href="/castcut/">
       <div class="product-copy container">
         <p class="product-name"><img src="/images/apps/castcut.webp" alt="" width="40" height="40" decoding="async">CastCut</p>
         <h1 class="product-title" id="castcut-title">Your podcast,<br><span>already cut.</span></h1>
-        <p class="product-sub">Automatic multicam editing. Made for Final Cut Pro.</p>
+        <p class="product-sub">Automatic multicam podcast editing for Mac. Final Cut Pro, Premiere Pro &amp; DaVinci Resolve.</p>
         <span class="ap-btn product-cta">Explore CastCut</span>
       </div>
       <div class="castcut-stage" aria-hidden="true">
@@ -241,7 +267,7 @@
       <h2>CastCut</h2>
       <p class="tile-tag">Your podcast, already cut.</p>
       <div class="ap-ctas">
-        <a href="https://getcastcut.com" target="_blank" rel="noopener" class="ap-btn">Learn more<span class="sr-only"> about CastCut</span></a>
+        <a href="/castcut/" class="ap-btn">Learn more<span class="sr-only"> about CastCut</span></a>
         <a href="/apps/" class="ap-link">All apps</a>
       </div>
       <div class="tile-art cc-art" aria-hidden="true">
@@ -259,7 +285,7 @@
 
     <div class="tile tile-light tile-apps" data-reveal style="--reveal-delay:.08s">
       <h2>Apps</h2>
-      <p class="tile-tag">Six built. Four shipped.</p>
+      <p class="tile-tag">Four apps. Out now.</p>
       <div class="ap-ctas">
         <a href="/apps/" class="ap-btn">Browse the shelf</a>
       </div>
@@ -267,10 +293,8 @@
         <div class="hs-screen">
           <div class="hs-status"><span>9:41</span></div>
           <div class="hs-grid">
-            <a class="hs-app" href="https://getcastcut.com" target="_blank" rel="noopener"><img src="/images/apps/castcut.webp" alt="" width="60" height="60" loading="lazy" decoding="async"><small>CastCut</small></a>
+            <a class="hs-app" href="/castcut/"><img src="/images/apps/castcut.webp" alt="" width="60" height="60" loading="lazy" decoding="async"><small>CastCut</small></a>
             <a class="hs-app" href="/liriko/"><img src="/images/apps/liriko.webp" alt="" width="60" height="60" loading="lazy" decoding="async"><small>Liriko</small></a>
-            <a class="hs-app" href="https://tunog.net" target="_blank" rel="noopener"><img src="/images/apps/tunog.webp" alt="" width="60" height="60" loading="lazy" decoding="async"><small>tunog</small></a>
-            <a class="hs-app" href="/caloff/"><img src="/images/apps/caloff.webp" alt="" width="60" height="60" loading="lazy" decoding="async"><small>CalOff</small></a>
             <a class="hs-app" href="/barya/"><img src="/images/apps/barya.webp" alt="" width="60" height="60" loading="lazy" decoding="async"><small>Barya</small></a>
             <a class="hs-app" href="/singil/"><img src="/images/apps/singil-3.webp" alt="" width="60" height="60" loading="lazy" decoding="async"><small>Singil</small></a>
           </div>
@@ -359,7 +383,7 @@
         <span class="xp-date">Sep 2026 &ndash; <b>Present</b></span>
         <div>
           <h3><img src="/images/apps/castcut.webp" alt="" width="28" height="28" loading="lazy" decoding="async">Founder</h3>
-          <p class="xp-org"><a href="https://getcastcut.com" target="_blank" rel="noopener">CastCut</a> &middot; Automatic multicam podcast editing for Final Cut Pro</p>
+          <p class="xp-org"><a href="https://www.getcastcut.com/" target="_blank" rel="noopener">CastCut</a> &middot; Automatic multicam podcast editing for Final Cut Pro, Premiere Pro &amp; DaVinci Resolve</p>
           <p class="xp-note">Syncs the cameras and audio, cuts to whoever is talking, clears the dead air and hands Final Cut a finished timeline. Runs on the Mac, nothing uploaded.</p>
         </div>
       </li>

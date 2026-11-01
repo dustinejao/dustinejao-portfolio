@@ -1750,6 +1750,7 @@ a.hs-app:focus-visible img { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--pink); 
   line-height: 1.05;
 }
 .st-head h1 .accent { font-size: 1em; }
+.st-intro { max-width: 65ch; margin: 0 0 1.5rem; color: var(--muted); font-size: 1.05rem; line-height: 1.6; }
 .st-avatar {
   width: 40px;
   height: 40px;

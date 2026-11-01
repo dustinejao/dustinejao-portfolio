@@ -137,7 +137,7 @@
       ]
     },
     {
-      "source": "/(music|realestate)(/.*)?",
+      "source": "/(music|realestate|caloff|paprgo)(/.*)?",
       "headers": [
         {
           "key": "X-Robots-Tag",

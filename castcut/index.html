@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CastCut | Automatic Multicam Podcast Editor for Mac</title>
+<meta name="description" content="CastCut by Dustine Jao automates podcast sync, camera cuts, cleanup and shorts on Mac. Export to Final Cut Pro, Premiere Pro or DaVinci Resolve. Try 2 exports free.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Dustine Jao">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://www.dustinejao.com/castcut/">
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+<link rel="apple-touch-icon" href="/images/touch-icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dustine Jao">
+<meta property="og:url" content="https://www.dustinejao.com/castcut/">
+<meta property="og:title" content="CastCut | Automatic Multicam Podcast Editor for Mac">
+<meta property="og:description" content="Podcast editing software by Dustine Jao. Sync footage, switch cameras, clean up speech and find shorts on your Mac. Keep editing in Final Cut Pro, Premiere Pro or DaVinci Resolve.">
+<meta property="og:image" content="https://www.dustinejao.com/images/apps/castcut.webp">
+<meta property="og:image:alt" content="CastCut app icon">
+<meta name="twitter:card" content="summary">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#0b0b0e':'#ffffff';var s=localStorage.getItem('sound');document.documentElement.dataset.sound=s==='off'?'off':'on'}catch(e){}})();</script>
+<link rel="stylesheet" href="/styles.css">
+<style>
+.cc-crumbs { padding-block: 1.25rem; font-size: .9rem; color: var(--muted); }
+.cc-crumbs ol { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; padding: 0; margin: 0; }
+.cc-crumbs li + li::before { content: "/"; margin-right: .5rem; }
+.cc-hero { max-width: 860px; padding-block: clamp(2rem, 5vw, 4rem); }
+.cc-brand { display: flex; align-items: center; gap: .75rem; font-size: 1.4rem; font-weight: 700; }
+.cc-brand img { border-radius: 14px; }
+.cc-hero h1 { font-size: clamp(2.4rem, 6vw, 4.75rem); margin-block: 1.5rem; }
+.cc-lede { max-width: 58ch; font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--muted); line-height: 1.65; }
+.cc-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.5rem; margin-block: 1.5rem; }
+.cc-note { color: var(--muted); font-size: .9rem; }
+.cc-section { padding-block: 2rem; border-top: 1px solid var(--border); }
+.cc-section > h2 { font-size: clamp(1.6rem, 3vw, 2.25rem); }
+.cc-section p, .cc-steps { max-width: 72ch; line-height: 1.75; }
+.cc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+.cc-grid h3 { font-size: 1.1rem; }
+.cc-grid p { color: var(--muted); }
+.cc-steps { padding-left: 1.5rem; }
+.cc-steps li { padding-left: .3rem; margin-block: .75rem; }
+.cc-related { display: flex; flex-wrap: wrap; gap: 1rem 2rem; list-style: none; padding: 0; }
+.cc-section:last-child { padding-bottom: 3rem; }
+@media (max-width: 700px) { .cc-grid { grid-template-columns: 1fr; gap: .75rem; } }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "CastCut",
+      "url": "https://www.dustinejao.com/castcut/",
+      "image": "https://www.dustinejao.com/images/apps/castcut.webp",
+      "operatingSystem": "macOS 14 or later; Apple silicon",
+      "applicationCategory": "MultimediaApplication",
+      "sameAs": "https://www.getcastcut.com/",
+      "downloadUrl": "https://www.getcastcut.com/download",
+      "featureList": [
+        "Automatic audio and camera sync",
+        "Speaker-based camera cuts",
+        "Silence and filler removal",
+        "Social video clips and captions",
+        "Final Cut Pro, Premiere Pro and DaVinci Resolve export",
+        "Offline processing on Mac"
+      ],
+      "@id": "https://www.dustinejao.com/castcut/#app",
+      "description": "CastCut by Dustine Jao automates podcast sync, camera cuts, cleanup and shorts on Mac. Export to Final Cut Pro, Premiere Pro or DaVinci Resolve. Try 2 exports free.",
+      "mainEntityOfPage": {
+        "@id": "https://www.dustinejao.com/castcut/#webpage"
+      },
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.dustinejao.com/#person",
+        "name": "Dustine Jao",
+        "url": "https://www.dustinejao.com/"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.dustinejao.com/castcut/#webpage",
+      "url": "https://www.dustinejao.com/castcut/",
+      "name": "CastCut | Automatic Multicam Podcast Editor for Mac",
+      "description": "CastCut by Dustine Jao automates podcast sync, camera cuts, cleanup and shorts on Mac. Export to Final Cut Pro, Premiere Pro or DaVinci Resolve. Try 2 exports free.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://www.dustinejao.com/#website"
+      },
+      "mainEntity": {
+        "@id": "https://www.dustinejao.com/castcut/#app"
+      },
+      "breadcrumb": {
+        "@id": "https://www.dustinejao.com/castcut/#breadcrumbs"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.dustinejao.com/castcut/#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.dustinejao.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Apps",
+          "item": "https://www.dustinejao.com/apps/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "CastCut",
+          "item": "https://www.dustinejao.com/castcut/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a href="#main" class="sr-only">Skip to content</a>
+<div class="backdrop" aria-hidden="true"></div>
+<header class="site-header">
+  <a href="/" class="logo" aria-label="Dustine Jao, home">
+    <img src="/images/logo.svg" alt="Dustine Jao logo" width="46" height="46" decoding="async">
+  </a>
+  <nav class="nav-pill" aria-label="Main navigation">
+    <span class="nav-glide" aria-hidden="true"></span>
+    <a href="/" class="nav-link">Home</a>
+    <a href="/apps/" class="nav-link active">Apps</a>
+    <a href="/realestate/" class="nav-link">Real Estate</a>
+    <a href="/music/" class="nav-link">Music</a>
+  </nav>
+  <div class="header-tools">
+    <button id="theme-toggle" class="icon-btn theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+  </button>
+    <button id="sound-toggle" class="icon-btn sound-toggle" aria-label="Toggle interface sounds" aria-pressed="false">
+    <svg class="icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+    <svg class="icon-sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="m16 9.5 5 5M21 9.5l-5 5"/></svg>
+  </button>
+  </div>
+</header>
+<main id="main" class="store castcut-page">
+  <nav class="container cc-crumbs" aria-label="Breadcrumb">
+    <ol><li><a href="/">Home</a></li><li><a href="/apps/">Apps</a></li><li aria-current="page">CastCut</li></ol>
+  </nav>
+  <section class="container cc-hero" aria-labelledby="castcut-title">
+    <p class="cc-brand"><img src="/images/apps/castcut.webp" alt="" width="64" height="64" decoding="async">CastCut <span class="cc-note">by Dustine Jao</span></p>
+    <h1 id="castcut-title">Automatic multicam podcast editing for Mac.</h1>
+    <p class="cc-lede">CastCut turns your camera recordings and audio into an editable podcast timeline. It handles syncing, speaker cuts, speech cleanup and short clips, then hands the edit to Final Cut Pro, Premiere Pro or DaVinci Resolve.</p>
+    <div class="cc-actions">
+      <a class="ap-btn" href="https://www.getcastcut.com/download" target="_blank" rel="noopener">Try CastCut for Mac</a>
+      <a class="ap-link" href="https://www.getcastcut.com/" target="_blank" rel="noopener">Visit the CastCut website</a>
+    </div>
+    <p class="cc-note">First 2 exports free &middot; Apple silicon Mac, M1 or newer &middot; macOS 14 or later</p>
+  </section>
+  <section class="container cc-section" aria-labelledby="why-castcut">
+    <h2 id="why-castcut">A podcast editor's own tool.</h2>
+    <p>I'm Dustine Jao, a multimedia artist and video editor in Manila, and the maker of CastCut. I record a Taglish interview podcast with two iPhones and an audio recorder, then edit it in Final Cut Pro. Lining up recordings and choosing camera angles took up the same part of every episode. CastCut grew out of that workflow.</p>
+    <p>The goal is to start the creative edit sooner. The exported timeline stays editable, so you can change an angle, adjust a pause or keep a moment that matters to the conversation.</p>
+  </section>
+  <section class="container cc-section" aria-labelledby="features">
+    <h2 id="features">From recordings to an editable episode.</h2>
+    <div class="cc-grid">
+      <article><h3>Sync and camera switching</h3><p>Align cameras and audio by sound, then build cuts around the active speaker. Work with several cameras or create close-ups from a single wide shot.</p></article>
+      <article><h3>Cleanup and short clips</h3><p>Review silence and filler cuts before export. Find moments for social posts, with captions and framing for landscape, vertical and square video.</p></article>
+      <article><h3>Processing on your Mac</h3><p>After the initial model download, editing runs offline. Your footage stays on your Mac, and your original recordings remain available for the final edit.</p></article>
+    </div>
+  </section>
+  <section class="container cc-section" aria-labelledby="workflow">
+    <h2 id="workflow">How to use CastCut.</h2>
+    <ol class="cc-steps">
+      <li><strong>Add your recordings.</strong> Bring in the camera files and the audio from your podcast session.</li>
+      <li><strong>Review the automatic edit.</strong> Check the camera cuts, cleanup choices and suggested short clips.</li>
+      <li><strong>Export and finish.</strong> Continue in Final Cut Pro, Premiere Pro or DaVinci Resolve. CastCut can also export finished MP4 videos.</li>
+    </ol>
+    <p>Get current pricing, download the app and read the setup guides on <a href="https://www.getcastcut.com/" target="_blank" rel="noopener">getcastcut.com</a>.</p>
+  </section>
+  <section class="container cc-section" aria-labelledby="more-apps">
+    <h2 id="more-apps">More released apps by Dustine Jao.</h2>
+    <ul class="cc-related">
+      <li><a href="/liriko/">Liriko: offline lyrics and rhyme writer</a></li>
+      <li><a href="/barya/">Barya: offline expense tracker</a></li>
+      <li><a href="/singil/">Singil: invoice maker for iPhone</a></li>
+    </ul>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/music/">Music</a>
+    <a href="/apps/">Apps</a>
+    <a href="/#contact">Contact</a>
+  </div>
+  <p class="fine">&copy; <span id="year">2026</span> Dustine Jao. All Rights Reserved.</p>
+  <p class="fine">Designed &amp; coded from scratch by Dustine Jao · Manila, PH</p>
+  <a class="bir" href="/images/bir-badge.png" target="_blank" rel="noopener" title="BIR registration. Click to view and verify."><img src="/images/bir-badge-420.png" alt="BIR Registration Seal Badge, RSN 53ARC20260000004907" width="135" height="44" loading="lazy" decoding="async"></a>
+</footer>
+<script src="/app.js" defer></script>
+<script>window.va = window.va || function () { (window.va.q = window.va.q || []).push(arguments); };</script>
+<script src="/_vercel/insights/script.js" defer></script>
+<script src="/_vercel/speed-insights/script.js" defer></script>
+<script src="/source.js" defer></script>
+</body>
+</html>

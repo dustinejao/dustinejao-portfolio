@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Built by DJ | Apps by Dustine Jao</title>
+<title>Apps by Dustine Jao | CastCut, Liriko, Barya &amp; Singil</title>
 
 <meta name="theme-color" content="#ffffff">
 
@@ -14,7 +14,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <!-- SEO -->
-<meta name="description" content="Apps by Dustine Jao: CastCut, automatic multicam podcast editing for Final Cut Pro; Liriko, an offline lyric notepad; tunog.net, a Philippine beat marketplace in development; CalOff, Barya and Singil.">
+<meta name="description" content="Explore released apps by Dustine Jao: CastCut for podcast editing on Mac, Liriko for offline songwriting, Barya for expenses, and Singil for invoices.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://www.dustinejao.com/apps/">
 
 <!-- Icons -->
@@ -25,9 +26,12 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.dustinejao.com/apps/">
-<meta property="og:title" content="Built by DJ | Apps by Dustine Jao">
-<meta property="og:description" content="CastCut, Liriko, tunog.net, CalOff, Barya and Singil: built, shipped and still shipping.">
+<meta property="og:site_name" content="Dustine Jao">
+<meta property="og:title" content="Apps by Dustine Jao | CastCut, Liriko, Barya &amp; Singil">
+<meta property="og:description" content="Explore CastCut for podcast editing, Liriko for songwriting, Barya for expenses, and Singil for invoices. Four released apps by Dustine Jao.">
 <meta property="og:image" content="https://www.dustinejao.com/images/og-image.png">
+<meta property="og:image:alt" content="Apps by Dustine Jao, creator of CastCut, Liriko, Barya and Singil">
+<meta name="twitter:card" content="summary_large_image">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,44 +43,77 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Apps by Dustine Jao",
-  "url": "https://www.dustinejao.com/apps/",
-  "author": {
-    "@type": "Person",
-    "name": "Dustine Jao",
-    "url": "https://www.dustinejao.com/"
-  },
-  "mainEntity": {
-    "@type": "ItemList",
-    "name": "Out now",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "CastCut",
-        "url": "https://getcastcut.com"
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://www.dustinejao.com/apps/#webpage",
+      "name": "Apps by Dustine Jao",
+      "description": "Released apps for podcast editing, songwriting, expense tracking and invoicing by Dustine Jao.",
+      "url": "https://www.dustinejao.com/apps/",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.dustinejao.com/#person",
+        "name": "Dustine Jao",
+        "url": "https://www.dustinejao.com/"
       },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Liriko",
-        "url": "https://www.dustinejao.com/liriko/"
+      "mainEntity": {
+        "@type": "ItemList",
+        "name": "Out now",
+        "numberOfItems": 4,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "CastCut",
+            "url": "https://www.dustinejao.com/castcut/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Liriko",
+            "url": "https://www.dustinejao.com/liriko/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Singil",
+            "url": "https://www.dustinejao.com/singil/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Barya",
+            "url": "https://www.dustinejao.com/barya/"
+          }
+        ]
       },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Singil",
-        "url": "https://www.dustinejao.com/singil/"
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://www.dustinejao.com/#website"
       },
-      {
-        "@type": "ListItem",
-        "position": 4,
-        "name": "Barya",
-        "url": "https://www.dustinejao.com/barya/"
+      "breadcrumb": {
+        "@id": "https://www.dustinejao.com/apps/#breadcrumbs"
       }
-    ]
-  }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.dustinejao.com/apps/#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.dustinejao.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Apps",
+          "item": "https://www.dustinejao.com/apps/"
+        }
+      ]
+    }
+  ]
 }
 </script>
 </head>
@@ -117,8 +154,9 @@
         <img src="/images/dj.webp" alt="" width="40" height="40" decoding="async">
       </a>
     </div>
+    <p class="st-intro">Released apps by Dustine Jao: CastCut for podcast editing on Mac, Liriko for offline songwriting on iOS and Android, Barya for expense tracking, and Singil for invoicing on iPhone.</p>
 
-    <a href="https://getcastcut.com" target="_blank" rel="noopener" class="st-today" data-reveal>
+    <a href="/castcut/" class="st-today" data-reveal>
       <div class="st-today-copy">
         <span class="st-eyebrow">App of the day</span>
         <h2>Your podcast,<br>already cut.</h2>
@@ -139,9 +177,9 @@
         <img class="st-icon" src="/images/apps/castcut.webp" alt="" width="48" height="48" decoding="async">
         <span class="st-info">
           <h3>CastCut</h3>
-          <span class="st-sub">Made for Final Cut Pro</span>
+          <span class="st-sub">Automatic podcast editing for Mac</span>
         </span>
-        <span class="st-act"><span class="st-get">Get</span><small>2 free exports</small></span>
+        <span class="st-act"><span class="st-get">Explore</span><small>2 free exports</small></span>
       </div>
     </a>
   </section>
@@ -153,15 +191,15 @@
     </header>
     <ul class="st-list">
       <li>
-        <a href="https://getcastcut.com" target="_blank" rel="noopener" class="st-row">
+        <a href="/castcut/" class="st-row">
           <img class="st-icon" src="/images/apps/castcut.webp" alt="CastCut app icon" width="64" height="64" loading="lazy" decoding="async">
           <span class="st-line">
             <span class="st-info">
               <h3>CastCut</h3>
-              <span class="st-sub">Podcast edits on autopilot</span>
-              <span class="st-cat">Python &amp; Swift &middot; macOS</span>
+              <span class="st-sub">Automatic multicam podcast editor</span>
+              <span class="st-cat">macOS &middot; Video editing</span>
             </span>
-            <span class="st-act"><span class="st-get">Get</span><small>2 free exports</small></span>
+            <span class="st-act"><span class="st-get">Explore</span><small>2 free exports</small></span>
           </span>
         </a>
       </li>
@@ -171,8 +209,8 @@
           <span class="st-line">
             <span class="st-info">
               <h3>Liriko</h3>
-              <span class="st-sub">Rhyme faster. Write anywhere.</span>
-              <span class="st-cat">Expo &middot; iOS &amp; Android</span>
+              <span class="st-sub">Offline lyrics and rhyme writer</span>
+              <span class="st-cat">iOS &amp; Android &middot; Songwriting</span>
             </span>
             <span class="st-act"><span class="st-get">Get</span></span>
           </span>
@@ -207,41 +245,6 @@
             </span>
           </span>
         </div>
-      </li>
-    </ul>
-  </section>
-
-  <section class="st-shelf container" data-reveal>
-    <header class="st-shelf-head">
-      <h2>Coming soon</h2>
-      <span>2 apps</span>
-    </header>
-    <ul class="st-list">
-      <li>
-        <a href="https://tunog.net" target="_blank" rel="noopener" class="st-row">
-          <img class="st-icon" src="/images/apps/tunog.webp" alt="tunog.net app icon" width="64" height="64" loading="lazy" decoding="async">
-          <span class="st-line">
-            <span class="st-info">
-              <h3>tunog.net</h3>
-              <span class="st-sub">Philippine beat marketplace</span>
-              <span class="st-cat">Web &middot; with Jerick Nucasa</span>
-            </span>
-            <span class="st-act"><span class="st-get st-soon">Soon</span><small>In development</small></span>
-          </span>
-        </a>
-      </li>
-      <li>
-        <a href="/caloff/" class="st-row">
-          <img class="st-icon" src="/images/apps/caloff.webp" alt="CalOff app icon" width="64" height="64" loading="lazy" decoding="async">
-          <span class="st-line">
-            <span class="st-info">
-              <h3>CalOff</h3>
-              <span class="st-sub">Calories from a photo</span>
-              <span class="st-cat">iOS first &middot; Android soon</span>
-            </span>
-            <span class="st-act"><span class="st-get st-soon">Soon</span><small>In development</small></span>
-          </span>
-        </a>
       </li>
     </ul>
   </section>
