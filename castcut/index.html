@@ -3,21 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>CastCut | Automatic Multicam Podcast Editor for Mac</title>
-<meta name="description" content="CastCut by Dustine Jao automates podcast sync, camera cuts, cleanup and shorts on Mac. Export to Final Cut Pro, Premiere Pro or DaVinci Resolve. Try 2 exports free.">
+<title>Why I Built CastCut, an Automatic Podcast Editor for Mac | Dustine Jao</title>
+<meta name="description" content="Dustine Jao on building CastCut, the automatic multicam podcast editor for Mac: cameras synced by sound, cuts to whoever is talking, then an editable timeline in Final Cut Pro, Premiere Pro or DaVinci Resolve.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Dustine Jao">
 <meta name="theme-color" content="#ffffff">
 <link rel="canonical" href="https://www.dustinejao.com/castcut/">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
 <link rel="apple-touch-icon" href="/images/touch-icon-180.png">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:site_name" content="Dustine Jao">
 <meta property="og:url" content="https://www.dustinejao.com/castcut/">
-<meta property="og:title" content="CastCut | Automatic Multicam Podcast Editor for Mac">
+<meta property="og:title" content="Why I Built CastCut, an Automatic Podcast Editor for Mac | Dustine Jao">
 <meta property="og:description" content="Podcast editing software by Dustine Jao. Sync footage, switch cameras, clean up speech and find shorts on your Mac. Keep editing in Final Cut Pro, Premiere Pro or DaVinci Resolve.">
 <meta property="og:image" content="https://www.dustinejao.com/images/apps/castcut.webp">
 <meta property="og:image:alt" content="CastCut app icon">
+<meta property="article:author" content="https://www.dustinejao.com/">
+<meta property="article:published_time" content="2026-11-01">
+<meta property="article:modified_time" content="2026-11-02">
 <meta name="twitter:card" content="summary">
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#0b0b0e':'#ffffff';var s=localStorage.getItem('sound');document.documentElement.dataset.sound=s==='off'?'off':'on'}catch(e){}})();</script>
 <link rel="stylesheet" href="/styles.css">
@@ -42,20 +45,60 @@
 .cc-steps li { padding-left: .3rem; margin-block: .75rem; }
 .cc-related { display: flex; flex-wrap: wrap; gap: 1rem 2rem; list-style: none; padding: 0; }
 .cc-section:last-child { padding-bottom: 3rem; }
-@media (max-width: 700px) { .cc-grid { grid-template-columns: 1fr; gap: .75rem; } }
+.cc-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+.cc-links h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+.cc-links ul { list-style: none; padding: 0; margin: 0; line-height: 1.6; }
+.cc-links li + li { margin-top: .4rem; }
+.cc-faq { max-width: 72ch; margin-top: 1rem; }
+.cc-faq details { border-bottom: 1px solid var(--border); }
+.cc-faq summary { cursor: pointer; padding: 1rem 0; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+.cc-faq summary::-webkit-details-marker { display: none; }
+.cc-faq summary::after { content: "+"; color: var(--muted); font-weight: 400; }
+.cc-faq details[open] summary::after { content: "\2212"; }
+.cc-faq details p { margin: 0 0 1rem; color: var(--muted); }
+.cc-byline { color: var(--muted); font-size: .9rem; }
+.cc-section p a, .cc-links a, .cc-related a { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+.cc-section p a:hover, .cc-links a:hover, .cc-related a:hover { text-decoration-color: currentColor; }
+@media (max-width: 700px) { .cc-grid, .cc-links { grid-template-columns: 1fr; gap: .75rem; } }
 </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Article",
+      "@id": "https://www.dustinejao.com/castcut/#article",
+      "headline": "Why I built CastCut, an automatic podcast editor for Mac",
+      "description": "Dustine Jao on building CastCut, the automatic multicam podcast editor for Mac: cameras synced by sound, cuts to whoever is talking, then an editable timeline in Final Cut Pro, Premiere Pro or DaVinci Resolve.",
+      "url": "https://www.dustinejao.com/castcut/",
+      "image": "https://www.dustinejao.com/images/apps/castcut.webp",
+      "datePublished": "2026-11-01",
+      "dateModified": "2026-11-02",
+      "inLanguage": "en",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.dustinejao.com/#person",
+        "name": "Dustine Jao",
+        "url": "https://www.dustinejao.com/"
+      },
+      "publisher": {
+        "@id": "https://www.dustinejao.com/#person"
+      },
+      "about": {
+        "@id": "https://www.getcastcut.com/#app"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.dustinejao.com/castcut/#webpage"
+      }
+    },
+    {
       "@type": "SoftwareApplication",
       "name": "CastCut",
-      "url": "https://www.dustinejao.com/castcut/",
+      "url": "https://www.getcastcut.com/",
       "image": "https://www.dustinejao.com/images/apps/castcut.webp",
       "operatingSystem": "macOS 14 or later; Apple silicon",
       "applicationCategory": "MultimediaApplication",
-      "sameAs": "https://www.getcastcut.com/",
+      "sameAs": "https://www.dustinejao.com/castcut/",
       "downloadUrl": "https://www.getcastcut.com/download",
       "featureList": [
         "Automatic audio and camera sync",
@@ -65,33 +108,36 @@
         "Final Cut Pro, Premiere Pro and DaVinci Resolve export",
         "Offline processing on Mac"
       ],
-      "@id": "https://www.dustinejao.com/castcut/#app",
-      "description": "CastCut by Dustine Jao automates podcast sync, camera cuts, cleanup and shorts on Mac. Export to Final Cut Pro, Premiere Pro or DaVinci Resolve. Try 2 exports free.",
-      "mainEntityOfPage": {
-        "@id": "https://www.dustinejao.com/castcut/#webpage"
-      },
+      "@id": "https://www.getcastcut.com/#app",
+      "description": "CastCut is an automatic multicam podcast editor for Mac. It syncs cameras by sound, cuts to whoever is talking, and opens an editable timeline in Final Cut Pro, Premiere Pro or DaVinci Resolve.",
       "author": {
         "@type": "Person",
         "@id": "https://www.dustinejao.com/#person",
         "name": "Dustine Jao",
         "url": "https://www.dustinejao.com/"
+      },
+      "publisher": {
+        "@id": "https://www.getcastcut.com/#org"
       }
     },
     {
       "@type": "WebPage",
       "@id": "https://www.dustinejao.com/castcut/#webpage",
       "url": "https://www.dustinejao.com/castcut/",
-      "name": "CastCut | Automatic Multicam Podcast Editor for Mac",
-      "description": "CastCut by Dustine Jao automates podcast sync, camera cuts, cleanup and shorts on Mac. Export to Final Cut Pro, Premiere Pro or DaVinci Resolve. Try 2 exports free.",
+      "name": "Why I Built CastCut, an Automatic Podcast Editor for Mac | Dustine Jao",
+      "description": "Dustine Jao on building CastCut, the automatic multicam podcast editor for Mac: cameras synced by sound, cuts to whoever is talking, then an editable timeline in Final Cut Pro, Premiere Pro or DaVinci Resolve.",
       "inLanguage": "en",
       "isPartOf": {
         "@id": "https://www.dustinejao.com/#website"
       },
       "mainEntity": {
-        "@id": "https://www.dustinejao.com/castcut/#app"
+        "@id": "https://www.dustinejao.com/castcut/#article"
       },
       "breadcrumb": {
         "@id": "https://www.dustinejao.com/castcut/#breadcrumbs"
+      },
+      "about": {
+        "@id": "https://www.getcastcut.com/#app"
       }
     },
     {
@@ -115,6 +161,70 @@
           "position": 3,
           "name": "CastCut",
           "item": "https://www.dustinejao.com/castcut/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.getcastcut.com/#org",
+      "name": "CastCut",
+      "url": "https://www.getcastcut.com/",
+      "founder": {
+        "@id": "https://www.dustinejao.com/#person"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.dustinejao.com/castcut/#faq",
+      "url": "https://www.dustinejao.com/castcut/",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who makes CastCut?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CastCut is made by Dustine Jao, a video editor and multimedia artist in Manila, Philippines. I build it, test it on real podcast footage, and answer the support email myself."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does CastCut do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CastCut is an automatic multicam podcast editor for Mac. It syncs your cameras and audio by sound, cuts to whoever is talking, clears silences and filler words, and finds short clips. Then it opens the edit as a normal timeline in your editor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which video editors does CastCut work with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Final Cut Pro 10.6 or later, Premiere Pro, and DaVinci Resolve 18 or later, free or Studio. CastCut can also export finished MP4 videos without an editor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is CastCut an AutoPod alternative for Final Cut Pro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. AutoPod does not work in Final Cut Pro. CastCut makes the same kind of automatic multicam podcast edit and opens it in Final Cut Pro, Premiere Pro or DaVinci Resolve."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does CastCut upload my footage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. CastCut runs on your Mac. After a one-time model download, the editing works offline and your footage never leaves the computer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What Mac do I need for CastCut?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An Apple silicon Mac, M1 or newer, with macOS 14 or later. The first 2 exports are free, so you can try it on a real episode first."
+          }
         }
       ]
     }
@@ -169,7 +279,9 @@
   <section class="container cc-section" aria-labelledby="why-castcut">
     <h2 id="why-castcut">A podcast editor's own tool.</h2>
     <p>I'm Dustine Jao, a multimedia artist and video editor in Manila, and the maker of CastCut. I record a Taglish interview podcast with two iPhones and an audio recorder, then edit it in Final Cut Pro. Lining up recordings and choosing camera angles took up the same part of every episode. CastCut grew out of that workflow.</p>
+    <p>Every episode started with the same jobs: line up the iPhone clips with the recorder, pick who should be on screen, and cut out the long pauses. None of that was the creative part. So I wrote a tool to do it, tested it on my own episodes, and released it as CastCut in September 2026.</p>
     <p>The goal is to start the creative edit sooner. The exported timeline stays editable, so you can change an angle, adjust a pause or keep a moment that matters to the conversation.</p>
+    <p class="cc-byline">By <a href="/">Dustine Jao</a>, video editor and founder of CastCut. Updated November 2, 2026.</p>
   </section>
   <section class="container cc-section" aria-labelledby="features">
     <h2 id="features">From recordings to an editable episode.</h2>
@@ -187,6 +299,47 @@
       <li><strong>Export and finish.</strong> Continue in Final Cut Pro, Premiere Pro or DaVinci Resolve. CastCut can also export finished MP4 videos.</li>
     </ol>
     <p>Get current pricing, download the app and read the setup guides on <a href="https://www.getcastcut.com/" target="_blank" rel="noopener">getcastcut.com</a>.</p>
+  </section>
+  <section class="container cc-section" aria-labelledby="guides">
+    <h2 id="guides">Guides on getcastcut.com.</h2>
+    <div class="cc-links">
+      <div>
+        <h3>By editor</h3>
+        <ul>
+          <li><a href="https://www.getcastcut.com/final-cut-pro-multicam">Multicam podcast editing in Final Cut Pro</a></li>
+          <li><a href="https://www.getcastcut.com/premiere-pro-podcast-editing">Podcast editing in Premiere Pro</a></li>
+          <li><a href="https://www.getcastcut.com/davinci-resolve-podcast-editing">Podcast editing in DaVinci Resolve</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>By setup</h3>
+        <ul>
+          <li><a href="https://www.getcastcut.com/iphone-podcast-editing">Podcasts filmed on iPhones</a></li>
+          <li><a href="https://www.getcastcut.com/one-camera-podcast-editing">One-camera podcasts</a></li>
+          <li><a href="https://www.getcastcut.com/solo-podcast-editing">Solo podcasts</a></li>
+          <li><a href="https://www.getcastcut.com/filipino-captions">Filipino and Taglish captions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Compared</h3>
+        <ul>
+          <li><a href="https://www.getcastcut.com/autopod-alternative">CastCut and AutoPod</a></li>
+          <li><a href="https://www.getcastcut.com/descript-alternative">CastCut and Descript</a></li>
+          <li><a href="https://www.getcastcut.com/compare">All podcast editors compared</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="container cc-section" aria-labelledby="faq">
+    <h2 id="faq">Questions about CastCut.</h2>
+    <div class="cc-faq">
+      <details><summary>Who makes CastCut?</summary><p>CastCut is made by Dustine Jao, a video editor and multimedia artist in Manila, Philippines. I build it, test it on real podcast footage, and answer the support email myself.</p></details>
+      <details><summary>What does CastCut do?</summary><p>CastCut is an automatic multicam podcast editor for Mac. It syncs your cameras and audio by sound, cuts to whoever is talking, clears silences and filler words, and finds short clips. Then it opens the edit as a normal timeline in your editor.</p></details>
+      <details><summary>Which video editors does CastCut work with?</summary><p>Final Cut Pro 10.6 or later, Premiere Pro, and DaVinci Resolve 18 or later, free or Studio. CastCut can also export finished MP4 videos without an editor.</p></details>
+      <details><summary>Is CastCut an AutoPod alternative for Final Cut Pro?</summary><p>Yes. AutoPod does not work in Final Cut Pro. CastCut makes the same kind of automatic multicam podcast edit and opens it in Final Cut Pro, Premiere Pro or DaVinci Resolve.</p></details>
+      <details><summary>Does CastCut upload my footage?</summary><p>No. CastCut runs on your Mac. After a one-time model download, the editing works offline and your footage never leaves the computer.</p></details>
+      <details><summary>What Mac do I need for CastCut?</summary><p>An Apple silicon Mac, M1 or newer, with macOS 14 or later. The first 2 exports are free, so you can try it on a real episode first.</p></details>
+    </div>
   </section>
   <section class="container cc-section" aria-labelledby="more-apps">
     <h2 id="more-apps">More released apps by Dustine Jao.</h2>

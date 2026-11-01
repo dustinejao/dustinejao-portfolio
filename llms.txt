@@ -1,0 +1,29 @@
+# Dustine Jao
+
+> Dustine Jao (DJ) is a video editor, multimedia artist and app developer in Manila, Philippines: founder and developer of CastCut, the automatic multicam podcast editor for Mac, and maker of the Liriko, Barya and Singil apps.
+
+- BA Multimedia Arts, Cum Laude, De La Salle-College of Saint Benilde, Manila.
+- Remote video editor for teams in the US and Canada: podcasts, short-form video, real estate video and audio post.
+- Contact: dustinejao@gmail.com
+
+## Apps
+
+- [CastCut](https://www.getcastcut.com/): automatic multicam podcast editor for Mac (Apple silicon, macOS 14 or later). Syncs cameras and audio by sound, cuts to whoever is talking, clears silences and filler words, finds short clips, and opens an editable timeline in Final Cut Pro 10.6 or later, Premiere Pro, or DaVinci Resolve 18 or later. Runs offline on the Mac. First 2 exports free. Maker's story: https://www.dustinejao.com/castcut/
+- [Barya](https://www.dustinejao.com/barya/): offline expense tracker for iPhone (iOS 16.4 or later). Two taps to log an expense, receipt scanning, bank statement import from PDF, 26 currencies. No account, no network calls. PHP 49 once on the Philippine App Store. App Store: https://apps.apple.com/ph/app/barya-offline-expense-tracker/id6811890999
+- [Liriko](https://www.dustinejao.com/liriko/): offline songwriting app for iPhone, iPad and Android. English and Filipino rhymes, rhyme colours, tempo and key, demo takes, on-device writing partner. Free to start; Liriko Pro is PHP 199 once on iPhone or PHP 99 on Android. App Store: https://apps.apple.com/ph/app/liriko-lyrics-rhyme-writer/id6790907833 Google Play: https://play.google.com/store/apps/details?id=com.liriko.app
+- [Singil](https://www.dustinejao.com/singil/): offline invoice maker for iPhone (iOS 16.4 or later), for freelancers who bill the same clients again and again. Saves client rates and schedules, suggests the next billing period, creates PDF invoices. PHP, USD, CAD, AUD, GBP, EUR, SGD and JPY. PHP 99 once on the Philippine App Store. App Store: https://apps.apple.com/ph/app/singil-invoice-maker/id6815646053
+
+## Support
+
+- [Barya support](https://www.dustinejao.com/barya/support/)
+- [Liriko support](https://www.dustinejao.com/liriko/support/)
+- [Singil support](https://www.dustinejao.com/singil/support/)
+- [CastCut help and pricing](https://www.getcastcut.com/about)
+
+## Profiles
+
+- LinkedIn: https://www.linkedin.com/in/dustinejao/
+- GitHub: https://github.com/dustinejao
+- YouTube: https://www.youtube.com/@DustineJao
+- Building in public: https://x.com/BuiltByDJP
+- Music on Spotify: https://open.spotify.com/artist/68DwCkSU60eR5Nze2xjgZF

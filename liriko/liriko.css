@@ -342,6 +342,12 @@ h2.section-title {
 }
 @media (min-width: 640px) { .faq .answer { padding: 0 1.5rem 1.5rem; } }
 .faq .answer a { color: var(--accent-light); text-decoration: underline; text-underline-offset: 3px; }
+
+/* The short answers on the home page, above the privacy note. */
+.faq-section { margin-top: 5rem; }
+.faq-section .section-title { margin-bottom: 1.5rem; }
+.faq-more { margin: 1rem 0 0; font-size: .875rem; color: var(--text-tertiary); }
+.faq-more a { color: var(--accent-light); text-decoration: underline; text-underline-offset: 3px; }
 .faq .answer strong { color: var(--text-primary); font-weight: 600; }
 
 .info-card { padding: 1.75rem 1.5rem; }

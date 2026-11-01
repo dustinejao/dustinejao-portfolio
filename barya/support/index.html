@@ -18,6 +18,152 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/barya/barya.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://www.dustinejao.com/barya/support/#faq",
+  "url": "https://www.dustinejao.com/barya/support/",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I log an expense?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Type the amount on the keypad, then tap what it was for. That is the whole thing. There is no save button and no second screen, and the entry is on disk before your finger leaves the glass. The keypad does arithmetic too. Split a bill as 1200 ÷ 4 , or add a jeepney ride as 13 + 13 , and the answer is what gets filed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I tapped the wrong category.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The line just above the category row names what was filed and carries an UNDO for a few seconds. Tapping it removes the entry and puts the amount back on the keypad, ready to file again. Past that, open the Ledger and tap the row. That opens it for editing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I change an entry after the fact?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tap any row in the Ledger. You get the same keypad to fix the amount, the same category row to re-file it, and a date stepper for the day it happened on. Tapping a category saves the change, the same gesture that recorded it in the first place."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I deleted something by accident.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A deleted entry can be taken back for a few seconds: a line appears at the top of the Ledger with UNDO on it. That works for a single swipe-delete and for a batch deleted from the selection header. After that window it is gone. If you erased the whole ledger and want it back, restore the JSON backup from Settings → Backup → Restore ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I set a budget?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Settings , top row. Tap the plus and minus to step the daily and monthly figures, or hold either one for bigger jumps. Monthly budgets are kept as a history. Raising this month's figure does not go back and change whether last month was over or under, which is why the tile says the month it applies from."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The dots under the total, what are they?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your budget. Filled dots are money spent, empty dots are what is left. The top strip is today and the bottom strip is this month, so you can read both without reading a number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where did my money go this month?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open the Ledger . Above the day-by-day list there is a chart over 14 days, 90 days or 12 months, and under it a breakdown of this month by category, largest first. Tap a category to filter the list to it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The receipt scan read the wrong number.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fill the frame with the receipt, get some light on it, and keep the total in shot. When Barya is confident it puts the amount straight on the keypad, where you can check it before tapping a category. When it is not confident it stops and shows you the line it read, so you can accept it or retake. On a receipt paid in cash, the amount tendered and the change are usually larger than the total. Barya knows to ignore those, so a wrong read is usually a blurry one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My bank statement will not import.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Barya needs a PDF , and each transaction row needs a date and an amount on the same line. Most bank and card statements are already like this. If your statement is a scan rather than typed text, Barya reads the pages as pictures, which works on a colour or grey scan and not on a black-and-white fax-compressed one. If it refuses, ask your bank for the statement again, or use the receipt scanner for the rows you care about. Nothing is written until you have looked at the list and untick what you do not want."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my data backed up? What about a new phone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Barya keeps a copy of the ledger in its own storage on the phone, which your iCloud device backup carries to a new phone by itself. That is the Backup tile in Settings, on by default. For a copy you hold yourself, tap Export for a JSON file, or CSV in the Ledger for something a spreadsheet opens. Restore reads a JSON backup and asks whether to merge it into what is there or replace it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I lock the app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Settings → Lock → On . After that Barya asks for Face ID, Touch ID or your device passcode every time it opens, and the lock goes up the moment you leave the app, so your spending is not sitting in the app switcher. Turning the lock off asks for you as well. Barya never sees your face or your fingerprint; it asks the operating system and gets back a yes or a no."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work without internet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Always. Barya makes no network calls at all, so there is no offline mode to switch on and nothing to sync. It works on a plane, with the SIM out, and with no load on your prepaid."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which currencies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Twenty-six, peso first, including the ASEAN set and the currencies remittances tend to arrive in. Pick yours in Settings → Currency . Barya does not convert between them: it is a ledger for the money you actually spend, in the place you are spending it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it a subscription?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Barya is one purchase on the App Store and then it is yours. There is nothing to unlock later, no tier above it, and no account attached to it. Refunds are handled by Apple, not by me. Use reportaproblem.apple.com ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The text is too small, or too light.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Settings → Type has four sizes and three faces for the numbers. Bold follows your phone's own accessibility setting rather than adding a second switch, so turning on Bold Text in iOS thickens Barya too, including the serif the amounts are set in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I delete everything?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Settings → Backup → Erase all . It asks first, then it clears the ledger and the copy Barya was keeping on the phone, so the next launch does not helpfully restore what you just deleted. Deleting the app removes everything too."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Something else is wrong.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mail me. There is no support ticket system and no bot: it goes to the person who wrote the app. dustinejao@gmail.com"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a href="#main" class="sr-only skip">Skip to content</a>

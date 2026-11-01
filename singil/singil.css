@@ -212,3 +212,7 @@ details .answer p + p { margin-top: 10px; }
 .gallery figcaption { display: flex; gap: 12px; align-items: baseline; padding: 12px 2px; font-size: 15px; font-weight: 600; }
 .gallery figcaption b { color: var(--accent); font-size: 13px; font-variant-numeric: tabular-nums; }
 @media (max-width: 860px) { .hero-shot { width: min(78vw, 320px); margin-top: 8px; } }
+
+/* The short answers on the home page, under the features. */
+#faq h2 { margin: 8px 0 20px; }
+#faq .footnote a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }

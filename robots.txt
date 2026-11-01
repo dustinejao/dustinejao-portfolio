@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# A plain-text summary of who Dustine Jao is and the released apps, for AI answer engines.
+# https://www.dustinejao.com/llms.txt
+
 Sitemap: https://www.dustinejao.com/sitemap.xml
