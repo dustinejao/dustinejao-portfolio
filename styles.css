@@ -199,6 +199,8 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
   position: relative;
   display: flex;
   align-items: center;
+  /* Stable link widths across pages, including while web fonts load. */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   gap: .2rem;
   background: var(--nav-glass);
   backdrop-filter: blur(14px);
@@ -280,7 +282,6 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
   .nav-glide { transition: opacity .2s ease; }
 }
 
-.nav-phone-only { display: none; }
 .nav-sep {
   width: 1px;
   height: 1.1rem;
@@ -342,9 +343,7 @@ section { padding-block: clamp(3rem, 5vw, 4.25rem); }
   }
   .nav-link { padding: .5rem .7rem; font-size: .94rem; }
   .nav-desktop-only { display: none; }
-  /* On a phone the home page carries the same four links as every other page,
-     Home lit, so moving between pages never swaps the whole bar out. */
-  .nav-phone-only { display: block; }
+  /* Every page keeps the same four main links on a phone. */
   /*
      Five links do not fit beside a logo and two buttons on a phone. They used
      to simply be cut off, with Music and Apps unreachable; the pill scrolls

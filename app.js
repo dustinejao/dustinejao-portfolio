@@ -373,10 +373,9 @@
       }));
     }
   };
-  /* The first active link that is actually showing: the home page carries a
-     Home link for phones and section links for desktop, and only one set is
-     on screen at a time. */
-  const currentNav = () => navLinks.find((l) => l.classList.contains('active') && l.offsetWidth) || null;
+  /* Hidden section shortcuts must not displace the visible page link. */
+  const currentNav = () => navLinks.find((l) => l.classList.contains('active') && l.offsetWidth) ||
+    navLinks.find((l) => l.getAttribute('href') === '/' && l.offsetWidth) || null;
   const settle = () => glideTo(currentNav(), true);
 
   /* On a phone the pill scrolls, so the link the capsule is under can sit off
@@ -483,11 +482,10 @@
       const target = document.querySelector(link.getAttribute('href'));
       if (target) map.set(target, link);
     });
-    /* The hero belongs to the first link rather than to nothing. Mapping it to
-       null used to blank the capsule out, so every trip past the top of the
-       page was a fade out and a fade back in. */
+    const homeLink = navLinks.find((link) => link.getAttribute('href') === '/');
+    /* The hero belongs to Home; section shortcuts light up further down. */
     const hero = document.querySelector('.hero');
-    if (hero) map.set(hero, anchorLinks[0]);
+    if (hero) map.set(hero, homeLink || anchorLinks[0]);
 
     const lastLink = anchorLinks[anchorLinks.length - 1];
     /* The page height is read once and refreshed only when the page actually
@@ -505,10 +503,12 @@
 
     const applyActive = (link) => {
       if (!link) return;
-      anchorLinks.forEach((l) => l.classList.remove('active'));
-      link.classList.add('active');
+      /* Section shortcuts are hidden on phones, where Home stays active. */
+      const target = link.offsetWidth ? link : homeLink;
+      if (!target || target.classList.contains('active')) return;
+      navLinks.forEach((l) => l.classList.toggle('active', l === target));
       /* The cursor outranks the page: only steer if it is not driving. */
-      if (!pointerInPill) { keepInView(link); glideTo(link, true); }
+      if (!pointerInPill) { keepInView(target); glideTo(target, true); }
     };
 
     const navIO = new IntersectionObserver((entries) => {
