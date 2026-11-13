@@ -485,66 +485,67 @@ footer {
   <div class="block" style="margin-top:44px">
     <p class="eyebrow">Legal</p>
     <h2>Privacy Policy</h2>
-    <p class="stamp">Effective 28 September 2026</p>
+    <p class="stamp">Effective 6 November 2026</p>
 
-    <p><strong>CalOff does not collect your data, because it has nowhere to send
-    it.</strong> There is no CalOff account, no CalOff server and no CalOff
-    analytics. This policy explains what that means precisely, including the two
-    times the app uses the network: downloading the scanner, and checking your
-    purchase.</p>
+    <p><strong>Your meal photos, nutrition log and health profile stay on your
+    devices.</strong> CalOff has no account system or server for those records.
+    Model downloads and purchase verification use the network as described below.</p>
 
     <h3>What stays on your device</h3>
-    <p>All of it. Specifically:</p>
+    <p>The app stores or processes the following locally:</p>
     <ul>
       <li><strong>Meal photos.</strong> A photo you take or pick is analysed by
-      a model running on the phone and is not uploaded anywhere. CalOff does not
-      copy it into its own storage; it is read, analysed and released.</li>
-      <li><strong>Your food log</strong>, meaning dish names, portions, calories,
-      macros and timestamps, is written to a database inside the app's private
+      a model running on the phone and is not uploaded. Logged meals may keep
+      a small thumbnail in the app's private storage.</li>
+      <li><strong>Your food log</strong>, including dish names, portions,
+      calories, macros and timestamps, is written to the app's private database
       storage on the device.</li>
-      <li><strong>Your profile</strong>, meaning age, sex, height, weight, activity
-      level, goal and unit preference, which is used only to compute your
+      <li><strong>Your profile</strong>, including age, sex, height, weight,
+      activity level, goal and unit preference, is used to compute your
       calorie and macro targets, on the device.</li>
       <li><strong>Your weight history</strong>, if you record weigh-ins.</li>
       <li><strong>Foods you save</strong> to the local food database.</li>
+      <li><strong>Scan history and corrections</strong>, including model
+      responses, corrected names and image embeddings used to remember meals.</li>
     </ul>
-    <p>None of this is transmitted to us or to anyone else. We cannot read it,
-    and we could not produce it if we were asked to.</p>
+    <p>These records are not uploaded to CalOff or a remote food-recognition
+    service. Your platform's backup and paired-device sync settings can also
+    apply, as described below.</p>
 
-    <h3>The model download</h3>
-    <p>Before the first scan, CalOff downloads the vision model it runs, a file
-    of roughly 0.7 to 2&nbsp;GB depending on your phone, from
+    <h3>Model downloads</h3>
+    <p>Before the first scan, CalOff downloads the recognition model files,
+    roughly 728&nbsp;MB for the standard model, from
     <a href="https://huggingface.co" rel="noopener">Hugging Face</a>, a public
-    model host. It is a plain file download, started once and resumable.</p>
+    model host. Downloads are resumable. Choosing a different model on Android
+    or downloading again requires another transfer.</p>
     <p>That request necessarily reveals to Hugging Face what any file download
     reveals: your IP address, the time of the request and which file you asked
     for. CalOff attaches no identifier, no account and no information about you
     to it. Hugging Face's handling of that request is governed by
     <a href="https://huggingface.co/privacy" rel="noopener">their privacy
-    policy</a>. Scanning, nutrition lookup and search are entirely local, and
-    CalOff works with the device in airplane mode.</p>
+    policy</a>. Scanning, nutrition lookup and search run locally once the
+    model is ready. Purchase verification is a separate network operation.</p>
 
-    <h3>Purchases</h3>
-    <p>Payment is taken by Apple or Google, never by CalOff; we never see your
-    card or your store account. To know whether your subscription is active,
-    CalOff checks with
-    <a href="https://www.revenuecat.com" rel="noopener">RevenueCat</a>, the
-    service that validates store receipts for us. That check sends RevenueCat a
-    random identifier the app makes up on your device (not your name, email or
-    store account), the receipt the store issued for your purchase, and basic
-    device details such as the OS version and region. RevenueCat uses this only
-    to confirm your purchase and never receives anything you log: no food, no
-    photos, no profile. Its handling is governed by
-    <a href="https://www.revenuecat.com/privacy" rel="noopener">its privacy
-    policy</a>. The result is cached on your device, so an app that is offline
-    keeps working as long as your subscription is current.</p>
+    <h3>Purchases and subscription verification</h3>
+    <p>Apple or Google processes your payment. CalOff uses RevenueCat to verify
+    purchases, restore access and check subscription status. RevenueCat receives
+    an anonymous app user ID, purchase and receipt information, and technical
+    information such as platform, operating system, app version and locale.
+    Network connections also expose your IP address to the receiving service.</p>
+    <p>This information supports access verification and purchase reporting.
+    CalOff does not send RevenueCat your meal photos, food log, health profile,
+    name or email address. Payment card details are handled by your store.
+    See <a href="https://www.revenuecat.com/privacy" rel="noopener">RevenueCat's
+    privacy information</a>. Previously verified access is cached for offline
+    use, subject to the subscription's validity; buying or restoring requires
+    a connection.</p>
 
     <h3>What we do not do</h3>
     <ul>
-      <li>No analytics or telemetry SDK of any kind.</li>
+      <li>No meal analytics or remote food recognition.</li>
       <li>No crash or performance reporting service.</li>
       <li>No advertising, no advertising identifiers, no third-party trackers.</li>
-      <li>No sale or sharing of personal information. There is none to sell.</li>
+      <li>No sale of your data. Purchase verification uses the providers above.</li>
       <li>No cross-app or cross-site tracking, so CalOff never needs to ask for
       tracking permission.</li>
     </ul>
@@ -555,8 +556,8 @@ footer {
       inside the app; frames are used for the scan and nothing else.</li>
       <li><strong>Photo library</strong>, only when you choose to log a meal
       you already photographed, and only for the image you pick.</li>
-      <li><strong>Internet</strong> (Android), for the model download and the
-      purchase check described above.</li>
+      <li><strong>Internet</strong> (Android), for model downloads, purchase
+      verification and links you choose to open.</li>
     </ul>
     <p>You can refuse any of these. Refusing the camera or photo library means
     you log meals by search or by hand; the rest of the app is unaffected.</p>
@@ -564,35 +565,37 @@ footer {
     <h3>The watch and widget companions</h3>
     <p>The Apple&nbsp;Watch and Wear&nbsp;OS apps, the home-screen widgets and
     the Lock Screen complication display the same day's totals that the phone
-    app already holds. Those figures are passed from the phone to the watch over
-    the platform's own local pairing channel, either Apple's Watch Connectivity or
-    Google's Wearable Data Layer, which is a direct link between your own two
-    devices. They travel no further, and no server of ours is involved.</p>
+    app already holds. Those figures are passed through Apple's Watch
+    Connectivity or Google's Wearable Data Layer to your paired devices.
+    The platform manages that connection and may use its own synchronization
+    services. No CalOff server receives those totals.</p>
 
     <h3>Children</h3>
     <p>CalOff is not directed at children under 13, and we do not knowingly
-    collect information from them. Since the app collects nothing at all, there
-    is nothing for us to delete on request, but see the next section for how to
-    remove everything from the device.</p>
+    collect information from them. Contact us if you believe a child's purchase
+    information requires removal.</p>
 
     <h3>Deleting your data</h3>
-    <p>Two ways, both immediate and both complete:</p>
+    <p>You control the local meal and health records:</p>
     <ul>
       <li><strong>Settings → Reset</strong> inside the app clears the food log,
-      profile and weight history.</li>
+      profile, weight history, saved foods, scan records and meal thumbnails.</li>
       <li><strong>Delete the app.</strong> iOS and Android remove the app's
-      private storage with it. Nothing survives elsewhere, because nothing was
-      ever elsewhere.</li>
+      private storage. Device backups and original photos in your photo library
+      are managed separately through your platform settings.</li>
     </ul>
+    <p>Resetting or deleting CalOff does not cancel a subscription or erase store
+    transaction records. Manage subscriptions through Apple or Google. Contact
+    us about purchase data held through RevenueCat; some transaction records
+    may need to be retained by the store or provider.</p>
 
     <h3>Your rights</h3>
     <p>Laws such as the GDPR, the UK GDPR, the CCPA/CPRA and the Philippine Data
     Privacy Act give you rights of access, correction, deletion, portability and
-    objection over personal data a company holds about you. We hold none: CalOff
-    processes your information only on your own device, under your control. You
-    exercise every one of those rights directly, by opening, editing or deleting
-    the data in the app. If you would like this confirmed in writing for a
-    compliance review, write to us and we will confirm it.</p>
+    objection over personal data. You can view, edit and delete local meal and
+    health records in the app. Contact us for requests concerning purchase or
+    support information; we may need transaction details to locate an anonymous
+    purchase record.</p>
 
     <h3>Changes</h3>
     <p>If this policy changes, the revised version is posted on this page with a
@@ -639,7 +642,7 @@ footer {
     <h3>3. Accuracy</h3>
     <p>Estimates from a photograph are estimates. The model infers what a dish
     is and how much of it is on the plate, and it will sometimes be wrong about
-    both: a hidden ingredient, an unusual recipe, an oil you cannot see, a bowl
+    both, a hidden ingredient, an unusual recipe, an oil you cannot see, a bowl
     deeper than it looks. The bundled food database is a curated set of common
     foods, not a licensed nutritional authority. Treat every figure as a
     starting point you correct, and never as a measurement. We make no warranty
@@ -658,7 +661,7 @@ footer {
     automatically until you cancel, and you cancel them in your store account
     rather than in the app; the lifetime purchase does not renew. Price,
     payment, tax, refunds and regional availability are handled by those stores
-    under their own terms, not by us. A refund request goes to Apple or Google.
+    under their own terms, not by us, a refund request goes to Apple or Google.
     Your licence is tied to the store account you bought it with and to that
     store's family-sharing and re-download rules, and "Restore purchase" in the
     app is how you bring it back onto a new device.</p>
@@ -697,7 +700,7 @@ footer {
     <h3>10. Changes and termination</h3>
     <p>We may update these terms; the current version always lives on this page
     with its effective date, and continuing to use the app after a change means
-    you accept it. Your licence ends if you stop complying with these terms,
+    you accept it. Your licence ends if you stop complying with these terms —
     in which case, delete the app.</p>
 
     <h3>11. Governing law</h3>
@@ -713,6 +716,7 @@ footer {
 </section>
 
 <!-- ===================== SUPPORT ===================== -->
+
 <section id="support" class="wrap doc" hidden>
   <div class="block" style="margin-top:44px">
     <p class="eyebrow">Help</p>
