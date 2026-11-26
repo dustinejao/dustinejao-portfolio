@@ -84,3 +84,5 @@
 .qr p { margin: 0; font-size: .8125rem; line-height: 1.4; color: var(--muted); }
 .qr p b { display: block; color: var(--ink); font-size: .875rem; }
 @media (min-width: 900px) and (hover: hover) { .qr { display: flex; } }
+
+@media (max-width: 560px) { .site-header .nav a[href="/barya/budget-calculator/"] { display: none; } }
