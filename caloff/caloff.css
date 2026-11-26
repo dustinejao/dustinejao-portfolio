@@ -394,3 +394,8 @@ footer { margin-top: 96px; border-top: 1px solid var(--rule); padding: 44px 0 48
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+.dish-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+.dish-links a { font-size: 14px; font-weight: 500; text-decoration: none; padding: 6px 12px; border-radius: 999px; background: var(--card); box-shadow: var(--shadow); color: var(--ink); }
+.dish-links a:hover { background: var(--fill); }
+.cta-row .btn-ghost + .btn-ghost, p > .btn-ghost + .btn-ghost { margin-left: 8px; }
