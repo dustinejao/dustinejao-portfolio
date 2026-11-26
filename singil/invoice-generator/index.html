@@ -236,6 +236,9 @@
   var state;
   try { state = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { state = null; }
   if (!state) { state = JSON.parse(JSON.stringify(defaults)); }
+  var TPL = {"virtual-assistant": {"cur": "USD", "items": [["Virtual assistance, 1 to 15 November", "40", "6"], ["Inbox and calendar management", "10", "6"], ["Overtime approved by client", "3", "9"]]}, "video-editor": {"cur": "USD", "items": [["Podcast episode edit, episode 42", "1", "120"], ["Short clips, 9:16, with captions", "6", "15"], ["Extra revision round", "1", "30"]]}, "graphic-designer": {"cur": "PHP", "items": [["Logo design, three concepts", "1", "15000"], ["Social media templates", "5", "1500"], ["Source files and brand guide", "1", "3000"]]}, "web-developer": {"cur": "USD", "items": [["Website build, milestone 2 of 3", "1", "800"], ["Hosting setup and domain", "1", "60"], ["Maintenance, November", "1", "150"]]}, "writer": {"cur": "USD", "items": [["Blog articles, 1,200 words", "4", "60"], ["Product descriptions", "20", "5"], ["SEO meta titles and descriptions", "1", "40"]]}, "social-media-manager": {"cur": "PHP", "items": [["Social media management, November", "1", "18000"], ["Content calendar and 12 posts", "12", "500"], ["Ad spend management", "1", "3000"]]}, "photographer": {"cur": "PHP", "items": [["Event coverage, 4 hours", "1", "12000"], ["Edited photos, high resolution", "150", "50"], ["Travel within Metro Manila", "1", "1000"]]}, "tutor": {"cur": "PHP", "items": [["Math tutoring, 8 sessions, November", "8", "600"], ["Reviewer materials", "1", "500"]]}};
+  var tq = new URLSearchParams(location.search).get('t');
+  if (tq && TPL[tq]) { state.cur = TPL[tq].cur; state.items = TPL[tq].items.map(function (r) { return { d: r[0], q: r[1], r: r[2] }; }); try { history.replaceState(null, '', location.pathname); } catch (e) {} }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
   function money(n) {
     try { return new Intl.NumberFormat('en', { style: 'currency', currency: state.cur, minimumFractionDigits: state.cur === 'JPY' ? 0 : 2 }).format(n || 0); }
@@ -294,12 +297,13 @@
   fill(); render();
 })();
 </script>
-  <section class="g-prose"><h2>More from Singil</h2><ul class="more"><li><a href="/singil/how-to-invoice-clients/"><b>How to invoice clients</b><span>What goes on a freelance invoice, and how to get paid on time</span></a></li><li><a href="/singil/compare/"><b>Invoice apps compared</b><span>Nine invoice apps by price and privacy</span></a></li><li><a href="/singil/"><b>Singil</b><span>Invoices for repeat clients, on iPhone</span></a></li></ul></section>
+  <section class="g-prose"><h2>More from Singil</h2><ul class="more"><li><a href="/singil/how-to-invoice-clients/"><b>How to invoice clients</b><span>What goes on a freelance invoice, and how to get paid on time</span></a></li><li><a href="/singil/compare/"><b>Invoice apps compared</b><span>Nine invoice apps by price and privacy</span></a></li><li><a href="/singil/invoice-template/"><b>Invoice templates by job</b><span>Ready invoices for VAs, editors, designers and more</span></a></li><li><a href="/singil/"><b>Singil</b><span>Invoices for repeat clients, on iPhone</span></a></li></ul></section>
 </main>
 <footer class="wrap foot">
   <div class="links">
     <a href="/singil/">Singil</a>
     <a href="/singil/invoice-generator/">Invoice generator</a>
+    <a href="/singil/invoice-template/">Invoice templates</a>
     <a href="/singil/how-to-invoice-clients/">How to invoice</a>
     <a href="/singil/compare/">Compare</a>
     <a href="/singil/support/">Support</a>

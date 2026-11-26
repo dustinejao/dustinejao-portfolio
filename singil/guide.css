@@ -16,6 +16,7 @@
 .g-prose li { margin-bottom: 6px; }
 .g-prose strong { color: var(--text); }
 .g-prose a { color: var(--accent); text-underline-offset: 3px; }
+.g-prose a.btn { color: #fff; text-decoration: none; }
 .answer { margin: 22px 0; padding: 20px 22px; background: var(--card); border-radius: var(--radius); }
 .answer p { color: var(--text); font-size: 18px; line-height: 1.5; margin: 0; }
 .answer p + p { margin-top: 10px; color: var(--prose); font-size: 16px; }
