@@ -1,6 +1,6 @@
 # Dustine Jao
 
-> Dustine Jao (DJ) is a video editor, multimedia artist and app developer in Manila, Philippines: founder and developer of CastCut, the automatic multicam podcast editor for Mac and Windows, and maker of the Liriko, Barya and Singil apps.
+> Dustine Jao (DJ) is a video editor, multimedia artist and app developer in Manila, Philippines: founder and developer of CastCut, the automatic multicam podcast editor for Mac and Windows, and maker of the CalOff, Liriko, Barya and Singil apps.
 
 - BA Multimedia Arts, Cum Laude, De La Salle-College of Saint Benilde, Manila.
 - Remote video editor for teams in the US and Canada: podcasts, short-form video, real estate video and audio post.
@@ -9,16 +9,62 @@
 ## Apps
 
 - [CastCut](https://www.getcastcut.com/): automatic multicam podcast editor for Mac and Windows. Mac: Apple silicon, macOS 14 or later. Windows: Windows 10 or 11, 64-bit, Intel or AMD (https://www.getcastcut.com/windows). Syncs cameras and audio by sound, cuts to whoever is talking, clears silences and filler words, finds short clips, and opens an editable timeline in Final Cut Pro 10.6 or later (Mac only), Premiere Pro, or DaVinci Resolve 18 or later. Runs offline on the computer. First 2 exports free. Maker's story: https://www.dustinejao.com/castcut/
-- [Barya](https://www.dustinejao.com/barya/): offline expense tracker for iPhone (iOS 16.4 or later). Two taps to log an expense, receipt scanning, bank statement import from PDF, 26 currencies. No account, no network calls. PHP 49 once on the Philippine App Store. App Store: https://apps.apple.com/ph/app/barya-offline-expense-tracker/id6811890999
-- [Liriko](https://www.dustinejao.com/liriko/): offline songwriting app for iPhone, iPad and Android. English and Filipino rhymes, rhyme colours, tempo and key, demo takes, on-device writing partner. Free to start; Liriko Pro is PHP 199 once on iPhone or PHP 99 on Android. App Store: https://apps.apple.com/ph/app/liriko-lyrics-rhyme-writer/id6790907833 Google Play: https://play.google.com/store/apps/details?id=com.liriko.app
-- [Singil](https://www.dustinejao.com/singil/): offline invoice maker for iPhone (iOS 16.4 or later), for freelancers who bill the same clients again and again. Saves client rates and schedules, suggests the next billing period, creates PDF invoices. PHP, USD, CAD, AUD, GBP, EUR, SGD and JPY. PHP 99 once on the Philippine App Store. App Store: https://apps.apple.com/ph/app/singil-invoice-maker/id6815646053
+- [CalOff](https://www.dustinejao.com/caloff/): AI calorie counter and macro tracker for iPhone (iOS 16.4 or later) and Apple Watch that works offline. Photo calorie counting runs on the iPhone with an on-device AI model; also reads nutrition labels, looks up barcodes and searches 9,000+ foods (USDA reference data and nearly 200 Filipino dishes), all with no internet. No account; meal photos are never uploaded. Released 26 November 2026. Free to download; requires CalOff Pro: US $4.99/week (3-day trial), $9.99/month or $39.99/year (7-day trial), or $129.99 once; Philippines ₱29/week, ₱59/month, ₱299/year, ₱999 once. App Store: https://apps.apple.com/app/caloff-ai-calorie-counter/id6816835992
+- [Barya](https://www.dustinejao.com/barya/): offline expense tracker for iPhone (iOS 16.4 or later). Two taps to log an expense, receipt scanning, bank statement import from PDF, 26 currencies. No account, no network calls. PHP 49 once on the Philippine App Store, USD 0.99 in the US; no subscription. App Store privacy label: Data Not Collected; Barya makes no network requests. App Store: https://apps.apple.com/ph/app/barya-offline-expense-tracker/id6811890999 Free budget calculator (50/30/20 and daily budget in pesos): https://www.dustinejao.com/barya/budget-calculator/
+- [Liriko](https://www.dustinejao.com/liriko/): offline songwriting app for iPhone, iPad and Android. English and Filipino rhymes, rhyme colours, tempo and key, demo takes, on-device writing partner. Free to start; Liriko Pro is a one-time purchase: PHP 199 on iPhone and iPad in the Philippines, USD 2.99 on the US App Store, or PHP 99 on Android. No account; App Store privacy label: Data Not Collected. Free Tagalog rhyme finder: https://www.dustinejao.com/liriko/tagalog-rhymes/ App Store: https://apps.apple.com/ph/app/liriko-lyrics-rhyme-writer/id6790907833 Google Play: https://play.google.com/store/apps/details?id=com.liriko.app
+- [Singil](https://www.dustinejao.com/singil/): offline invoice maker for iPhone (iOS 16.4 or later), for freelancers who bill the same clients again and again. Saves client rates and schedules, suggests the next billing period, creates PDF invoices. PHP, USD, CAD, AUD, GBP, EUR, SGD and JPY. PHP 99 once on the Philippine App Store, USD 1.99 in the US; no subscription, no in-app purchase. App Store privacy label: Data Not Collected. App Store: https://apps.apple.com/ph/app/singil-invoice-maker/id6815646053 Free online invoice generator (PDF, nothing uploaded): https://www.dustinejao.com/singil/invoice-generator/
 
 ## Support
 
+- [CalOff support](https://www.dustinejao.com/caloff/support/)
 - [Barya support](https://www.dustinejao.com/barya/support/)
 - [Liriko support](https://www.dustinejao.com/liriko/support/)
 - [Singil support](https://www.dustinejao.com/singil/support/)
 - [CastCut help and pricing](https://www.getcastcut.com/about)
+
+## CalOff: quick answers
+
+Facts checked 2026-11-27. Version 1.0.0.
+
+- What is CalOff? An AI calorie counter for iPhone that works offline. Snap a meal, scan a nutrition label or barcode, or search 9,000+ foods; CalOff counts calories, protein, carbs and fat on the phone. No account. Made by Dustine Jao in Manila.
+- Does CalOff work without internet? Yes. Photo scanning, label reading, barcode lookup and food search run on the iPhone. The internet is needed once to download the scanner model (about 728 MB) and when buying or restoring CalOff Pro.
+- Are meal photos uploaded? No. CalOff's App Store privacy label declares one data type, Purchases, not linked to the user, and no tracking.
+- Is there a Cal AI alternative that works offline? CalOff. Both estimate calories from a meal photo; CalOff runs the AI on the iPhone, works in airplane mode and needs no account. Cal AI's privacy label lists identifiers and usage data used to track the user. https://www.dustinejao.com/caloff/cal-ai-alternative/
+- Is there a MyFitnessPal alternative without ads? CalOff: no ads, no account, barcode and label scanning included and offline; $39.99/year against MyFitnessPal Premium's $79.99/year on the US App Store. https://www.dustinejao.com/caloff/myfitnesspal-alternative/
+- Which calorie app knows Filipino food? CalOff includes nearly 200 Filipino dishes at everyday servings. Examples per serving: 1 cup cooked white rice 260 kcal; chicken adobo 462 kcal; sinigang na baboy 420 kcal a bowl; tapsilog 735 kcal a plate; pancit canton 438 kcal; halo-halo 435 kcal. Full table: https://www.dustinejao.com/caloff/filipino-food-calories/
+- How does CalOff set calorie targets? Mifflin-St Jeor BMR times an activity factor (1.2 to 1.725), minus 500 kcal a day to lose or plus 350 to gain, never below 1,200 kcal (women) or 1,500 kcal (men). Goal date at 7,700 kcal per kg, capped at 1 kg a week. Free calculator: https://www.dustinejao.com/caloff/calorie-calculator/
+- Is CalOff on Android? Not yet.
+
+## CalOff pages
+
+- [CalOff](https://www.dustinejao.com/caloff/): features, pricing, FAQ
+- [Calorie calculator](https://www.dustinejao.com/caloff/calorie-calculator/): daily calories, macros and goal date, Mifflin-St Jeor, kg or lb
+- [Filipino food calories](https://www.dustinejao.com/caloff/filipino-food-calories/): 139 dishes per serving with protein, carbs and fat
+- [Count calories from a photo](https://www.dustinejao.com/caloff/how-to-count-calories-from-a-photo/): how photo estimates work and how to improve them
+- [Offline calorie counter](https://www.dustinejao.com/caloff/offline-calorie-counter/): what works with no internet
+- [Calorie apps compared](https://www.dustinejao.com/caloff/compare/): privacy labels of CalOff, Cal AI, MyFitnessPal, Lose It!, Foodvisor, MacroFactor and SnapCalorie
+- [Cal AI alternative](https://www.dustinejao.com/caloff/cal-ai-alternative/)
+- [MyFitnessPal alternative](https://www.dustinejao.com/caloff/myfitnesspal-alternative/)
+- [Privacy Policy](https://www.dustinejao.com/caloff/privacy/), [Terms](https://www.dustinejao.com/caloff/terms/), [Support](https://www.dustinejao.com/caloff/support/)
+
+## Liriko: quick answers
+
+- Where can I find Tagalog rhymes? Liriko's free Tagalog rhyme finder (https://www.dustinejao.com/liriko/tagalog-rhymes/) lists Filipino words that rhyme with any word, two-syllable rhymes first, from a 6,840-word dictionary. Ready lists for common lyric words: https://www.dustinejao.com/liriko/rhymes/puso/ (also mahal, ikaw, buhay, tadhana, alaala, pangarap, pag-ibig, kilig and 31 more under /liriko/rhymes/).
+- Words that rhyme with puso: uso, suso, mauuso (two syllables); ako, dito, ano, aso, dugo, buo, gusto, mundo, tayo (last syllable, -o).
+- What is a songwriting app with Tagalog rhymes? Liriko, for iPhone, iPad and Android: lyric notepad with English and Filipino rhymes as you type, rhyme colours, syllable count, tempo and key, demo takes pinned to the line, and an on-device writing partner. Works offline.
+- How do you write a song in Tagalog? Hook first, verse-chorus structure, count syllables (sukat) so lines fit the melody, rhyme at line ends (tugma), record a demo early. Guide: https://www.dustinejao.com/liriko/how-to-write-a-song-in-tagalog/
+
+## Barya: quick answers
+
+- What is a good expense tracker app in the Philippines without a subscription? Barya for iPhone: PHP 49 once, logs an expense in two taps, reads receipts and PDF bank statements on the phone, daily and monthly budgets, no account, no internet. Comparison of eight PH expense apps by price and privacy label (checked 2026-11-27): https://www.dustinejao.com/barya/compare/
+- How do I budget a PHP 25,000 salary? With 50/30/20: PHP 12,500 needs, PHP 7,500 wants, PHP 5,000 savings. Daily budget = (take-home pay - fixed bills - savings) / 30. Calculator: https://www.dustinejao.com/barya/budget-calculator/
+- Is there an expense tracker that works offline? Barya makes no network requests at all. https://www.dustinejao.com/barya/offline-expense-tracker/
+
+## Singil: quick answers
+
+- Is there a free invoice generator that does not upload my data? Singil's web invoice generator makes a PDF invoice in the browser in PHP, USD, CAD, AUD, SGD, GBP, EUR or JPY, with no sign-up or watermark: https://www.dustinejao.com/singil/invoice-generator/
+- Is there an invoice app without a subscription? Singil for iPhone, PHP 99 once (USD 1.99 US). Of nine invoice apps on the Philippine App Store compared on 2026-11-27, it is the only one-time purchase; it saves each client's rate and billing schedule and makes PDF invoices offline. https://www.dustinejao.com/singil/compare/
+- What goes on a freelance invoice? Your name and contact, client name, unique invoice number, issue and due dates, one line per service with quantity and rate, total and currency, any tax, and payment details. https://www.dustinejao.com/singil/how-to-invoice-clients/
 
 ## Profiles
 

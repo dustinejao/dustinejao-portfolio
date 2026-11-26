@@ -28,6 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/barya/barya.css">
+<link rel="stylesheet" href="/barya/guide.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -42,12 +43,10 @@
       "operatingSystem": "iOS",
       "applicationCategory": "FinanceApplication",
       "installUrl": "https://apps.apple.com/us/app/barya-offline-expense-tracker/id6811890999",
-      "offers": {
-        "@type": "Offer",
-        "price": "49",
-        "priceCurrency": "PHP",
-        "url": "https://apps.apple.com/ph/app/barya-offline-expense-tracker/id6811890999"
-      },
+      "offers": [
+        { "@type": "Offer", "name": "Barya, one-time purchase", "price": "49", "priceCurrency": "PHP", "url": "https://apps.apple.com/ph/app/barya-offline-expense-tracker/id6811890999" },
+        { "@type": "Offer", "name": "Barya, one-time purchase (US)", "price": "0.99", "priceCurrency": "USD", "url": "https://apps.apple.com/us/app/barya-offline-expense-tracker/id6811890999" }
+      ],
       "author": {
         "@type": "Person",
         "@id": "https://www.dustinejao.com/#person",
@@ -126,7 +125,7 @@
           "name": "How much is Barya? Is it a subscription?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Barya is ₱49 once on the Philippine App Store. There is no subscription, no account and nothing to unlock later. Prices in other countries follow the local App Store."
+            "text": "Barya is ₱49 once on the Philippine App Store and $0.99 on the US App Store. There is no subscription, no account and nothing to unlock later. Other countries see their local App Store price."
           }
         },
         {
@@ -191,11 +190,15 @@
       sliding up, and nothing that ever leaves the phone.
     </p>
     <div class="buy" id="buy">
-      <a class="get" href="https://apps.apple.com/us/app/barya-offline-expense-tracker/id6811890999" target="_blank" rel="noopener" data-get="hero">Get it on the App Store</a>
+      <a class="get" href="https://apps.apple.com/app/apple-store/id6811890999?pt=129128273&amp;ct=web-barya-hero&amp;mt=8" target="_blank" rel="noopener" data-get="hero">Get it on the App Store</a>
       <p class="price">
         <span class="amount"><span class="sym">&#8369;</span><span class="num">49</span></span>
         <span>Pay once. No account,<br>no subscription.</span>
       </p>
+    </div>
+    <div class="qr">
+      <img src="/images/barya/qr.svg" alt="QR code that opens Barya on the App Store" width="84" height="84">
+      <p><b>On a computer?</b> Point your iPhone camera here to open Barya on the App Store. $0.99 in the US.</p>
     </div>
     <p class="tagline">Barya lang, meron ka nang expense tracker.</p>
   </section>
@@ -344,7 +347,7 @@
       </details>
       <details>
         <summary><span>How much is Barya? Is it a subscription?</span><span class="sign" aria-hidden="true"></span></summary>
-        <div class="answer"><p>Barya is &#8369;49 once on the Philippine App Store. There is no subscription, no account and nothing to unlock later. Prices in other countries follow the local App Store.</p></div>
+        <div class="answer"><p>Barya is &#8369;49 once on the Philippine App Store and $0.99 on the US App Store. There is no subscription, no account and nothing to unlock later. Other countries see their local App Store price.</p></div>
       </details>
       <details>
         <summary><span>Is my spending data private?</span><span class="sign" aria-hidden="true"></span></summary>
@@ -362,6 +365,16 @@
     <p class="faq-more">More on the <a href="/barya/support/">Barya support page</a>.</p>
   </section>
 
+  <section class="detail container" aria-labelledby="tools-title">
+    <span class="label">Free tools</span>
+    <h2 id="tools-title">Plan the month before you track it.</h2>
+    <ul class="more" style="max-width:40rem">
+      <li><a href="/barya/budget-calculator/"><b>Budget calculator, in pesos</b><span>Your 50/30/20 split, and how much you can spend each day after bills</span></a></li>
+      <li><a href="/barya/compare/"><b>Expense trackers in the Philippines, compared</b><span>Eight apps by price and by what they collect</span></a></li>
+      <li><a href="/barya/offline-expense-tracker/"><b>An expense tracker that works offline</b><span>What Barya does with no signal, which is everything</span></a></li>
+    </ul>
+  </section>
+
   <section class="close container">
     <span class="label">Out now on iPhone</span>
     <h2>&#8369;49. Yours to keep.</h2>
@@ -370,7 +383,7 @@
       this one, and nothing to unlock later. Barya lang, meron ka nang expense
       tracker.
     </p>
-    <a class="get" href="https://apps.apple.com/us/app/barya-offline-expense-tracker/id6811890999" target="_blank" rel="noopener" data-get="close">Get Barya on the App Store</a>
+    <a class="get" href="https://apps.apple.com/app/apple-store/id6811890999?pt=129128273&amp;ct=web-barya-close&amp;mt=8" target="_blank" rel="noopener" data-get="close">Get Barya on the App Store</a>
     <p class="note">
       Questions first? Read the <a href="/barya/support/">support page</a> or
       <a href="mailto:dustinejao@gmail.com?subject=Barya">email me</a>.
@@ -382,6 +395,8 @@
   <div class="footer-links">
     <a href="/" class="text-link">Home</a>
     <a href="/apps/" class="text-link">Apps</a>
+    <a href="/barya/budget-calculator/" class="text-link">Budget calculator</a>
+    <a href="/barya/compare/" class="text-link">Compare</a>
     <a href="/barya/support/" class="text-link">Support</a>
     <a href="/barya/privacy/" class="text-link">Privacy</a>
     <a href="/#contact" class="text-link">Contact</a>
@@ -397,7 +412,7 @@
     <circle cx="38" cy="62" r="26" fill="currentColor"/>
   </svg>
   <span class="what"><b>Barya</b><small>&#8369;49 once &middot; no subscription</small></span>
-  <a class="get" href="https://apps.apple.com/us/app/barya-offline-expense-tracker/id6811890999" target="_blank" rel="noopener" data-get="bar">Get</a>
+  <a class="get" href="https://apps.apple.com/app/apple-store/id6811890999?pt=129128273&amp;ct=web-barya-bar&amp;mt=8" target="_blank" rel="noopener" data-get="bar">Get</a>
 </div>
 
 <script>

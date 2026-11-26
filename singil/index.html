@@ -25,6 +25,7 @@
 <link rel="icon" href="/images/apps/singil-2.png">
 <link rel="apple-touch-icon" href="/images/apps/singil-2.png">
 <link rel="stylesheet" href="/singil/singil.css">
+<link rel="stylesheet" href="/singil/guide.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -39,12 +40,10 @@
       "operatingSystem": "iOS",
       "applicationCategory": "BusinessApplication",
       "installUrl": "https://apps.apple.com/ph/app/singil-invoice-maker/id6815646053",
-      "offers": {
-        "@type": "Offer",
-        "price": "99",
-        "priceCurrency": "PHP",
-        "url": "https://apps.apple.com/ph/app/singil-invoice-maker/id6815646053"
-      },
+      "offers": [
+        { "@type": "Offer", "name": "Singil, one-time purchase", "price": "99", "priceCurrency": "PHP", "url": "https://apps.apple.com/ph/app/singil-invoice-maker/id6815646053" },
+        { "@type": "Offer", "name": "Singil, one-time purchase (US)", "price": "1.99", "priceCurrency": "USD", "url": "https://apps.apple.com/us/app/singil-invoice-maker/id6815646053" }
+      ],
       "author": {
         "@type": "Person",
         "@id": "https://www.dustinejao.com/#person",
@@ -115,7 +114,7 @@
           "name": "Is Singil a subscription?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Singil is ₱99 once on the Philippine App Store, with no subscription and no in-app purchase. Prices in other countries follow the local App Store."
+            "text": "No. Singil is ₱99 once on the Philippine App Store and $1.99 on the US App Store, with no subscription and no in-app purchase. Other countries see their local App Store price."
           }
         },
         {
@@ -182,8 +181,12 @@
         sent and paid, all on your iPhone.
       </p>
       <div class="actions">
-        <a class="btn" href="https://apps.apple.com/ph/app/singil-invoice-maker/id6815646053" target="_blank" rel="noopener" aria-label="Get Singil on the App Store">Get on the App Store</a>
+        <a class="btn" href="https://apps.apple.com/app/apple-store/id6815646053?pt=129128273&amp;ct=web-singil-hero&amp;mt=8" target="_blank" rel="noopener" aria-label="Get Singil on the App Store">Get on the App Store</a>
         <span class="pill">₱99 &middot; Pay once</span>
+      </div>
+      <div class="qr">
+        <img src="/images/singil/qr.svg" alt="QR code that opens Singil on the App Store" width="84" height="84">
+        <p><b>On a computer?</b> Point your iPhone camera here to open Singil on the App Store. $1.99 in the US.</p>
       </div>
     </div>
 
@@ -276,7 +279,7 @@
       </details>
       <details>
         <summary>Is Singil a subscription?</summary>
-        <div class="answer"><p>No. Singil is &#8369;99 once on the Philippine App Store, with no subscription and no in-app purchase. Prices in other countries follow the local App Store.</p></div>
+        <div class="answer"><p>No. Singil is &#8369;99 once on the Philippine App Store and $1.99 on the US App Store, with no subscription and no in-app purchase. Other countries see their local App Store price.</p></div>
       </details>
       <details>
         <summary>Does Singil work offline?</summary>
@@ -298,11 +301,20 @@
     <p class="footnote">More on the <a href="/singil/support/">Singil support page</a>.</p>
   </section>
 
+  <section class="wrap narrow g-prose" aria-labelledby="tools-title" style="margin-top:56px">
+    <h2 id="tools-title">Free for freelancers</h2>
+    <ul class="more">
+      <li><a href="/singil/invoice-generator/"><b>Free invoice generator</b><span>A PDF invoice in your browser, nothing uploaded</span></a></li>
+      <li><a href="/singil/how-to-invoice-clients/"><b>How to invoice clients</b><span>What goes on an invoice, and how to get paid on time</span></a></li>
+      <li><a href="/singil/compare/"><b>Invoice apps compared</b><span>Nine apps by price and privacy</span></a></li>
+    </ul>
+  </section>
+
   <section class="wrap price">
     <span class="eyebrow">Out now on iPhone</span>
     <h2>₱99. Yours to keep.</h2>
     <p class="muted">Pay once. No account. No subscription. Available currencies: PHP, USD, CAD, AUD, GBP, EUR, SGD, JPY.</p>
-    <p style="margin-top:24px"><a class="btn" href="https://apps.apple.com/ph/app/singil-invoice-maker/id6815646053" target="_blank" rel="noopener">Get Singil on the App Store</a></p>
+    <p style="margin-top:24px"><a class="btn" href="https://apps.apple.com/app/apple-store/id6815646053?pt=129128273&amp;ct=web-singil-close&amp;mt=8" target="_blank" rel="noopener">Get Singil on the App Store</a></p>
   </section>
 </main>
 
@@ -310,6 +322,8 @@
   <div class="links">
     <a href="/">Home</a>
     <a href="/apps/">Apps</a>
+    <a href="/singil/invoice-generator/">Invoice generator</a>
+    <a href="/singil/compare/">Compare</a>
     <a href="/singil/support/">Support</a>
     <a href="/singil/privacy/">Privacy</a>
     <a href="mailto:dustinejao@gmail.com?subject=Singil">Contact</a>

@@ -47,21 +47,6 @@
       "permanent": true
     },
     {
-      "source": "/caloff/privacy",
-      "destination": "/caloff/#privacy",
-      "permanent": true
-    },
-    {
-      "source": "/caloff/terms",
-      "destination": "/caloff/#terms",
-      "permanent": true
-    },
-    {
-      "source": "/caloff/support",
-      "destination": "/caloff/#support",
-      "permanent": true
-    },
-    {
       "source": "/paprgo/privacy",
       "destination": "/paprgo/#privacy",
       "permanent": false
@@ -137,7 +122,7 @@
       ]
     },
     {
-      "source": "/(music|realestate|caloff|paprgo)(/.*)?",
+      "source": "/(music|realestate|paprgo)(/.*)?",
       "headers": [
         {
           "key": "X-Robots-Tag",

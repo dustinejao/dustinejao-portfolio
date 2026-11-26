@@ -2,881 +2,455 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- ARTIFACT:BEGIN -->
-<title>CalOff</title>
-<meta name="robots" content="noindex, follow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CalOff: AI Calorie Counter That Works Offline | iPhone</title>
+<meta name="description" content="CalOff is an AI calorie counter for iPhone that works offline. Snap a meal, scan a label or barcode, or search 9,000+ foods. No account. 7-day free trial.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="apple-itunes-app" content="app-id=6816835992">
+<meta name="author" content="Dustine Jao">
 <link rel="canonical" href="https://www.dustinejao.com/caloff/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalOff">
+<meta property="og:url" content="https://www.dustinejao.com/caloff/">
+<meta property="og:title" content="CalOff: the AI calorie counter that works offline">
+<meta property="og:description" content="Snap a meal, scan a label or search 9,000+ foods. Calories and macros in seconds, on your iPhone. No account, no upload. 7-day free trial.">
+<meta property="og:image" content="https://www.dustinejao.com/images/og/caloff.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CalOff on iPhone: count calories, no signal needed.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.dustinejao.com/images/og/caloff.png">
+<meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/images/apps/caloff.png">
 <link rel="apple-touch-icon" href="/images/apps/caloff.png">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.dustinejao.com/caloff/">
-<meta property="og:title" content="CalOff: every calorie counted, nothing uploaded">
-<meta property="og:description" content="Offline-first AI calorie tracking. Point the camera at food, get calories and macros back, with no network round-trip for the scan.">
-<meta name="description" content="Offline-first AI calorie tracking. Point the camera at food, get calories and macros back, with no network round-trip for the scan.">
-<style>
-/* ---------------------------------------------------------------------------
-   CalOff site tokens.
-
-   These are the app's own tokens, lifted from lib/core/theme.dart rather than
-   invented for the web. There is no brand accent: ink is pure black on light
-   and pure white on dark. Colour appears in exactly one place, the macro
-   split, because there it is encoding data.
---------------------------------------------------------------------------- */
-:root {
-  --bg:        #F2F2F7;  /* systemGroupedBackground */
-  --card:      #FFFFFF;  /* secondarySystemGroupedBackground */
-  --fill:      #E5E5EA;  /* tertiarySystemFill */
-  --ink:       #000000;  /* label */
-  --ink-2:     #6C6C70;  /* secondaryLabel */
-  --ink-3:     #A1A1A6;  /* tertiaryLabel */
-  --rule:      #D1D1D6;  /* separator */
-  --ink-inv:   #FFFFFF;
-  --protein:   #FF2D55;  /* systemPink */
-  --carbs:     #FF9500;  /* systemOrange */
-  --fat:       #32ADE6;  /* systemCyan */
-  --shadow:    0 1px 3px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);
-
-  --measure: 34rem;
-  --page:    46rem;
+<link rel="preload" as="image" href="/images/caloff/scan.webp" fetchpriority="high">
+<link rel="stylesheet" href="/caloff/caloff.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MobileApplication",
+      "@id": "https://www.dustinejao.com/caloff/#app",
+      "name": "CalOff",
+      "alternateName": ["CalOff: AI Calorie Counter", "Cal Off", "CalOff app", "CalOff calorie counter"],
+      "description": "CalOff is an AI calorie counter and macro tracker for iPhone that works offline. Snap a photo of a meal, scan a nutrition label or barcode, or search 9,000+ foods, and CalOff counts calories, protein, carbs and fat on the phone. No account, and meal photos never leave the iPhone.",
+      "url": "https://www.dustinejao.com/caloff/",
+      "applicationCategory": "HealthApplication",
+      "applicationSubCategory": "Calorie counter",
+      "operatingSystem": "iOS 16.4 or later",
+      "softwareVersion": "1.0.0",
+      "datePublished": "2026-11-26",
+      "fileSize": "244 MB",
+      "contentRating": "9+",
+      "inLanguage": "en",
+      "installUrl": "https://apps.apple.com/app/caloff-ai-calorie-counter/id6816835992",
+      "downloadUrl": "https://apps.apple.com/app/caloff-ai-calorie-counter/id6816835992",
+      "image": "https://www.dustinejao.com/images/og/caloff.png",
+      "screenshot": [
+        "https://www.dustinejao.com/images/caloff/scan.webp",
+        "https://www.dustinejao.com/images/caloff/home.webp",
+        "https://www.dustinejao.com/images/caloff/search-dark.webp",
+        "https://www.dustinejao.com/images/caloff/week.webp"
+      ],
+      "featureList": [
+        "AI photo calorie counting that runs on the iPhone, offline",
+        "Nutrition label reading and barcode lookup, offline",
+        "Built-in search of 9,000+ foods with USDA reference data and nearly 200 Filipino dishes",
+        "Daily calorie, protein, carb and fat targets from the Mifflin-St Jeor equation",
+        "Projected goal-weight date",
+        "One-tap re-logging of recent meals",
+        "Weekly and monthly history, days on target and weight trend",
+        "Apple Watch app, widgets and complications",
+        "No account, no ads, no tracking"
+      ],
+      "offers": [
+        { "@type": "Offer", "name": "CalOff Pro Weekly (3-day free trial)", "price": "4.99", "priceCurrency": "USD", "url": "https://www.dustinejao.com/caloff/#pricing" },
+        { "@type": "Offer", "name": "CalOff Pro Monthly (7-day free trial)", "price": "9.99", "priceCurrency": "USD", "url": "https://www.dustinejao.com/caloff/#pricing" },
+        { "@type": "Offer", "name": "CalOff Pro Yearly (7-day free trial)", "price": "39.99", "priceCurrency": "USD", "url": "https://www.dustinejao.com/caloff/#pricing" },
+        { "@type": "Offer", "name": "CalOff Pro Lifetime", "price": "129.99", "priceCurrency": "USD", "url": "https://www.dustinejao.com/caloff/#pricing" },
+        { "@type": "Offer", "name": "CalOff Pro Weekly, Philippines", "price": "29", "priceCurrency": "PHP", "url": "https://www.dustinejao.com/caloff/#pricing" },
+        { "@type": "Offer", "name": "CalOff Pro Monthly, Philippines", "price": "59", "priceCurrency": "PHP", "url": "https://www.dustinejao.com/caloff/#pricing" },
+        { "@type": "Offer", "name": "CalOff Pro Yearly, Philippines", "price": "299", "priceCurrency": "PHP", "url": "https://www.dustinejao.com/caloff/#pricing" },
+        { "@type": "Offer", "name": "CalOff Pro Lifetime, Philippines", "price": "999", "priceCurrency": "PHP", "url": "https://www.dustinejao.com/caloff/#pricing" }
+      ],
+      "author": { "@id": "https://www.dustinejao.com/#person" },
+      "publisher": { "@id": "https://www.dustinejao.com/#person" },
+      "sameAs": ["https://apps.apple.com/app/caloff-ai-calorie-counter/id6816835992"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.dustinejao.com/#person",
+      "name": "Dustine Jao",
+      "url": "https://www.dustinejao.com/",
+      "jobTitle": "App developer and video editor",
+      "address": { "@type": "PostalAddress", "addressLocality": "Manila", "addressCountry": "PH" },
+      "sameAs": ["https://www.linkedin.com/in/dustinejao/", "https://github.com/dustinejao", "https://x.com/BuiltByDJP"]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.dustinejao.com/caloff/#webpage",
+      "url": "https://www.dustinejao.com/caloff/",
+      "name": "CalOff: AI Calorie Counter That Works Offline",
+      "inLanguage": "en",
+      "dateModified": "2026-11-27",
+      "isPartOf": { "@id": "https://www.dustinejao.com/#website" },
+      "about": { "@id": "https://www.dustinejao.com/caloff/#app" },
+      "mainEntity": { "@id": "https://www.dustinejao.com/caloff/#app" },
+      "breadcrumb": { "@id": "https://www.dustinejao.com/caloff/#breadcrumbs" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.dustinejao.com/caloff/#breadcrumbs",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.dustinejao.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Apps", "item": "https://www.dustinejao.com/apps/" },
+        { "@type": "ListItem", "position": 3, "name": "CalOff", "item": "https://www.dustinejao.com/caloff/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.dustinejao.com/caloff/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is CalOff?", "acceptedAnswer": { "@type": "Answer", "text": "CalOff is an AI calorie counter and macro tracker for iPhone that works offline. Snap a photo of a meal, scan a nutrition label or barcode, or search 9,000+ foods, and CalOff counts the calories, protein, carbs and fat on the phone. There is no account, and meal photos never leave the iPhone. It is made by Dustine Jao in Manila, Philippines." } },
+        { "@type": "Question", "name": "Does CalOff work offline, without internet?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Photo scanning, nutrition label reading, barcode lookup and food search all run on the iPhone, so CalOff works in airplane mode. It needs the internet twice: once to download the scanner model (about 728 MB) before your first photo scan, and when you buy or restore CalOff Pro." } },
+        { "@type": "Question", "name": "How much does CalOff cost?", "acceptedAnswer": { "@type": "Answer", "text": "CalOff is free to download and needs CalOff Pro to use. In the US: $4.99 a week, $9.99 a month, $39.99 a year, or $129.99 once for lifetime access. In the Philippines: ₱29 a week, ₱59 a month, ₱299 a year, or ₱999 once. The yearly and monthly plans start with a 7-day free trial; the weekly plan with a 3-day trial." } },
+        { "@type": "Question", "name": "Is there a free trial?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The yearly and monthly plans include a 7-day free trial and the weekly plan a 3-day trial, for eligible new subscribers. CalOff sends a reminder two days before the trial ends. Cancel in your Apple Account settings at least 24 hours before the trial ends and you are not charged." } },
+        { "@type": "Question", "name": "Do I need an account to use CalOff?", "acceptedAnswer": { "@type": "Answer", "text": "No. There is no sign-up, email or login. Your food log, photos and health profile are stored on your iPhone." } },
+        { "@type": "Question", "name": "Are my meal photos uploaded?", "acceptedAnswer": { "@type": "Answer", "text": "No. Photos are analysed by an AI model running on the iPhone and are never uploaded. CalOff's App Store privacy label lists one data type, Purchases, and it is not linked to you. Nothing is used to track you." } },
+        { "@type": "Question", "name": "How accurate is CalOff's photo calorie count?", "acceptedAnswer": { "@type": "Answer", "text": "A photo gives an estimate, not a measurement: hidden oil, a deep bowl or an unusual recipe can throw it off. CalOff shows the estimate for review before anything is logged. You can rename the dish, adjust the portion, and add sauce, oil or rice as separate items, and CalOff remembers your corrections. For packaged food, scanning the nutrition label reads the printed numbers instead." } },
+        { "@type": "Question", "name": "Does CalOff know Filipino food?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The built-in database includes nearly 200 Filipino dishes, from adobo, sinigang and kare-kare to silog plates, kakanin and street food, with everyday serving sizes. The on-device model was chosen partly because it names dishes like sinigang na bangus instead of calling them soup." } },
+        { "@type": "Question", "name": "Can CalOff scan barcodes and nutrition labels?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, both offline. Label scanning reads the calories and macros printed on a nutrition facts panel. Barcode lookup checks a built-in catalogue of packaged foods from Open Food Facts; if a product is not in it, scan its label instead." } },
+        { "@type": "Question", "name": "Does CalOff work on Apple Watch?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Apple Watch app shows calories left and today's macros, and CalOff has watch complications and iPhone home-screen and Lock Screen widgets." } },
+        { "@type": "Question", "name": "Is CalOff available on Android?", "acceptedAnswer": { "@type": "Answer", "text": "Not yet. CalOff is on the App Store for iPhone with iOS 16.4 or later." } },
+        { "@type": "Question", "name": "How does CalOff calculate my daily calorie target?", "acceptedAnswer": { "@type": "Answer", "text": "CalOff uses the Mifflin-St Jeor equation for resting energy, multiplies it by an activity factor from 1.2 to 1.725, then subtracts 500 kcal a day to lose weight or adds 350 to gain. Targets never go below 1,200 kcal for women or 1,500 for men, and the goal date assumes about 7,700 kcal per kilogram, capped at 1 kg a week. The app cites each source. The same maths runs in the free calculator at dustinejao.com/caloff/calorie-calculator/." } },
+        { "@type": "Question", "name": "How is CalOff different from Cal AI?", "acceptedAnswer": { "@type": "Answer", "text": "Both count calories from a photo. CalOff runs the recognition on the iPhone, works in airplane mode and needs no account. Cal AI's App Store privacy label lists identifiers and usage data that may be used to track you; CalOff's lists only purchases, not linked to you. Details: dustinejao.com/caloff/cal-ai-alternative/." } },
+        { "@type": "Question", "name": "Is CalOff medical advice?", "acceptedAnswer": { "@type": "Answer", "text": "No. CalOff is a food diary and an estimator, not a medical device. Talk to a health professional before changing your diet, especially if you are pregnant, take medication or have a history of disordered eating." } }
+      ]
+    }
+  ]
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg:      #000000;  /* true black, so OLED pixels switch fully off */
-    --card:    #1C1C1E;
-    --fill:    #2C2C2E;
-    --ink:     #FFFFFF;
-    --ink-2:   #98989D;
-    --ink-3:   #6C6C70;
-    --rule:    #38383A;
-    --ink-inv: #000000;
-    --protein: #FF375F;
-    --carbs:   #FF9F0A;
-    --fat:     #64D2FF;
-    --shadow:  none;
-  }
-}
-:root[data-theme="dark"] {
-  --bg:      #000000;
-  --card:    #1C1C1E;
-  --fill:    #2C2C2E;
-  --ink:     #FFFFFF;
-  --ink-2:   #98989D;
-  --ink-3:   #6C6C70;
-  --rule:    #38383A;
-  --ink-inv: #000000;
-  --protein: #FF375F;
-  --carbs:   #FF9F0A;
-  --fat:     #64D2FF;
-  --shadow:  none;
-}
-
-*, *::before, *::after { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  /* No font-family is declared for the app on purpose, so it resolves to San
-     Francisco on iOS and Roboto on Android rather than to something that looks
-     foreign on either. The site keeps that same discipline. */
-  font: 400 17px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
-/* The logotype's idea, generalised: the load-bearing half of a phrase is set
-   solid, its qualifier light. It is the one typographic move the whole site
-   runs on, which is why no display face is loaded. */
-.solid { font-weight: 700; }
-.light { font-weight: 300; color: var(--ink-2); }
-
-a { color: inherit; }
-a:focus-visible, button:focus-visible, .btn:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* --- Chrome ------------------------------------------------------------- */
-
-.bar {
-  position: sticky; top: 0; z-index: 10;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 16px;
-  padding: 14px max(20px, 50% - var(--page) / 2);
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid transparent;
-}
-.bar.is-stuck { border-bottom-color: var(--rule); }
-
-.mark {
-  font-size: 25px; letter-spacing: -.9px; line-height: 1;
-  text-decoration: none; white-space: nowrap;
-}
-.mark .light { color: color-mix(in srgb, var(--ink) 75%, transparent); }
-
-.bar nav { display: flex; gap: 4px; }
-.bar nav a {
-  font-size: 15px; font-weight: 500; color: var(--ink-2);
-  text-decoration: none; padding: 6px 10px; border-radius: 8px;
-  white-space: nowrap;
-}
-.bar nav a:hover { color: var(--ink); background: var(--fill); }
-.bar nav a[aria-current="page"] { color: var(--ink); font-weight: 600; }
-
-main { padding: 0 20px 96px; }
-.wrap { max-width: var(--page); margin: 0 auto; }
-
-/* --- Hero --------------------------------------------------------------- */
-
-.hero {
-  display: grid; justify-items: center; text-align: center;
-  gap: 28px;
-  padding: 48px 0 8px;
-}
-
-.ring { width: min(260px, 62vw); height: min(260px, 62vw); display: block; }
-.ring .track  { fill: none; stroke: var(--rule); stroke-width: 9; }
-.ring .arc {
-  fill: none; stroke: var(--ink); stroke-width: 9; stroke-linecap: round;
-  /* r = 45.5 → circumference ≈ 285.9. Resting at 64% consumed. */
-  stroke-dasharray: 285.9;
-  stroke-dashoffset: 102.9;
-  transform: rotate(-90deg); transform-origin: 50% 50%;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .ring .arc { animation: sweep .9s cubic-bezier(.22,.61,.36,1) both; }
-  @keyframes sweep { from { stroke-dashoffset: 285.9; } }
-}
-.ring .figure {
-  fill: var(--ink); font-size: 22px; font-weight: 700; letter-spacing: -1px;
-  font-variant-numeric: tabular-nums; text-anchor: middle;
-}
-.ring .caption {
-  fill: var(--ink-2); font-size: 7px; font-weight: 500; text-anchor: middle;
-}
-
-h1 {
-  margin: 0; max-width: 15ch;
-  font-size: clamp(38px, 8.5vw, 60px);
-  line-height: 1.03; letter-spacing: -2px; text-wrap: balance;
-}
-.lede {
-  margin: 0; max-width: var(--measure);
-  font-size: 19px; line-height: 1.5; color: var(--ink-2); text-wrap: pretty;
-}
-
-.stores { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-.btn {
-  display: inline-flex; flex-direction: column; align-items: flex-start;
-  gap: 1px; min-width: 200px;
-  padding: 11px 22px; border-radius: 12px;
-  background: var(--ink); color: var(--ink-inv);
-  text-decoration: none; line-height: 1.25;
-  transition: transform .12s ease, opacity .12s ease;
-}
-.btn:hover { transform: translateY(-1px); }
-.btn:active { transform: translateY(0); opacity: .85; }
-.btn small { font-size: 11px; font-weight: 400; opacity: .7; letter-spacing: .3px; }
-.btn span  { font-size: 17px; font-weight: 600; letter-spacing: -.3px; }
-.btn[aria-disabled="true"] {
-  background: var(--fill); color: var(--ink-2); cursor: default;
-}
-.btn[aria-disabled="true"]:hover { transform: none; }
-
-/* --- Numbers ------------------------------------------------------------ */
-
-/* Not a card grid: these are four figures with captions, separated by rules,
-   because a figure is all each one is. */
-.figures {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  margin: 64px 0 0; padding: 0; list-style: none;
-  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
-}
-.figures li {
-  padding: 22px 14px; text-align: center;
-  border-left: 1px solid var(--rule);
-}
-.figures li:first-child { border-left: 0; }
-.figures b {
-  display: block; font-size: clamp(24px, 5vw, 34px); font-weight: 700;
-  letter-spacing: -1.2px; font-variant-numeric: tabular-nums;
-}
-.figures span {
-  display: block; margin-top: 4px;
-  font-size: 12px; font-weight: 500; color: var(--ink-2);
-  letter-spacing: .1px; text-wrap: balance;
-}
-@media (max-width: 560px) {
-  .figures { grid-template-columns: repeat(2, 1fr); }
-  .figures li:nth-child(3) { border-left: 0; }
-  .figures li:nth-child(n+3) { border-top: 1px solid var(--rule); }
-}
-
-/* --- Sections ----------------------------------------------------------- */
-
-section[hidden] { display: none; }
-
-.block { margin-top: 72px; }
-.eyebrow {
-  margin: 0 0 20px;
-  font-size: 12px; font-weight: 600; letter-spacing: 1.1px;
-  text-transform: uppercase; color: var(--ink-3);
-}
-h2 {
-  margin: 0 0 12px; font-size: 28px; line-height: 1.15;
-  letter-spacing: -.9px; font-weight: 700; text-wrap: balance;
-}
-h3 {
-  margin: 32px 0 8px; font-size: 17px; font-weight: 600;
-  letter-spacing: -.2px;
-}
-.doc p, .doc li { max-width: var(--measure); color: var(--ink-2); }
-.doc p { margin: 0 0 14px; }
-.doc ul { margin: 0 0 14px; padding-left: 20px; }
-.doc li { margin-bottom: 7px; }
-.doc strong { color: var(--ink); font-weight: 600; }
-.doc a { color: var(--ink); text-underline-offset: 3px; }
-
-.stamp {
-  display: inline-block; margin: 0 0 28px;
-  padding: 5px 11px; border-radius: 999px; background: var(--fill);
-  font-size: 12px; font-weight: 600; color: var(--ink-2);
-  letter-spacing: .2px; font-variant-numeric: tabular-nums;
-}
-
-/* Feature list: rules, not cards. Fill contrast alone separates a card, and
-   outlining as well is what makes a layout look busy. */
-.rows { margin: 0; padding: 0; list-style: none; }
-.rows li {
-  display: grid; grid-template-columns: 1fr; gap: 4px;
-  padding: 18px 0; border-top: 1px solid var(--rule);
-}
-.rows li:last-child { border-bottom: 1px solid var(--rule); }
-.rows dt, .rows b { font-weight: 600; letter-spacing: -.2px; }
-.rows p { margin: 0; font-size: 15px; color: var(--ink-2); max-width: var(--measure); }
-@media (min-width: 720px) {
-  .rows li { grid-template-columns: 13rem 1fr; gap: 24px; align-items: baseline; }
-}
-
-/* The one card on the site, and the one place colour appears, because the
-   macro split is a chart. */
-.macros {
-  margin-top: 28px; padding: 22px 24px 24px;
-  background: var(--card); border-radius: 16px; box-shadow: var(--shadow);
-}
-.macros h4 {
-  margin: 0 0 18px; font-size: 13px; font-weight: 600; color: var(--ink-2);
-  letter-spacing: .2px;
-}
-.macro { display: grid; gap: 6px; margin-bottom: 16px; }
-.macro:last-child { margin-bottom: 0; }
-.macro .row {
-  display: flex; justify-content: space-between; align-items: baseline;
-  font-size: 14px; font-variant-numeric: tabular-nums;
-}
-.macro .row b { font-weight: 600; letter-spacing: -.1px; }
-.macro .row span { color: var(--ink-2); font-weight: 500; }
-.macro .bar-track { height: 6px; border-radius: 3px; background: var(--fill); overflow: hidden; }
-.macro .bar-fill  { height: 100%; border-radius: 3px; }
-/* Colour rides the label and the bar, never a whole tile: washing the card in
-   the macro hue turns it into a muddy block against true black. */
-.macro.p .row b { color: var(--protein); }
-.macro.c .row b { color: var(--carbs); }
-.macro.f .row b { color: var(--fat); }
-.macro.p .bar-fill { background: var(--protein); }
-.macro.c .bar-fill { background: var(--carbs); }
-.macro.f .bar-fill { background: var(--fat); }
-
-/* --- Support ------------------------------------------------------------ */
-
-.contact {
-  margin-top: 28px; padding: 22px 24px;
-  background: var(--card); border-radius: 16px; box-shadow: var(--shadow);
-}
-.contact p { margin: 0 0 6px; color: var(--ink-2); font-size: 15px; }
-.contact a.email {
-  font-size: 21px; font-weight: 600; letter-spacing: -.4px;
-  color: var(--ink); text-decoration: none; word-break: break-all;
-}
-.contact a.email:hover { text-decoration: underline; text-underline-offset: 4px; }
-
-/* --- Footer ------------------------------------------------------------- */
-
-footer {
-  margin-top: 88px; padding: 28px 20px 40px;
-  border-top: 1px solid var(--rule);
-}
-.foot {
-  max-width: var(--page); margin: 0 auto;
-  display: flex; flex-wrap: wrap; gap: 16px 28px;
-  align-items: center; justify-content: space-between;
-}
-.foot nav { display: flex; flex-wrap: wrap; gap: 18px; }
-.foot a { font-size: 14px; color: var(--ink-2); text-decoration: none; }
-.foot a:hover { color: var(--ink); }
-.foot small { font-size: 13px; color: var(--ink-3); }
-
-/* --- Added when the site moved to dustinejao.com/caloff ------------------ */
-.bar nav a.home { color: var(--ink-3); }
-@media (max-width: 30rem) { .bar nav a.home { display: none; } }
-
-.wip {
-  display: inline-flex;
-  align-items: center;
-  gap: .5em;
-  margin: 0 0 1.25rem;
-  padding: .35em .85em;
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  background: var(--card);
-  font-size: .8125rem;
-  font-weight: 500;
-  color: var(--ink-2);
-}
-.wip .dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--carbs);
-  box-shadow: 0 0 0 0 var(--carbs);
-  animation: wip-pulse 2s ease-out infinite;
-}
-@keyframes wip-pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(255,149,0,.5); }
-  70%  { box-shadow: 0 0 0 7px rgba(255,149,0,0); }
-  100% { box-shadow: 0 0 0 0 rgba(255,149,0,0); }
-}
-@media (prefers-reduced-motion: reduce) { .wip .dot { animation: none; } }
-</style>
-<noscript><style>
-  section[hidden] { display: block !important; }
-  section + section { margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--rule); }
-</style></noscript>
+</script>
 </head>
 <body>
 
-<header class="bar" id="bar">
-  <a class="mark" href="#home"><span class="solid">Cal</span><span class="light">Off</span><span class="solid">.</span></a>
-  <nav>
-    <a href="#privacy">Privacy</a>
-    <a href="#terms">Terms</a>
-    <a href="#support">Support</a>
-    <a href="/apps/" class="home">&larr; dustinejao.com</a>
-  </nav>
+<header class="bar">
+  <div class="bar-in">
+    <a class="mark" href="/caloff/" aria-label="CalOff home"><span class="solid">Cal</span><span class="light">Off</span><span class="solid">.</span></a>
+    <nav aria-label="CalOff">
+      <a href="#how">How it works</a>
+      <a href="#private">Privacy</a>
+      <a href="#pricing">Pricing</a>
+      <a href="/caloff/calorie-calculator/">Calculator</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="bar-get" href="https://apps.apple.com/app/apple-store/id6816835992?pt=129128273&amp;ct=web-caloff-bar&amp;mt=8" rel="noopener">Get CalOff</a>
+  </div>
 </header>
 
 <main>
 
-<!-- ===================== HOME ===================== -->
-<section id="home" class="wrap">
-
+<section class="wrap" data-hero>
   <div class="hero">
-    <svg class="ring" viewBox="0 0 100 100" role="img"
-         aria-label="Calorie ring showing 742 kilocalories left of a 2,050 target">
-      <circle class="track" cx="50" cy="50" r="45.5"></circle>
-      <circle class="arc"   cx="50" cy="50" r="45.5"></circle>
-      <text class="figure"  x="50" y="52">742</text>
-      <text class="caption" x="50" y="61">kcal left</text>
-    </svg>
-
-    <p class="wip"><span class="dot"></span>In App Store review &middot; iPhone first</p>
-
-    <h1><span class="solid">Every calorie counted.</span>
-        <span class="light">Nothing uploaded.</span></h1>
-
-    <p class="lede">CalOff photographs your meal and works out the calories and
-    macros with a vision model that runs on the phone itself. No account, no
-    server, no signal.</p>
-
-    <div class="stores">
-      <a class="btn" id="btn-ios" href="#" data-store="ios">
-        <small>Download on the</small><span>App Store</span>
-      </a>
-      <!-- Android held back while iOS tests the waters.
-      <a class="btn" id="btn-android" href="#" data-store="android">
-        <small>Get it on</small><span>Google Play</span>
-      </a>
-      -->
+    <div>
+      <a class="pill" href="https://apps.apple.com/app/apple-store/id6816835992?pt=129128273&amp;ct=web-caloff-pill&amp;mt=8" rel="noopener"><img src="/images/apps/caloff.webp" alt="" width="20" height="20">New on the App Store &middot; 7-day free trial</a>
+      <h1>Snap a meal. Get the calories. <span class="light">No signal needed.</span></h1>
+      <p class="lede">CalOff is the AI calorie counter that runs on your iPhone, not in the cloud. Photograph your plate, scan a label or search 9,000 foods, and see calories and macros in seconds. No account. Your photos never leave your phone.</p>
+      <div class="cta-row">
+        <a class="store" href="https://apps.apple.com/app/apple-store/id6816835992?pt=129128273&amp;ct=web-caloff-hero&amp;mt=8" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          <span><small>Download on the</small><span>App Store</span></span>
+        </a>
+        <a class="btn-ghost" href="#pricing">See pricing</a>
+      </div>
+      <p class="trust"><b>7-day free trial</b> &middot; No account &middot; Works in airplane mode &middot; iPhone, iOS 16.4+</p>
+      <div class="qr">
+        <img src="/images/caloff/qr-app-store.svg" alt="QR code that opens CalOff on the App Store" width="88" height="88">
+        <p><b>On a computer?</b> Point your iPhone camera at the code to open CalOff on the App Store.</p>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="phone"><img src="/images/caloff/scan.webp" alt="CalOff review screen after a photo scan: chicken with rice, 540 kcal, 39 g protein, 66 g carbs, 15 g fat" width="720" height="1564" fetchpriority="high"></div>
     </div>
   </div>
 
   <ul class="figures">
+    <li><b>9,000+</b><span>foods searchable offline</span></li>
     <li><b>0</b><span>accounts to create</span></li>
-    <li><b>0</b><span>network calls per scan</span></li>
-    <li><b>0.7&ndash;2<small style="font-size:.5em;font-weight:500"> GB</small></b><span>one-time model download</span></li>
-    <li><b>1</b><span>payment, then it's yours</span></li>
+    <li><b>0</b><span>meal photos uploaded</span></li>
+    <li><b>1 tap</b><span>to log your usual meal again</span></li>
   </ul>
-
-  <div class="block">
-    <p class="eyebrow">How it works</p>
-    <h2><span class="solid">Point the camera.</span> <span class="light">That's the whole flow.</span></h2>
-
-    <ul class="rows">
-      <li>
-        <b>Scan</b>
-        <p>A photo of the plate goes straight to a quantised vision model on
-        the device. The picture never leaves the phone, so there is nothing to
-        upload and nothing to wait for on bad signal.</p>
-      </li>
-      <li>
-        <b>Correct</b>
-        <p>The model's guess is a starting point, not a verdict. Rename the
-        dish and the calories follow the name through a local database of
-        1,172 foods (Filipino home cooking, the chains, and the Western shelf)
-        so the correction sticks and the food is one search away next
-        time.</p>
-      </li>
-      <li>
-        <b>A whole tray</b>
-        <p>A wider shot is read as what it is: rice, a viand and a drink come
-        back as three rows with their own portions, not one row named after
-        whichever dish the camera saw first.</p>
-      </li>
-      <li>
-        <b>Re-log</b>
-        <p>Yesterday's lunch goes back in the log at one tap, at the portion
-        you already reviewed. No inference, no second guess.</p>
-      </li>
-      <li>
-        <b>On the wrist</b>
-        <p>An Apple&nbsp;Watch and Wear&nbsp;OS app that shows the numbers and
-        nothing else, plus home-screen widgets, a Lock Screen complication and
-        a Wear tile.</p>
-      </li>
-    </ul>
-
-    <div class="macros" aria-label="Example macro split for a logged day">
-      <h4>Today's split, an example</h4>
-      <div class="macro p">
-        <div class="row"><b>Protein</b><span>118 / 154 g</span></div>
-        <div class="bar-track"><div class="bar-fill" style="width:77%"></div></div>
-      </div>
-      <div class="macro c">
-        <div class="row"><b>Carbs</b><span>134 / 179 g</span></div>
-        <div class="bar-track"><div class="bar-fill" style="width:75%"></div></div>
-      </div>
-      <div class="macro f">
-        <div class="row"><b>Fat</b><span>41 / 68 g</span></div>
-        <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="block">
-    <p class="eyebrow">Deliberately absent</p>
-    <h2><span class="solid">No feed, no badges,</span> <span class="light">no cloud fallback.</span></h2>
-    <div class="doc">
-      <p>There is no social feed, fasting timer, sleep tracker or workout log.
-      There is no account. There are no ads, no data sale, and no free tier
-      funded by either. CalOff is paid for by the people using it, which is
-      why it can afford to want nothing else from them. And there is no "just
-      this once" server call when a scan is hard. The moment that exists, the
-      one thing that makes CalOff different is gone.</p>
-    </div>
-  </div>
-
 </section>
 
-<!-- ===================== PRIVACY ===================== -->
-<section id="privacy" class="wrap doc" hidden>
-  <div class="block" style="margin-top:44px">
-    <p class="eyebrow">Legal</p>
-    <h2>Privacy Policy</h2>
-    <p class="stamp">Effective 6 November 2026</p>
-
-    <p><strong>Your meal photos, nutrition log and health profile stay on your
-    devices.</strong> CalOff has no account system or server for those records.
-    Model downloads and purchase verification use the network as described below.</p>
-
-    <h3>What stays on your device</h3>
-    <p>The app stores or processes the following locally:</p>
-    <ul>
-      <li><strong>Meal photos.</strong> A photo you take or pick is analysed by
-      a model running on the phone and is not uploaded. Logged meals may keep
-      a small thumbnail in the app's private storage.</li>
-      <li><strong>Your food log</strong>, including dish names, portions,
-      calories, macros and timestamps, is written to the app's private database
-      storage on the device.</li>
-      <li><strong>Your profile</strong>, including age, sex, height, weight,
-      activity level, goal and unit preference, is used to compute your
-      calorie and macro targets, on the device.</li>
-      <li><strong>Your weight history</strong>, if you record weigh-ins.</li>
-      <li><strong>Foods you save</strong> to the local food database.</li>
-      <li><strong>Scan history and corrections</strong>, including model
-      responses, corrected names and image embeddings used to remember meals.</li>
-    </ul>
-    <p>These records are not uploaded to CalOff or a remote food-recognition
-    service. Your platform's backup and paired-device sync settings can also
-    apply, as described below.</p>
-
-    <h3>Model downloads</h3>
-    <p>Before the first scan, CalOff downloads the recognition model files,
-    roughly 728&nbsp;MB for the standard model, from
-    <a href="https://huggingface.co" rel="noopener">Hugging Face</a>, a public
-    model host. Downloads are resumable. Choosing a different model on Android
-    or downloading again requires another transfer.</p>
-    <p>That request necessarily reveals to Hugging Face what any file download
-    reveals: your IP address, the time of the request and which file you asked
-    for. CalOff attaches no identifier, no account and no information about you
-    to it. Hugging Face's handling of that request is governed by
-    <a href="https://huggingface.co/privacy" rel="noopener">their privacy
-    policy</a>. Scanning, nutrition lookup and search run locally once the
-    model is ready. Purchase verification is a separate network operation.</p>
-
-    <h3>Purchases and subscription verification</h3>
-    <p>Apple or Google processes your payment. CalOff uses RevenueCat to verify
-    purchases, restore access and check subscription status. RevenueCat receives
-    an anonymous app user ID, purchase and receipt information, and technical
-    information such as platform, operating system, app version and locale.
-    Network connections also expose your IP address to the receiving service.</p>
-    <p>This information supports access verification and purchase reporting.
-    CalOff does not send RevenueCat your meal photos, food log, health profile,
-    name or email address. Payment card details are handled by your store.
-    See <a href="https://www.revenuecat.com/privacy" rel="noopener">RevenueCat's
-    privacy information</a>. Previously verified access is cached for offline
-    use, subject to the subscription's validity; buying or restoring requires
-    a connection.</p>
-
-    <h3>What we do not do</h3>
-    <ul>
-      <li>No meal analytics or remote food recognition.</li>
-      <li>No crash or performance reporting service.</li>
-      <li>No advertising, no advertising identifiers, no third-party trackers.</li>
-      <li>No sale of your data. Purchase verification uses the providers above.</li>
-      <li>No cross-app or cross-site tracking, so CalOff never needs to ask for
-      tracking permission.</li>
-    </ul>
-
-    <h3>Permissions, and why</h3>
-    <ul>
-      <li><strong>Camera</strong>, to photograph a meal. The live preview runs
-      inside the app; frames are used for the scan and nothing else.</li>
-      <li><strong>Photo library</strong>, only when you choose to log a meal
-      you already photographed, and only for the image you pick.</li>
-      <li><strong>Internet</strong> (Android), for model downloads, purchase
-      verification and links you choose to open.</li>
-    </ul>
-    <p>You can refuse any of these. Refusing the camera or photo library means
-    you log meals by search or by hand; the rest of the app is unaffected.</p>
-
-    <h3>The watch and widget companions</h3>
-    <p>The Apple&nbsp;Watch and Wear&nbsp;OS apps, the home-screen widgets and
-    the Lock Screen complication display the same day's totals that the phone
-    app already holds. Those figures are passed through Apple's Watch
-    Connectivity or Google's Wearable Data Layer to your paired devices.
-    The platform manages that connection and may use its own synchronization
-    services. No CalOff server receives those totals.</p>
-
-    <h3>Children</h3>
-    <p>CalOff is not directed at children under 13, and we do not knowingly
-    collect information from them. Contact us if you believe a child's purchase
-    information requires removal.</p>
-
-    <h3>Deleting your data</h3>
-    <p>You control the local meal and health records:</p>
-    <ul>
-      <li><strong>Settings → Reset</strong> inside the app clears the food log,
-      profile, weight history, saved foods, scan records and meal thumbnails.</li>
-      <li><strong>Delete the app.</strong> iOS and Android remove the app's
-      private storage. Device backups and original photos in your photo library
-      are managed separately through your platform settings.</li>
-    </ul>
-    <p>Resetting or deleting CalOff does not cancel a subscription or erase store
-    transaction records. Manage subscriptions through Apple or Google. Contact
-    us about purchase data held through RevenueCat; some transaction records
-    may need to be retained by the store or provider.</p>
-
-    <h3>Your rights</h3>
-    <p>Laws such as the GDPR, the UK GDPR, the CCPA/CPRA and the Philippine Data
-    Privacy Act give you rights of access, correction, deletion, portability and
-    objection over personal data. You can view, edit and delete local meal and
-    health records in the app. Contact us for requests concerning purchase or
-    support information; we may need transaction details to locate an anonymous
-    purchase record.</p>
-
-    <h3>Changes</h3>
-    <p>If this policy changes, the revised version is posted on this page with a
-    new effective date. A change that would materially reduce the protection
-    described here would be announced in the app's release notes as well.</p>
-
-    <h3>Contact</h3>
-    <p>Questions about this policy: <a href="#support">get in touch</a>.</p>
+<section class="wrap sec" id="how">
+  <p class="eyebrow">Three ways to log</p>
+  <h2>However the food arrives, <span class="light">it is logged in seconds.</span></h2>
+  <p class="sub">A plate, a packet or a craving you already know the name of. Each one takes a few taps, and all three work with the radio off.</p>
+  <div class="ways">
+    <article class="way">
+      <h3>Snap the plate</h3>
+      <p>An AI model on your iPhone names the dish, estimates the portion and returns calories, protein, carbs and fat. Rice, a viand and a drink come back as separate rows.</p>
+      <div class="shot"><img src="/images/caloff/scan.webp" alt="Photo scan result in CalOff with a portion slider" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </article>
+    <article class="way">
+      <h3>Scan the label</h3>
+      <p>Point the camera at a nutrition facts panel and CalOff reads the printed numbers. Or scan the barcode on a packaged food. No lookup server involved.</p>
+      <div class="shot"><img src="/images/caloff/entry-dark.webp" alt="CalOff add food screen with Scan label and nutrition fields" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </article>
+    <article class="way">
+      <h3>Search 9,000 foods</h3>
+      <p>USDA reference data, everyday dishes and nearly 200 Filipino favourites, all on the phone. Type a few letters, tap, set the portion in grams, millilitres or servings.</p>
+      <div class="shot"><img src="/images/caloff/search-dark.webp" alt="CalOff food search showing salmon results while typing" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </article>
   </div>
 </section>
 
-<!-- ===================== TERMS ===================== -->
-<section id="terms" class="wrap doc" hidden>
-  <div class="block" style="margin-top:44px">
-    <p class="eyebrow">Legal</p>
-    <h2>Terms of Use</h2>
-    <p class="stamp">Effective 3 September 2026</p>
-
-    <p>These terms are the agreement between you and the developer of CalOff
-    ("we", "us") covering your use of the CalOff app and its watch and widget
-    companions. Installing or using the app means you accept them.</p>
-
-    <h3>1. Your licence</h3>
-    <p>We grant you a personal, non-exclusive, non-transferable licence to use
-    CalOff on devices you own or control, as permitted by the rules of the App
-    Store or Google Play. You may not resell, rent, sub-licence or redistribute
-    the app, or reverse-engineer, decompile or disassemble it except to the
-    extent that law expressly permits despite this restriction.</p>
-
-    <h3>2. CalOff is not medical advice</h3>
-    <p><strong>This is the important one.</strong> CalOff is a food diary and an
-    estimator. It is not a medical device, and nothing it shows is medical,
-    nutritional or clinical advice, diagnosis or treatment. Calorie and macro
-    targets are computed from a standard published formula (Mifflin&#8209;St
-    Jeor) applied to figures you enter; they are a general estimate and take no
-    account of your medical history, medication, pregnancy, an eating disorder
-    or any condition affecting your metabolism.</p>
-    <p>Talk to a qualified health professional before changing your diet, and do
-    not disregard professional advice because of something this app displayed.
-    If you are being treated for, or are at risk of, a disordered relationship
-    with food, please consult your clinician before using a calorie tracker at
-    all.</p>
-
-    <h3>3. Accuracy</h3>
-    <p>Estimates from a photograph are estimates. The model infers what a dish
-    is and how much of it is on the plate, and it will sometimes be wrong about
-    both, a hidden ingredient, an unusual recipe, an oil you cannot see, a bowl
-    deeper than it looks. The bundled food database is a curated set of common
-    foods, not a licensed nutritional authority. Treat every figure as a
-    starting point you correct, and never as a measurement. We make no warranty
-    that any number the app produces is accurate.</p>
-
-    <h3>4. Your data is yours, and it is your responsibility</h3>
-    <p>CalOff stores your log on your device and nowhere else, which is the
-    point of it. The consequence is that <strong>there is no backup</strong>: if
-    you delete the app, reset it, or lose or wipe the device, the log is gone and
-    we cannot restore it. Use your platform's device backup if you want that
-    history to survive.</p>
-
-    <h3>5. Purchase, and the store's rules</h3>
-    <p>CalOff is sold through the App Store and Google Play, as a monthly or
-    yearly subscription or as a one-time lifetime purchase. Subscriptions renew
-    automatically until you cancel, and you cancel them in your store account
-    rather than in the app; the lifetime purchase does not renew. Price,
-    payment, tax, refunds and regional availability are handled by those stores
-    under their own terms, not by us, a refund request goes to Apple or Google.
-    Your licence is tied to the store account you bought it with and to that
-    store's family-sharing and re-download rules, and "Restore purchase" in the
-    app is how you bring it back onto a new device.</p>
-
-    <h3>6. Acceptable use</h3>
-    <p>Do not use CalOff unlawfully, do not attempt to defeat its licensing, and
-    do not use it to build a competing product from its outputs. That is the
-    whole list.</p>
-
-    <h3>7. Third-party components</h3>
-    <p>CalOff runs an open-source vision model through an open-source inference
-    runtime, and downloads model weights from Hugging Face. Those components
-    carry their own licences, which continue to apply to them. We do not control
-    Hugging Face's service and are not responsible for its availability.</p>
-
-    <h3>8. Warranty and liability</h3>
-    <p>To the fullest extent the law allows, CalOff is provided "as is" and "as
-    available", without warranties of any kind, express or implied, including
-    merchantability, fitness for a particular purpose and non-infringement. To
-    the fullest extent the law allows, we are not liable for indirect,
-    incidental, special or consequential loss, or for lost data, arising from
-    your use of the app; and our total liability is limited to the amount you
-    paid for it.</p>
-    <p>Some jurisdictions do not allow the exclusion of certain warranties or
-    the limitation of certain liabilities. Where that is so, these exclusions
-    apply only as far as that jurisdiction permits, and your statutory consumer
-    rights are unaffected.</p>
-
-    <h3>9. Apple</h3>
-    <p>Where you obtained CalOff from the App Store: this agreement is between
-    you and us, not Apple, and Apple is not responsible for the app or its
-    content. Apple has no obligation to provide support for it. Apple and its
-    subsidiaries are third-party beneficiaries of this agreement and may enforce
-    it against you.</p>
-
-    <h3>10. Changes and termination</h3>
-    <p>We may update these terms; the current version always lives on this page
-    with its effective date, and continuing to use the app after a change means
-    you accept it. Your licence ends if you stop complying with these terms —
-    in which case, delete the app.</p>
-
-    <h3>11. Governing law</h3>
-    <p>These terms are governed by the laws of the Republic of the Philippines,
-    without regard to conflict-of-law rules, and the courts there have
-    jurisdiction, except where the mandatory consumer-protection law of your
-    own country of residence gives you a right to bring proceedings locally, in
-    which case that right stands.</p>
-
-    <h3>12. Contact</h3>
-    <p>Questions about these terms: <a href="#support">get in touch</a>.</p>
+<section class="wrap sec">
+  <div class="split">
+    <div>
+      <p class="eyebrow">Your plan</p>
+      <h2>Your targets, <span class="light">built in a minute.</span></h2>
+      <p class="sub">Answer a few questions about your body and your goal. CalOff sets a daily calorie target, protein, carb and fat targets, and the date you can expect to reach your goal weight.</p>
+      <ul class="checks">
+        <li><b>Lose, maintain or gain muscle.</b> A 500 kcal daily deficit to lose, a 350 kcal surplus to gain.</li>
+        <li><b>Cited maths.</b> Mifflin-St Jeor, FAO/WHO activity factors and NIH calorie floors, each linked in the app.</li>
+        <li><b>An honest goal date.</b> Never faster than 1 kg a week, however big the deficit.</li>
+      </ul>
+      <p style="margin-top:20px"><a class="btn-ghost" href="/caloff/calorie-calculator/">Try the calculator in your browser &rarr;</a></p>
+      <div class="macros" aria-label="Example macro progress for a day">
+        <div class="macro p"><div class="row"><b>Protein</b><span>118 / 154 g</span></div><div class="track"><i style="width:77%"></i></div></div>
+        <div class="macro c"><div class="row"><b>Carbs</b><span>134 / 179 g</span></div><div class="track"><i style="width:75%"></i></div></div>
+        <div class="macro f"><div class="row"><b>Fat</b><span>41 / 68 g</span></div><div class="track"><i style="width:60%"></i></div></div>
+      </div>
+    </div>
+    <div class="art"><div class="phone"><img src="/images/caloff/home.webp" alt="CalOff home screen: 843 kcal left of 1,783, with protein, carbs and fat bars" width="720" height="1564" loading="lazy" decoding="async"></div></div>
   </div>
 </section>
 
-<!-- ===================== SUPPORT ===================== -->
-
-<section id="support" class="wrap doc" hidden>
-  <div class="block" style="margin-top:44px">
-    <p class="eyebrow">Help</p>
-    <h2><span class="solid">Support.</span> <span class="light">One person reads these.</span></h2>
-
-    <div class="contact">
-      <p>Email, with a reply usually within two business days</p>
-      <a class="email" id="contact-email" href="#">support@caloff.app</a>
+<section class="wrap sec" id="offline">
+  <div class="split flip">
+    <div>
+      <p class="eyebrow">Works offline</p>
+      <h2>Airplane mode? <span class="light">Basement gym? Still counting.</span></h2>
+      <p class="sub">Most AI calorie apps send your photo to a server and wait. CalOff does the work on the iPhone, so it is as fast on a flight as it is on Wi-Fi.</p>
+      <ul class="checks">
+        <li><b>Photo scanning</b> runs on the phone's own chip.</li>
+        <li><b>Nutrition labels</b> are read on the device.</li>
+        <li><b>Barcodes</b> are looked up in a catalogue that ships with the app.</li>
+        <li><b>Food search</b> covers 9,000+ foods with no connection.</li>
+        <li><b>History, targets and your watch</b> never wait on a server.</li>
+      </ul>
+      <p class="trust">The internet is used twice: a one-time 728&nbsp;MB scanner download before your first photo scan (Wi-Fi recommended), and Apple's check when you buy or restore CalOff Pro.</p>
     </div>
+    <div class="art"><div class="phone"><img src="/images/caloff/search-dark.webp" alt="CalOff food search working with no signal" width="720" height="1564" loading="lazy" decoding="async"></div></div>
+  </div>
+</section>
 
-    <p style="margin-top:14px">When something has gone wrong, the three things
-    that make it fixable are: your device model, the OS version, and what you
-    were doing at the moment it happened. A screenshot beats a description.</p>
+<section class="wrap sec" id="private">
+  <p class="eyebrow">Private by design</p>
+  <h2>Nothing to sign up for. <span class="light">Nothing to track.</span></h2>
+  <p class="sub">Every App Store listing carries a privacy label written by its developer. Here is what four calorie apps declare about you.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">App</th><th scope="col">Data used to track you</th><th scope="col">Data linked to you</th></tr></thead>
+      <tbody>
+        <tr class="us"><th scope="row">CalOff</th><td class="yes">None</td><td class="yes">None</td></tr>
+        <tr><th scope="row">Cal AI</th><td>Identifiers, usage data</td><td class="muted">None declared</td></tr>
+        <tr><th scope="row">MyFitnessPal</th><td>Identifiers, usage data</td><td>Health &amp; fitness, contact info, user content, identifiers, usage data, diagnostics</td></tr>
+        <tr><th scope="row">Lose It!</th><td>Contact info, identifiers, usage data</td><td>Health &amp; fitness, contact info, user content, identifiers, usage data, sensitive info, diagnostics</td></tr>
+      </tbody>
+      <caption>From each app's privacy label on the US App Store, checked 27 November 2026. CalOff declares one type of data, purchases, not linked to you. <a href="/caloff/compare/">Compare seven calorie apps</a>.</caption>
+    </table>
+  </div>
+</section>
 
-    <h3>The first scan is stuck downloading</h3>
-    <p>The model is a single download of 0.7 to 2&nbsp;GB, depending on your phone. If it stalls, it resumes
-    from where it stopped rather than starting again. Reopen
-    <strong>Settings → Scanner</strong> and start it once more. On a metered connection, wait for
-    Wi-Fi: this is the only download CalOff will ever ask you for.</p>
+<section class="wrap sec" id="filipino">
+  <div class="split">
+    <div>
+      <p class="eyebrow">Made in Manila</p>
+      <h2>It knows sinigang <span class="light">from soup.</span></h2>
+      <p class="sub">CalOff's database carries nearly 200 Filipino dishes at the portions they are actually served: a bowl of sinigang, a silog plate, a stick of isaw, a cup of rice. The scanner model was picked because it can tell sinigang na bangus from "soup".</p>
+      <p><a class="btn-ghost" href="/caloff/filipino-food-calories/">Calories in 139 Filipino dishes &rarr;</a></p>
+    </div>
+    <div class="art">
+      <div class="table-wrap" style="width:100%;max-width:420px">
+        <table>
+          <thead><tr><th scope="col">Dish</th><th scope="col">Serving</th><th scope="col" class="num">kcal</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Chicken adobo</th><td>1 serving, 220 g</td><td class="num">462</td></tr>
+            <tr><th scope="row">Sinigang na baboy</th><td>1 bowl, 350 g</td><td class="num">420</td></tr>
+            <tr><th scope="row">Tapsilog</th><td>1 plate</td><td class="num">735</td></tr>
+            <tr><th scope="row">White rice, cooked</th><td>1 cup</td><td class="num">260</td></tr>
+            <tr><th scope="row">Pandesal</th><td>1 piece</td><td class="num">90</td></tr>
+          </tbody>
+          <caption>CalOff's built-in reference values. Recipes vary; treat them as estimates.</caption>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <h3>The calories look wrong</h3>
-    <p>They probably are, and correcting them is part of the flow rather than a
-    workaround. Tap the dish name on the result screen and type what it actually
-    was; the nutrition follows the corrected name through the local food
-    database. Adjust the portion in grams if the size was misjudged. What you
-    save is what gets logged, and the food is searchable afterwards.</p>
+<section class="wrap sec">
+  <div class="split flip">
+    <div>
+      <p class="eyebrow">Progress</p>
+      <h2>See your week. <span class="light">Stay on target.</span></h2>
+      <p class="sub">Daily totals against your target, 7, 14 and 30-day averages, days on target, and your weight trend. Log your usual breakfast again with one tap.</p>
+      <ul class="checks">
+        <li><b>Apple Watch</b> shows calories left and today's macros on your wrist.</li>
+        <li><b>Widgets</b> on the Home Screen and Lock Screen, and watch complications.</li>
+        <li><b>A streak</b> that counts days you logged anything, not days you were perfect.</li>
+      </ul>
+    </div>
+    <div class="art"><div class="phone"><img src="/images/caloff/week.webp" alt="CalOff history screen: a week of daily calories against target, with averages" width="720" height="1564" loading="lazy" decoding="async"></div></div>
+  </div>
+</section>
 
-    <h3>Scanning is slow, or the app is warm</h3>
-    <p>Inference is real work being done on your phone rather than in a data
-    centre, so it costs battery and takes a few seconds. There is one model and
-    every phone runs the same one, so the answer does not change with the
-    hardware, only how long it takes. If it still struggles, log by search:
-    it is instant, and it is the same database.</p>
+<section class="wrap sec" id="pricing">
+  <p class="eyebrow">Pricing</p>
+  <h2>Try it for a week. <span class="light">Keep it for less than a coffee a month.</span></h2>
+  <p class="sub">CalOff is free to download and runs on CalOff Pro. Start a free trial, and CalOff reminds you two days before it ends.</p>
+  <div class="plans">
+    <div class="plan best">
+      <span class="tag">Best value</span>
+      <h3>Yearly</h3>
+      <div class="price"><span data-php="₱299">$39.99</span> <span class="per">/ year</span></div>
+      <p><b data-php="About ₱5.75 a week">About $0.77 a week</b>. 7-day free trial.</p>
+    </div>
+    <div class="plan">
+      <h3>Monthly</h3>
+      <div class="price"><span data-php="₱59">$9.99</span> <span class="per">/ month</span></div>
+      <p>7-day free trial. Cancel anytime.</p>
+    </div>
+    <div class="plan">
+      <h3>Weekly</h3>
+      <div class="price"><span data-php="₱29">$4.99</span> <span class="per">/ week</span></div>
+      <p>3-day free trial. For a short reset.</p>
+    </div>
+    <div class="plan">
+      <h3>Lifetime</h3>
+      <div class="price"><span data-php="₱999">$129.99</span> <span class="per">once</span></div>
+      <p>Pay once. Never a renewal.</p>
+    </div>
+  </div>
+  <ol class="timeline" aria-label="How the 7-day free trial works">
+    <li><b>Today</b><span>Start the trial. Every feature unlocked. Nothing charged.</span></li>
+    <li><b>Day 5</b><span>CalOff reminds you the trial ends in two days.</span></li>
+    <li><b>Day 7</b><span>Your plan starts, unless you cancelled in Apple Account settings.</span></li>
+  </ol>
+  <p class="cur-note" data-php="Philippine App Store prices shown. US App Store: $4.99 weekly, $9.99 monthly, $39.99 yearly, $129.99 lifetime. Other countries see local prices on the App Store. Trials are for eligible new subscribers, one per Apple Account.">US App Store prices shown. Philippine App Store: ₱29 weekly, ₱59 monthly, ₱299 yearly, ₱999 lifetime. Other countries see local prices on the App Store. Trials are for eligible new subscribers, one per Apple Account.</p>
+  <div class="cta-row" style="margin-top:24px">
+    <a class="store" href="https://apps.apple.com/app/apple-store/id6816835992?pt=129128273&amp;ct=web-caloff-pricing&amp;mt=8" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+      <span><small>Start your free trial on the</small><span>App Store</span></span>
+    </a>
+  </div>
+</section>
 
-    <h3>My watch shows nothing, or yesterday's numbers</h3>
-    <p>The watch app mirrors the phone; it never talks to a server. Open CalOff
-    on the phone once with both devices nearby and unlocked, and the watch and
-    tile catch up. Check that CalOff is installed on the watch, and on Android
-    that the phone and watch are paired in the Wear&nbsp;OS app.</p>
+<section class="wrap sec">
+  <p class="eyebrow">Deliberately absent</p>
+  <h2>No feed. No ads. <span class="light">No cloud fallback.</span></h2>
+  <ul class="checks no" style="max-width:var(--narrow)">
+    <li>No social feed, fasting timer, sleep tracker or workout log. CalOff counts food, fast.</li>
+    <li>No ads and no data sale. The people using it pay for it, so it needs nothing else from them.</li>
+    <li>No "just this once" server call when a scan is hard. That would end the one thing that makes CalOff different.</li>
+  </ul>
+</section>
 
-    <h3>I switched phones and my log is gone</h3>
-    <p>The log lives only on the device, which is what keeps it private and also
-    means there is no cloud copy to restore. A full device backup (iCloud
-    device backup, or Google's backup on Android) carries it across; a fresh
-    install does not. We cannot recover a log that was not backed up.</p>
+<section class="wrap sec">
+  <p class="eyebrow">Who makes it</p>
+  <div class="maker">
+    <img src="/images/dj-144.webp" alt="Dustine Jao" width="64" height="64" loading="lazy" decoding="async">
+    <div>
+      <h2 style="font-size:28px;letter-spacing:-.8px">One developer, in Manila.</h2>
+      <p>CalOff is made by <a href="/">Dustine Jao</a>, who also makes <a href="https://www.getcastcut.com/">CastCut</a>, <a href="/liriko/">Liriko</a>, <a href="/barya/">Barya</a> and <a href="/singil/">Singil</a>. Every one of them does its work on your device first.</p>
+      <p>Found a dish CalOff gets wrong? <a href="/caloff/support/">Tell me</a>. That is how the next update gets it right.</p>
+    </div>
+  </div>
+</section>
 
-    <h3>How do I delete everything?</h3>
-    <p><strong>Settings → Reset</strong> clears the log, profile and weight
-    history immediately. Deleting the app removes everything else with it. See
-    the <a href="#privacy">Privacy Policy</a> for what "everything" covers.</p>
+<section class="wrap sec" id="faq">
+  <p class="eyebrow">Questions</p>
+  <h2>Answers, <span class="light">up front.</span></h2>
+  <div class="faq">
+    <details open><summary>What is CalOff?</summary><div><p>CalOff is an AI calorie counter and macro tracker for iPhone that works offline. Snap a photo of a meal, scan a nutrition label or barcode, or search 9,000+ foods, and CalOff counts the calories, protein, carbs and fat on the phone. There is no account, and meal photos never leave the iPhone. It is made by Dustine Jao in Manila, Philippines.</p></div></details>
+    <details><summary>Does CalOff work offline, without internet?</summary><div><p>Yes. Photo scanning, nutrition label reading, barcode lookup and food search all run on the iPhone, so CalOff works in airplane mode. It needs the internet twice: once to download the scanner model (about 728&nbsp;MB) before your first photo scan, and when you buy or restore CalOff Pro. <a href="/caloff/offline-calorie-counter/">More on offline use</a>.</p></div></details>
+    <details><summary>How much does CalOff cost?</summary><div><p>CalOff is free to download and needs CalOff Pro to use. In the US: $4.99 a week, $9.99 a month, $39.99 a year, or $129.99 once for lifetime access. In the Philippines: ₱29 a week, ₱59 a month, ₱299 a year, or ₱999 once. The yearly and monthly plans start with a 7-day free trial; the weekly plan with a 3-day trial.</p></div></details>
+    <details><summary>Is there a free trial?</summary><div><p>Yes. The yearly and monthly plans include a 7-day free trial and the weekly plan a 3-day trial, for eligible new subscribers. CalOff sends a reminder two days before the trial ends. Cancel in your Apple Account settings at least 24 hours before the trial ends and you are not charged.</p></div></details>
+    <details><summary>Do I need an account to use CalOff?</summary><div><p>No. There is no sign-up, email or login. Your food log, photos and health profile are stored on your iPhone.</p></div></details>
+    <details><summary>Are my meal photos uploaded?</summary><div><p>No. Photos are analysed by an AI model running on the iPhone and are never uploaded. CalOff's App Store privacy label lists one data type, Purchases, and it is not linked to you. Nothing is used to track you.</p></div></details>
+    <details><summary>How accurate is CalOff's photo calorie count?</summary><div><p>A photo gives an estimate, not a measurement: hidden oil, a deep bowl or an unusual recipe can throw it off. CalOff shows the estimate for review before anything is logged. You can rename the dish, adjust the portion, and add sauce, oil or rice as separate items, and CalOff remembers your corrections. For packaged food, scanning the nutrition label reads the printed numbers instead. <a href="/caloff/how-to-count-calories-from-a-photo/">How to get better photo estimates</a>.</p></div></details>
+    <details><summary>Does CalOff know Filipino food?</summary><div><p>Yes. The built-in database includes nearly 200 Filipino dishes, from adobo, sinigang and kare-kare to silog plates, kakanin and street food, with everyday serving sizes. The on-device model was chosen partly because it names dishes like sinigang na bangus instead of calling them soup. <a href="/caloff/filipino-food-calories/">See the calories in 139 Filipino dishes</a>.</p></div></details>
+    <details><summary>Can CalOff scan barcodes and nutrition labels?</summary><div><p>Yes, both offline. Label scanning reads the calories and macros printed on a nutrition facts panel. Barcode lookup checks a built-in catalogue of packaged foods from Open Food Facts; if a product is not in it, scan its label instead.</p></div></details>
+    <details><summary>Does CalOff work on Apple Watch?</summary><div><p>Yes. The Apple Watch app shows calories left and today's macros, and CalOff has watch complications and iPhone home-screen and Lock Screen widgets.</p></div></details>
+    <details><summary>Is CalOff available on Android?</summary><div><p>Not yet. CalOff is on the App Store for iPhone with iOS 16.4 or later.</p></div></details>
+    <details><summary>How does CalOff calculate my daily calorie target?</summary><div><p>CalOff uses the Mifflin-St Jeor equation for resting energy, multiplies it by an activity factor from 1.2 to 1.725, then subtracts 500 kcal a day to lose weight or adds 350 to gain. Targets never go below 1,200 kcal for women or 1,500 for men, and the goal date assumes about 7,700 kcal per kilogram, capped at 1 kg a week. The app cites each source. The same maths runs in the free <a href="/caloff/calorie-calculator/">calorie calculator</a>.</p></div></details>
+    <details><summary>How is CalOff different from Cal AI?</summary><div><p>Both count calories from a photo. CalOff runs the recognition on the iPhone, works in airplane mode and needs no account. Cal AI's App Store privacy label lists identifiers and usage data that may be used to track you; CalOff's lists only purchases, not linked to you. <a href="/caloff/cal-ai-alternative/">Full comparison</a>.</p></div></details>
+    <details><summary>Is CalOff medical advice?</summary><div><p>No. CalOff is a food diary and an estimator, not a medical device. Talk to a health professional before changing your diet, especially if you are pregnant, take medication or have a history of disordered eating.</p></div></details>
+  </div>
+</section>
 
-    <h3>Refunds</h3>
-    <p>Purchases are handled by the stores, so refunds go through them:
-    <a href="https://reportaproblem.apple.com" rel="noopener">reportaproblem.apple.com</a>
-    for the App Store, or Google Play's order history on Android. We cannot
-    issue one directly, but tell us what went wrong. That is how it gets
-    fixed for the next person.</p>
+<section class="wrap">
+  <div class="final">
+    <h2>Your next meal, <span class="light">counted in seconds.</span></h2>
+    <p class="sub">7-day free trial. No account. Works in airplane mode.</p>
+    <div class="cta-row">
+      <a class="store" href="https://apps.apple.com/app/apple-store/id6816835992?pt=129128273&amp;ct=web-caloff-final&amp;mt=8" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+        <span><small>Download on the</small><span>App Store</span></span>
+      </a>
+    </div>
   </div>
 </section>
 
 </main>
 
+<div class="dock" aria-hidden="false">
+  <img src="/images/apps/caloff.webp" alt="" width="40" height="40">
+  <p><b>CalOff</b>7-day free trial &middot; No account</p>
+  <a href="https://apps.apple.com/app/apple-store/id6816835992?pt=129128273&amp;ct=web-caloff-dock&amp;mt=8" rel="noopener">Get</a>
+</div>
+
 <footer>
-  <div class="foot">
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#privacy">Privacy Policy</a>
-      <a href="#terms">Terms of Use</a>
-      <a href="#support">Support</a>
-      <a href="/apps/">&larr; dustinejao.com</a>
-    </nav>
-    <small>© 2026 CalOff. Made offline.</small>
+  <div class="wrap">
+    <div class="foot">
+      <div class="about">
+        <a class="mark" href="/caloff/"><span class="solid">Cal</span><span class="light">Off</span><span class="solid">.</span></a>
+        <p>The AI calorie counter that works offline. For iPhone.</p>
+      </div>
+      <nav aria-label="Guides">
+        <h2>Guides</h2>
+        <ul>
+          <li><a href="/caloff/calorie-calculator/">Calorie calculator</a></li>
+          <li><a href="/caloff/filipino-food-calories/">Filipino food calories</a></li>
+          <li><a href="/caloff/how-to-count-calories-from-a-photo/">Count calories from a photo</a></li>
+          <li><a href="/caloff/offline-calorie-counter/">Offline calorie counter</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Compare">
+        <h2>Compare</h2>
+        <ul>
+          <li><a href="/caloff/compare/">Calorie apps compared</a></li>
+          <li><a href="/caloff/cal-ai-alternative/">Cal AI alternative</a></li>
+          <li><a href="/caloff/myfitnesspal-alternative/">MyFitnessPal alternative</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="CalOff">
+        <h2>CalOff</h2>
+        <ul>
+          <li><a href="/caloff/support/">Support</a></li>
+          <li><a href="/caloff/privacy/">Privacy Policy</a></li>
+          <li><a href="/caloff/terms/">Terms of Use</a></li>
+          <li><a href="/apps/">More apps by Dustine Jao</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="legal">&copy; 2026 Dustine Jao. CalOff is not affiliated with Cal AI, MyFitnessPal, Lose It! or Apple. App Store is a service mark of Apple Inc.</p>
   </div>
 </footer>
 
-<script>
-/* ---------------------------------------------------------------------------
-   Store links.
-
-   Fill these in once the listings exist. Until then each button renders as a
-   plain "coming soon" chip rather than a link to a 404. A dead store link on
-   a submission page is worse than an honest one.
---------------------------------------------------------------------------- */
-const STORE = {
-  ios:     '',  // e.g. 'https://apps.apple.com/app/caloff/id0000000000'
-  android: '',  // e.g. 'https://play.google.com/store/apps/details?id=com.caloff.caloff'
-};
-
-/* The address printed on the support page and used for the mailto link. */
-const CONTACT_EMAIL = 'dustinejao@gmail.com';
-
-(function () {
-  'use strict';
-
-  // --- Store buttons ------------------------------------------------------
-  document.querySelectorAll('.btn[data-store]').forEach(function (btn) {
-    const href = STORE[btn.dataset.store];
-    if (href) {
-      btn.href = href;
-      btn.rel = 'noopener';
-    } else {
-      btn.removeAttribute('href');
-      btn.setAttribute('aria-disabled', 'true');
-      btn.querySelector('small').textContent = 'Coming soon to the';
-    }
-  });
-
-  // --- Contact ------------------------------------------------------------
-  const email = document.getElementById('contact-email');
-  email.textContent = CONTACT_EMAIL;
-  email.href = 'mailto:' + CONTACT_EMAIL + '?subject=' +
-    encodeURIComponent('CalOff support');
-
-  // --- Routing ------------------------------------------------------------
-  // Every section is in the document at all times, so a store reviewer or a
-  // crawler fetching /#privacy gets the policy text in the response body
-  // whether or not it runs this script.
-  const sections = Array.prototype.slice.call(
-    document.querySelectorAll('main > section'));
-  const navLinks = Array.prototype.slice.call(
-    document.querySelectorAll('.bar nav a, .foot nav a'));
-
-  function route(replace) {
-    const id = (location.hash || '#home').slice(1);
-    const target = document.getElementById(id) ? id : 'home';
-
-    sections.forEach(function (s) { s.hidden = s.id !== target; });
-    navLinks.forEach(function (a) {
-      if (a.getAttribute('href') === '#' + target) {
-        a.setAttribute('aria-current', 'page');
-      } else {
-        a.removeAttribute('aria-current');
-      }
-    });
-
-    const heading = document.querySelector('#' + target + ' h1, #' + target + ' h2');
-    document.title = target === 'home' || !heading
-      ? 'CalOff'
-      : heading.textContent.trim().replace(/\s+/g, ' ') + ': CalOff';
-
-    if (!replace) window.scrollTo({ top: 0, behavior: 'instant' });
-  }
-
-  window.addEventListener('hashchange', function () { route(false); });
-  route(true);
-
-  // --- Bar hairline -------------------------------------------------------
-  // The rule under the bar appears only once content has scrolled beneath it,
-  // so the page opens without a line drawn across the top of nothing.
-  const bar = document.getElementById('bar');
-  const onScroll = function () {
-    bar.classList.toggle('is-stuck', window.scrollY > 4);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-})();
-</script>
-<!-- ARTIFACT:END -->
+<script src="/caloff/caloff.js" defer></script>
 <script src="/source.js" defer></script>
 </body>
 </html>

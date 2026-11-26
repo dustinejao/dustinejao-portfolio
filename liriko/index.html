@@ -28,6 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/liriko/liriko.css">
+<link rel="stylesheet" href="/liriko/guide.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -45,12 +46,12 @@
         "https://apps.apple.com/ph/app/liriko-lyrics-rhyme-writer/id6790907833",
         "https://play.google.com/store/apps/details?id=com.liriko.app"
       ],
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "PHP",
-        "url": "https://apps.apple.com/ph/app/liriko-lyrics-rhyme-writer/id6790907833"
-      },
+      "offers": [
+        { "@type": "Offer", "name": "Liriko (free)", "price": "0", "priceCurrency": "PHP", "url": "https://www.dustinejao.com/liriko/" },
+        { "@type": "Offer", "name": "Liriko Pro on iPhone and iPad, one-time", "price": "199", "priceCurrency": "PHP", "url": "https://apps.apple.com/ph/app/liriko-lyrics-rhyme-writer/id6790907833" },
+        { "@type": "Offer", "name": "Liriko Pro on iPhone and iPad, one-time (US)", "price": "2.99", "priceCurrency": "USD", "url": "https://apps.apple.com/us/app/liriko-lyrics-rhyme-writer/id6790907833" },
+        { "@type": "Offer", "name": "Liriko Pro on Android, one-time", "price": "99", "priceCurrency": "PHP", "url": "https://play.google.com/store/apps/details?id=com.liriko.app" }
+      ],
       "author": {
         "@type": "Person",
         "@id": "https://www.dustinejao.com/#person",
@@ -137,7 +138,7 @@
           "name": "Is Liriko free?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Liriko is free to start. The free version keeps ten songs and shows the strongest rhyme for each word. Liriko Pro is one payment, ₱199 on iPhone or ₱99 on Android, and never a subscription."
+            "text": "Liriko is free to start. The free version keeps ten songs and shows the strongest rhyme for each word. Liriko Pro is one payment: ₱199 on iPhone and iPad in the Philippines, $2.99 in the US, or ₱99 on Android. Never a subscription."
           }
         },
         {
@@ -155,6 +156,14 @@
             "@type": "Answer",
             "text": "iPhone and iPad with iOS 15.1 or later, from the App Store, and Android phones from Google Play."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Where can I find Tagalog rhymes online?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Liriko's free Tagalog rhyme finder at dustinejao.com/liriko/tagalog-rhymes/ lists Filipino words that rhyme with any word you type, two-syllable rhymes first. The same dictionary runs offline inside the Liriko app."
+          }
         }
       ]
     }
@@ -171,11 +180,11 @@
     <nav aria-label="Primary">
       <a href="/apps/" class="text-link home">&larr; dustinejao.com</a>
       <a href="/liriko/support/" class="text-link">Support</a>
-      <a href="https://apps.apple.com/ph/app/liriko-lyrics-rhyme-writer/id6790907833" rel="noopener" class="btn-appstore" aria-label="Download Liriko on the App Store">
+      <a href="https://apps.apple.com/app/apple-store/id6790907833?pt=129128273&amp;ct=web-liriko-bar&amp;mt=8" rel="noopener" class="btn-appstore" aria-label="Download Liriko on the App Store">
         <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor" aria-hidden="true"><path d="M11.59 8.5c-.02-2.16 1.76-3.2 1.84-3.25-1-1.47-2.57-1.67-3.13-1.69-1.32-.13-2.59.78-3.26.78-.69 0-1.72-.77-2.84-.74-1.45.02-2.81.85-3.56 2.15-1.53 2.65-.39 6.54 1.08 8.68.73 1.05 1.59 2.22 2.71 2.18 1.1-.05 1.51-.71 2.83-.71 1.31 0 1.69.71 2.83.69 1.17-.02 1.91-1.06 2.62-2.11.83-1.21 1.17-2.39 1.19-2.45-.03-.01-2.28-.87-2.31-3.44ZM9.5 1.96c.6-.74 1-1.76.89-2.78-.86.04-1.92.58-2.55 1.31-.56.65-1.05 1.7-.92 2.7.97.07 1.95-.49 2.58-1.23Z"/></svg>
         <span>App Store</span>
       </a>
-      <a href="https://play.google.com/store/apps/details?id=com.liriko.app" rel="noopener" class="btn-appstore" aria-label="Get Liriko on Google Play">
+      <a href="https://play.google.com/store/apps/details?id=com.liriko.app&amp;referrer=utm_source%3Ddustinejao.com%26utm_medium%3Dweb%26utm_campaign%3Dweb-liriko-bar" rel="noopener" class="btn-appstore" aria-label="Get Liriko on Google Play">
         <svg width="14" height="15" viewBox="0 0 14 15" fill="currentColor" aria-hidden="true"><path d="M1.2.3 8.3 7.5 1.2 14.7A1.3 1.3 0 0 1 .5 13.5v-12A1.3 1.3 0 0 1 1.2.3Zm8.2 6.1 1.9-1.9 2 1.2c.7.4.7 1.2 0 1.6l-2 1.2-1.9-1.9Zm-.6.6 1.9 1.9L3 13.4l5.8-6.4Zm0-1L3 1.6l7.7 4.5-1.9 1.9Z"/></svg>
         <span>Google Play</span>
       </a>
@@ -200,11 +209,11 @@
         </p>
 
         <div class="actions">
-          <a href="https://apps.apple.com/ph/app/liriko-lyrics-rhyme-writer/id6790907833" rel="noopener" class="btn-primary" aria-label="Download Liriko on the App Store">
+          <a href="https://apps.apple.com/app/apple-store/id6790907833?pt=129128273&amp;ct=web-liriko-hero&amp;mt=8" rel="noopener" class="btn-primary" aria-label="Download Liriko on the App Store">
             <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor" aria-hidden="true"><path d="M11.59 8.5c-.02-2.16 1.76-3.2 1.84-3.25-1-1.47-2.57-1.67-3.13-1.69-1.32-.13-2.59.78-3.26.78-.69 0-1.72-.77-2.84-.74-1.45.02-2.81.85-3.56 2.15-1.53 2.65-.39 6.54 1.08 8.68.73 1.05 1.59 2.22 2.71 2.18 1.1-.05 1.51-.71 2.83-.71 1.31 0 1.69.71 2.83.69 1.17-.02 1.91-1.06 2.62-2.11.83-1.21 1.17-2.39 1.19-2.45-.03-.01-2.28-.87-2.31-3.44ZM9.5 1.96c.6-.74 1-1.76.89-2.78-.86.04-1.92.58-2.55 1.31-.56.65-1.05 1.7-.92 2.7.97.07 1.95-.49 2.58-1.23Z"/></svg>
             <span>Download on the App Store</span>
           </a>
-          <a href="https://play.google.com/store/apps/details?id=com.liriko.app" rel="noopener" class="btn-primary" aria-label="Get Liriko on Google Play">
+          <a href="https://play.google.com/store/apps/details?id=com.liriko.app&amp;referrer=utm_source%3Ddustinejao.com%26utm_medium%3Dweb%26utm_campaign%3Dweb-liriko-hero" rel="noopener" class="btn-primary" aria-label="Get Liriko on Google Play">
             <svg width="14" height="15" viewBox="0 0 14 15" fill="currentColor" aria-hidden="true"><path d="M1.2.3 8.3 7.5 1.2 14.7A1.3 1.3 0 0 1 .5 13.5v-12A1.3 1.3 0 0 1 1.2.3Zm8.2 6.1 1.9-1.9 2 1.2c.7.4.7 1.2 0 1.6l-2 1.2-1.9-1.9Zm-.6.6 1.9 1.9L3 13.4l5.8-6.4Zm0-1L3 1.6l7.7 4.5-1.9 1.9Z"/></svg>
             <span>Get it on Google Play</span>
           </a>
@@ -212,7 +221,11 @@
         </div>
 
         <p class="fineprint">iPhone, iPad &amp; Android &middot; offline &middot; Pro once, never a subscription:
-          &#8369;199 on iPhone, &#8369;99 on Android</p>
+          &#8369;199 on iPhone ($2.99 in the US), &#8369;99 on Android</p>
+        <div class="qr">
+          <img src="/images/liriko/qr.svg" alt="QR code that opens Liriko in your phone's app store" width="84" height="84">
+          <p><b>On a computer?</b> Scan with your phone's camera. It opens the App Store on iPhone and Google Play on Android.</p>
+        </div>
       </div>
 
       <figure class="card lyric">
@@ -270,12 +283,29 @@
     </dl>
   </section>
 
+
+  <!-- TAGALOG RHYMES -->
+  <section class="container" style="margin-top:5rem" aria-labelledby="tl-title">
+    <h2 class="section-title" id="tl-title">Tagalog rhymes, free on the web</h2>
+    <div class="g-prose">
+      <p class="pretty">The Filipino dictionary inside Liriko also powers a free rhyme finder. Type a word and get its rhymes, two-syllable matches first: the rhymes English rhyme sites cannot find.</p>
+      <form class="finder" action="/liriko/tagalog-rhymes/" method="get" role="search" style="margin-top:1rem">
+        <div style="display:flex;gap:.6rem"><label class="sr-only" for="hq">Word</label><input id="hq" name="q" type="search" lang="tl" placeholder="e.g. puso" autocomplete="off" autocapitalize="off" spellcheck="false"><button type="submit">Find rhymes</button></div>
+      </form>
+      <ul class="chips" style="margin-top:1rem">
+        <li><a href="/liriko/rhymes/puso/" lang="tl">puso</a></li><li><a href="/liriko/rhymes/mahal/" lang="tl">mahal</a></li><li><a href="/liriko/rhymes/ikaw/" lang="tl">ikaw</a></li><li><a href="/liriko/rhymes/buhay/" lang="tl">buhay</a></li><li><a href="/liriko/rhymes/tadhana/" lang="tl">tadhana</a></li><li><a href="/liriko/rhymes/alaala/" lang="tl">alaala</a></li><li><a href="/liriko/rhymes/pangarap/" lang="tl">pangarap</a></li><li><a href="/liriko/rhymes/pag-ibig/" lang="tl">pag-ibig</a></li><li><a href="/liriko/rhymes/kilig/" lang="tl">kilig</a></li>
+      </ul>
+      <p style="margin-top:.5rem"><a href="/liriko/how-to-write-a-song-in-tagalog/">How to write a song in Tagalog &rarr;</a></p>
+    </div>
+  </section>
+
   <!-- PRO -->
   <section class="pro container">
     <div class="card">
       <div class="row">
         <div>
           <h2>Liriko Pro, once. &#8369;199 on iPhone, &#8369;99 on Android.</h2>
+          <p class="muted" style="margin:.25rem 0 0">$2.99 on the US App Store. Other countries see local prices.</p>
           <p class="pretty">
             Every rhyme in every tier, unlimited songs, tap tempo, the full key and
             scale browser, beats, and the writing partner. One payment. No
@@ -284,11 +314,11 @@
           <p class="free">Free keeps ten songs and your strongest rhyme for each word. The purchase lives with the store you bought it from, so it does not carry across from one to the other.</p>
         </div>
         <div class="get">
-          <a href="https://apps.apple.com/ph/app/liriko-lyrics-rhyme-writer/id6790907833" rel="noopener" class="btn-primary" aria-label="Download Liriko on the App Store">
+          <a href="https://apps.apple.com/app/apple-store/id6790907833?pt=129128273&amp;ct=web-liriko-pro&amp;mt=8" rel="noopener" class="btn-primary" aria-label="Download Liriko on the App Store">
             <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor" aria-hidden="true"><path d="M11.59 8.5c-.02-2.16 1.76-3.2 1.84-3.25-1-1.47-2.57-1.67-3.13-1.69-1.32-.13-2.59.78-3.26.78-.69 0-1.72-.77-2.84-.74-1.45.02-2.81.85-3.56 2.15-1.53 2.65-.39 6.54 1.08 8.68.73 1.05 1.59 2.22 2.71 2.18 1.1-.05 1.51-.71 2.83-.71 1.31 0 1.69.71 2.83.69 1.17-.02 1.91-1.06 2.62-2.11.83-1.21 1.17-2.39 1.19-2.45-.03-.01-2.28-.87-2.31-3.44ZM9.5 1.96c.6-.74 1-1.76.89-2.78-.86.04-1.92.58-2.55 1.31-.56.65-1.05 1.7-.92 2.7.97.07 1.95-.49 2.58-1.23Z"/></svg>
             <span>App Store</span>
           </a>
-          <a href="https://play.google.com/store/apps/details?id=com.liriko.app" rel="noopener" class="btn-primary" aria-label="Get Liriko on Google Play">
+          <a href="https://play.google.com/store/apps/details?id=com.liriko.app&amp;referrer=utm_source%3Ddustinejao.com%26utm_medium%3Dweb%26utm_campaign%3Dweb-liriko-pro" rel="noopener" class="btn-primary" aria-label="Get Liriko on Google Play">
             <svg width="14" height="15" viewBox="0 0 14 15" fill="currentColor" aria-hidden="true"><path d="M1.2.3 8.3 7.5 1.2 14.7A1.3 1.3 0 0 1 .5 13.5v-12A1.3 1.3 0 0 1 1.2.3Zm8.2 6.1 1.9-1.9 2 1.2c.7.4.7 1.2 0 1.6l-2 1.2-1.9-1.9Zm-.6.6 1.9 1.9L3 13.4l5.8-6.4Zm0-1L3 1.6l7.7 4.5-1.9 1.9Z"/></svg>
             <span>Google Play</span>
           </a>
@@ -315,7 +345,7 @@
       </details>
       <details>
         <summary><span class="q">Is Liriko free?</span><span class="plus" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1.5v9M1.5 6h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
-        <div class="answer">Liriko is free to start. The free version keeps ten songs and shows the strongest rhyme for each word. Liriko Pro is one payment, &#8369;199 on iPhone or &#8369;99 on Android, and never a subscription.</div>
+        <div class="answer">Liriko is free to start. The free version keeps ten songs and shows the strongest rhyme for each word. Liriko Pro is one payment: &#8369;199 on iPhone and iPad in the Philippines, $2.99 in the US, or &#8369;99 on Android. Never a subscription.</div>
       </details>
       <details>
         <summary><span class="q">Where are my lyrics saved?</span><span class="plus" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1.5v9M1.5 6h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
@@ -324,6 +354,10 @@
       <details>
         <summary><span class="q">Which devices does Liriko run on?</span><span class="plus" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1.5v9M1.5 6h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
         <div class="answer">iPhone and iPad with iOS 15.1 or later, from the App Store, and Android phones from Google Play.</div>
+      </details>
+      <details>
+        <summary><span class="q">Where can I find Tagalog rhymes online?</span><span class="plus" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1.5v9M1.5 6h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
+        <div class="answer">Liriko's free <a href="/liriko/tagalog-rhymes/" style="text-decoration:underline">Tagalog rhyme finder</a> lists Filipino words that rhyme with any word you type, two-syllable rhymes first. The same dictionary runs offline inside the Liriko app.</div>
       </details>
     </div>
     <p class="faq-more">More on the <a href="/liriko/support/">Liriko support page</a>.</p>
@@ -344,16 +378,31 @@
   <div class="inner">
     <div>
       <a href="/liriko/" aria-label="Liriko, home"><span class="wordmark">Liriko</span></a>
-      <p class="meta">&copy; 2026 Dustine Jao · v1.1.0</p>
+      <p class="meta">&copy; 2026 Dustine Jao</p>
     </div>
     <nav aria-label="Footer">
       <a href="/liriko/">Home</a>
+      <a href="/liriko/tagalog-rhymes/">Tagalog rhyme finder</a>
+      <a href="/liriko/how-to-write-a-song-in-tagalog/">Write a song in Tagalog</a>
       <a href="/liriko/support/">Support</a>
       <a href="/liriko/privacy/">Privacy</a>
       <a href="/apps/">&larr; dustinejao.com</a>
     </nav>
   </div>
 </footer>
+<div class="dock" data-ios="https://apps.apple.com/app/apple-store/id6790907833?pt=129128273&amp;ct=web-liriko-dock&amp;mt=8" data-android="https://play.google.com/store/apps/details?id=com.liriko.app&amp;referrer=utm_source%3Ddustinejao.com%26utm_medium%3Dweb%26utm_campaign%3Dweb-liriko-dock">
+  <img src="/images/apps/liriko.webp" alt="" width="40" height="40">
+  <p><b>Liriko</b>Rhymes as you write &middot; Free</p>
+  <a class="get" href="https://apps.apple.com/app/apple-store/id6790907833?pt=129128273&amp;ct=web-liriko-dock&amp;mt=8" rel="noopener">Get</a>
+</div>
+<script>
+(function () {
+  var d = document.querySelector('.dock'); if (!d) return;
+  if (/Android/i.test(navigator.userAgent)) d.querySelector('a.get').href = d.getAttribute('data-android');
+  function on() { d.classList.toggle('show', window.scrollY > 480 && (window.innerHeight + window.scrollY) < document.body.scrollHeight - 220); }
+  window.addEventListener('scroll', on, { passive: true }); on();
+})();
+</script>
 <script src="/source.js" defer></script>
 </body>
 </html>

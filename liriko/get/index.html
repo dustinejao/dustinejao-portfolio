@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get Liriko</title>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.dustinejao.com/liriko/">
+<style>body{margin:0;background:#000;color:#f2f4f7;font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;display:grid;place-items:center;min-height:100vh;text-align:center;padding:24px}a{color:#5cc8f2}</style>
+<script>
+/* The QR code on the Liriko page points here, so one code works on any phone:
+   iPhone and iPad go to the App Store, Android to Google Play, anything else
+   back to the Liriko page. The campaign tag says which code was scanned. */
+(function () {
+  var c = (new URLSearchParams(location.search).get('c') || 'get').replace(/[^a-z0-9-]/gi, '').slice(0, 20);
+  var ua = navigator.userAgent;
+  var ios = 'https://apps.apple.com/app/apple-store/id6790907833?pt=129128273&ct=web-liriko-' + c + '&mt=8';
+  var android = 'https://play.google.com/store/apps/details?id=com.liriko.app&referrer=' + encodeURIComponent('utm_source=dustinejao.com&utm_medium=qr&utm_campaign=liriko-' + c);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
+  location.replace(/Android/i.test(ua) ? android : isIOS ? ios : '/liriko/');
+})();
+</script>
+</head>
+<body>
+<p>Opening your app store…<br><a href="https://apps.apple.com/app/apple-store/id6790907833?pt=129128273&amp;ct=web-liriko-get&amp;mt=8">App Store</a> &middot; <a href="https://play.google.com/store/apps/details?id=com.liriko.app">Google Play</a></p>
+</body>
+</html>

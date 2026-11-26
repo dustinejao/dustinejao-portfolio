@@ -1,0 +1,86 @@
+/* Barya guides and tools. Same rules as barya.css: hairlines only, no fills,
+   no radii, the serif for every amount. */
+
+:root { --g-body: #2b2b2b; }
+@media (prefers-color-scheme: dark) { :root { --g-body: #c9c9c9; } }
+
+.g { padding: 1.5rem 1.25rem 2rem; }
+.crumbs { margin: 0 0 1.25rem; font-size: .8125rem; color: var(--muted); }
+.crumbs a { color: var(--muted); }
+.crumbs a:hover { color: var(--ink); }
+.g h1 { margin: 0; font-family: var(--serif); font-weight: 600; font-size: clamp(2.3rem, 6vw, 3.6rem); line-height: 1.04; letter-spacing: -.02em; text-wrap: balance; }
+.byline { margin: .9rem 0 0; font-size: .8125rem; color: var(--muted); }
+.byline a { color: inherit; }
+.g-prose { max-width: 40rem; }
+.g-prose h2 { margin: 3rem 0 .75rem; font-family: var(--serif); font-weight: 600; font-size: clamp(1.6rem, 3.6vw, 2rem); line-height: 1.15; letter-spacing: -.01em; }
+.g-prose h3 { margin: 1.75rem 0 .4rem; font-size: 1.0625rem; }
+.g-prose p, .g-prose li { color: var(--g-body); font-size: 1.0625rem; line-height: 1.6; }
+.g-prose p { margin: 0 0 1rem; }
+.g-prose ul, .g-prose ol { margin: 0 0 1rem; padding-left: 1.2rem; }
+.g-prose li { margin-bottom: .4rem; }
+.g-prose a { color: var(--ink); text-underline-offset: 3px; }
+.g-prose strong { color: var(--ink); }
+.answer { margin: 1.5rem 0; padding: 1.1rem 0; border-top: var(--rule) solid var(--ink); border-bottom: var(--rule) solid var(--hairline); }
+.answer p { margin: 0; font-size: 1.1875rem; color: var(--ink); line-height: 1.5; }
+.answer p + p { margin-top: .6rem; font-size: 1rem; color: var(--g-body); }
+
+.g-table-wrap { overflow-x: auto; margin: 1rem 0 .5rem; border-top: var(--rule) solid var(--ink); }
+.g-table { width: 100%; border-collapse: collapse; font-size: .9375rem; }
+.g-table th, .g-table td { text-align: left; vertical-align: top; padding: .7rem .6rem .7rem 0; border-bottom: var(--rule) solid var(--hairline); }
+.g-table thead th { font-size: .75rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.g-table tbody th { font-weight: 600; white-space: nowrap; }
+.g-table td { color: var(--g-body); }
+.g-table tr.us th, .g-table tr.us td { color: var(--ink); font-weight: 600; }
+.g-table .money { font-family: var(--serif); font-size: 1.05rem; white-space: nowrap; }
+.src { font-size: .8125rem; color: var(--muted); margin: .5rem 0 0; }
+
+/* Calculator. */
+.calc { display: grid; gap: 0; margin: 1.5rem 0 0; border-top: var(--rule) solid var(--ink); }
+@media (min-width: 860px) { .calc { grid-template-columns: 1fr 1fr; } .calc .out { border-left: var(--rule) solid var(--hairline); padding-left: 2rem; } }
+.calc form { padding: 1.25rem 0; }
+.calc .out { padding: 1.25rem 0; }
+.f { display: grid; gap: .35rem; margin-bottom: 1.1rem; }
+.f label { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.f .peso { display: flex; align-items: baseline; gap: .3rem; border-bottom: var(--rule) solid var(--ink); }
+.f .peso span { font-family: var(--serif); font-size: 1.4rem; color: var(--muted); }
+.f input { width: 100%; font-family: var(--serif); font-size: 2rem; border: 0; background: transparent; color: var(--ink); padding: .2rem 0; outline: none; font-variant-numeric: tabular-nums; }
+.f small { color: var(--muted); font-size: .8125rem; }
+.out .big { font-family: var(--serif); font-size: clamp(2.6rem, 7vw, 3.6rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.out .big .sym { font-size: .45em; color: var(--muted); }
+.out .cap { margin: .35rem 0 1.25rem; font-size: .875rem; color: var(--muted); }
+.split { list-style: none; margin: 0; padding: 0; border-top: var(--rule) solid var(--hairline); }
+.split li { display: grid; grid-template-columns: 1fr auto; gap: .25rem 1rem; padding: .8rem 0; border-bottom: var(--rule) solid var(--hairline); }
+.split li b { font-weight: 600; }
+.split li span.v { font-family: var(--serif); font-size: 1.35rem; text-align: right; font-variant-numeric: tabular-nums; }
+.split li small { grid-column: 1 / -1; color: var(--muted); font-size: .8125rem; }
+.bar3 { display: flex; height: 8px; margin: 1rem 0 0; gap: 3px; }
+.bar3 i { display: block; background: var(--ink); }
+.bar3 i:nth-child(2) { background: #8a8a8a; }
+.bar3 i:nth-child(3) { background: var(--track); }
+
+.inline-cta { margin: 2.5rem 0; padding: 1.25rem 0; border-top: var(--rule) solid var(--ink); border-bottom: var(--rule) solid var(--hairline); display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: center; }
+.inline-cta div { flex: 1; min-width: 14rem; }
+.inline-cta b { display: block; font-family: var(--serif); font-size: 1.3rem; font-weight: 600; }
+.inline-cta span { color: var(--muted); font-size: .9375rem; }
+
+.more { list-style: none; margin: .75rem 0 0; padding: 0; border-top: var(--rule) solid var(--hairline); }
+.more li { border-bottom: var(--rule) solid var(--hairline); }
+.more a { display: block; padding: .85rem 0; text-decoration: none; }
+.more a b { display: block; font-weight: 600; }
+.more a span { font-size: .875rem; color: var(--muted); }
+.more a:hover b { text-decoration: underline; text-underline-offset: 3px; }
+
+.faq-list details { border-bottom: var(--rule) solid var(--hairline); }
+.faq-list details:first-child { border-top: var(--rule) solid var(--hairline); }
+.faq-list summary { cursor: pointer; list-style: none; padding: 1rem 2rem 1rem 0; font-weight: 600; position: relative; }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary::after { content: "+"; position: absolute; right: 0; top: .9rem; font-weight: 400; color: var(--muted); }
+.faq-list details[open] summary::after { content: "\2212"; }
+.faq-list details > div { padding: 0 0 1rem; }
+.faq-list details p { margin: 0; color: var(--g-body); }
+
+.qr { display: none; align-items: center; gap: 1rem; margin-top: 1.25rem; max-width: 22rem; }
+.qr img { width: 84px; height: 84px; flex: none; border: var(--rule) solid var(--hairline); padding: 4px; background: #fff; }
+.qr p { margin: 0; font-size: .8125rem; line-height: 1.4; color: var(--muted); }
+.qr p b { display: block; color: var(--ink); font-size: .875rem; }
+@media (min-width: 900px) and (hover: hover) { .qr { display: flex; } }
