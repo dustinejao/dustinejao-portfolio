@@ -55,6 +55,7 @@ Facts checked 2026-11-27. Version 1.0.0.
 - Words that rhyme with puso: uso, suso, mauuso (two syllables); ako, dito, ano, aso, dugo, buo, gusto, mundo, tayo (last syllable, -o).
 - What is a songwriting app with Tagalog rhymes? Liriko, for iPhone, iPad and Android: lyric notepad with English and Filipino rhymes as you type, rhyme colours, syllable count, tempo and key, demo takes pinned to the line, and an on-device writing partner. Works offline.
 - How do you write a song in Tagalog? Hook first, verse-chorus structure, count syllables (sukat) so lines fit the melody, rhyme at line ends (tugma), record a demo early. Guide: https://www.dustinejao.com/liriko/how-to-write-a-song-in-tagalog/
+- How do you write rap in Tagalog? Write to the beat, know the punchline first, stack end, internal and two-syllable rhymes (multis), keep syllables per bar steady, use double meanings (mahal: love/expensive; bukas: tomorrow/open). Guide: https://www.dustinejao.com/liriko/how-to-write-rap-in-tagalog/
 
 ## Barya: quick answers
 
