@@ -45,11 +45,13 @@ Facts checked 2026-11-27. Version 1.0.0.
 - [Calorie apps compared](https://www.dustinejao.com/caloff/compare/): privacy labels of CalOff, Cal AI, MyFitnessPal, Lose It!, Foodvisor, MacroFactor and SnapCalorie
 - [Cal AI alternative](https://www.dustinejao.com/caloff/cal-ai-alternative/)
 - [MyFitnessPal alternative](https://www.dustinejao.com/caloff/myfitnesspal-alternative/)
+- [Lose It! alternative](https://www.dustinejao.com/caloff/lose-it-alternative/)
+- [TDEE calculator](https://www.dustinejao.com/caloff/tdee-calculator/) and [macro calculator](https://www.dustinejao.com/caloff/macro-calculator/)
 - [Privacy Policy](https://www.dustinejao.com/caloff/privacy/), [Terms](https://www.dustinejao.com/caloff/terms/), [Support](https://www.dustinejao.com/caloff/support/)
 
 ## Liriko: quick answers
 
-- Where can I find Tagalog rhymes? Liriko's free Tagalog rhyme finder (https://www.dustinejao.com/liriko/tagalog-rhymes/) lists Filipino words that rhyme with any word, two-syllable rhymes first, from a 6,840-word dictionary. Ready lists for common lyric words: https://www.dustinejao.com/liriko/rhymes/puso/ (also mahal, ikaw, buhay, tadhana, alaala, pangarap, pag-ibig, kilig and 31 more under /liriko/rhymes/).
+- Where can I find Tagalog rhymes? Liriko's free Tagalog rhyme finder (https://www.dustinejao.com/liriko/tagalog-rhymes/) lists Filipino words that rhyme with any word, two-syllable rhymes first, from a 6,840-word dictionary. Ready lists for common lyric words: https://www.dustinejao.com/liriko/rhymes/puso/ (also mahal, ikaw, buhay, tadhana, alaala, pangarap, pag-ibig, pag-asa, tiwala, ngiti, bituin and 90 more under /liriko/rhymes/).
 - Words that rhyme with puso: uso, suso, mauuso (two syllables); ako, dito, ano, aso, dugo, buo, gusto, mundo, tayo (last syllable, -o).
 - What is a songwriting app with Tagalog rhymes? Liriko, for iPhone, iPad and Android: lyric notepad with English and Filipino rhymes as you type, rhyme colours, syllable count, tempo and key, demo takes pinned to the line, and an on-device writing partner. Works offline.
 - How do you write a song in Tagalog? Hook first, verse-chorus structure, count syllables (sukat) so lines fit the melody, rhyme at line ends (tugma), record a demo early. Guide: https://www.dustinejao.com/liriko/how-to-write-a-song-in-tagalog/

@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TDEE Calculator: Total Daily Energy Expenditure (Mifflin-St Jeor) | CalOff</title>
+<meta name="description" content="Free TDEE calculator: your BMR and total daily energy expenditure from the Mifflin-St Jeor equation, plus calories to lose, keep or gain weight. Kg or lb.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="apple-itunes-app" content="app-id=6816835992">
+<meta name="author" content="Dustine Jao">
+<link rel="canonical" href="https://www.dustinejao.com/caloff/tdee-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalOff">
+<meta property="og:url" content="https://www.dustinejao.com/caloff/tdee-calculator/">
+<meta property="og:title" content="TDEE calculator: how many calories you burn in a day">
+<meta property="og:description" content="Free TDEE calculator: your BMR and total daily energy expenditure from the Mifflin-St Jeor equation, plus calories to lose, keep or gain weight. Kg or lb.">
+<meta property="og:image" content="https://www.dustinejao.com/images/og/caloff.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.dustinejao.com/images/og/caloff.png">
+<meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/images/apps/caloff.png">
+<link rel="apple-touch-icon" href="/images/apps/caloff.png">
+<link rel="stylesheet" href="/caloff/caloff.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://www.dustinejao.com/caloff/tdee-calculator/#page",
+   "name": "TDEE calculator: how many calories you burn in a day",
+   "description": "Free TDEE calculator: your BMR and total daily energy expenditure from the Mifflin-St Jeor equation, plus calories to lose, keep or gain weight. Kg or lb.",
+   "url": "https://www.dustinejao.com/caloff/tdee-calculator/",
+   "inLanguage": "en",
+   "dateModified": "2026-11-27",
+   "author": {
+    "@id": "https://www.dustinejao.com/#person"
+   },
+   "publisher": {
+    "@id": "https://www.dustinejao.com/#person"
+   },
+   "about": {
+    "@id": "https://www.dustinejao.com/caloff/#app"
+   },
+   "isPartOf": {
+    "@id": "https://www.dustinejao.com/#website"
+   },
+   "image": "https://www.dustinejao.com/images/og/caloff.png",
+   "breadcrumb": {
+    "@id": "https://www.dustinejao.com/caloff/tdee-calculator/#breadcrumbs"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "https://www.dustinejao.com/caloff/tdee-calculator/#breadcrumbs",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://www.dustinejao.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "CalOff",
+     "item": "https://www.dustinejao.com/caloff/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "TDEE calculator",
+     "item": "https://www.dustinejao.com/caloff/tdee-calculator/"
+    }
+   ]
+  },
+  {
+   "@type": "Person",
+   "@id": "https://www.dustinejao.com/#person",
+   "name": "Dustine Jao",
+   "url": "https://www.dustinejao.com/",
+   "sameAs": [
+    "https://www.linkedin.com/in/dustinejao/",
+    "https://github.com/dustinejao",
+    "https://x.com/BuiltByDJP"
+   ]
+  },
+  {
+   "@type": "WebApplication",
+   "@id": "https://www.dustinejao.com/caloff/tdee-calculator/#calculator",
+   "name": "CalOff TDEE calculator",
+   "url": "https://www.dustinejao.com/caloff/tdee-calculator/",
+   "applicationCategory": "HealthApplication",
+   "operatingSystem": "Any (runs in the browser)",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "author": {
+    "@id": "https://www.dustinejao.com/#person"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://www.dustinejao.com/caloff/tdee-calculator/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is TDEE?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Total daily energy expenditure: the calories your body uses in a day including resting metabolism, movement and exercise. Eating at TDEE keeps weight steady."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How do I calculate my TDEE?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Calculate BMR with Mifflin-St Jeor, then multiply by 1.2 (sedentary), 1.375 (exercise 1-3 days), 1.55 (3-5 days) or 1.725 (6-7 days of hard exercise)."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How accurate is a TDEE calculator?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "An estimate, usually within a few hundred calories. Your log is the truest measure: steady weight over two or three weeks means your average intake is your TDEE."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How many calories below TDEE should I eat to lose weight?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "About 500 a day, roughly 0.45 kg (1 lb) a week at first, staying above 1,200 kcal for women and 1,500 for men."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="mark" href="/caloff/" aria-label="CalOff home"><span class="solid">Cal</span><span class="light">Off</span><span class="solid">.</span></a>
+    <nav aria-label="CalOff">
+      <a href="/caloff/#how">How it works</a>
+      <a href="/caloff/#private">Privacy</a>
+      <a href="/caloff/#pricing">Pricing</a>
+      <a href="/caloff/calorie-calculator/" aria-current="page">Calculator</a>
+      <a href="/caloff/#faq">FAQ</a>
+    </nav>
+    <a class="bar-get" href="https://apps.apple.com/app/apple-store/id6816835992?pt=129128273&amp;ct=web-caloff-tdee-bar&amp;mt=8" rel="noopener">Get CalOff</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/caloff/">CalOff</a> &rsaquo; <span>TDEE calculator</span></nav>
+  <div class="page-head prose" data-hero>
+    <h1>TDEE calculator</h1>
+    <p class="byline">By <a href="/">Dustine Jao</a>, maker of CalOff. Updated 27 November 2026.</p>
+    
+  </div>
+
+<div class="prose">
+  <div class="answer"><p><strong>TDEE = BMR × activity factor.</strong> BMR comes from the Mifflin-St Jeor equation; the factor runs from 1.2 for a desk job to 1.725 for hard daily exercise. Enter your details for your TDEE, and the calories to eat to lose, keep or gain weight.</p></div>
+</div>
+<div class="calc">
+  <form id="calc" novalidate>
+    <fieldset class="field"><legend>Sex</legend>
+      <div class="seg">
+        <label><input type="radio" name="sex" value="f" checked><span>Female</span></label>
+        <label><input type="radio" name="sex" value="m"><span>Male</span></label>
+      </div>
+    </fieldset>
+    <div class="field"><label for="age">Age</label><input id="age" name="age" type="number" inputmode="numeric" min="15" max="90" value="30"></div>
+    <fieldset class="field"><legend>Units</legend>
+      <div class="seg">
+        <label><input type="radio" name="units" value="metric" checked><span>kg, cm</span></label>
+        <label><input type="radio" name="units" value="imperial"><span>lb, ft</span></label>
+      </div>
+    </fieldset>
+    <div class="metric two">
+      <div class="field"><label for="cm">Height (cm)</label><input id="cm" type="number" inputmode="decimal" min="120" max="230" value="165"></div>
+      <div class="field"><label for="kg">Weight (kg)</label><input id="kg" type="number" inputmode="decimal" min="30" max="300" value="70"></div>
+    </div>
+    <div class="imperial two" hidden>
+      <div class="field"><label for="ft">Height</label><div class="two"><input id="ft" type="number" inputmode="numeric" min="4" max="7" value="5" aria-label="Feet"><input id="inch" type="number" inputmode="numeric" min="0" max="11" value="5" aria-label="Inches"></div></div>
+      <div class="field"><label for="lb">Weight (lb)</label><input id="lb" type="number" inputmode="decimal" min="66" max="660" value="154"></div>
+    </div>
+    <div class="field"><label for="act">Activity</label>
+      <select id="act">
+        <option value="1.2">Sedentary: desk job, little exercise</option>
+        <option value="1.375" selected>Light: exercise 1–3 days a week</option>
+        <option value="1.55">Moderate: exercise 3–5 days a week</option>
+        <option value="1.725">Active: hard exercise 6–7 days a week</option>
+      </select>
+    </div>
+    <fieldset class="field"><legend>Goal</legend>
+      <div class="seg">
+        <label><input type="radio" name="goal" value="lose" checked><span>Lose</span></label>
+        <label><input type="radio" name="goal" value="maintain"><span>Maintain</span></label>
+        <label><input type="radio" name="goal" value="gain"><span>Gain</span></label>
+      </div>
+    </fieldset>
+    <div class="field"><label for="gw">Goal weight <span class="muted" style="font-weight:400">(optional, <span class="u-w">kg</span>)</span></label><input id="gw" type="number" inputmode="decimal" placeholder="e.g. 65"></div>
+  </form>
+
+  <div class="out" aria-live="polite">
+    <p class="eyebrow" style="margin-bottom:6px">Your daily target</p>
+    <div class="big"><span id="o-target">1,453</span> <small>kcal a day</small></div>
+    <dl>
+      <dt>Maintenance (TDEE)</dt><dd id="o-tdee">1,953 kcal</dd>
+      <dt>Resting energy (BMR)</dt><dd id="o-bmr">1,420 kcal</dd>
+      <dt style="color:var(--protein)">Protein</dt><dd id="o-p">127 g</dd>
+      <dt style="color:var(--carbs)">Carbs</dt><dd id="o-c">127 g</dd>
+      <dt style="color:var(--fat)">Fat</dt><dd id="o-f">48 g</dd>
+      <dt>Expected change</dt><dd id="o-rate">−0.45 kg a week</dd>
+      <dt>Goal date</dt><dd id="o-date">Add a goal weight</dd>
+    </dl>
+    <p class="note" id="o-note">An estimate from a published formula, not medical advice. Your real maintenance shows up in your log over two or three weeks.</p>
+    <div style="margin-top:18px"><a class="store" href="https://apps.apple.com/app/apple-store/id6816835992?pt=129128273&amp;ct=web-caloff-calc&amp;mt=8" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><span><small>Track it daily with CalOff on the</small><span>App Store</span></span></a></div>
+  </div>
+</div>
+
+
+<div class="prose">
+  <h2>TDEE at a glance</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th scope="col">Person</th><th scope="col" class="num">BMR</th><th scope="col" class="num">Sedentary</th><th scope="col" class="num">Light</th><th scope="col" class="num">Moderate</th><th scope="col" class="num">Active</th></tr></thead>
+    <tbody><tr><th scope="row">Woman, 25, 155&nbsp;cm, 55&nbsp;kg</th><td class="num">1,233</td><td class="num">1,479</td><td class="num">1,695</td><td class="num">1,911</td><td class="num">2,126</td></tr><tr><th scope="row">Woman, 35, 160&nbsp;cm, 68&nbsp;kg</th><td class="num">1,344</td><td class="num">1,613</td><td class="num">1,848</td><td class="num">2,083</td><td class="num">2,318</td></tr><tr><th scope="row">Man, 25, 170&nbsp;cm, 65&nbsp;kg</th><td class="num">1,592</td><td class="num">1,911</td><td class="num">2,190</td><td class="num">2,468</td><td class="num">2,747</td></tr><tr><th scope="row">Man, 40, 172&nbsp;cm, 80&nbsp;kg</th><td class="num">1,680</td><td class="num">2,016</td><td class="num">2,310</td><td class="num">2,604</td><td class="num">2,898</td></tr></tbody>
+    <caption>Calories a day, Mifflin-St Jeor with standard activity factors.</caption>
+  </table></div>
+  <h2>BMR and TDEE are not the same</h2>
+  <p><strong>BMR</strong> is what you burn lying still: breathing, circulation, keeping warm. <strong>TDEE</strong> adds digestion, walking to the jeep, climbing stairs and any training. Most people burn 20–70% more than their BMR in a day, which is what the activity factor captures.</p>
+  <h2>Getting the activity level right</h2>
+  <ul>
+    <li><strong>Sedentary (1.2)</strong>: desk job, commute by car or ride, little walking.</li>
+    <li><strong>Light (1.375)</strong>: on your feet part of the day, or 1–3 workouts a week.</li>
+    <li><strong>Moderate (1.55)</strong>: 3–5 real workouts a week.</li>
+    <li><strong>Active (1.725)</strong>: hard training 6–7 days, or physical work all day.</li>
+  </ul>
+  <p>When in doubt, pick the lower one. Overestimating activity is the most common reason a deficit does not work.</p>
+  
+<aside class="inline-cta">
+  <img class="icon" src="/images/apps/caloff.webp" alt="" width="56" height="56" loading="lazy">
+  <div><p><b>Eat to your TDEE without the spreadsheet</b>CalOff sets your target from these numbers and counts your meals from a photo, offline. 7-day free trial.</p></div>
+  <a class="store" href="https://apps.apple.com/app/apple-store/id6816835992?pt=129128273&amp;ct=web-caloff-tdee&amp;mt=8" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><span><small>Download on the</small><span>App Store</span></span></a>
+</aside>
+  <h2>Questions</h2>
+  <div class="faq">
+<details><summary>What is TDEE?</summary><div><p>Total daily energy expenditure: the calories your body uses in a day, including resting metabolism, digestion, daily movement and exercise. Eating at your TDEE keeps your weight steady.</p></div></details>
+<details><summary>How do I calculate my TDEE?</summary><div><p>Work out your BMR with the Mifflin-St Jeor equation, then multiply by an activity factor: 1.2 if you sit most of the day, 1.375 for exercise 1–3 days a week, 1.55 for 3–5 days, 1.725 for hard exercise 6–7 days.</p></div></details>
+<details><summary>How accurate is a TDEE calculator?</summary><div><p>It is an estimate from averages, usually within a few hundred calories. The truest number is in your own log: if your weight holds steady over two or three weeks of honest tracking, what you ate on average is your TDEE.</p></div></details>
+<details><summary>How many calories below TDEE should I eat to lose weight?</summary><div><p>About 500 a day is the common starting point, roughly 0.45&nbsp;kg (1&nbsp;lb) a week at first. Keep women above 1,200 and men above 1,500&nbsp;kcal unless a health professional says otherwise.</p></div></details>
+</div>
+  <p>Sources and the full method are on the <a href="/caloff/calorie-calculator/">calorie calculator</a> page.</p>
+</div>
+<script>
+(function () {
+  'use strict';
+  var f = document.getElementById('calc');
+  function val(id) { var n = parseFloat(document.getElementById(id).value); return isFinite(n) ? n : NaN; }
+  function radio(name) { var r = f.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
+  function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+  var MAC = { lose: [.35, .35, .30], maintain: [.30, .40, .30], gain: [.28, .44, .28] };
+  var DELTA = { lose: -500, maintain: 0, gain: 350 };
+  function set(id, t) { document.getElementById(id).textContent = t; }
+
+  function run() {
+    var imperial = radio('units') === 'imperial';
+    f.querySelector('.metric').hidden = imperial;
+    f.querySelector('.imperial').hidden = !imperial;
+    Array.prototype.forEach.call(document.querySelectorAll('.u-w'), function (e) { e.textContent = imperial ? 'lb' : 'kg'; });
+    var kg = imperial ? val('lb') * 0.45359237 : val('kg');
+    var cm = imperial ? (val('ft') * 12 + (val('inch') || 0)) * 2.54 : val('cm');
+    var age = val('age'), sex = radio('sex'), goal = radio('goal'), act = parseFloat(document.getElementById('act').value);
+    if (!(kg > 20 && cm > 100 && age >= 15 && age <= 100)) { set('o-target', '–'); return; }
+    var bmr = 10 * kg + 6.25 * cm - 5 * age + (sex === 'm' ? 5 : -161);
+    var tdee = bmr * act;
+    var floor = sex === 'm' ? 1500 : 1200;
+    var target = Math.round(Math.max(floor, tdee + DELTA[goal]));
+    var m = MAC[goal];
+    set('o-target', fmt(target));
+    set('o-tdee', fmt(tdee) + ' kcal');
+    set('o-bmr', fmt(bmr) + ' kcal');
+    set('o-p', fmt(target * m[0] / 4) + ' g');
+    set('o-c', fmt(target * m[1] / 4) + ' g');
+    set('o-f', fmt(target * m[2] / 9) + ' g');
+    var daily = target - tdee;
+    var rateKg = Math.min(Math.abs(daily) * 7 / 7700, 1);
+    var sign = daily < 0 ? '−' : '+';
+    var unit = imperial ? ' lb' : ' kg';
+    var shown = imperial ? rateKg / 0.45359237 : rateKg;
+    set('o-rate', goal === 'maintain' || rateKg < 0.005 ? 'Hold steady' : sign + shown.toFixed(2) + unit + ' a week');
+    var gw = val('gw'); var gwKg = imperial ? gw * 0.45359237 : gw;
+    var change = gwKg - kg;
+    var right = (goal === 'lose' && change < 0) || (goal === 'gain' && change > 0);
+    if (isFinite(gwKg) && right && Math.abs(change) >= 0.5 && rateKg > 0) {
+      var weeks = Math.ceil(Math.abs(change) / rateKg);
+      var d = new Date(); d.setDate(d.getDate() + weeks * 7);
+      set('o-date', d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) + ' (' + weeks + ' weeks)');
+    } else {
+      set('o-date', isFinite(gwKg) ? 'Pick a goal that moves toward it' : 'Add a goal weight');
+    }
+    set('o-note', target === floor && tdee + DELTA[goal] < floor
+      ? 'Your target is held at the ' + fmt(floor) + ' kcal floor. Talk to a health professional before eating this low.'
+      : 'An estimate from a published formula, not medical advice. Your real maintenance shows up in your log over two or three weeks.');
+  }
+  f.addEventListener('input', run);
+  f.addEventListener('change', run);
+  run();
+})();
+</script>
+<section class="sec" style="padding-top:64px"><h2 style="font-size:26px;letter-spacing:-.6px">More from CalOff</h2><ul class="more"><li><a href="/caloff/calorie-calculator/"><b>Calorie calculator</b><span>Your daily calories and macros, the maths CalOff uses</span></a></li><li><a href="/caloff/macro-calculator/"><b>Macro calculator</b><span>Protein, carbs and fat in grams for your goal</span></a></li><li><a href="/caloff/filipino-food-calories/"><b>Filipino food calories</b><span>100 dishes, per serving: adobo, sinigang, silog and more</span></a></li><li><a href="/caloff/how-to-count-calories-from-a-photo/"><b>Count calories from a photo</b><span>How photo estimates work, and how to make them closer</span></a></li><li><a href="/caloff/offline-calorie-counter/"><b>Offline calorie counter</b><span>What works with no signal, and the one download it needs</span></a></li><li><a href="/caloff/compare/"><b>Calorie apps compared</b><span>Seven apps, by what their privacy labels declare</span></a></li><li><a href="/caloff/cal-ai-alternative/"><b>Cal AI alternative</b><span>CalOff and Cal AI, side by side</span></a></li><li><a href="/caloff/myfitnesspal-alternative/"><b>MyFitnessPal alternative</b><span>CalOff and MyFitnessPal, side by side</span></a></li><li><a href="/caloff/lose-it-alternative/"><b>Lose It! alternative</b><span>CalOff and Lose It!, side by side</span></a></li></ul></section>
+</main>
+
+<div class="dock">
+  <img src="/images/apps/caloff.webp" alt="" width="40" height="40">
+  <p><b>CalOff</b>7-day free trial &middot; No account</p>
+  <a href="https://apps.apple.com/app/apple-store/id6816835992?pt=129128273&amp;ct=web-caloff-tdee-dock&amp;mt=8" rel="noopener">Get</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="about">
+        <a class="mark" href="/caloff/"><span class="solid">Cal</span><span class="light">Off</span><span class="solid">.</span></a>
+        <p>The AI calorie counter that works offline. For iPhone.</p>
+      </div>
+      <nav aria-label="Guides">
+        <h2>Guides</h2>
+        <ul>
+          <li><a href="/caloff/calorie-calculator/">Calorie calculator</a></li>
+          <li><a href="/caloff/tdee-calculator/">TDEE calculator</a></li>
+          <li><a href="/caloff/macro-calculator/">Macro calculator</a></li>
+          <li><a href="/caloff/filipino-food-calories/">Filipino food calories</a></li>
+          <li><a href="/caloff/how-to-count-calories-from-a-photo/">Count calories from a photo</a></li>
+          <li><a href="/caloff/offline-calorie-counter/">Offline calorie counter</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Compare">
+        <h2>Compare</h2>
+        <ul>
+          <li><a href="/caloff/compare/">Calorie apps compared</a></li>
+          <li><a href="/caloff/cal-ai-alternative/">Cal AI alternative</a></li>
+          <li><a href="/caloff/myfitnesspal-alternative/">MyFitnessPal alternative</a></li>
+          <li><a href="/caloff/lose-it-alternative/">Lose It! alternative</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="CalOff">
+        <h2>CalOff</h2>
+        <ul>
+          <li><a href="/caloff/support/">Support</a></li>
+          <li><a href="/caloff/privacy/">Privacy Policy</a></li>
+          <li><a href="/caloff/terms/">Terms of Use</a></li>
+          <li><a href="/apps/">More apps by Dustine Jao</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="legal">&copy; 2026 Dustine Jao. CalOff is not affiliated with Cal AI, MyFitnessPal, Lose It!, SnapCalorie, Foodvisor, MacroFactor or Apple. App Store is a service mark of Apple Inc.</p>
+  </div>
+</footer>
+
+<script src="/caloff/caloff.js" defer></script>
+<script src="/source.js" defer></script>
+</body>
+</html>
