@@ -2068,3 +2068,40 @@ a.st-row:active .st-get { transform: scale(.94); }
   }
   [data-reveal] { opacity: 1; transform: none; }
 }
+
+/* ---------- Apps: two heroes side by side ---------------------- */
+.st-today-pair { display: grid; gap: 1rem; }
+@media (min-width: 760px) { .st-today-pair { grid-template-columns: 1fr 1fr; } }
+.st-today-pair .st-today h2 { font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
+.st-today-caloff {
+  background:
+    radial-gradient(90% 70% at 85% 10%, rgba(255, 255, 255, .10), transparent 60%),
+    #000;
+}
+.co-art {
+  position: absolute;
+  z-index: 1;
+  right: clamp(1rem, 3vw, 1.75rem);
+  bottom: 0;
+  width: clamp(150px, 15vw, 190px);
+  height: 74%;
+  overflow: hidden;
+  border-radius: 28px 28px 0 0;
+  border: 6px solid #2c2c2e;
+  border-bottom: 0;
+  background: #000;
+  box-shadow: 0 -10px 40px rgba(255, 255, 255, .06);
+}
+.co-art img { display: block; width: 100%; height: auto; }
+.st-today-caloff .st-today-bar { background: rgba(28, 28, 30, .86); }
+.st-today-caloff .st-today-bar .st-get { color: #000; }
+
+/* ---------- Apps: free tools as quiet links -------------------- */
+.st-links { padding-block: 1.75rem 1.25rem; border-top: 1px solid var(--border); margin-top: 1.25rem; }
+.st-links h2 { margin: 0 0 1rem; font-size: .8rem; font-weight: 600; letter-spacing: .02em; color: var(--muted); }
+.st-links-grid { display: grid; gap: 1.25rem 2rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 760px) { .st-links-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.st-links h3 { margin: 0 0 .5rem; font-size: .8rem; font-weight: 600; color: var(--text); }
+.st-links ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
+.st-links a { font-size: .8rem; color: var(--muted); text-decoration: none; }
+.st-links a:hover { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
