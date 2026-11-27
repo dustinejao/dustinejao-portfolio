@@ -217,7 +217,8 @@
 </header>
 
 <main class="home">
-  <!-- Product heroes: CastCut, Barya, then the portfolio. -->
+  <!-- Product heroes: CastCut and CalOff side by side, then Barya, then the portfolio. -->
+  <div class="hero-split">
   <section class="hero product-hero product-castcut" id="top" aria-labelledby="castcut-title" data-loop>
     <a class="product-hero-link" href="/castcut/">
       <div class="product-copy container">
@@ -247,6 +248,23 @@
       </div>
     </a>
   </section>
+  <section class="hero product-hero product-caloff" id="caloff" aria-labelledby="caloff-title">
+    <a class="product-hero-link" href="/caloff/">
+      <div class="product-copy container">
+        <p class="product-name"><img src="/images/apps/caloff.webp" alt="" width="40" height="40" decoding="async">CalOff</p>
+        <h2 class="product-title" id="caloff-title">Every calorie.<br><span>No signal needed.</span></h2>
+        <p class="product-sub">The AI calorie counter for iPhone that works offline.</p>
+        <span class="ap-btn product-cta">Explore CalOff</span>
+      </div>
+      <div class="caloff-stage" aria-hidden="true">
+        <div class="caloff-device">
+          <img class="caloff-light" src="/images/caloff/home.webp" alt="" width="720" height="1564" decoding="async">
+          <img class="caloff-dark" src="/images/caloff/home-dark.webp" alt="" width="720" height="1564" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </a>
+  </section>
+  </div>
 
   <section class="hero product-hero product-barya" id="barya" aria-labelledby="barya-title">
     <a class="product-hero-link" href="https://apps.apple.com/us/app/barya-offline-expense-tracker/id6811890999" target="_blank" rel="noopener">

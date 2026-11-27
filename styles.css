@@ -2105,3 +2105,28 @@ a.st-row:active .st-get { transform: scale(.94); }
 .st-links ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
 .st-links a { font-size: .8rem; color: var(--muted); text-decoration: none; }
 .st-links a:hover { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Home: CastCut and CalOff, side by side ------------- */
+.hero-split { display: grid; gap: 12px; margin-bottom: 12px; }
+.hero-split .hero.product-hero { margin-bottom: 0; }
+.product-caloff { background: var(--tile); color: var(--tile-ink); }
+.product-caloff .product-title span { color: var(--tile-2); }
+.product-caloff .product-sub { color: var(--tile-2); }
+.caloff-stage { display: flex; justify-content: center; margin: 2.5rem auto 0; padding: 0 24px; height: clamp(300px, 34vw, 420px); overflow: hidden; }
+.caloff-device { width: clamp(210px, 20vw, 260px); align-self: flex-start; overflow: hidden; border: 7px solid #1d1d1f; border-bottom: 0; border-radius: 42px 42px 0 0; background: #000; box-shadow: 0 24px 60px rgba(0, 0, 0, .18); }
+.caloff-device img { display: block; width: 100%; height: auto; }
+.caloff-dark { display: none !important; }
+[data-theme="dark"] .caloff-light { display: none !important; }
+[data-theme="dark"] .caloff-dark { display: block !important; }
+@media (min-width: 900px) {
+  .hero-split { grid-template-columns: 1fr 1fr; }
+  .hero-split .product-hero-link { height: 100%; padding-bottom: 0; }
+  .hero-split .product-title { font-size: clamp(2.5rem, 4vw, 3.75rem); }
+  .hero-split .product-sub { font-size: 1.1rem; max-width: 22em; }
+  .hero-split .castcut-stage { margin-top: 2.25rem; padding: 0 20px 2rem; }
+  .hero-split .castcut-labels { width: 66px; font-size: .6rem; }
+  .hero-split .castcut-ruler { padding-left: 80px; }
+  .hero-split .castcut-tracks { height: clamp(140px, 13vw, 190px); margin-right: 14px; }
+  .hero-split .castcut-ready { display: none; }
+  .hero-split .caloff-stage { height: clamp(300px, 27vw, 400px); }
+}
