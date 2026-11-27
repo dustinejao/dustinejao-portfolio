@@ -86,7 +86,20 @@
       "url": "https://www.dustinejao.com/",
       "jobTitle": "App developer and video editor",
       "address": { "@type": "PostalAddress", "addressLocality": "Manila", "addressCountry": "PH" },
-      "sameAs": ["https://www.linkedin.com/in/dustinejao/", "https://github.com/dustinejao", "https://x.com/BuiltByDJP"]
+      "sameAs": ["https://www.linkedin.com/in/dustinejao/", "https://github.com/dustinejao", "https://x.com/BuiltByDJP", "https://www.youtube.com/@builtbydjp"]
+    },
+    {
+      "@type": "VideoObject",
+      "@id": "https://www.dustinejao.com/caloff/#video",
+      "name": "I Built an AI Calorie Counter That Works in Airplane Mode",
+      "description": "Dustine Jao shows CalOff, an AI calorie counter that runs entirely on the iPhone: no Wi-Fi, no data, airplane mode on, and it still scans a meal or a protein bar for calories and macros.",
+      "thumbnailUrl": ["https://www.dustinejao.com/images/caloff/video-poster.webp", "https://i.ytimg.com/vi/saNxtAErfXY/maxresdefault.jpg"],
+      "uploadDate": "2026-11-27T01:34:02-08:00",
+      "duration": "PT8M25S",
+      "embedUrl": "https://www.youtube.com/embed/saNxtAErfXY",
+      "contentUrl": "https://www.youtube.com/watch?v=saNxtAErfXY",
+      "author": { "@id": "https://www.dustinejao.com/#person" },
+      "about": { "@id": "https://www.dustinejao.com/caloff/#app" }
     },
     {
       "@type": "WebPage",
@@ -181,6 +194,18 @@
     <li><b>0</b><span>meal photos uploaded</span></li>
     <li><b>1 tap</b><span>to log your usual meal again</span></li>
   </ul>
+</section>
+
+<section class="wrap sec" id="video">
+  <p class="eyebrow">Watch</p>
+  <h2>I built it. <span class="light">Here it is in airplane mode.</span></h2>
+  <div class="video">
+    <button type="button" class="video-play" data-yt="saNxtAErfXY" aria-label="Play video: I Built an AI Calorie Counter That Works in Airplane Mode (8:25)">
+      <img src="/images/caloff/video-poster.webp" alt="Dustine Jao showing CalOff counting calories in airplane mode" width="1280" height="720" loading="lazy" decoding="async">
+      <span class="video-btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+      <span class="video-len" aria-hidden="true">8:25</span>
+    </button>
+  </div>
 </section>
 
 <section class="wrap sec" id="how">
@@ -455,6 +480,18 @@
   </div>
 </footer>
 
+<script>
+document.querySelectorAll('.video-play').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.yt + '?autoplay=1&rel=0&playsinline=1';
+    f.title = b.getAttribute('aria-label').replace('Play video: ', '');
+    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    f.allowFullscreen = true;
+    b.replaceWith(f);
+  });
+});
+</script>
 <script src="/caloff/caloff.js" defer></script>
 <script src="/source.js" defer></script>
 </body>

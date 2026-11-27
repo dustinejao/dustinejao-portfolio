@@ -399,3 +399,14 @@ footer { margin-top: 96px; border-top: 1px solid var(--rule); padding: 44px 0 48
 .dish-links a { font-size: 14px; font-weight: 500; text-decoration: none; padding: 6px 12px; border-radius: 999px; background: var(--card); box-shadow: var(--shadow); color: var(--ink); }
 .dish-links a:hover { background: var(--fill); }
 .cta-row .btn-ghost + .btn-ghost, p > .btn-ghost + .btn-ghost { margin-left: 8px; }
+
+/* --- Video: a poster until pressed, so YouTube loads only on demand --- */
+.video { position: relative; aspect-ratio: 16 / 9; border-radius: 22px; overflow: hidden; background: #000; box-shadow: var(--shadow); max-width: 960px; }
+.video iframe, .video-play { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-play { padding: 0; cursor: pointer; background: #000; }
+.video-play img { width: 100%; height: 100%; object-fit: cover; transition: opacity .2s; }
+.video-play:hover img { opacity: .88; }
+.video-btn { position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; transform: translate(-50%, -50%); border-radius: 50%; background: rgba(255,255,255,.92); display: grid; place-items: center; box-shadow: 0 8px 30px rgba(0,0,0,.35); transition: transform .15s; }
+.video-btn svg { width: 32px; height: 32px; fill: #000; margin-left: 4px; }
+.video-play:hover .video-btn { transform: translate(-50%, -50%) scale(1.06); }
+.video-len { position: absolute; right: 14px; bottom: 12px; padding: 3px 8px; border-radius: 6px; background: rgba(0,0,0,.72); color: #fff; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
