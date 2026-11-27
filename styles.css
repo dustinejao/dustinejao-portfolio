@@ -2071,7 +2071,9 @@ a.st-row:active .st-get { transform: scale(.94); }
 
 /* ---------- Apps: two heroes side by side ---------------------- */
 .st-today-pair { display: grid; gap: 1rem; }
-@media (min-width: 760px) { .st-today-pair { grid-template-columns: 1fr 1fr; } }
+/* Phones and tablets lead with CalOff (that is its market); desktop keeps CastCut left. */
+.st-today-pair .st-today-caloff { order: -1; }
+@media (min-width: 900px) { .st-today-pair { grid-template-columns: 1fr 1fr; } .st-today-pair .st-today-caloff { order: 0; } }
 .st-today-pair .st-today h2 { font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
 .st-today-caloff {
   background:
@@ -2109,6 +2111,7 @@ a.st-row:active .st-get { transform: scale(.94); }
 /* ---------- Home: CastCut and CalOff, side by side ------------- */
 .hero-split { display: grid; gap: 12px; margin-bottom: 12px; }
 .hero-split .hero.product-hero { margin-bottom: 0; }
+.hero-split .product-caloff { order: -1; }
 .product-caloff { background: var(--tile); color: var(--tile-ink); }
 .product-caloff .product-title span { color: var(--tile-2); }
 .product-caloff .product-sub { color: var(--tile-2); }
@@ -2120,6 +2123,7 @@ a.st-row:active .st-get { transform: scale(.94); }
 [data-theme="dark"] .caloff-dark { display: block !important; }
 @media (min-width: 900px) {
   .hero-split { grid-template-columns: 1fr 1fr; }
+  .hero-split .product-caloff { order: 0; }
   .hero-split .product-hero-link { height: 100%; padding-bottom: 0; }
   .hero-split .product-title { font-size: clamp(2.5rem, 4vw, 3.75rem); }
   .hero-split .product-sub { font-size: 1.1rem; max-width: 22em; }
